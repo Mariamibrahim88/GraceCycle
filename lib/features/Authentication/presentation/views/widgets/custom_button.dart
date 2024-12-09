@@ -20,33 +20,36 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 355.w,
-      height: 45.h,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (image != null) ...[
-            SvgPicture.asset(
-              image!,
-              width: 17.w,
-              height: 17.h,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        width: 355.w,
+        height: 45.h,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (image != null) ...[
+              SvgPicture.asset(
+                image!,
+                width: 17.w,
+                height: 17.h,
+              ),
+              SizedBox(width: 10.w), // Spacing between image and text
+            ],
+            Text(
+              text,
+              style: GoogleFonts.nunito(
+                color: textColor,
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-            SizedBox(width: 10.w), // Spacing between image and text
           ],
-          Text(
-            text,
-            style: GoogleFonts.nunito(
-              color: textColor,
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
