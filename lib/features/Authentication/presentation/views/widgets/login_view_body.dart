@@ -8,10 +8,11 @@ import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/Question_text.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_yellow_text.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/or_section.dart';
 
-class SignupViewBody extends StatelessWidget {
-  const SignupViewBody({super.key});
+class LoginViewBody extends StatelessWidget {
+  const LoginViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,28 +23,13 @@ class SignupViewBody extends StatelessWidget {
           child: Column(
             children: [
               //verticalSpace(100),
-              Text('Sign Up',
+              Text('Log In',
                   style: GoogleFonts.nunito(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold,
                       color: AppColors.greentit)),
               verticalSpace(30),
-              CustomTextFormField(
-                labelText: 'Name',
-                hintText: 'Mariam Ibrahim',
-                onChanged: (value) {},
-                obscureText: false,
-                //icon: Icons.email,
-              ),
-              verticalSpace(15),
-              CustomTextFormField(
-                labelText: 'Phone',
-                hintText: '+20 101 234 5678',
-                onChanged: (value) {},
-                obscureText: false,
-                //icon: Icons.email,
-              ),
-              verticalSpace(15),
+
               CustomTextFormField(
                 labelText: 'Email',
                 hintText: 'mariam@gmail.com',
@@ -59,15 +45,12 @@ class SignupViewBody extends StatelessWidget {
                 obscureText: true,
                 // icon: Icons.email,
               ),
+              verticalSpace(5),
+              Align(
+                  alignment: Alignment.centerRight,
+                  child: CustomYellowText(
+                      text2: 'Forgot Password?', onPressed: () {})),
               verticalSpace(15),
-              CustomTextFormField(
-                labelText: 'Confirm Password',
-                hintText: 'anything122',
-                onChanged: (value) {},
-                obscureText: true,
-                //icon: Icons.email,
-              ),
-              verticalSpace(25),
               CustomButton(
                 text: 'Continue',
                 textColor: Colors.white,
@@ -78,10 +61,10 @@ class SignupViewBody extends StatelessWidget {
               ),
               verticalSpace(5),
               QuestionText(
-                text1: 'Already have an account?',
-                text2: 'Log in',
+                text1: 'Don’t have an account?',
+                text2: 'Sign Up',
                 onPressed: () {
-                  navigate(context: context, route: Routes.login);
+                  navigate(context: context, route: Routes.initialRoute);
                 },
               ),
 
