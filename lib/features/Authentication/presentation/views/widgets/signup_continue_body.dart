@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
+import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/Question_text.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
@@ -59,8 +61,12 @@ class SignupContinueBody extends StatelessWidget {
                   onPressed: () {},
                   textColor: Colors.white,
                   color: AppColors.greenButt),
-              const QuestionText(
-                  text1: 'Already have an account?', text2: 'Log in'),
+              QuestionText(
+                  text1: 'Already have an account?',
+                  text2: 'Log in',
+                  onPressed: () {
+                    navigate(context: context, route: Routes.login);
+                  }),
               const OrSection(),
               verticalSpace(10),
               CustomButton(
