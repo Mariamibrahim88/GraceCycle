@@ -7,7 +7,7 @@ class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField({
     Key? key,
     required this.hintText,
-    required this.labelText,
+    this.labelText,
     this.onChanged,
     this.obscureText = true,
     this.icon,
@@ -15,7 +15,7 @@ class CustomTextFormField extends StatefulWidget {
   }) : super(key: key);
 
   final String hintText;
-  final String labelText;
+  final String? labelText;
   final Function(String)? onChanged;
   final bool obscureText;
   final IconData? icon;
@@ -44,6 +44,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         onChanged: widget.onChanged,
         obscureText: widget.obscureText && _obscureText,
         decoration: InputDecoration(
+          //contentPadding: EdgeInsets.only(left: 10.w),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelStyle: GoogleFonts.nunito(
               fontSize: 18.sp,

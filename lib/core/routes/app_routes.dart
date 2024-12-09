@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:grace_cycle/features/Authentication/presentation/views/signup_continue_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/signup_view.dart';
 
 class Routes {
   static const String initialRoute = '/';
 
-  ///static const String login = '/signup';
+  static const String continueSignup = '/signupContinue';
   // static const String changLan = '/changLan';
 }
 
@@ -13,8 +14,8 @@ class AppRoutes {
     switch (settings.name) {
       case Routes.initialRoute:
         return MaterialPageRoute(builder: (_) => const SignupView());
-      // case Routes.login:
-      //   return MaterialPageRoute(builder: (_) => const LoginView());
+      case Routes.continueSignup:
+        return MaterialPageRoute(builder: (_) => const SignupContinueView());
       // case Routes.changLan:
       //   return MaterialPageRoute(builder: (_) => const ChangeLangScreen());
       default:
