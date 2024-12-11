@@ -15,11 +15,9 @@ class SetNewPassViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 60.h),
       child: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          // const CustomAppBar(),
-
           Text('Set new Password',
               style: GoogleFonts.nunito(
                   fontSize: 20,

@@ -59,21 +59,7 @@ class VerifyYourEmailViewBody extends StatelessWidget {
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(2),
                 borderSide: const BorderSide(
-                  color: AppColors.greenButt,
-                  width: 1.5,
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(2),
-                borderSide: const BorderSide(
                   color: AppColors.grey,
-                  width: 1.5,
-                ),
-              ),
-              disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(2),
-                borderSide: const BorderSide(
-                  color: AppColors.greenButt,
                   width: 1.5,
                 ),
               ),
@@ -84,6 +70,21 @@ class VerifyYourEmailViewBody extends StatelessWidget {
                   width: 1.5,
                 ),
               ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(2),
+                borderSide: const BorderSide(
+                  color: AppColors.greenButt,
+                  width: 1.5,
+                ),
+              ),
+
+              // disabledBorder: OutlineInputBorder(
+              //   borderRadius: BorderRadius.circular(2),
+              //   borderSide: const BorderSide(
+              //     color: AppColors.greenButt,
+              //     width: 1.5,
+              //   ),
+              // ),
             ),
           ),
           verticalSpace(20),
