@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/first_forget_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/login_in_view.dart';
+import 'package:grace_cycle/features/Authentication/presentation/views/set_new_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/signup_continue_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/signup_view.dart';
-import 'package:grace_cycle/features/Authentication/presentation/views/verfify_your_email_view.dart';
+import 'package:grace_cycle/features/Authentication/presentation/views/succ_set_new_pass_view.dart';
+import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
 
 class Routes {
   static const String initialRoute = '/';
@@ -11,7 +13,9 @@ class Routes {
   static const String continueSignup = '/signupContinue';
   static const String login = '/login';
   static const String firstForgetPass = '/firstForgetPass';
-  static const String verFiyYourEmail = '/verFiyYourEmail';
+  static const String verfiyYourEmail = '/verfiyYourEmail';
+  static const String setNewPass = '/setNewPass';
+    static const String succSetNewPass = '/succSetNewPass';
 
 }
 
@@ -25,9 +29,13 @@ class AppRoutes {
       case Routes.login:
         return MaterialPageRoute(builder: (_) => const LoginInView());
       case Routes.firstForgetPass:
-        return MaterialPageRoute(builder: (_)=> const FirstForgetPassView());
-      case Routes.verFiyYourEmail:
-        return MaterialPageRoute(builder: (_)=> const VerfifyYourEmailView());
+        return MaterialPageRoute(builder: (_) => const FirstForgetPassView());
+      case Routes.verfiyYourEmail:
+        return MaterialPageRoute(builder: (_) => const VerifyYourEmailView());
+      case Routes.setNewPass:
+        return MaterialPageRoute(builder: (_) => const SetNewPassView());
+      case Routes.succSetNewPass:
+        return MaterialPageRoute(builder: (_) => const SuccSetNewPassView());
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }

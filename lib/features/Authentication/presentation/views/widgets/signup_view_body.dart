@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
+import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
@@ -93,7 +94,7 @@ class SignupViewBody extends StatelessWidget {
                   text: 'Google',
                   onPressed: () {},
                   textColor: AppColors.greensubtit,
-                  image: 'assets/images/google.svg',
+                  image: AppAssets.imgGoogle,
                   color: AppColors.grey),
             ],
           ),
