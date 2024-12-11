@@ -34,6 +34,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       width: 355.w,
       height: 45.h,
       child: TextFormField(
+        cursorColor: AppColors.greentit,
         controller: widget.textcontroller,
         validator: (value) {
           if (value!.isEmpty) {

@@ -29,10 +29,18 @@ class CustomCheckbox extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 30.h,
+                  width: 30.w,
                   child: Checkbox(
+                    //size of the checkbox
+
+                    fillColor: checkboxStates[index]
+                        ? MaterialStateProperty.all(AppColors.yellow)
+                        : MaterialStateProperty.all(AppColors.grey),
+                    side: const BorderSide(color: AppColors.grey2),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
+
                     value:
                         checkboxStates[index], // State for the current checkbox
                     onChanged: (value) {
