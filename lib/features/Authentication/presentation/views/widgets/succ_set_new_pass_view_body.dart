@@ -6,13 +6,11 @@ import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
-import 'package:grace_cycle/features/Authentication/presentation/views/widgets/Question_text.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
-import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_text_form_field.dart';
 
-class FirstForgetPassViewBody extends StatelessWidget {
-  FirstForgetPassViewBody({super.key});
+class SuccSetNewPassViewBody extends StatelessWidget {
+  const SuccSetNewPassViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +18,17 @@ class FirstForgetPassViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
       child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const CustomAppBar(),
-            verticalSpace(20),
-            Text('Forget Password ?',
+            verticalSpace(120),
+            Text('Congratulations !',
                 style: GoogleFonts.nunito(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: AppColors.greentit)),
             verticalSpace(15),
             Text(
-                'Please enter your email address to \n receive a verification code',
+                'Your password has been \n successfully reset . Click below to \n log in magically',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.nunito(
                     fontSize: 16,
@@ -39,28 +36,14 @@ class FirstForgetPassViewBody extends StatelessWidget {
                     color: AppColors.greentit)),
             verticalSpace(15),
             SvgPicture.asset(
-              AppAssets.imgFoegetPass,
+              AppAssets.imgCongratulation,
               height: 170,
             ),
-            verticalSpace(15),
-            CustomTextFormField(
-              labelText: 'Email',
-              hintText: 'mariam@gmail.com',
-              onChanged: (value) {},
-              obscureText: false,
-            ),
-            verticalSpace(20),
+            verticalSpace(25),
             CustomButton(
-              text: 'Send',
+              text: 'Log In',
               textColor: Colors.white,
               color: AppColors.greenButt,
-              onPressed: () {
-                navigate(context: context, route: Routes.verfiyYourEmail);
-              },
-            ),
-            QuestionText(
-              text1: 'Remember  password?',
-              text2: 'Log in',
               onPressed: () {
                 navigate(context: context, route: Routes.login);
               },
