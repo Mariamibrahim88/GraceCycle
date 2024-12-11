@@ -16,7 +16,7 @@ class FirstForgetPassView extends StatelessWidget {
           },
         ),
         backgroundColor: AppColors.basicWhite,
-        body: FirstForgetPassViewBody(),
+        body: const FirstForgetPassViewBody(),
       ),
     );
   }
