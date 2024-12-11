@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/signup_view_body.dart';
 
 class SignupView extends StatelessWidget {
@@ -8,7 +9,7 @@ class SignupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.basicWhite,
         body: SignupViewBody(),
       ),
     );

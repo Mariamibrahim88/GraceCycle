@@ -39,11 +39,11 @@ class VerifyYourEmailViewBody extends StatelessWidget {
             AppAssets.imgVerifyYourEmail,
             height: 170,
           ),
-          verticalSpace(15),
+          verticalSpace(20),
           OtpTextField(
             showFieldAsBox: true,
-            fieldHeight: 45,
-            fieldWidth: 35,
+            fieldHeight: 40,
+            fieldWidth: 40,
             numberOfFields: 4,
             textStyle: GoogleFonts.nunito(
               fontSize: 22,
@@ -52,13 +52,14 @@ class VerifyYourEmailViewBody extends StatelessWidget {
             ),
             hasCustomInputDecoration: true,
             decoration: InputDecoration(
+              counterText: '',
               contentPadding: const EdgeInsets.only(left: 2),
               filled: true,
               fillColor: Colors.transparent,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(2),
                 borderSide: const BorderSide(
-                  color: AppColors.grey,
+                  color: AppColors.greenButt,
                   width: 1.5,
                 ),
               ),
@@ -66,6 +67,13 @@ class VerifyYourEmailViewBody extends StatelessWidget {
                 borderRadius: BorderRadius.circular(2),
                 borderSide: const BorderSide(
                   color: AppColors.grey,
+                  width: 1.5,
+                ),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(2),
+                borderSide: const BorderSide(
+                  color: AppColors.greenButt,
                   width: 1.5,
                 ),
               ),

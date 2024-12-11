@@ -50,8 +50,10 @@ class LoginViewBody extends StatelessWidget {
               Align(
                   alignment: Alignment.centerRight,
                   child: CustomYellowText(
-                      text2: 'Forgot Password?', onPressed: () {
-                    navigate(context: context, route: Routes.firstForgetPass);
+                      text2: 'Forgot Password?',
+                      onPressed: () {
+                        navigate(
+                            context: context, route: Routes.firstForgetPass);
                       })),
               verticalSpace(15),
               CustomButton(

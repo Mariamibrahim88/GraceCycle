@@ -47,7 +47,7 @@ class SetNewPassViewBody extends StatelessWidget {
           verticalSpace(20),
           CustomButton(
             text: 'Save',
-            textColor: Colors.white,
+            textColor: AppColors.basicWhite,
             color: AppColors.greenButt,
             onPressed: () {
               navigate(context: context, route: Routes.succSetNewPass);
