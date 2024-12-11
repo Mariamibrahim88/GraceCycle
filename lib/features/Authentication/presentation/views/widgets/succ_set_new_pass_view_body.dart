@@ -6,7 +6,6 @@ import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
-import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
 
 class SuccSetNewPassViewBody extends StatelessWidget {
@@ -19,7 +18,7 @@ class SuccSetNewPassViewBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const CustomAppBar(),
+            //const CustomAppBar(),
             verticalSpace(120),
             Text('Congratulations !',
                 style: GoogleFonts.nunito(

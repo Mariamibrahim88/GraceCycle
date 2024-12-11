@@ -5,12 +5,12 @@ import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_yellow_text.dart';
 
 class QuestionText extends StatelessWidget {
-  QuestionText(
+  const QuestionText(
       {super.key, required this.text1, required this.text2, this.onPressed});
 
   final String text1;
   final String text2;
-  Function()? onPressed;
+  final Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {

@@ -4,10 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 
 class CustomYellowText extends StatelessWidget {
-  CustomYellowText({super.key, required this.text2, this.onPressed});
+  const CustomYellowText({super.key, required this.text2, this.onPressed});
 
   final String text2;
-  Function()? onPressed;
+  final Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
