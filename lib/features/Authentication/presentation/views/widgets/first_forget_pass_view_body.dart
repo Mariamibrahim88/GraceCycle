@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
@@ -7,23 +8,20 @@ import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/Question_text.dart';
-import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_text_form_field.dart';
 
 class FirstForgetPassViewBody extends StatelessWidget {
-  FirstForgetPassViewBody({super.key});
+  const FirstForgetPassViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const CustomAppBar(),
-            verticalSpace(20),
             Text('Forget Password ?',
                 style: GoogleFonts.nunito(
                     fontSize: 20,

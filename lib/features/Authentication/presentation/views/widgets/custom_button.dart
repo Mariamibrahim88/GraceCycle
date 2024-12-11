@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomButton extends StatelessWidget {
-  CustomButton(
+  const CustomButton(
       {super.key,
       this.image,
       required this.text,
@@ -12,11 +12,11 @@ class CustomButton extends StatelessWidget {
       required this.textColor,
       required this.color});
 
-  String text;
-  Color color;
-  Color textColor;
-  String? image;
-  void Function() onPressed;
+  final String text;
+  final Color color;
+  final Color textColor;
+  final String? image;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
