@@ -17,7 +17,7 @@ class FirstForgetPassViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 70.h),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

@@ -58,7 +58,7 @@ class SignupContinueBody extends StatelessWidget {
               const CustomCheckbox(),
               verticalSpace(15),
               CustomButton(
-                  text: 'Continue',
+                  text: 'Sign up',
                   onPressed: () {},
                   textColor: Colors.white,
                   color: AppColors.greenButt),
@@ -74,7 +74,7 @@ class SignupContinueBody extends StatelessWidget {
                 text: 'Google',
                 onPressed: () {},
                 textColor: AppColors.greensubtit,
-                color: AppColors.secondgreenButt,
+                color: AppColors.grey,
                 image: AppAssets.imgGoogle,
               )
             ],

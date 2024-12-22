@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
+import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/signup_view_body.dart';
 
 class SignupView extends StatelessWidget {
@@ -7,10 +8,15 @@ class SignupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
+        appBar: CustomAppBar(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         backgroundColor: AppColors.basicWhite,
-        body: SignupViewBody(),
+        body: const SignupViewBody(),
       ),
     );
   }

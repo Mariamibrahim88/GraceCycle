@@ -17,7 +17,7 @@ class VerifyYourEmailViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 70.h),
       child: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           // const CustomAppBar(),
@@ -56,13 +56,13 @@ class VerifyYourEmailViewBody extends StatelessWidget {
               contentPadding: const EdgeInsets.only(left: 2),
               filled: true,
               fillColor: Colors.transparent,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(2),
-                borderSide: const BorderSide(
-                  color: AppColors.grey,
-                  width: 1.5,
-                ),
-              ),
+              // border: OutlineInputBorder(
+              //   borderRadius: BorderRadius.circular(2),
+              //   borderSide: const BorderSide(
+              //     color: AppColors.grey,
+              //     width: 1.5,
+              //   ),
+              // ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(2),
                 borderSide: const BorderSide(
@@ -73,7 +73,7 @@ class VerifyYourEmailViewBody extends StatelessWidget {
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(2),
                 borderSide: const BorderSide(
-                  color: AppColors.greenButt,
+                  color: AppColors.grey,
                   width: 1.5,
                 ),
               ),
