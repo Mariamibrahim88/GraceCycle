@@ -10,7 +10,7 @@ import 'package:grace_cycle/features/onBourding/presentation/views/onbourding_vi
 
 class Routes {
   static const String initialRoute = '/';
-
+  static const String signup = '/signup';
   static const String continueSignup = '/signupContinue';
   static const String login = '/login';
   static const String firstForgetPass = '/firstForgetPass';
@@ -37,8 +37,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const SetNewPassView());
       case Routes.succSetNewPass:
         return MaterialPageRoute(builder: (_) => const SuccSetNewPassView());
-      case Routes.onBourding:
-        return MaterialPageRoute(builder: (_) => const OnBourdingView());
+      case Routes.signup:
+        return MaterialPageRoute(builder: (_) => const SignupView());
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }

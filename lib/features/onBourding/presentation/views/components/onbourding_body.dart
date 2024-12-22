@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
+import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
@@ -136,9 +138,9 @@ class _OnbourdingBodyState extends State<OnbourdingBody> {
             text: 'Continue',
             onPressed: () {
               currentIndex == 2
-                  ? Navigator.pop(context)
+                  ? navigate(context: context, route: Routes.signup)
                   : pageController.nextPage(
-                      duration: const Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 700),
                       curve: Curves.easeIn,
                     );
             },
