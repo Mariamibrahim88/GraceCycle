@@ -17,74 +17,65 @@ class LoginViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              //verticalSpace(100),
-              Text('Log In',
-                  style: GoogleFonts.nunito(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.greentit)),
-              verticalSpace(30),
-
-              CustomTextFormField(
-                labelText: 'Email',
-                hintText: 'mariam@gmail.com',
-                onChanged: (value) {},
-                obscureText: false,
-                //icon: Icons.email,
-              ),
-              verticalSpace(15),
-              CustomTextFormField(
-                labelText: 'Password',
-                hintText: 'anything122',
-                onChanged: (value) {},
-                obscureText: true,
-                // icon: Icons.email,
-              ),
-              verticalSpace(5),
-              Align(
-                  alignment: Alignment.centerRight,
-                  child: CustomYellowText(
-                      text2: 'Forgot Password?',
-                      onPressed: () {
-                        navigate(
-                            context: context, route: Routes.firstForgetPass);
-                      })),
-              verticalSpace(15),
-              CustomButton(
-                text: 'Continue',
-                textColor: Colors.white,
-                color: AppColors.greenButt,
-                onPressed: () {
-                  navigate(context: context, route: Routes.continueSignup);
-                },
-              ),
-              verticalSpace(5),
-              QuestionText(
-                text1: 'Don’t have an account?',
-                text2: 'Sign Up',
-                onPressed: () {
-                  navigate(context: context, route: Routes.initialRoute);
-                },
-              ),
-
-              //verticalSpace(20),
-              const OrSection(),
-              verticalSpace(10),
-
-              CustomButton(
-                  text: 'Google',
-                  onPressed: () {},
-                  textColor: AppColors.greensubtit,
-                  image: AppAssets.imgGoogle,
-                  color: AppColors.grey),
-            ],
-          ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12.w),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            verticalSpace(80),
+            Text('Log In',
+                style: GoogleFonts.nunito(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.greentit)),
+            verticalSpace(30),
+            CustomTextFormField(
+              labelText: 'Email',
+              hintText: 'mariam@gmail.com',
+              onChanged: (value) {},
+              obscureText: false,
+            ),
+            verticalSpace(15),
+            CustomTextFormField(
+              labelText: 'Password',
+              hintText: 'anything122',
+              onChanged: (value) {},
+              obscureText: true,
+            ),
+            verticalSpace(5),
+            Align(
+                alignment: Alignment.centerRight,
+                child: CustomYellowText(
+                    text2: 'Forgot Password?',
+                    onPressed: () {
+                      navigate(context: context, route: Routes.firstForgetPass);
+                    })),
+            verticalSpace(15),
+            CustomButton(
+              text: 'Log in',
+              textColor: Colors.white,
+              color: AppColors.greenButt,
+              onPressed: () {
+                navigate(context: context, route: Routes.continueSignup);
+              },
+            ),
+            verticalSpace(5),
+            QuestionText(
+              text1: 'Don’t have an account?',
+              text2: 'Sign Up',
+              onPressed: () {
+                navigate(context: context, route: Routes.initialRoute);
+              },
+            ),
+            const OrSection(),
+            verticalSpace(10),
+            CustomButton(
+                text: 'Google',
+                onPressed: () {},
+                textColor: AppColors.greensubtit,
+                image: AppAssets.imgGoogle,
+                color: AppColors.grey),
+          ],
         ),
       ),
     );

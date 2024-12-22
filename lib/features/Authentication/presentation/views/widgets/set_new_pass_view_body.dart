@@ -15,7 +15,7 @@ class SetNewPassViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 60.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 70.h),
       child: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Text('Set new Password',
@@ -23,12 +23,12 @@ class SetNewPassViewBody extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: AppColors.greentit)),
-          verticalSpace(15),
+          verticalSpace(25),
           SvgPicture.asset(
             AppAssets.imgSetNewPass,
             height: 170,
           ),
-          verticalSpace(15),
+          verticalSpace(25),
           CustomTextFormField(
             labelText: 'New Password',
             hintText: 'anything123#',
