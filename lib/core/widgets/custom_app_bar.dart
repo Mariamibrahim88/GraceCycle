@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
+    this.padding = const EdgeInsets.only(top: 45.0, left: 2.0),
     required this.onPressed,
   });
   final void Function()? onPressed;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +17,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.transparent,
       leading: GestureDetector(
         onTap: onPressed,
-        child: const Padding(
-          padding: EdgeInsets.only(top: 45.0, left: 2.0),
-          child: Icon(
+        child: Padding(
+          padding: padding,
+          child: const Icon(
             Icons.arrow_back_outlined,
             size: 32,
           ),
