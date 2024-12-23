@@ -34,8 +34,8 @@ class CustomCheckbox extends StatelessWidget {
                     //size of the checkbox
 
                     fillColor: checkboxStates[index]
-                        ? MaterialStateProperty.all(AppColors.yellow)
-                        : MaterialStateProperty.all(AppColors.grey),
+                        ? WidgetStateProperty.all(AppColors.yellow)
+                        : WidgetStateProperty.all(AppColors.grey),
                     side: const BorderSide(color: AppColors.grey2),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
