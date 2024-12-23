@@ -8,7 +8,7 @@ import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
-import 'package:grace_cycle/features/Authentication/presentation/views/widgets/Question_text.dart';
+import 'package:grace_cycle/features/Authentication/presentation/views/widgets/question_text.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
 
 class VerifyYourEmailViewBody extends StatelessWidget {

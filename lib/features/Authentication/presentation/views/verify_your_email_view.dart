@@ -13,7 +13,7 @@ class VerifyYourEmailView extends StatelessWidget {
         appBar: CustomAppBar(onPressed: () {
           Navigator.pop(context);
         }),
-        body: VerifyYourEmailViewBody(),
+        body: const VerifyYourEmailViewBody(),
         backgroundColor: AppColors.basicWhite,
       ),
     );

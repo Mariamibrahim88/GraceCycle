@@ -5,14 +5,14 @@ import 'package:grace_cycle/core/utils/app_colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField({
-    Key? key,
+    super.key,
     required this.hintText,
     this.labelText,
     this.onChanged,
     this.obscureText = true,
     this.icon,
     this.textcontroller,
-  }) : super(key: key);
+  });
 
   final String hintText;
   final String? labelText;
@@ -40,6 +40,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           if (value!.isEmpty) {
             return 'Please enter some text';
           }
+          return null;
           // return null;
         },
         onChanged: widget.onChanged,

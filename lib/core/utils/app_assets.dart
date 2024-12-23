@@ -1,4 +1,6 @@
 class AppAssets {
+  static String imgLogo = 'assets/images/appLogo.svg';
+  static String imgAppName = 'assets/images/nameapp.svg';
   static String imgSetNewPass = 'assets/images/setnewpass.svg';
   static String imgFoegetPass = 'assets/images/forgetpass.svg';
   static String imgVerifyYourEmail = 'assets/images/verifyyourpass.svg';
