@@ -151,7 +151,7 @@ class _OnbourdingBodyState extends State<OnbourdingBody> {
           CustomYellowText(
             text2: 'Skip',
             fontsize: 18,
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => navigate(context: context, route: Routes.signup),
           ),
         ],
       ),
