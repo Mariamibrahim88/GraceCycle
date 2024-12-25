@@ -41,6 +41,35 @@ class _OnbourdingBodyState extends State<OnbourdingBody> {
                 : _buildDefaultPage(index),
           ),
         ),
+        //verticalSpace(24),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              CustomButton(
+                text: 'Continue',
+                onPressed: () {
+                  currentIndex == 2
+                      ? navigate(context: context, route: Routes.signup)
+                      : pageController.nextPage(
+                          duration: const Duration(milliseconds: 700),
+                          curve: Curves.easeIn,
+                        );
+                },
+                textColor: Colors.white,
+                color: AppColors.greenButt,
+              ),
+              verticalSpace(20),
+              CustomYellowText(
+                text2: 'Skip',
+                fontsize: 18,
+                onPressed: () =>
+                    navigate(context: context, route: Routes.signup),
+              ),
+            ],
+          ),
+        ),
+        verticalSpace(35),
       ],
     );
   }
@@ -132,26 +161,6 @@ class _OnbourdingBodyState extends State<OnbourdingBody> {
               color: AppColors.grey3,
               fontWeight: FontWeight.w400,
             ),
-          ),
-          verticalSpace(24),
-          CustomButton(
-            text: 'Continue',
-            onPressed: () {
-              currentIndex == 2
-                  ? navigate(context: context, route: Routes.signup)
-                  : pageController.nextPage(
-                      duration: const Duration(milliseconds: 700),
-                      curve: Curves.easeIn,
-                    );
-            },
-            textColor: Colors.white,
-            color: AppColors.greenButt,
-          ),
-          verticalSpace(20),
-          CustomYellowText(
-            text2: 'Skip',
-            fontsize: 18,
-            onPressed: () => navigate(context: context, route: Routes.signup),
           ),
         ],
       ),
