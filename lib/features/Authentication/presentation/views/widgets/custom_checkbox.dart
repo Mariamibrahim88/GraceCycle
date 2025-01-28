@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
-import 'package:grace_cycle/features/Authentication/presentation/manager/cubit/checkbox_cubit.dart';
+import 'package:grace_cycle/features/Authentication/presentation/manager/checkbox_cubit/checkbox_cubit.dart';
 
 class CustomCheckbox extends StatelessWidget {
   const CustomCheckbox({super.key});
