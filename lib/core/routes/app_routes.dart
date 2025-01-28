@@ -6,24 +6,28 @@ import 'package:grace_cycle/features/Authentication/presentation/views/signup_co
 import 'package:grace_cycle/features/Authentication/presentation/views/signup_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/succ_set_new_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
+import 'package:grace_cycle/features/onBourding/presentation/views/onbourding_view.dart';
+import 'package:grace_cycle/features/splash/presentation/views/splash_view.dart';
 
 class Routes {
   static const String initialRoute = '/';
-
+  static const String signup = '/signup';
   static const String continueSignup = '/signupContinue';
   static const String login = '/login';
   static const String firstForgetPass = '/firstForgetPass';
   static const String verfiyYourEmail = '/verfiyYourEmail';
   static const String setNewPass = '/setNewPass';
-    static const String succSetNewPass = '/succSetNewPass';
-
+  static const String succSetNewPass = '/succSetNewPass';
+  static const String onBourding = '/OnBourding';
 }
 
 class AppRoutes {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (_) => const SignupView());
+        return MaterialPageRoute(builder: (_) => const SplashView());
+      case Routes.onBourding:
+        return MaterialPageRoute(builder: (_) => const OnBourdingView());
       case Routes.continueSignup:
         return MaterialPageRoute(builder: (_) => const SignupContinueView());
       case Routes.login:
@@ -36,6 +40,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const SetNewPassView());
       case Routes.succSetNewPass:
         return MaterialPageRoute(builder: (_) => const SuccSetNewPassView());
+      case Routes.signup:
+        return MaterialPageRoute(builder: (_) => const SignupView());
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }
