@@ -12,6 +12,7 @@ class CustomTextFormField extends StatefulWidget {
     this.obscureText = true,
     this.icon,
     this.textcontroller,
+    this.validator,
   });
 
   final String hintText;
@@ -20,6 +21,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool obscureText;
   final IconData? icon;
   final TextEditingController? textcontroller;
+  final String? Function(String?)? validator;
 
   @override
   _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
@@ -32,21 +34,17 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 355.w,
-      height: 45.h,
+      // height: 45.h,
       child: TextFormField(
         cursorColor: AppColors.greentit,
         controller: widget.textcontroller,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return 'Please enter some text';
-          }
-          return null;
-          // return null;
-        },
+        validator: widget.validator,
         onChanged: widget.onChanged,
         obscureText: widget.obscureText && _obscureText,
         decoration: InputDecoration(
-          //contentPadding: EdgeInsets.only(left: 10.w),
+          contentPadding:
+              EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+          //errorStyle: TextStyle(fontSize: 0, height: 0),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelStyle: GoogleFonts.nunito(
               fontSize: 18.sp,
@@ -82,10 +80,18 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             borderSide:
                 const BorderSide(color: AppColors.greenBorder, width: 1),
           ),
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: const BorderSide(color: Colors.red, width: 1)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide:
                   const BorderSide(color: AppColors.greenBorder, width: 1)),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide:
+                const BorderSide(color: Colors.red, width: 1), // Match width
+          ),
         ),
       ),
     );

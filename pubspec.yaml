@@ -29,13 +29,15 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.8
+  dartz: ^0.10.1
   dio: ^5.7.0
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
+  flutter_bloc: ^9.0.0
   flutter_otp_text_field: ^1.2.0
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.16
+  fluttertoast: ^8.2.10
   get_it: ^8.0.3
   google_fonts: ^6.2.1
   shared_preferences: ^2.4.0
