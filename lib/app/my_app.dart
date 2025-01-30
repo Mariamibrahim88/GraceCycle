@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Grace Cycle',
       initialRoute: Routes.initialRoute,
       onGenerateRoute: AppRoutes.generateRoute,
-
+    
       // theme: getAppThem()
     );
   }
