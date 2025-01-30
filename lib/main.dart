@@ -7,5 +7,6 @@ void main() async {
   initServiceLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
+  //CacheHelper().init();
   runApp(const MyApp());
 }
