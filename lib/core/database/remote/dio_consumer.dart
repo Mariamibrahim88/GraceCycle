@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:grace_cycle/core/database/remote/api_consumer.dart';
 import 'package:grace_cycle/core/database/remote/api_interceptors.dart';
+import 'package:grace_cycle/core/database/remote/end_points.dart';
 import 'package:grace_cycle/core/errors/error_model.dart';
 import 'package:grace_cycle/core/errors/exceptions.dart';
 
 class DioConsumer extends ApiConsumer {
   Dio dio;
   DioConsumer(this.dio) {
-    //dio.options.baseUrl = EndPoint.baseurl;
+    dio.options.baseUrl = EndPoint.baseurl;
     dio.interceptors.add(ApiInterceptors());
     dio.interceptors.add(LogInterceptor(
       request: true,

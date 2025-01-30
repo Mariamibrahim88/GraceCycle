@@ -4,14 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField({
+   CustomTextFormField({
     super.key,
     required this.hintText,
     this.labelText,
     this.onChanged,
     this.obscureText = true,
     this.icon,
-    this.textcontroller,
+    this.textcontroller, 
+    this.validator,
   });
 
   final String hintText;
@@ -20,7 +21,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool obscureText;
   final IconData? icon;
   final TextEditingController? textcontroller;
-
+  FormFieldValidator<String>? validator;
   @override
   _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
 }
@@ -36,12 +37,11 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       child: TextFormField(
         cursorColor: AppColors.greentit,
         controller: widget.textcontroller,
-        validator: (value) {
+        validator:  widget.validator??(value) {
           if (value!.isEmpty) {
-            return 'Please enter some text';
+            return 'required field';
           }
           return null;
-          // return null;
         },
         onChanged: widget.onChanged,
         obscureText: widget.obscureText && _obscureText,
