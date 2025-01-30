@@ -113,12 +113,10 @@ handleDioException(e) {
         // print(e.response);
       }
     case DioExceptionType.cancel:
-      throw ServerException(
-          ErrorModel(status: 500, errorMessage: e.toString()));
+      throw ServerException(ErrorModel(errorMessage: e.toString()));
 
     case DioExceptionType.unknown:
-      throw ServerException(
-          ErrorModel(status: 500, errorMessage: e.toString()));
+      throw ServerException(ErrorModel(errorMessage: e.toString()));
 
     // throw ServerException('badResponse');
   }
