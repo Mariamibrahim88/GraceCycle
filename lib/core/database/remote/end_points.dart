@@ -15,4 +15,5 @@ class ApiKeys {
   static const String phonenumber = 'phonenumber';
   static const String contentType = 'Content-Type';
   static const String applicationJson = 'application/json';
+  static const String fromurlencoded = 'application/x-www-form-urlencoded';
 }

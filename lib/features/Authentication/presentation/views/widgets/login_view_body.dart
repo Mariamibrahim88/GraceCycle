@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
@@ -6,6 +7,8 @@ import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/core/widgets/show_snack_bar.dart';
+import 'package:grace_cycle/features/Authentication/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/question_text.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_text_form_field.dart';
@@ -19,64 +22,107 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.w),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            verticalSpace(80),
-            Text('Log In',
-                style: GoogleFonts.nunito(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.greentit)),
-            verticalSpace(30),
-            CustomTextFormField(
-              labelText: 'Email',
-              hintText: 'mariam@gmail.com',
-              onChanged: (value) {},
-              obscureText: false,
-            ),
-            verticalSpace(15),
-            CustomTextFormField(
-              labelText: 'Password',
-              hintText: 'anything122',
-              onChanged: (value) {},
-              obscureText: true,
-            ),
-            verticalSpace(5),
-            Align(
-                alignment: Alignment.centerRight,
-                child: CustomYellowText(
-                    text2: 'Forgot Password?',
+      child: BlocConsumer<LoginCubit, LoginState>(
+        listener: (context, state) {
+          if (state is LoginSuccessful) {
+            showSnackBar(context, 'Login Successfully', Colors.green);
+            //navigate(context: context, route: Routes.home);
+          } else if (state is LoginFailure) {
+            showSnackBar(context, state.toString(), Colors.red);
+          }
+        },
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Form(
+              key: context.read<LoginCubit>().formKey,
+              child: Column(
+                children: [
+                  verticalSpace(80),
+                  Text('Log In',
+                      style: GoogleFonts.nunito(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.greentit)),
+                  verticalSpace(30),
+                  CustomTextFormField(
+                    textcontroller: context.read<LoginCubit>().emailController,
+                    labelText: 'Email',
+                    hintText: 'example@gmail.com',
+                    obscureText: false,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'required field';
+                      } else if (!value.contains('@')) {
+                        return 'Invalid Email';
+                      }
+                      return null;
+                      // return null;
+                    },
+                  ),
+                  verticalSpace(15),
+                  CustomTextFormField(
+                    textcontroller:
+                        context.read<LoginCubit>().passwordController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'required field';
+                      } else if (value.length < 6) {
+                        return 'Password must be at least 6 characters';
+                      }
+                      return null;
+                    },
+                    labelText: 'Password',
+                    hintText: 'anything122',
+                    obscureText: true,
+                  ),
+                  verticalSpace(5),
+                  Align(
+                      alignment: Alignment.centerRight,
+                      child: CustomYellowText(
+                          text2: 'Forgot Password?',
+                          onPressed: () {
+                            navigate(
+                                context: context,
+                                route: Routes.firstForgetPass);
+                          })),
+                  verticalSpace(15),
+                  CustomButton(
+                    text: 'Log in',
+                    textColor: Colors.white,
+                    color: AppColors.greenButt,
                     onPressed: () {
-                      navigate(context: context, route: Routes.firstForgetPass);
-                    })),
-            verticalSpace(15),
-            CustomButton(
-              text: 'Log in',
-              textColor: Colors.white,
-              color: AppColors.greenButt,
-              onPressed: () {
-                navigate(context: context, route: Routes.continueSignup);
-              },
+                      if (context
+                          .read<LoginCubit>()
+                          .formKey
+                          .currentState!
+                          .validate()) {
+                        BlocProvider.of<LoginCubit>(context).login();
+                        navigate(
+                            context: context, route: Routes.continueSignup);
+                      }
+                    },
+                  ),
+                  verticalSpace(5),
+                  QuestionText(
+                    text1: 'Don’t have an account?',
+                    text2: 'Sign Up',
+                    onPressed: () {
+                      navigate(context: context, route: Routes.signup);
+                    },
+                  ),
+                  const OrSection(),
+                  verticalSpace(10),
+                  CustomButton(
+                      text: 'Google',
+                      onPressed: () {},
+                      textColor: AppColors.greensubtit,
+                      image: AppAssets.imgGoogle,
+                      color: AppColors.grey),
+                ],
+              ),
             ),
-            verticalSpace(5),
-            QuestionText(
-              text1: 'Don’t have an account?',
-              text2: 'Sign Up',
-              onPressed: () {
-                navigate(context: context, route: Routes.initialRoute);
-              },
-            ),
-            const OrSection(),
-            verticalSpace(10),
-            CustomButton(
-                text: 'Google',
-                onPressed: () {},
-                textColor: AppColors.greensubtit,
-                image: AppAssets.imgGoogle,
-                color: AppColors.grey),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
