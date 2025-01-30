@@ -1,11 +1,9 @@
 class ErrorModel {
-  int status;
   String errorMessage;
-  ErrorModel({required this.status, required this.errorMessage});
+  ErrorModel({required this.errorMessage});
   factory ErrorModel.fromJson(dynamic jsonData) {
     return ErrorModel(
-      status: jsonData['status'],
-      errorMessage: jsonData['ErrorMessage'],
+      errorMessage: jsonData['message'],
     );
   }
 }
