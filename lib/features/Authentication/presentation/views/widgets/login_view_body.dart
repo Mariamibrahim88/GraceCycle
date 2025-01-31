@@ -70,7 +70,7 @@ class LoginViewBody extends StatelessWidget {
                         context.read<LoginCubit>().passwordController,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'required field';
+                        return 'Password is required';
                       } else if (value.length < 6) {
                         return 'Password must be at least 6 characters';
                       }
