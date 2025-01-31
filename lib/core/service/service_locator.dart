@@ -11,7 +11,7 @@ import 'package:grace_cycle/features/Authentication/presentation/manager/login_c
 final sl = GetIt.instance;
 
 void initServiceLocator() {
-  sl.registerLazySingleton(() => CacheHelper());
+  //sl.registerLazySingleton(() => CacheHelper());
   sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(sl()));
   sl.registerLazySingleton(() => Dio());
   sl.registerLazySingleton(() => RegisterRepo());
