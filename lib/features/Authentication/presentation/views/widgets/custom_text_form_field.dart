@@ -38,7 +38,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       // height: 45.h,
       child: TextFormField(
         inputFormatters: [
-          FilteringTextInputFormatter.deny(RegExp(r'\s')),
+          FilteringTextInputFormatter.deny(RegExp(r'^\s+')),
         ],
         cursorColor: AppColors.greentit,
         controller: widget.textcontroller,
