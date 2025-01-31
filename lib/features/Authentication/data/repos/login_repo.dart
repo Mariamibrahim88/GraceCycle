@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:grace_cycle/core/database/remote/api_consumer.dart';
 import 'package:grace_cycle/core/database/remote/end_points.dart';
-import 'package:grace_cycle/core/errors/exceptions.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/features/Authentication/data/models/login_model.dart';
 
