@@ -1,6 +1,7 @@
 class EndPoint {
-  static const String baseurl = 'https://b319-156-206-9-160.ngrok-free.app/';
-  static const String signIn = 'chef/signin';
+  static const String baseurl =
+      'https://b319-156-206-9-160.ngrok-free.app/api/AppUser/';
+  static const String signIn = 'login-app';
   static const String signUp = 'register-app';
 }
 

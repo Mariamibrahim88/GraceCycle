@@ -33,7 +33,6 @@ class CustomCheckbox extends StatelessWidget {
                 height: 30.h,
                 width: 30.w,
                 child: Checkbox(
-                  //size of the checkbox
                   fillColor: conditions[index]
                       ? WidgetStateProperty.all(AppColors.yellow)
                       : WidgetStateProperty.all(AppColors.grey),
@@ -42,9 +41,9 @@ class CustomCheckbox extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                   ),
 
-                  value: conditions[index], // State for the current checkbox
+                  value: conditions[index],
                   onChanged: (value) {
-                    context.read<RegisterCubit>().toggleCheckbox(
+                    context.read<RegisterCubit>().selectCheckbox(
                         index, value!); // Update the checkbox state
                   },
                   activeColor: conditions[index]

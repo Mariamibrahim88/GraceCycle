@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
@@ -36,6 +37,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       width: 355.w,
       // height: 45.h,
       child: TextFormField(
+        inputFormatters: [
+          FilteringTextInputFormatter.deny(RegExp(r'^\s+')),
+        ],
         cursorColor: AppColors.greentit,
         controller: widget.textcontroller,
         validator: widget.validator,

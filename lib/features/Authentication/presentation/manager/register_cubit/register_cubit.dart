@@ -29,7 +29,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   List<bool> conditions = List.generate(6, (index) => false);
   List<String> selectedConditions = [];
 
-  void toggleCheckbox(int index, bool value) {
+  void selectCheckbox(int index, bool value) {
     //final updatedState = List<bool>.from(conditions);
     conditions[index] = value;
     _updateSelectedConditions();
