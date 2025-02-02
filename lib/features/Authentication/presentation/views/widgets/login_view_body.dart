@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grace_cycle/core/firebase/login_methods/login_methods.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/core/widgets/custom_snack_bar.dart';
 import 'package:grace_cycle/core/widgets/show_snack_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/question_text.dart';
@@ -114,7 +116,12 @@ class LoginViewBody extends StatelessWidget {
                   verticalSpace(10),
                   CustomButton(
                       text: 'Google',
-                      onPressed: () {},
+                      onPressed: () {
+                        LoginMethods.signInWithGoogle();
+                        showToast(
+                            message: 'Login Successful',
+                            state: ToastStates.success);
+                      },
                       textColor: AppColors.greensubtit,
                       image: AppAssets.imgGoogle,
                       color: AppColors.grey),
