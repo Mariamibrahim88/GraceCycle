@@ -66,13 +66,21 @@ class SignupContinueBody extends StatelessWidget {
                     verticalSpace(10),
                     Align(
                       alignment: Alignment.centerRight,
-                      child: Text(
-                        'Your current location',
-                        style: GoogleFonts.nunito(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                          decoration: TextDecoration.underline,
-                          color: AppColors.yellow,
+                      child: GestureDetector(
+                        onTap: () {
+                          //  print('get location');
+                          context
+                              .read<RegisterCubit>()
+                              .getCurrentLocation(context);
+                        },
+                        child: Text(
+                          'Your current location',
+                          style: GoogleFonts.nunito(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w400,
+                            decoration: TextDecoration.underline,
+                            color: AppColors.yellow,
+                          ),
                         ),
                       ),
                     ),

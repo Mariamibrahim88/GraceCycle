@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.grace_cycle"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 34
     ndkVersion = flutter.ndkVersion
 
     compileOptions {

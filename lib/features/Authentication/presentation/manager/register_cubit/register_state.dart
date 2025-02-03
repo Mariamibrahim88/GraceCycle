@@ -17,3 +17,23 @@ final class RegisterCheckboxState extends RegisterState {
 
   RegisterCheckboxState(this.registerconditions);
 }
+
+class LocationLoading extends RegisterState {}
+
+class LocationLoaded extends RegisterState {
+  final String address;
+
+  LocationLoaded(this.address);
+
+  //@override
+  List<Object> get props => [address];
+}
+
+final class LocationError extends RegisterState {
+  final String message;
+
+  LocationError(this.message);
+
+  //@override
+  List<Object> get props => [message];
+}
