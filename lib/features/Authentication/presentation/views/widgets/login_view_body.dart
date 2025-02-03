@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grace_cycle/core/firebase/login_methods/login_methods.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
-import 'package:grace_cycle/core/widgets/show_snack_bar.dart';
+import 'package:grace_cycle/core/widgets/custom_snack_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/question_text.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
@@ -25,10 +26,15 @@ class LoginViewBody extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccessful) {
-            showSnackBar(context, 'Login Successfully', Colors.green);
+            showToast(
+                message: 'Login Successfully', state: ToastStates.success);
+
             //navigate(context: context, route: Routes.home);
           } else if (state is LoginFailure) {
-            showSnackBar(context, state.toString(), Colors.red);
+            //showSnackBar(context, state.toString(), Colors.red);
+            showToast(
+                message: 'check your email or password',
+                state: ToastStates.error);
           }
         },
         builder: (context, state) {
@@ -51,7 +57,7 @@ class LoginViewBody extends StatelessWidget {
                     obscureText: false,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'required field';
+                        return 'Email is required';
                       } else if (!value.contains('@')) {
                         return 'Invalid Email';
                       }
@@ -65,7 +71,7 @@ class LoginViewBody extends StatelessWidget {
                         context.read<LoginCubit>().passwordController,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'required field';
+                        return 'Password is required';
                       } else if (value.length < 6) {
                         return 'Password must be at least 6 characters';
                       }
@@ -97,8 +103,8 @@ class LoginViewBody extends StatelessWidget {
                           .currentState!
                           .validate()) {
                         BlocProvider.of<LoginCubit>(context).login();
-                        navigate(
-                            context: context, route: Routes.continueSignup);
+                        // navigate(
+                        //     context: context, route: Routes.continueSignup);
                       }
                     },
                   ),
@@ -114,7 +120,12 @@ class LoginViewBody extends StatelessWidget {
                   verticalSpace(10),
                   CustomButton(
                       text: 'Google',
-                      onPressed: () {},
+                      onPressed: () {
+                        LoginMethods.signInWithGoogle();
+                        showToast(
+                            message: 'Login Successful',
+                            state: ToastStates.success);
+                      },
                       textColor: AppColors.greensubtit,
                       image: AppAssets.imgGoogle,
                       color: AppColors.grey),

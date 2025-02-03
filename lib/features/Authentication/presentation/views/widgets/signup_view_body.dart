@@ -59,7 +59,7 @@ class SignupViewBody extends StatelessWidget {
                       hintText: '+20 101 234 5678',
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Email is required';
+                          return 'Phone number is required';
                         }
                         return null;
                       },
