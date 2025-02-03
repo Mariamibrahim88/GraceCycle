@@ -80,19 +80,21 @@ class _OnbourdingBodyState extends State<OnbourdingBody> {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 45.0, left: 10.0),
-              child: GestureDetector(
-                onTap: () => pageController.previousPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
-                ),
-                child: const Icon(
-                  Icons.arrow_back_outlined,
-                  size: 32,
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 45.0, left: 10.0),
+            //   child: GestureDetector(
+            //     onTap: () => pageController.previousPage(
+            //       duration: const Duration(milliseconds: 300),
+            //       curve: Curves.easeIn,
+            //     ),
+            //     child: const Icon(
+            //       Icons.arrow_back_outlined,
+            //       size: 32,
+            //     ),
+            //   ),
+            // ),
+            verticalSpace(45),
+            horizontalSpace(30),
             SizedBox(
               height: 300.h,
               width: 275.w,
@@ -111,16 +113,17 @@ class _OnbourdingBodyState extends State<OnbourdingBody> {
   Widget _buildDefaultPage(int index) {
     return Column(
       children: [
-        CustomAppBar(
-          onPressed: () {
-            currentIndex == 0
-                ? Navigator.pop(context)
-                : pageController.previousPage(
-                    duration: const Duration(milliseconds: 700),
-                    curve: Curves.easeIn,
-                  );
-          },
-        ),
+        // CustomAppBar(
+        //   onPressed: () {
+        //     currentIndex == 0
+        //         ? Navigator.pop(context)
+        //         : pageController.previousPage(
+        //             duration: const Duration(milliseconds: 700),
+        //             curve: Curves.easeIn,
+        //           );
+        //   },
+        // ),
+        verticalSpace(50),
         Padding(
           padding: currentIndex == 0
               ? const EdgeInsets.only(right: 20)
