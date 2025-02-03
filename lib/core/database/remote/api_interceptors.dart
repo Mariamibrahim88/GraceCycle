@@ -12,6 +12,16 @@ class ApiInterceptors extends Interceptor {
     //     sl<CacheHelper>().getData(key: ApiKeys.token) != null
     //         ? 'FOODAPI ${sl<CacheHelper>().getData(key: ApiKeys.token)}'
     //         : null;
+    // options.headers[ApiKeys.contentType] = ApiKeys.fromurlencoded;
+    // options.headers[ApiKeys.token] =
+    //     sl<CacheHelper>().getData(key: ApiKeys.token) != null
+    //         ? 'FOODAPI ${sl<CacheHelper>().getData(key: ApiKeys.token)}'
+    //         : null;
+    // options.headers[ApiKeys.contentType] = ApiKeys.fromurlencoded;
+    // options.headers[ApiKeys.token] =
+    //     sl<CacheHelper>().getData(key: ApiKeys.token) != null
+    //         ? 'FOODAPI ${sl<CacheHelper>().getData(key: ApiKeys.token)}'
+    //         : null;
 
     super.onRequest(options, handler);
   }

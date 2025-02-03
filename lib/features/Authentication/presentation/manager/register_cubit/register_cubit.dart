@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:grace_cycle/features/Authentication/data/repo/register_repo.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/register_cubit/register_state.dart';
 
@@ -44,6 +46,70 @@ class RegisterCubit extends Cubit<RegisterState> {
       }
     }
     //print(selectedConditions);
+  }
+
+  Future<void> getCurrentLocation(BuildContext context) async {
+    try {
+      emit(LocationLoading());
+      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text("Enable Location"),
+            content: const Text(
+                "Location services are disabled. Please enable GPS."),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text("Cancel"),
+              ),
+              TextButton(
+                onPressed: () async {
+                  await Geolocator.openLocationSettings();
+                  Navigator.pop(context);
+                },
+                child: const Text("Enable"),
+              ),
+            ],
+          ),
+        );
+        emit(LocationError("Location services are disabled."));
+        return;
+      }
+
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          emit(LocationError("Location permission denied."));
+          return;
+        }
+      }
+      if (permission == LocationPermission.deniedForever) {
+        emit(LocationError("Location permission permanently denied."));
+        return;
+      }
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
+
+      if (placemarks.isNotEmpty) {
+        Placemark place = placemarks.first;
+        String address = "${place.street}, ${place.locality}, ${place.country}";
+
+        addressController.text = address;
+
+        emit(LocationLoaded(address));
+      }
+    } catch (e) {
+      emit(LocationError("Failed to get location: $e"));
+    }
   }
 
   Future<void> register() async {
