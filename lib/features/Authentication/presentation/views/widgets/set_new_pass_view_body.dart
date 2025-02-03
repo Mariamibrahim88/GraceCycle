@@ -31,14 +31,14 @@ class SetNewPassViewBody extends StatelessWidget {
           verticalSpace(25),
           CustomTextFormField(
             labelText: 'New Password',
-            hintText: 'anything123#',
+            hintText: 'Enter your new password',
             onChanged: (value) {},
             obscureText: true,
           ),
           verticalSpace(15),
           CustomTextFormField(
             labelText: 'Confirm Password',
-            hintText: 'anything123#',
+            hintText: 'Enter your new password again',
             onChanged: (value) {},
             obscureText: true,
           ),

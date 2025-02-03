@@ -43,7 +43,7 @@ class FirstForgetPassViewBody extends StatelessWidget {
             verticalSpace(15),
             CustomTextFormField(
               labelText: 'Email',
-              hintText: 'mariam@gmail.com',
+              hintText: 'Enter your email',
               onChanged: (value) {},
               obscureText: false,
             ),
