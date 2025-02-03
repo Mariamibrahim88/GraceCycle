@@ -77,7 +77,8 @@ class SignupViewBody extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Email is required';
-                        } else if (!value.contains('@')) {
+                        } else if (!value.contains('@') ||
+                            (!value.contains('gmail.com'))) {
                           return 'Invalid Email';
                         }
                         return null;
