@@ -39,7 +39,7 @@ class SignupViewBody extends StatelessWidget {
                     verticalSpace(30),
                     CustomTextFormField(
                       labelText: 'Name',
-                      hintText: 'Mariam Ibrahim',
+                      hintText: 'Enter your name',
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Name is required';
@@ -56,7 +56,7 @@ class SignupViewBody extends StatelessWidget {
                     verticalSpace(15),
                     CustomTextFormField(
                       labelText: 'Phone',
-                      hintText: '+20 101 234 5678',
+                      hintText: 'Enter your phone number',
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Phone number is required';
@@ -71,7 +71,7 @@ class SignupViewBody extends StatelessWidget {
                     verticalSpace(15),
                     CustomTextFormField(
                       labelText: 'Email',
-                      hintText: 'mariam@gmail.com',
+                      hintText: 'Enter your email',
                       textcontroller:
                           context.read<RegisterCubit>().emailController,
                       validator: (value) {
@@ -88,7 +88,7 @@ class SignupViewBody extends StatelessWidget {
                     verticalSpace(15),
                     CustomTextFormField(
                       labelText: 'Password',
-                      hintText: 'anything122',
+                      hintText: 'Enter your password',
                       textcontroller:
                           context.read<RegisterCubit>().passwordController,
                       validator: (value) {
@@ -105,7 +105,7 @@ class SignupViewBody extends StatelessWidget {
                     verticalSpace(15),
                     CustomTextFormField(
                       labelText: 'Confirm Password',
-                      hintText: 'anything122',
+                      hintText: 'Enter your password again',
                       validator: (value) {
                         if (value!.length < 6 || value.isEmpty) {
                           return 'Enter valid Password';

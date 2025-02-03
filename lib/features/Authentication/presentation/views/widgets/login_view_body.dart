@@ -53,7 +53,7 @@ class LoginViewBody extends StatelessWidget {
                   CustomTextFormField(
                     textcontroller: context.read<LoginCubit>().emailController,
                     labelText: 'Email',
-                    hintText: 'example@gmail.com',
+                    hintText: 'Enter your email',
                     obscureText: false,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -78,7 +78,7 @@ class LoginViewBody extends StatelessWidget {
                       return null;
                     },
                     labelText: 'Password',
-                    hintText: 'anything122',
+                    hintText: 'Enter your password',
                     obscureText: true,
                   ),
                   verticalSpace(5),
