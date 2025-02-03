@@ -56,6 +56,7 @@ class SignupViewBody extends StatelessWidget {
                     verticalSpace(15),
                     CustomTextFormField(
                       labelText: 'Phone',
+                      keyboardType: TextInputType.phone,
                       hintText: 'Enter your phone number',
                       validator: (value) {
                         if (value!.isEmpty) {
