@@ -101,8 +101,8 @@ class RegisterCubit extends Cubit<RegisterState> {
 
       if (placemarks.isNotEmpty) {
         Placemark place = placemarks.first;
-        String address = "${place.street}, ${place.locality}, ${place.country}";
-
+        String address =
+            "${place.street}, ${place.administrativeArea}, ${place.country}";
         addressController.text = address;
 
         emit(LocationLoaded(address));

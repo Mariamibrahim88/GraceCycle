@@ -13,7 +13,7 @@ class CustomTextFormField extends StatefulWidget {
     this.obscureText = true,
     this.icon,
     this.textcontroller,
-    this.validator,
+    this.validator, this.keyboardType,
   });
 
   final String hintText;
@@ -23,6 +23,7 @@ class CustomTextFormField extends StatefulWidget {
   final IconData? icon;
   final TextEditingController? textcontroller;
   final String? Function(String?)? validator;
+  final TextInputType? keyboardType;
 
   @override
   _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
@@ -36,10 +37,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return SizedBox(
       width: 355.w,
       // height: 45.h,
+
       child: TextFormField(
         inputFormatters: [
           FilteringTextInputFormatter.deny(RegExp(r'^\s+')),
         ],
+        keyboardType: widget.keyboardType??TextInputType.text,
         cursorColor: AppColors.greentit,
         controller: widget.textcontroller,
         validator: widget.validator,

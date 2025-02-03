@@ -6,7 +6,6 @@ import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
-import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_yellow_text.dart';
 import 'package:grace_cycle/features/onBourding/presentation/views/components/onBourding_data.dart';
