@@ -37,3 +37,13 @@ final class LocationError extends RegisterState {
   //@override
   List<Object> get props => [message];
 }
+
+// class RegisterSuccessState extends RegisterState {
+//   final String name;
+//   final String email;
+
+//   RegisterSuccessState({required this.name, required this.email});
+
+//   @override
+//   List<Object?> get props => [name, email];
+// }

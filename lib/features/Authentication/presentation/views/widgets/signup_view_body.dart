@@ -7,7 +7,6 @@ import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
-import 'package:grace_cycle/core/widgets/custom_snack_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/register_cubit/register_state.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/signup_continue_view.dart';
@@ -46,7 +45,6 @@ class SignupViewBody extends StatelessWidget {
                         }
                         return null;
                       },
-
                       textcontroller:
                           context.read<RegisterCubit>().usernameController,
 
@@ -59,8 +57,12 @@ class SignupViewBody extends StatelessWidget {
                       keyboardType: TextInputType.phone,
                       hintText: 'Enter your phone number',
                       validator: (value) {
+                        String pattern = r'^(?:\+20|0)?1[0-9]{9}$';
+                        RegExp regex = RegExp(pattern);
                         if (value!.isEmpty) {
                           return 'Phone number is required';
+                        } else if (!regex.hasMatch(value)) {
+                          return 'Invalid phone number';
                         }
                         return null;
                       },
@@ -162,15 +164,26 @@ class SignupViewBody extends StatelessWidget {
                     verticalSpace(10),
 
                     CustomButton(
-                        text: 'Google',
-                        onPressed: () {
-                          showToast(
-                              message: 'Sign Up Successful',
-                              state: ToastStates.success);
-                        },
-                        textColor: AppColors.greensubtit,
-                        image: AppAssets.imgGoogle,
-                        color: AppColors.grey),
+                      text: 'Google',
+                      onPressed: () async {
+                        // final registerCubit = context.read<RegisterCubit>();
+
+                        // await registerCubit.signInWithGoogle();
+
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => BlocProvider.value(
+                        //       value: registerCubit,
+                        //       child: SignupContinueView(),
+                        //     ),
+                        //   ),
+                        // );
+                      },
+                      textColor: AppColors.greensubtit,
+                      image: AppAssets.imgGoogle,
+                      color: AppColors.grey,
+                    ),
                   ],
                 ),
               ),

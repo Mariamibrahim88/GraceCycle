@@ -8,6 +8,7 @@ import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/core/widgets/custom_loading.dart';
 import 'package:grace_cycle/core/widgets/custom_snack_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/question_text.dart';
@@ -92,22 +93,24 @@ class LoginViewBody extends StatelessWidget {
                                 route: Routes.firstForgetPass);
                           })),
                   verticalSpace(15),
-                  CustomButton(
-                    text: 'Log in',
-                    textColor: Colors.white,
-                    color: AppColors.greenButt,
-                    onPressed: () {
-                      if (context
-                          .read<LoginCubit>()
-                          .formKey
-                          .currentState!
-                          .validate()) {
-                        BlocProvider.of<LoginCubit>(context).login();
-                        // navigate(
-                        //     context: context, route: Routes.continueSignup);
-                      }
-                    },
-                  ),
+                  state is LoginLoading
+                      ? const CustomLoading()
+                      : CustomButton(
+                          text: 'Log in',
+                          textColor: Colors.white,
+                          color: AppColors.greenButt,
+                          onPressed: () {
+                            if (context
+                                .read<LoginCubit>()
+                                .formKey
+                                .currentState!
+                                .validate()) {
+                              BlocProvider.of<LoginCubit>(context).login();
+                              // navigate(
+                              //     context: context, route: Routes.continueSignup);
+                            }
+                          },
+                        ),
                   verticalSpace(5),
                   QuestionText(
                     text1: 'Don’t have an account?',
@@ -122,9 +125,9 @@ class LoginViewBody extends StatelessWidget {
                       text: 'Google',
                       onPressed: () {
                         LoginMethods.signInWithGoogle();
-                        showToast(
-                            message: 'Login Successful',
-                            state: ToastStates.success);
+                        // showToast(
+                        //     message: 'Login Successful',
+                        //     state: ToastStates.success);
                       },
                       textColor: AppColors.greensubtit,
                       image: AppAssets.imgGoogle,
