@@ -9,4 +9,5 @@ class AppAssets {
   static String imgOnboarding1 = 'assets/images/imgThree.svg';
   static String imgOnboarding2 = 'assets/images/imgTwo.svg';
   static String imgOnboarding3 = 'assets/images/imgOne.svg';
+  static String recommendedFood = 'assets/images/recomendFood.jpg';
 }
