@@ -6,6 +6,7 @@ import 'package:grace_cycle/features/Authentication/presentation/views/signup_co
 import 'package:grace_cycle/features/Authentication/presentation/views/signup_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/succ_set_new_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
+import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
 import 'package:grace_cycle/features/onBourding/presentation/views/onbourding_view.dart';
 import 'package:grace_cycle/features/splash/presentation/views/splash_view.dart';
 
@@ -19,13 +20,14 @@ class Routes {
   static const String setNewPass = '/setNewPass';
   static const String succSetNewPass = '/succSetNewPass';
   static const String onBourding = '/OnBourding';
+  static const String home = '/home';
 }
 
 class AppRoutes {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (_) => const SplashView());
+        return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.onBourding:
         return MaterialPageRoute(builder: (_) => const OnBourdingView());
       case Routes.continueSignup:
@@ -42,6 +44,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const SuccSetNewPassView());
       case Routes.signup:
         return MaterialPageRoute(builder: (_) => const SignupView());
+      case Routes.home:
+        return MaterialPageRoute(builder: (_) => const SplashView());
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }

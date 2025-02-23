@@ -12,4 +12,9 @@ class AppColors {
   static const Color grey2 = Color(0xffC4C7C5);
   static const Color grey3 = Color(0xff8E8D8D);
   static const Color secondgreenItself = Color(0xffC8DBD2);
+  static const Color grayForSmallContainer = Color(0xffEEEADF);
+  static const Color yellowForStar = Color(0xffBC870B);
+  static const Color greenForDiscount = Color(0xffF8BD00);
+  static const Color redForPrice = Color(0xffBC0101);
+  static const Color shoppingCart = Color(0xff0C2720);
 }
