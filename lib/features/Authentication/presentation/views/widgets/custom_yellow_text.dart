@@ -5,10 +5,15 @@ import 'package:grace_cycle/core/utils/app_colors.dart';
 
 class CustomYellowText extends StatelessWidget {
   const CustomYellowText(
-      {super.key, this.fontsize = 14, required this.text2, this.onPressed});
+      {super.key,
+      this.fontsize = 14,
+      required this.text2,
+      this.onPressed,
+      this.fontWeight = FontWeight.w400});
 
   final String text2;
   final double fontsize;
+  final FontWeight? fontWeight;
   final Function()? onPressed;
 
   @override
@@ -23,7 +28,7 @@ class CustomYellowText extends StatelessWidget {
               decorationColor: AppColors.yellow,
               decorationThickness: 2,
               decorationStyle: TextDecorationStyle.solid,
-              fontWeight: FontWeight.w400,
+              fontWeight: fontWeight,
               color: AppColors.yellow)),
     );
   }
