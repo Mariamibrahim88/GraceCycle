@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:grace_cycle/core/utils/app_assets.dart';
 
 class AssetOfFood extends StatelessWidget {
-  const AssetOfFood({super.key});
+  const AssetOfFood({super.key, required this.foodImage});
+
+  final String foodImage;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class AssetOfFood extends StatelessWidget {
         height: 137.h,
         width: 278.w,
         child: Image.asset(
-          AppAssets.recommendedFood,
+          foodImage,
           fit: BoxFit.cover,
         ),
       ),

@@ -11,7 +11,10 @@ import 'package:grace_cycle/features/home/presentation/views/widgets/price_for_f
 import 'package:grace_cycle/features/home/presentation/views/widgets/rate_container.dart';
 
 class FoodCard extends StatelessWidget {
-  const FoodCard({super.key});
+  const FoodCard({super.key, required this.foodName, required this.foodImage});
+
+  final String foodName;
+  final String foodImage;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,9 @@ class FoodCard extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    const AssetOfFood(),
+                    AssetOfFood(
+                      foodImage: foodImage,
+                    ),
                     Positioned(
                       top: 10.h,
                       left: 10.w,
@@ -62,7 +67,7 @@ class FoodCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Grilled Chicken',
+                            foodName,
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w700,

@@ -10,4 +10,12 @@ class AppAssets {
   static String imgOnboarding2 = 'assets/images/imgTwo.svg';
   static String imgOnboarding3 = 'assets/images/imgOne.svg';
   static String recommendedFood = 'assets/images/recomendFood.jpg';
+  static String smallAppLogo = 'assets/images/smallAppLogo.svg';
+  static String smallAppLogo2 = 'assets/images/smallAppLogo2.jpg';
+  static String appName = 'assets/images/appName.svg';
+  static String findYourDish = 'assets/images/findYourDish.jpg';
+  static String drink = 'assets/images/drink.jpg';
+  static String healthy = 'assets/images/healthy.jpg';
+  static String dessert = 'assets/images/dessert.jpg';
+  static String baked = 'assets/images/baked.jpg';
 }
