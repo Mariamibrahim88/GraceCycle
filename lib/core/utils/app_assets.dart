@@ -19,8 +19,4 @@ class AppAssets {
   static String dessert = 'assets/images/dessert.jpg';
   static String baked = 'assets/images/baked.jpg';
   static String background = 'assets/images/background.svg';
-  static String restaurant = 'assets/images/restaurant.jpg';
-  static String restauratLogo = 'assets/images/restaurantLogo.jpg';
-  static String supermarket = 'assets/images/supermarket.jpg';
-  static String supermarketLogo = 'assets/images/supermarketlogo.jpg';
 }

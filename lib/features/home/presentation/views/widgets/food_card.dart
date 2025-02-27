@@ -25,12 +25,12 @@ class FoodCard extends StatelessWidget {
             height: 293.h,
             width: 280.w,
             decoration: BoxDecoration(
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
                     spreadRadius: -1.76,
-                    offset: Offset(0, 3.25),
+                    offset: const Offset(0, 3.25),
                     blurRadius: 3.25,
-                    color: Colors.black54),
+                    color: Colors.black.withOpacity(0.5)),
               ],
               color: const Color.fromARGB(255, 246, 242, 229),
               borderRadius: BorderRadius.circular(15.r),
@@ -99,7 +99,7 @@ class FoodCard extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w400,
-                              color: Colors.black54,
+                              color: Colors.black.withOpacity(0.5),
                             ),
                           ),
                           Text(
@@ -113,7 +113,7 @@ class FoodCard extends StatelessWidget {
                         ],
                       ),
                       verticalSpace(10),
-                      const DottLine(),
+                      DottLine(),
                       verticalSpace(10),
                       const PriceForFood(),
                     ],
