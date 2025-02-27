@@ -12,10 +12,13 @@ class CustomHomeAppBar extends StatelessWidget {
     return SliverAppBar(
       elevation: 0,
       floating: true,
-      expandedHeight: 60.h,
+      expandedHeight: 80.h,
       pinned: false,
+      snap: true,
+      clipBehavior: Clip.none,
       backgroundColor: AppColors.basicWhite,
       flexibleSpace: FlexibleSpaceBar(
+        centerTitle: true,
         background: SvgPicture.asset(
           AppAssets.background,
           fit: BoxFit.cover,
@@ -23,7 +26,7 @@ class CustomHomeAppBar extends StatelessWidget {
       ),
       title: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+          padding: EdgeInsets.only(top: 40.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

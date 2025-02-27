@@ -12,7 +12,7 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        CustomHomeAppBar(),
+        const CustomHomeAppBar(),
         SliverToBoxAdapter(child: verticalSpace(10)),
         const SliverToBoxAdapter(
             child: HeadOfCategory(title: 'Recommend to you')),

@@ -10,10 +10,10 @@ class DottLine extends StatelessWidget {
       children: [
         DottedLine(
           direction: Axis.horizontal,
-          lineLength: 266.h,
+          lineLength: 250.h,
           lineThickness: 1,
-          dashLength: 6,
-          dashGapLength: 4,
+          dashLength: 3,
+          dashGapLength: 3,
           dashColor: Colors.black,
         ),
       ],
