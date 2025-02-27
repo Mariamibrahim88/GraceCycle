@@ -38,7 +38,7 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
       bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
         decoration: BoxDecoration(
-          color: AppColors.grayForSmallContainer,
+          color: AppColors.vendorCard,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20.r),
             topRight: Radius.circular(20.r),
@@ -53,7 +53,7 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
           ],
         ),
         child: BottomNavigationBar(
-          backgroundColor: AppColors.grayForSmallContainer,
+          backgroundColor: AppColors.vendorCard,
           elevation: 0,
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
