@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DottLine extends StatelessWidget {
+  const DottLine({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
