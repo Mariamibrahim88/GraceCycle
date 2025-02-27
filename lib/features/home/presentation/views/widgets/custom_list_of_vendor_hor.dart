@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/vendor_card.dart';
 
 class CustomListOfVendorHor extends StatelessWidget {
@@ -22,16 +23,22 @@ class CustomListOfVendorHor extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        children: List.generate(
-          5,
-          (index) => VendorCard(
-            vendorName: vendorName,
-            vendorAddress: vendorAddress,
-            vendorTime: vendorTime,
-            vendorDistance: vendorDistance,
-            vendorLogo: vendorLogo,
-            vendorImage: vendorImage,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+        child: Row(
+          children: List.generate(
+            5,
+            (index) => Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.w),
+              child: VendorCard(
+                vendorName: vendorName,
+                vendorAddress: vendorAddress,
+                vendorTime: vendorTime,
+                vendorDistance: vendorDistance,
+                vendorLogo: vendorLogo,
+                vendorImage: vendorImage,
+              ),
+            ),
           ),
         ),
       ),

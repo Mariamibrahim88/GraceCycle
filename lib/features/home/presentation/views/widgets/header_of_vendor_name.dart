@@ -10,23 +10,26 @@ class HeaderOfVendorName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: GoogleFonts.nunito(
-            fontSize: 22.sp,
-            fontWeight: FontWeight.w700,
-            color: Colors.black,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: GoogleFonts.nunito(
+              fontSize: 22.sp,
+              fontWeight: FontWeight.w700,
+              color: Colors.black,
+            ),
           ),
-        ),
-        const CustomYellowText(
-          text2: 'See all',
-          fontsize: 18,
-          fontWeight: FontWeight.w700,
-        )
-      ],
+          const CustomYellowText(
+            text2: 'See all',
+            fontsize: 18,
+            fontWeight: FontWeight.w700,
+          )
+        ],
+      ),
     );
   }
 }
