@@ -11,23 +11,26 @@ class HeadOfCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: GoogleFonts.nunito(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.w700,
-            color: AppColors.greenButt,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: GoogleFonts.nunito(
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w700,
+              color: AppColors.greenButt,
+            ),
           ),
-        ),
-        const CustomYellowText(
-          text2: 'See all',
-          fontsize: 18,
-          fontWeight: FontWeight.w700,
-        )
-      ],
+          const CustomYellowText(
+            text2: 'See all',
+            fontsize: 18,
+            fontWeight: FontWeight.w700,
+          )
+        ],
+      ),
     );
   }
 }

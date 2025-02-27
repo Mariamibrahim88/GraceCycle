@@ -11,35 +11,51 @@ class CustomHomeAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       elevation: 0,
-      expandedHeight: kToolbarHeight,
       floating: true,
+      expandedHeight: 80.h,
       pinned: false,
+      snap: true,
+      clipBehavior: Clip.none,
       backgroundColor: AppColors.basicWhite,
       flexibleSpace: FlexibleSpaceBar(
-        titlePadding: EdgeInsets.zero,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                SizedBox(
-                  height: 31.h,
-                  width: 36.w,
-                  child: SvgPicture.asset(AppAssets.smallAppLogo),
-                ),
-                SvgPicture.asset(
-                  AppAssets.appName,
-                  height: 14.h,
-                  width: 85.w,
-                ),
-              ],
-            ),
-            const Icon(
-              Icons.shopping_cart_outlined,
-              color: AppColors.shoppingCart,
-              size: 28,
-            ),
-          ],
+        centerTitle: true,
+        background: SvgPicture.asset(
+          AppAssets.background,
+          fit: BoxFit.cover,
+        ),
+      ),
+      title: Center(
+        child: Padding(
+          padding: EdgeInsets.only(top: 40.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Icon(
+                Icons.menu,
+                color: AppColors.shoppingCart,
+                size: 28,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    height: 31.h,
+                    width: 36.w,
+                    child: SvgPicture.asset(AppAssets.smallAppLogo),
+                  ),
+                  SvgPicture.asset(
+                    AppAssets.appName,
+                    height: 14.h,
+                    width: 85.w,
+                  ),
+                ],
+              ),
+              const Icon(
+                Icons.shopping_cart_outlined,
+                color: AppColors.shoppingCart,
+                size: 28,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -18,7 +18,7 @@ class VendorInfo extends StatelessWidget {
   final String vendorLogo;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.isFinite ? 0.7.sw : 0.7.sw,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

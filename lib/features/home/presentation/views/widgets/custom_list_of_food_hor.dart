@@ -15,14 +15,17 @@ class CustomListOfFoodHor extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        children: List.generate(
-          5,
-          (index) => Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: FoodCard(
-              foodName: foodTitle,
-              foodImage: foodAsset,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+        child: Row(
+          children: List.generate(
+            5,
+            (index) => Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.w),
+              child: FoodCard(
+                foodName: foodTitle,
+                foodImage: foodAsset,
+              ),
             ),
           ),
         ),
