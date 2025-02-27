@@ -42,7 +42,6 @@ class CustomHomeAppBar extends StatelessWidget {
                     width: 36.w,
                     child: SvgPicture.asset(AppAssets.smallAppLogo),
                   ),
-                  SizedBox(width: 4.w),
                   SvgPicture.asset(
                     AppAssets.appName,
                     height: 14.h,
