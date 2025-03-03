@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grace_cycle/core/widgets/custom_buttom_nav_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/first_forget_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/login_in_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/set_new_pass_view.dart';
@@ -6,6 +7,7 @@ import 'package:grace_cycle/features/Authentication/presentation/views/signup_co
 import 'package:grace_cycle/features/Authentication/presentation/views/signup_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/succ_set_new_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
+import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
 import 'package:grace_cycle/features/onBourding/presentation/views/onbourding_view.dart';
 import 'package:grace_cycle/features/splash/presentation/views/splash_view.dart';
 
@@ -19,12 +21,16 @@ class Routes {
   static const String setNewPass = '/setNewPass';
   static const String succSetNewPass = '/succSetNewPass';
   static const String onBourding = '/OnBourding';
+  static const String home = '/home';
+  static const String navBar = '/navBar';
 }
 
 class AppRoutes {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.initialRoute:
+        return MaterialPageRoute(builder: (_) => const CustomBottomNavBar());
+      case Routes.home:
         return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.onBourding:
         return MaterialPageRoute(builder: (_) => const OnBourdingView());
@@ -42,6 +48,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const SuccSetNewPassView());
       case Routes.signup:
         return MaterialPageRoute(builder: (_) => const SignupView());
+      case Routes.navBar:
+        return MaterialPageRoute(builder: (_) => const HomeView());
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }

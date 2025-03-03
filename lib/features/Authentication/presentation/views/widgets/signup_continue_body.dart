@@ -7,6 +7,7 @@ import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/core/widgets/custom_loading.dart';
 import 'package:grace_cycle/core/widgets/custom_snack_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/register_cubit/register_state.dart';
@@ -89,18 +90,21 @@ class SignupContinueBody extends StatelessWidget {
                     verticalSpace(15),
                     const CustomCheckbox(),
                     verticalSpace(15),
-                    CustomButton(
-                        text: 'Sign up',
-                        onPressed: () {
-                          if (BlocProvider.of<RegisterCubit>(context)
-                              .formTwoKey
-                              .currentState!
-                              .validate()) {
-                            BlocProvider.of<RegisterCubit>(context).register();
-                          }
-                        },
-                        textColor: Colors.white,
-                        color: AppColors.greenButt),
+                    state is RegisterLoadingState
+                        ? const CustomLoading()
+                        : CustomButton(
+                            text: 'Sign up',
+                            onPressed: () {
+                              if (BlocProvider.of<RegisterCubit>(context)
+                                  .formTwoKey
+                                  .currentState!
+                                  .validate()) {
+                                BlocProvider.of<RegisterCubit>(context)
+                                    .register();
+                              }
+                            },
+                            textColor: Colors.white,
+                            color: AppColors.greenButt),
                     QuestionText(
                         text1: 'Already have an account?',
                         text2: 'Log in',

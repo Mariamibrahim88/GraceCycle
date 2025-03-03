@@ -9,6 +9,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit(this.registerRepo) : super(RegisterInitial());
 
   final RegisterRepo registerRepo;
+  //final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -125,4 +126,24 @@ class RegisterCubit extends Cubit<RegisterState> {
     response.fold(
         (l) => emit(RegisterErrorState(l)), (r) => emit(RegisterSucessState()));
   }
+
+  // Future<void> signInWithGoogle() async {
+  //   try {
+  //     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+  //     if (googleUser != null) {
+  //       final GoogleSignInAuthentication googleAuth =
+  //           await googleUser.authentication;
+
+  //       // تحديث حالة الكيوبت بدلاً من تغيير الـ controllers مباشرةً
+  //       emit(RegisterSuccessState(
+  //         name: googleUser.displayName ?? '',
+  //         email: googleUser.email,
+  //       ));
+  //     } else {
+  //       emit(RegisterErrorState("Google Sign-In was cancelled"));
+  //     }
+  //   } catch (error) {
+  //     emit(RegisterErrorState("Google Sign-In failed: $error"));
+  //   }
+  // }
 }
