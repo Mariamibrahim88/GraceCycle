@@ -30,47 +30,4 @@ class LoginRepo {
       return Left(e.toString());
     }
   }
-
-  // @override
-  // Future<Either<Failure, SendCodeModel>> sendCode(
-  //     {required String email}) async {
-  //   try {
-  //     final response =
-  //         await apiService.post(EndPoint.sendCode, isFormData: false, data: {
-  //       ApiKeys.email: email,
-  //     });
-  //     final userr = SendCodeModel.fromJson(response);
-  //     return Right(userr);
-  //   } catch (e) {
-  //     if (e is DioException) {
-  //       print('nooooooooooooooooo');
-  //       return (Left(ServerFailure.fromDioException(e)));
-  //     }
-  //     return (left(ServerFailure(e.toString())));
-  //   }
-  // }
-
-  // @override
-  // Future<Either<Failure, resetPassModel>> resetPassword(
-  //     {required String email,
-  //     required String code,
-  //     required String confirmPassword,
-  //     required String password}) async {
-  //   try {
-  //     final response = await apiService.patch(EndPoint.resetPassword, {
-  //       ApiKeys.email: email,
-  //       ApiKeys.code: code,
-  //       ApiKeys.confirmPassword: confirmPassword,
-  //       ApiKeys.password: password,
-  //     });
-  //     final userr = resetPassModel.fromJson(response);
-  //     return Right(userr);
-  //   } catch (e) {
-  //     if (e is DioException) {
-  //       print('nooooooooooooooooo');
-  //       return (Left(ServerFailure.fromDioException(e)));
-  //     }
-  //     return (left(ServerFailure(e.toString())));
-  //   }
-  // }
 }
