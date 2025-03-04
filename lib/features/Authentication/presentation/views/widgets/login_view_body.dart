@@ -30,7 +30,7 @@ class LoginViewBody extends StatelessWidget {
             showToast(
                 message: 'Login Successfully', state: ToastStates.success);
 
-            //navigate(context: context, route: Routes.home);
+            navigate(context: context, route: Routes.home);
           } else if (state is LoginFailure) {
             //showSnackBar(context, state.toString(), Colors.red);
             showToast(
@@ -68,6 +68,7 @@ class LoginViewBody extends StatelessWidget {
                   ),
                   verticalSpace(15),
                   CustomTextFormField(
+                    
                     textcontroller:
                         context.read<LoginCubit>().passwordController,
                     validator: (value) {
@@ -106,8 +107,8 @@ class LoginViewBody extends StatelessWidget {
                                 .currentState!
                                 .validate()) {
                               BlocProvider.of<LoginCubit>(context).login();
-                              // navigate(
-                              //     context: context, route: Routes.continueSignup);
+                              navigate(
+                                  context: context, route: Routes.home);
                             }
                           },
                         ),
