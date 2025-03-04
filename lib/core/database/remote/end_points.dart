@@ -3,6 +3,8 @@ class EndPoint {
       'https://48d0-156-206-17-23.ngrok-free.app/api/AppUser/';
   static const String signIn = 'login-app';
   static const String signUp = 'register-app';
+  static const String forgetPassword = 'forgot-password';
+  static const String verifyResetEmail = 'verify-reset-code';
 }
 
 class ApiKeys {
@@ -17,4 +19,5 @@ class ApiKeys {
   static const String contentType = 'Content-Type';
   static const String applicationJson = 'application/json';
   static const String fromurlencoded = 'application/x-www-form-urlencoded';
+  static const String code = 'code';
 }
