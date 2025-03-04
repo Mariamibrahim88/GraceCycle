@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -151,34 +150,59 @@ Widget buildOtpInput(BuildContext context) {
       children: List.generate(4, (index) {
         return Container(
           width: 50,
-          height: 50,
+          height: 60,
           margin: const EdgeInsets.symmetric(horizontal: 5),
           child: TextFormField(
             controller: context.read<ForgetPassCubit>().otpControllers[index],
             keyboardType: TextInputType.number,
             textAlign: TextAlign.center,
             style: GoogleFonts.nunito(
-              fontSize: 22,
+              fontSize: 30,
               fontWeight: FontWeight.w700,
               color: AppColors.greenButt,
             ),
+            cursorErrorColor: AppColors.greenButt,
+            errorBuilder: (context, errorText) {
+              return Text(
+                textAlign: TextAlign.center,
+                errorText,
+                style: GoogleFonts.nunito(
+                  fontSize: 0,
+                  fontWeight: FontWeight.w600,
+                ),
+              );
+            },
             maxLength: 1,
             decoration: InputDecoration(
               counterText: '',
               filled: true,
               fillColor: Colors.transparent,
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(2),
                 borderSide: const BorderSide(
                   color: AppColors.greenButt,
-                  width: 1.5,
+                  width: 2,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(2),
+                borderSide: const BorderSide(
+                  color: AppColors.grey,
+                  width: 2,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(2),
+                borderSide: const BorderSide(
+                  color: AppColors.greenButt,
+                  width: 2,
                 ),
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(2),
                 borderSide: const BorderSide(
                   color: AppColors.grey,
-                  width: 1.5,
+                  width: 2,
                 ),
               ),
             ),
