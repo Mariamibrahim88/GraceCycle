@@ -111,16 +111,25 @@ class VerifyYourEmailViewBody extends StatelessWidget {
                             textColor: Colors.white,
                             color: AppColors.greenButt,
                             onPressed: () {
-                              if (context
-                                  .read<ForgetPassCubit>()
-                                  .formSecondKey
-                                  .currentState!
-                                  .validate()) {
+                              if (_areAllOtpFieldsFilled(context)) {
                                 BlocProvider.of<ForgetPassCubit>(context)
                                     .verfiyCode();
+                              } else {
+                                showToast(
+                                    message: 'please fill in all fields ',
+                                    state: ToastStates.error);
                               }
-                            },
-                          ),
+                            }
+                            //   if (context
+                            //       .read<ForgetPassCubit>()
+                            //       .formSecondKey
+                            //       .currentState!
+                            //       .validate()) {
+                            //     BlocProvider.of<ForgetPassCubit>(context)
+                            //         .verfiyCode();
+                            //   }
+                            // },
+                            ),
                     QuestionText(
                       text1: 'Didn’t receive the email ?',
                       text2: 'Resend code',
@@ -144,6 +153,11 @@ class VerifyYourEmailViewBody extends StatelessWidget {
   }
 }
 
+bool _areAllOtpFieldsFilled(BuildContext context) {
+  final otpControllers = context.read<ForgetPassCubit>().otpControllers;
+  return otpControllers.every((controller) => controller.text.isNotEmpty);
+}
+
 Widget buildOtpInput(BuildContext context) {
   return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -162,16 +176,16 @@ Widget buildOtpInput(BuildContext context) {
               color: AppColors.greenButt,
             ),
             cursorErrorColor: AppColors.greenButt,
-            errorBuilder: (context, errorText) {
-              return Text(
-                textAlign: TextAlign.center,
-                errorText,
-                style: GoogleFonts.nunito(
-                  fontSize: 0,
-                  fontWeight: FontWeight.w600,
-                ),
-              );
-            },
+            // errorBuilder: (context, errorText) {
+            //   return Text(
+            //     textAlign: TextAlign.center,
+            //     errorText,
+            //     style: GoogleFonts.nunito(
+            //       fontSize: 0,
+            //       fontWeight: FontWeight.w600,
+            //     ),
+            //   );
+            // },
             maxLength: 1,
             decoration: InputDecoration(
               counterText: '',
@@ -210,6 +224,7 @@ Widget buildOtpInput(BuildContext context) {
               if (value == null || value.isEmpty) {
                 return '';
               }
+
               return null;
             },
             onChanged: (value) {
