@@ -18,7 +18,7 @@ class VerifyYourEmailView extends StatelessWidget {
         }),
         body: BlocProvider(
           create: (context) => ForgetPassCubit(sl()),
-          child:  VerifyYourEmailViewBody(),
+          child: const VerifyYourEmailViewBody(),
         ),
         backgroundColor: AppColors.basicWhite,
       ),

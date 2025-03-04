@@ -33,7 +33,7 @@ class FirstForgetPassViewBody extends StatelessWidget {
         builder: (context, state) {
           return SingleChildScrollView(
             child: Form(
-              key: context.read<ForgetPassCubit>().formKey,
+              key: context.read<ForgetPassCubit>().formFirstKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -83,7 +83,7 @@ class FirstForgetPassViewBody extends StatelessWidget {
                           onPressed: () {
                             if (context
                                 .read<ForgetPassCubit>()
-                                .formKey
+                                .formFirstKey
                                 .currentState!
                                 .validate()) {
                               BlocProvider.of<ForgetPassCubit>(context)
