@@ -10,7 +10,9 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
     _initializeOtpControllers();
   }
   TextEditingController emailController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
   final List<TextEditingController> otpControllers = [];
+  String? verificationToken;
   // GlobalKey<FormState> formFirstKey = GlobalKey<FormState>();
   // GlobalKey<FormState> formSecondKey = GlobalKey<FormState>();
 
@@ -48,8 +50,22 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
     );
     result.fold(
       (l) => emit(ForgetPassFailedState(message: l)),
-      (r) => emit(ForgetPassSuccessState()),
+      (verify) {
+        verificationToken = verify.token;
+        emit(ForgetPassSuccessState());
+      },
     );
+  }
+
+  void resetPassword() async {
+    emit(ForgetPassLoadingState());
+    final result = await sl<ForgetPassRepo>().resetPass(
+        email: emailController.text,
+        token: verificationToken ?? "",
+        newPassword: newPasswordController.text);
+
+    result.fold((l) => emit(ForgetPassFailedState(message: l)),
+        (r) => emit(ForgetPassSuccessState()));
   }
 
   @override
