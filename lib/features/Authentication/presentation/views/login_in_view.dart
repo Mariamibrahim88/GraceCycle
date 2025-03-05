@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
-import 'package:grace_cycle/core/utils/app_colors.dart';
-import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
+import 'package:grace_cycle/core/widgets/custom_safe_area.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/login_view_body.dart';
 
@@ -12,17 +11,10 @@ class LoginInView extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            appBar: CustomAppBar(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            backgroundColor: AppColors.basicWhite,
-            body: BlocProvider(
-              create: (context) => LoginCubit(sl()),
-              child: const LoginViewBody(),
-            )));
+    return CustomSafeArea(
+        body: BlocProvider(
+      create: (context) => LoginCubit(sl()),
+      child: const LoginViewBody(),
+    ));
   }
 }

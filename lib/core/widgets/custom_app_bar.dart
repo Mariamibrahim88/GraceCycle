@@ -15,16 +15,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       clipBehavior: Clip.none,
       elevation: 0,
       backgroundColor: Colors.transparent,
-      leading: GestureDetector(
-        onTap: onPressed,
-        child: Padding(
-          padding: padding,
-          child: const Icon(
+      leading: IconButton(
+          onPressed: onPressed,
+          padding: const EdgeInsets.all(0),
+          iconSize: 32,
+          icon: const Icon(
             Icons.arrow_back_outlined,
-            size: 32,
-          ),
-        ),
-      ),
+          )),
+      // Padding(
+      //   padding: padding,
+      //   child: GestureDetector(
+      //     child: const Icon(
+      //       Icons.arrow_back_outlined,
+      //       size: 32,
+      //     ),
+      //   ),
+      // ),
     );
   }
 

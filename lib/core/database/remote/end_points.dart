@@ -1,6 +1,6 @@
 class EndPoint {
   static const String baseurl =
-      'https://713b-156-206-39-120.ngrok-free.app/api/AppUser/';
+      'https://gracecycleapi.azurewebsites.net/api/AppUser/';
   static const String signIn = 'login';
   static const String signUp = 'register-app';
   static const String forgetPassword = 'forgot-password';
