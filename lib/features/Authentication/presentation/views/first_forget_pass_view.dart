@@ -11,17 +11,17 @@ class FirstForgetPassView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: CustomAppBar(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        backgroundColor: AppColors.basicWhite,
-        body: BlocProvider(
-          create: (context) => ForgetPassCubit(sl()),
-          child: const FirstForgetPassViewBody(),
+    return BlocProvider(
+      create: (context) => ForgetPassCubit(sl()),
+      child: SafeArea(
+        child: Scaffold(
+          appBar: CustomAppBar(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          backgroundColor: AppColors.basicWhite,
+          body: const FirstForgetPassViewBody(),
         ),
       ),
     );

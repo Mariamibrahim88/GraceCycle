@@ -12,7 +12,7 @@ class ForgetPassRepo {
       {required String email}) async {
     try {
       final response = await sl<ApiConsumer>().post(
-        EndPoint.forgetPassword,
+        'https://food-api-omega.vercel.app/api/v1/chef/send-code',
         data: {
           ApiKeys.email: email,
         },
@@ -28,7 +28,6 @@ class ForgetPassRepo {
       return (left(ServerFailure(e.toString())));
     }
   }
- 
 
   Future<Either<Failure, VerfiyResetcodeModel>> verifyCode(
       {required String email, required String code}) async {
@@ -42,14 +41,15 @@ class ForgetPassRepo {
       return Right(userr);
     } catch (e) {
       if (e is DioException) {
-        print('***************************************************************');
+        print(
+            '***************************************************************');
         return (Left(ServerFailure.fromDioException(e)));
       }
       return (left(ServerFailure(e.toString())));
     }
   }
 
-   //  Future<Either<Failure, SendCodeModel>> sendCode(
+  //  Future<Either<Failure, SendCodeModel>> sendCode(
   //     {required String email}) async {
   //   try {
   //     final response =

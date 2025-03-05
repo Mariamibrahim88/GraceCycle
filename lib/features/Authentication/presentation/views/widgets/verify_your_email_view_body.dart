@@ -19,6 +19,8 @@ class VerifyYourEmailViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formSecondtKey = GlobalKey<FormState>();
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 70.h),
       child: BlocConsumer<ForgetPassCubit, ForgetPassState>(
@@ -30,9 +32,10 @@ class VerifyYourEmailViewBody extends StatelessWidget {
           }
         },
         builder: (context, state) {
+          var cubit = context.read<ForgetPassCubit>();
           return SingleChildScrollView(
             child: Form(
-              key: context.read<ForgetPassCubit>().formSecondKey,
+              key: formSecondtKey,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -55,54 +58,9 @@ class VerifyYourEmailViewBody extends StatelessWidget {
                       height: 170,
                     ),
                     verticalSpace(20),
+                    // Text(
+                    //     "Your email is: ${cubit.emailController.text}"), // تأكد من عرضه
                     buildOtpInput(context),
-                    // OtpTextField(
-                    //   showFieldAsBox: true,
-                    //   fieldHeight: 40,
-                    //   fieldWidth: 40,
-                    //   numberOfFields: 4,
-                    //   textStyle: GoogleFonts.nunito(
-                    //     fontSize: 22,
-                    //     fontWeight: FontWeight.w700,
-                    //     color: AppColors.greenButt,
-                    //   ),
-                    //   hasCustomInputDecoration: true,
-                    //   decoration: InputDecoration(
-                    //     counterText: '',
-                    //     contentPadding: const EdgeInsets.only(left: 2),
-                    //     filled: true,
-                    //     fillColor: Colors.transparent,
-                    //     // border: OutlineInputBorder(
-                    //     //   borderRadius: BorderRadius.circular(2),
-                    //     //   borderSide: const BorderSide(
-                    //     //     color: AppColors.grey,
-                    //     //     width: 1.5,
-                    //     //   ),
-                    //     // ),
-                    //     focusedBorder: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.circular(2),
-                    //       borderSide: const BorderSide(
-                    //         color: AppColors.greenButt,
-                    //         width: 1.5,
-                    //       ),
-                    //     ),
-                    //     enabledBorder: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.circular(2),
-                    //       borderSide: const BorderSide(
-                    //         color: AppColors.grey,
-                    //         width: 1.5,
-                    //       ),
-                    //     ),
-
-                    //     // disabledBorder: OutlineInputBorder(
-                    //     //   borderRadius: BorderRadius.circular(2),
-                    //     //   borderSide: const BorderSide(
-                    //     //     color: AppColors.greenButt,
-                    //     //     width: 1.5,
-                    //     //   ),
-                    //     // ),
-                    //   ),
-                    // ),
                     verticalSpace(20),
                     state is ForgetPassLoadingState
                         ? const CustomLoading()
@@ -111,11 +69,7 @@ class VerifyYourEmailViewBody extends StatelessWidget {
                             textColor: Colors.white,
                             color: AppColors.greenButt,
                             onPressed: () {
-                              if (context
-                                  .read<ForgetPassCubit>()
-                                  .formSecondKey
-                                  .currentState!
-                                  .validate()) {
+                              if (formSecondtKey.currentState!.validate()) {
                                 BlocProvider.of<ForgetPassCubit>(context)
                                     .verfiyCode();
                               }
@@ -125,14 +79,7 @@ class VerifyYourEmailViewBody extends StatelessWidget {
                       text1: 'Didn’t receive the email ?',
                       text2: 'Resend code',
                       onPressed: () {
-                        if (context
-                            .read<ForgetPassCubit>()
-                            .formSecondKey
-                            .currentState!
-                            .validate()) {
-                          BlocProvider.of<ForgetPassCubit>(context)
-                              .forgetPassword();
-                        }
+                        cubit.forgetPassword();
                       },
                     ),
                   ]),
@@ -150,28 +97,17 @@ Widget buildOtpInput(BuildContext context) {
       children: List.generate(4, (index) {
         return Container(
           width: 50,
-          height: 60,
+          height: 50,
           margin: const EdgeInsets.symmetric(horizontal: 5),
           child: TextFormField(
             controller: context.read<ForgetPassCubit>().otpControllers[index],
             keyboardType: TextInputType.number,
             textAlign: TextAlign.center,
             style: GoogleFonts.nunito(
-              fontSize: 30,
+              fontSize: 20.sp,
               fontWeight: FontWeight.w700,
               color: AppColors.greenButt,
             ),
-            cursorErrorColor: AppColors.greenButt,
-            errorBuilder: (context, errorText) {
-              return Text(
-                textAlign: TextAlign.center,
-                errorText,
-                style: GoogleFonts.nunito(
-                  fontSize: 0,
-                  fontWeight: FontWeight.w600,
-                ),
-              );
-            },
             maxLength: 1,
             decoration: InputDecoration(
               counterText: '',
@@ -180,14 +116,14 @@ Widget buildOtpInput(BuildContext context) {
               focusedErrorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(2),
                 borderSide: const BorderSide(
-                  color: AppColors.greenButt,
+                  color: Colors.red,
                   width: 2,
                 ),
               ),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(2),
                 borderSide: const BorderSide(
-                  color: AppColors.grey,
+                  color: Colors.red,
                   width: 2,
                 ),
               ),
@@ -205,6 +141,7 @@ Widget buildOtpInput(BuildContext context) {
                   width: 2,
                 ),
               ),
+              errorStyle: const TextStyle(fontSize: 0),
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {

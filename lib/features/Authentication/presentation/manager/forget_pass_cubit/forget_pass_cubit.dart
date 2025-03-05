@@ -11,8 +11,8 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
   }
   TextEditingController emailController = TextEditingController();
   final List<TextEditingController> otpControllers = [];
-  GlobalKey<FormState> formFirstKey = GlobalKey<FormState>();
-  GlobalKey<FormState> formSecondKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> formFirstKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> formSecondKey = GlobalKey<FormState>();
 
   final ForgetPassRepo forgetPassRepo;
 
@@ -21,6 +21,10 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
     for (int i = 0; i < 4; i++) {
       otpControllers.add(TextEditingController());
     }
+  }
+
+  void setEmail(String email) {
+    emailController.text = email;
   }
 
   String getOtpCode() {

@@ -11,6 +11,7 @@ import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/widgets/custom_loading.dart';
 import 'package:grace_cycle/core/widgets/custom_snack_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/forget_pass_cubit/forget_pass_cubit.dart';
+import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/question_text.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_text_form_field.dart';
@@ -20,12 +21,24 @@ class FirstForgetPassViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<ForgetPassCubit>();
+    final formFirstKey = GlobalKey<FormState>();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 70.h),
       child: BlocConsumer<ForgetPassCubit, ForgetPassState>(
         listener: (context, state) {
           if (state is ForgetPassSuccessState) {
-            navigate(context: context, route: Routes.verfiyYourEmail);
+            showToast(message: 'Check your email', state: ToastStates.success);
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BlocProvider.value(
+                  value: cubit,
+                  child: const VerifyYourEmailView(),
+                ),
+              ),
+            );
           } else if (state is ForgetPassFailedState) {
             showToast(message: state.message, state: ToastStates.error);
           }
@@ -33,7 +46,7 @@ class FirstForgetPassViewBody extends StatelessWidget {
         builder: (context, state) {
           return SingleChildScrollView(
             child: Form(
-              key: context.read<ForgetPassCubit>().formFirstKey,
+              key: formFirstKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -57,6 +70,9 @@ class FirstForgetPassViewBody extends StatelessWidget {
                   ),
                   verticalSpace(15),
                   CustomTextFormField(
+                    onChanged: (value) {
+                      cubit.setEmail(value);
+                    },
                     textcontroller:
                         context.read<ForgetPassCubit>().emailController,
                     validator: (value) {
@@ -70,7 +86,6 @@ class FirstForgetPassViewBody extends StatelessWidget {
                     },
                     labelText: 'Email',
                     hintText: 'Enter your email',
-                    onChanged: (value) {},
                     obscureText: false,
                   ),
                   verticalSpace(20),
@@ -81,11 +96,7 @@ class FirstForgetPassViewBody extends StatelessWidget {
                           textColor: Colors.white,
                           color: AppColors.greenButt,
                           onPressed: () {
-                            if (context
-                                .read<ForgetPassCubit>()
-                                .formFirstKey
-                                .currentState!
-                                .validate()) {
+                            if (formFirstKey.currentState!.validate()) {
                               BlocProvider.of<ForgetPassCubit>(context)
                                   .forgetPassword();
                             }

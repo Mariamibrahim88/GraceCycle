@@ -31,7 +31,6 @@ class ServerFailure extends Failure {
           return ServerFailure('No Internet Connection');
         }
         return ServerFailure('Unknown Error');
-
       default:
         return ServerFailure('UnExpected Error');
     }
