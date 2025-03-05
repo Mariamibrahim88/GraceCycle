@@ -1,14 +1,17 @@
+import 'dart:math';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:grace_cycle/core/database/remote/api_consumer.dart';
 import 'package:grace_cycle/core/database/remote/end_points.dart';
+import 'package:grace_cycle/core/errors/exceptions.dart';
 import 'package:grace_cycle/core/errors/failure.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/features/Authentication/data/models/forgetpass_model.dart';
 import 'package:grace_cycle/features/Authentication/data/models/verfiyresetcode_model.dart';
 
 class ForgetPassRepo {
-  Future<Either<Failure, ForgetpassModel>> forgetPass(
+  Future<Either<String, ForgetpassModel>> forgetPass(
       {required String email}) async {
     try {
       final response = await sl<ApiConsumer>().post(
@@ -19,17 +22,12 @@ class ForgetPassRepo {
       );
       final data = ForgetpassModel.fromJson(response);
       return Right(data);
-    } catch (e) {
-      if (e is DioException) {
-        print(
-            '******************************************************************');
-        return (Left(ServerFailure.fromDioException(e)));
-      }
-      return (left(ServerFailure(e.toString())));
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
     }
   }
 
-  Future<Either<Failure, VerfiyResetcodeModel>> verifyCode(
+  Future<Either<String, VerfiyResetcodeModel>> verifyCode(
       {required String email, required String code}) async {
     try {
       final response =
@@ -39,13 +37,8 @@ class ForgetPassRepo {
       });
       final userr = VerfiyResetcodeModel.fromJson(response);
       return Right(userr);
-    } catch (e) {
-      if (e is DioException) {
-        print(
-            '***************************************************************');
-        return (Left(ServerFailure.fromDioException(e)));
-      }
-      return (left(ServerFailure(e.toString())));
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
     }
   }
 

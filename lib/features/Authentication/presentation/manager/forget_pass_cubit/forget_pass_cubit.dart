@@ -35,7 +35,7 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
     emit(ForgetPassLoadingState());
     final result = await forgetPassRepo.forgetPass(email: emailController.text);
     result.fold(
-      (l) => emit(ForgetPassFailedState(message: l.message)),
+      (l) => emit(ForgetPassFailedState(message: l)),
       (r) => emit(ForgetPassSuccessState()),
     );
   }
@@ -47,7 +47,7 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
       code: getOtpCode(),
     );
     result.fold(
-      (l) => emit(ForgetPassFailedState(message: l.message)),
+      (l) => emit(ForgetPassFailedState(message: l)),
       (r) => emit(ForgetPassSuccessState()),
     );
   }

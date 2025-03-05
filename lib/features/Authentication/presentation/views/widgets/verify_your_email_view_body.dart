@@ -77,22 +77,13 @@ class VerifyYourEmailViewBody extends StatelessWidget {
                                     message: 'please fill in all fields ',
                                     state: ToastStates.error);
                               }
-                            }
-                            //   if (context
-                            //       .read<ForgetPassCubit>()
-                            //       .formSecondKey
-                            //       .currentState!
-                            //       .validate()) {
-                            //     BlocProvider.of<ForgetPassCubit>(context)
-                            //         .verfiyCode();
-                            //   }
-                            // },
-                            ),
+                            }),
                     QuestionText(
                       text1: 'Didn’t receive the email ?',
                       text2: 'Resend code',
                       onPressed: () {
                         cubit.forgetPassword();
+                        //not navigate to another page
                       },
                     ),
                   ]),
@@ -104,10 +95,10 @@ class VerifyYourEmailViewBody extends StatelessWidget {
   }
 }
 
-bool _areAllOtpFieldsFilled(BuildContext context) {
-  final otpControllers = context.read<ForgetPassCubit>().otpControllers;
-  return otpControllers.every((controller) => controller.text.isNotEmpty);
-}
+// bool _areAllOtpFieldsFilled(BuildContext context) {
+//   final otpControllers = context.read<ForgetPassCubit>().otpControllers;
+//   return otpControllers.every((controller) => controller.text.isNotEmpty);
+// }
 
 Widget buildOtpInput(BuildContext context) {
   return Row(
