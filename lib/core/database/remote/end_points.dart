@@ -1,10 +1,11 @@
 class EndPoint {
   static const String baseurl =
-      'https://48d0-156-206-17-23.ngrok-free.app/api/AppUser/';
-  static const String signIn = 'login-app';
+      'https://713b-156-206-39-120.ngrok-free.app/api/AppUser/';
+  static const String signIn = 'login';
   static const String signUp = 'register-app';
   static const String forgetPassword = 'forgot-password';
   static const String verifyResetEmail = 'verify-reset-code';
+  static const String resetPassword = 'reset-password';
 }
 
 class ApiKeys {
@@ -13,6 +14,7 @@ class ApiKeys {
   static const String username = 'username';
   static const String email = 'email';
   static const String password = 'password';
+  static const String newPassword = 'newPassword';
   static const String address = 'address';
   static const String conditions = 'conditions';
   static const String phonenumber = 'phonenumber';

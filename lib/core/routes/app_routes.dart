@@ -28,7 +28,7 @@ class AppRoutes {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (_) => const FirstForgetPassView());
+        return MaterialPageRoute(builder: (_) => const SignupView());
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.onBourding:
