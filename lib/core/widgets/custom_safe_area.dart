@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
-import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
 
 class CustomSafeArea extends StatelessWidget {
   const CustomSafeArea({

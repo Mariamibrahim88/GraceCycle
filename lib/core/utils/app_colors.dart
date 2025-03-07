@@ -18,4 +18,5 @@ class AppColors {
   static const Color redForPrice = Color(0xffBC0101);
   static const Color shoppingCart = Color(0xff0C2720);
   static const Color vendorCard = Color(0xffE5E1D2);
+  static const Color foodCard = Color.fromARGB(255, 246, 242, 229);
 }
