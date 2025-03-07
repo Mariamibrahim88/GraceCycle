@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/core/widgets/custom_loading.dart';
 import 'package:grace_cycle/core/widgets/custom_snack_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/forget_pass_cubit/forget_pass_cubit.dart';
@@ -21,95 +22,100 @@ class VerifyYourEmailViewBody extends StatelessWidget {
     final formSecondtKey = GlobalKey<FormState>();
     final cubit = context.read<ForgetPassCubit>();
 
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 70.h),
-      child: BlocConsumer<ForgetPassCubit, ForgetPassState>(
-        listener: (context, state) {
-          if (state is ForgetPassSuccessState) {
-            showToast(
-                message: 'Your email is verified', state: ToastStates.success);
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => BlocProvider.value(
-                  value: cubit,
-                  child: const SetNewPassView(),
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+        //padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 70.h),
+        child: BlocConsumer<ForgetPassCubit, ForgetPassState>(
+          listener: (context, state) {
+            if (state is VerifyCodeSuccessState) {
+              showToast(
+                  message: 'Your email is verified',
+                  state: ToastStates.success);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                    value: cubit,
+                    child: const SetNewPassView(),
+                  ),
                 ),
+              );
+              //navigate(context: context, route: Routes.setNewPass);
+            } else if (state is VerifyCodeFailedState) {
+              showToast(message: state.message, state: ToastStates.error);
+            }
+          },
+          builder: (context, state) {
+            var cubit = context.read<ForgetPassCubit>();
+            return SingleChildScrollView(
+              child: Form(
+                key: formSecondtKey,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CustomAppBar(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      verticalSpace(50),
+                      Text('Verify your Email',
+                          style: GoogleFonts.nunito(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.greentit)),
+                      verticalSpace(15),
+                      Text(
+                          'Please enter the verification code \n sent to your email',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.nunito(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.greentit)),
+                      verticalSpace(15),
+                      SvgPicture.asset(
+                        AppAssets.imgVerifyYourEmail,
+                        height: 170,
+                      ),
+                      verticalSpace(20),
+                      // Text(
+                      //     "Your email is: ${cubit.emailController.text}"), // تأكد من عرضه
+                      buildOtpInput(context),
+                      verticalSpace(20),
+                      state is VerifyCodeLoadingState
+                          ? const CustomLoading()
+                          : CustomButton(
+                              text: 'Verify',
+                              textColor: Colors.white,
+                              color: AppColors.greenButt,
+                              onPressed: () {
+                                if (formSecondtKey.currentState!.validate()) {
+                                  BlocProvider.of<ForgetPassCubit>(context)
+                                      .verfiyCode();
+                                } else {
+                                  showToast(
+                                      message: 'please fill in all fields ',
+                                      state: ToastStates.error);
+                                }
+                              }),
+                      QuestionText(
+                        text1: 'Didn’t receive the email ?',
+                        text2: 'Resend code',
+                        onPressed: () {
+                          cubit.forgetPassword();
+                        },
+                      ),
+                      verticalSpace(30),
+                    ]),
               ),
             );
-            //navigate(context: context, route: Routes.setNewPass);
-          } else if (state is ForgetPassFailedState) {
-            showToast(message: state.message, state: ToastStates.error);
-          }
-        },
-        builder: (context, state) {
-          var cubit = context.read<ForgetPassCubit>();
-          return SingleChildScrollView(
-            child: Form(
-              key: formSecondtKey,
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text('Verify your Email',
-                        style: GoogleFonts.nunito(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.greentit)),
-                    verticalSpace(15),
-                    Text(
-                        'Please enter the verification code \n sent to your email',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.nunito(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.greentit)),
-                    verticalSpace(15),
-                    SvgPicture.asset(
-                      AppAssets.imgVerifyYourEmail,
-                      height: 170,
-                    ),
-                    verticalSpace(20),
-                    // Text(
-                    //     "Your email is: ${cubit.emailController.text}"), // تأكد من عرضه
-                    buildOtpInput(context),
-                    verticalSpace(20),
-                    state is ForgetPassLoadingState
-                        ? const CustomLoading()
-                        : CustomButton(
-                            text: 'Verify',
-                            textColor: Colors.white,
-                            color: AppColors.greenButt,
-                            onPressed: () {
-                              if (formSecondtKey.currentState!.validate()) {
-                                BlocProvider.of<ForgetPassCubit>(context)
-                                    .verfiyCode();
-                              } else {
-                                showToast(
-                                    message: 'please fill in all fields ',
-                                    state: ToastStates.error);
-                              }
-                            }),
-                    QuestionText(
-                      text1: 'Didn’t receive the email ?',
-                      text2: 'Resend code',
-                      onPressed: () {
-                        cubit.forgetPassword();
-                        //not navigate to another page
-                      },
-                    ),
-                  ]),
-            ),
-          );
-        },
+          },
+        ),
       ),
     );
   }
 }
-
-// bool _areAllOtpFieldsFilled(BuildContext context) {
-//   final otpControllers = context.read<ForgetPassCubit>().otpControllers;
-//   return otpControllers.every((controller) => controller.text.isNotEmpty);
-// }
 
 Widget buildOtpInput(BuildContext context) {
   return Row(

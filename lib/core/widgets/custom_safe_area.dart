@@ -4,23 +4,31 @@ import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
 
 class CustomSafeArea extends StatelessWidget {
   const CustomSafeArea({
-    super.key, required this.body,
+    super.key,
+    required this.body,
   });
   final Widget body;
   @override
+  // Widget build(BuildContext context) {
+  //   return Container(
+  //     color: AppColors.basicWhite,
+  //     padding: const EdgeInsets.only(top: 45.0, left: 2.0),
+  //     child: Scaffold(
+  //       appBar: CustomAppBar(
+  //         onPressed: () {
+  //           Navigator.pop(context);
+  //         },
+  //       ),
+  //       backgroundColor: AppColors.basicWhite,
+  //       body: body,
+  //     ),
+  //   );
+  // }
+
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.basicWhite,
-      padding: const EdgeInsets.only(top: 45.0, left: 2.0),
-      child: Scaffold(
-        appBar: CustomAppBar(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        backgroundColor: AppColors.basicWhite,
-        body: body,
-      ),
+    return Scaffold(
+      backgroundColor: AppColors.basicWhite,
+      body: body,
     );
   }
 }

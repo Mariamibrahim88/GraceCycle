@@ -7,6 +7,7 @@ import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/core/widgets/custom_loading.dart';
 import 'package:grace_cycle/core/widgets/custom_snack_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/register_cubit/register_cubit.dart';
@@ -42,6 +43,9 @@ class SignupContinueBody extends StatelessWidget {
                 key: context.read<RegisterCubit>().formTwoKey,
                 child: Column(
                   children: [
+                    CustomAppBar(onPressed: () {
+                      Navigator.pop(context);
+                    }),
                     Text(
                       'Sign Up',
                       style: GoogleFonts.nunito(
