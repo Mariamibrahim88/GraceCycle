@@ -36,6 +36,15 @@ class LoginViewBody extends StatelessWidget {
               showToast(
                   message: 'check your email or password',
                   state: ToastStates.error);
+            } else if (state is LoginSuccessfulWithGoogle) {
+              showToast(
+                  message: 'Google Login Successfully',
+                  state: ToastStates.success);
+              navigate(context: context, route: Routes.home);
+            } else if (state is LoginFailureWithGoogle) {
+              showToast(
+                  message: 'Google Login Failed: ${state.errorMessage}',
+                  state: ToastStates.error);
             }
           },
           builder: (context, state) {
@@ -124,14 +133,17 @@ class LoginViewBody extends StatelessWidget {
                     ),
                     const OrSection(),
                     verticalSpace(10),
-                    CustomButton(
-                        text: 'Google',
-                        onPressed: () {
-                          LoginMethods.signInWithGoogle();
-                        },
-                        textColor: AppColors.greensubtit,
-                        image: AppAssets.imgGoogle,
-                        color: AppColors.grey),
+                    state is LoginLoadingWithGoogle
+                        ? const CustomLoading()
+                        : CustomButton(
+                            text: 'Google',
+                            onPressed: () {
+                              BlocProvider.of<LoginCubit>(context)
+                                  .loginWithGoogle();
+                            },
+                            textColor: AppColors.greensubtit,
+                            image: AppAssets.imgGoogle,
+                            color: AppColors.grey),
                     verticalSpace(50),
                   ],
                 ),
