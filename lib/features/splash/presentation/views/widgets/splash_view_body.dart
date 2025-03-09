@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:grace_cycle/core/database/local/cache_helper.dart';
+import 'package:grace_cycle/core/database/remote/end_points.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
+import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 
@@ -65,9 +68,12 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void navigateToOnBourding() {
-    Future.delayed(const Duration(seconds: 6), () {
+    Future.delayed(const Duration(seconds: 6)).then((value) async {
       // ignore: use_build_context_synchronously
-      navigate(context: context, route: Routes.onBourding);
+      await sl<CacheHelper>().readSecureData(key: ApiKeys.email) == null ||
+              await sl<CacheHelper>().readSecureData(key: ApiKeys.name) == null
+          ? navigate(context: context, route: Routes.onBourding)
+          : navigate(context: context, route: Routes.home);
     });
   }
 }
