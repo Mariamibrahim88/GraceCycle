@@ -75,8 +75,7 @@ class HomeViewBody extends StatelessWidget {
 
       const CustomHomeAppBar(),
       SliverToBoxAdapter(child: verticalSpace(10)),
-      const SliverToBoxAdapter(
-          child: HeadOfCategory(title: 'Recommend to you')),
+      const SliverToBoxAdapter(child: HeadOfCategory(title: 'Main Dishes')),
       SliverToBoxAdapter(
         child: CustomListOfFoodHor(
           foodTitle: 'Grilled Chicken',
