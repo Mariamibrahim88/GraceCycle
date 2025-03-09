@@ -1,12 +1,26 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
   late SharedPreferences sharedPreferences;
+  final _storage = FlutterSecureStorage();
 
   //Here The Initialize of cache .
 
   init() async {
     sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  Future writeSecureData({required String key, required String value}) async {
+    return await _storage.write(key: key, value: value);
+  }
+
+  Future readSecureData({required String key}) async {
+    return await _storage.read(key: key);
+  }
+
+  Future deleteSecureData({required String key}) async {
+    return await _storage.delete(key: key);
   }
 
   String? getDataString({
