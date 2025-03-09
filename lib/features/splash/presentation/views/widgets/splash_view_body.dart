@@ -72,7 +72,12 @@ class _SplashViewBodyState extends State<SplashViewBody>
       // ignore: use_build_context_synchronously
       await sl<CacheHelper>().readSecureData(key: ApiKeys.email) == null ||
               await sl<CacheHelper>().readSecureData(key: ApiKeys.name) == null
-          ? navigate(context: context, route: Routes.onBourding)
+          ? navigate(
+              context: context,
+              route:
+                  sl<CacheHelper>().getDataBool(key: ApiKeys.onBourding) == true
+                      ? Routes.signup
+                      : Routes.onBourding)
           : navigate(context: context, route: Routes.home);
     });
   }

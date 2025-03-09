@@ -23,4 +23,5 @@ class ApiKeys {
   static const String applicationJson = 'application/json';
   static const String fromurlencoded = 'application/x-www-form-urlencoded';
   static const String code = 'code';
+  static const String onBourding = 'onBourding';
 }

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grace_cycle/core/database/local/cache_helper.dart';
+import 'package:grace_cycle/core/database/remote/end_points.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
+import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
@@ -21,6 +24,8 @@ class _OnbourdingBodyState extends State<OnbourdingBody> {
   final controller = OnbourdingData();
   final pageController = PageController();
   int currentIndex = 0;
+  final bool onBourding =
+      sl<CacheHelper>().getData(key: ApiKeys.onBourding) ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +51,10 @@ class _OnbourdingBodyState extends State<OnbourdingBody> {
           child: Column(
             children: [
               CustomButton(
-                text: 'Continue',
+                text: currentIndex == 2 ? 'Get Started' : 'Continue',
                 onPressed: () {
+                  sl<CacheHelper>()
+                      .saveData(key: ApiKeys.onBourding, value: true);
                   currentIndex == 2
                       ? navigate(context: context, route: Routes.signup)
                       : pageController.nextPage(
@@ -112,16 +119,6 @@ class _OnbourdingBodyState extends State<OnbourdingBody> {
   Widget _buildDefaultPage(int index) {
     return Column(
       children: [
-        // CustomAppBar(
-        //   onPressed: () {
-        //     currentIndex == 0
-        //         ? Navigator.pop(context)
-        //         : pageController.previousPage(
-        //             duration: const Duration(milliseconds: 700),
-        //             curve: Curves.easeIn,
-        //           );
-        //   },
-        // ),
         verticalSpace(50),
         Padding(
           padding: currentIndex == 0
