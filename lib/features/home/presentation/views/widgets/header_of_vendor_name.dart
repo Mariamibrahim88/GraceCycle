@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grace_cycle/core/routes/app_routes.dart';
+import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_yellow_text.dart';
 
 class HeaderOfVendorName extends StatelessWidget {
@@ -23,8 +25,11 @@ class HeaderOfVendorName extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          const CustomYellowText(
+           CustomYellowText(
             text2: 'See all',
+            onPressed: () {
+              navigate(context: context, route: Routes.seeAll);
+            },
             fontsize: 18,
             fontWeight: FontWeight.w700,
           )
