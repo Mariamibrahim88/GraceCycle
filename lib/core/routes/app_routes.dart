@@ -30,7 +30,7 @@ class AppRoutes {
       case Routes.initialRoute:
         return MaterialPageRoute(builder: (_) => const SignupView());
       case Routes.home:
-        return MaterialPageRoute(builder: (_) => const SplashView());
+        return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.onBourding:
         return MaterialPageRoute(builder: (_) => const OnBourdingView());
       case Routes.continueSignup:

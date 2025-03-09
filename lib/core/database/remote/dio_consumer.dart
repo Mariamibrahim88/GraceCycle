@@ -107,6 +107,8 @@ handleDioException(e) {
 
         case 409: //conflict
           throw ConflictException(ErrorModel.fromJson(e.response!.data));
+        case 500:
+          throw CancleExeption('Internal Server Error' as ErrorModel);
         case 504:
           throw BadRequestException(ErrorModel.fromJson(e.response!.data));
 

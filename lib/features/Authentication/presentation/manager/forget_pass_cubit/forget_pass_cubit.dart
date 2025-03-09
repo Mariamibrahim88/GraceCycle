@@ -43,29 +43,29 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
   }
 
   void verfiyCode() async {
-    emit(ForgetPassLoadingState());
+    emit(VerifyCodeLoadingState());
     final result = await sl<ForgetPassRepo>().verifyCode(
       email: emailController.text,
       code: getOtpCode(),
     );
     result.fold(
-      (l) => emit(ForgetPassFailedState(message: l)),
+      (l) => emit(VerifyCodeFailedState(message: l)),
       (verify) {
         verificationToken = verify.token;
-        emit(ForgetPassSuccessState());
+        emit(VerifyCodeSuccessState());
       },
     );
   }
 
   void resetPassword() async {
-    emit(ForgetPassLoadingState());
+    emit(ResetPassLoadingState());
     final result = await sl<ForgetPassRepo>().resetPass(
         email: emailController.text,
         token: verificationToken ?? "",
         newPassword: newPasswordController.text);
 
-    result.fold((l) => emit(ForgetPassFailedState(message: l)),
-        (r) => emit(ForgetPassSuccessState()));
+    result.fold((l) => emit(ResetPassFailedState(message: l)),
+        (r) => emit(ResetPassSuccessState()));
   }
 
   @override
