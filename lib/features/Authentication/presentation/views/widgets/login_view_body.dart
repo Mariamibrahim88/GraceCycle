@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grace_cycle/core/firebase/login_methods/login_methods.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
@@ -36,6 +35,15 @@ class LoginViewBody extends StatelessWidget {
               //showSnackBar(context, state.toString(), Colors.red);
               showToast(
                   message: 'check your email or password',
+                  state: ToastStates.error);
+            } else if (state is LoginSuccessfulWithGoogle) {
+              showToast(
+                  message: 'Google Login Successfully',
+                  state: ToastStates.success);
+              navigate(context: context, route: Routes.home);
+            } else if (state is LoginFailureWithGoogle) {
+              showToast(
+                  message: 'Google Login Failed: ${state.errorMessage}',
                   state: ToastStates.error);
             }
           },
@@ -125,14 +133,17 @@ class LoginViewBody extends StatelessWidget {
                     ),
                     const OrSection(),
                     verticalSpace(10),
-                    CustomButton(
-                        text: 'Google',
-                        onPressed: () {
-                          LoginMethods.signInWithGoogle();
-                        },
-                        textColor: AppColors.greensubtit,
-                        image: AppAssets.imgGoogle,
-                        color: AppColors.grey),
+                    state is LoginLoadingWithGoogle
+                        ? const CustomLoading()
+                        : CustomButton(
+                            text: 'Google',
+                            onPressed: () {
+                              BlocProvider.of<LoginCubit>(context)
+                                  .loginWithGoogle();
+                            },
+                            textColor: AppColors.greensubtit,
+                            image: AppAssets.imgGoogle,
+                            color: AppColors.grey),
                     verticalSpace(50),
                   ],
                 ),

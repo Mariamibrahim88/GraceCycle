@@ -13,3 +13,13 @@ final class LoginFailure extends LoginState {
 
   LoginFailure(this.errorMessage);
 }
+
+final class LoginLoadingWithGoogle extends LoginState {}
+
+final class LoginSuccessfulWithGoogle extends LoginState {}
+
+final class LoginFailureWithGoogle extends LoginState {
+  final String errorMessage;
+
+  LoginFailureWithGoogle(this.errorMessage);
+}

@@ -1,12 +1,33 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
   late SharedPreferences sharedPreferences;
+  static final _storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
 
   //Here The Initialize of cache .
 
   init() async {
     sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  static AndroidOptions _getAndroidOptions() => const AndroidOptions(
+        encryptedSharedPreferences: true,
+      );
+  Future writeSecureData({required String key, required String value}) async {
+    return await _storage.write(key: key, value: value);
+  }
+
+  Future readSecureData({required String key}) async {
+    return await _storage.read(key: key);
+  }
+
+  Future deleteSecureData({required String key}) async {
+    return await _storage.delete(key: key);
+  }
+
+  Future clearSecureData() async {
+    return await _storage.deleteAll();
   }
 
   String? getDataString({
@@ -36,6 +57,10 @@ class CacheHelper {
 
   dynamic getData({required String key}) {
     return sharedPreferences.get(key);
+  }
+
+  dynamic getDataBool({required String key}) {
+    return sharedPreferences.getBool(key);
   }
 
 // remove data using specific key
