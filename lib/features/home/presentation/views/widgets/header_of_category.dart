@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
-import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_yellow_text.dart';
 
 class HeadOfCategory extends StatelessWidget {
@@ -29,7 +28,11 @@ class HeadOfCategory extends StatelessWidget {
           CustomYellowText(
             text2: 'See all',
             onPressed: () {
-              navigate(context: context, route: Routes.seeAll);
+              Navigator.pushNamed(
+                context,
+                Routes.seeAll,
+                arguments: true,
+              );
             },
             fontsize: 18,
             fontWeight: FontWeight.w700,

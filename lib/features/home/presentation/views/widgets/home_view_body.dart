@@ -13,67 +13,7 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(slivers: [
-      // const CustomHomeAppBar(),
-      // SliverToBoxAdapter(child: verticalSpace(10)),
-      // const SliverToBoxAdapter(
-      //     child: HeadOfCategory(title: 'Recommend to you')),
-
-      // SliverToBoxAdapter(
-      //   child: CustomListOfFoodHor(
-      //     foodTitle: 'Grilled Chicken',
-      //     foodAsset: AppAssets.recommendedFood,
-      //   ),
-      // ),
-
-      // SliverToBoxAdapter(child: verticalSpace(5)),
-      // const SliverToBoxAdapter(
-      //     child: HeadOfCategory(title: 'Find your Dish')),
-
-      // SliverToBoxAdapter(
-      //   child: CustomListOfFoodHor(
-      //     foodTitle: 'Mushroom Soup',
-      //     foodAsset: AppAssets.findYourDish,
-      //   ),
-      // ),
-
-      // SliverToBoxAdapter(child: verticalSpace(5)),
-      // const SliverToBoxAdapter(child: HeadOfCategory(title: 'Healthy')),
-
-      // SliverToBoxAdapter(
-      //   child: CustomListOfFoodHor(
-      //     foodTitle: 'Greek Salad',
-      //     foodAsset: AppAssets.healthy,
-      //   ),
-      // ),
-      // SliverToBoxAdapter(child: verticalSpace(5)),
-      // const SliverToBoxAdapter(child: HeadOfCategory(title: 'Baked Goods')),
-
-      // SliverToBoxAdapter(
-      //   child: CustomListOfFoodHor(
-      //     foodTitle: 'Sourdough Bread',
-      //     foodAsset: AppAssets.baked,
-      //   ),
-      // ),
-      // SliverToBoxAdapter(child: verticalSpace(5)),
-      // const SliverToBoxAdapter(child: HeadOfCategory(title: 'Dessert')),
-
-      // SliverToBoxAdapter(
-      //   child: CustomListOfFoodHor(
-      //     foodTitle: 'Oatmeal Cookies',
-      //     foodAsset: AppAssets.dessert,
-      //   ),
-      // ),
-      // SliverToBoxAdapter(child: verticalSpace(10)),
-      // const SliverToBoxAdapter(child: HeadOfCategory(title: 'Drinks')),
-
-      // SliverToBoxAdapter(
-      //   child: CustomListOfFoodHor(
-      //     foodTitle: 'Coffee Latte',
-      //     foodAsset: AppAssets.drink,
-      //   ),
-      // ),
-
-      const CustomHomeAppBar(),
+       const CustomHomeAppBar(),
       SliverToBoxAdapter(child: verticalSpace(10)),
       const SliverToBoxAdapter(child: HeadOfCategory(title: 'Main Dishes')),
       SliverToBoxAdapter(
@@ -148,6 +88,67 @@ class HomeViewBody extends StatelessWidget {
         ),
       )
     ]);
+
+      // const CustomHomeAppBar(),
+      // SliverToBoxAdapter(child: verticalSpace(10)),
+      // const SliverToBoxAdapter(
+      //     child: HeadOfCategory(title: 'Recommend to you')),
+
+      // SliverToBoxAdapter(
+      //   child: CustomListOfFoodHor(
+      //     foodTitle: 'Grilled Chicken',
+      //     foodAsset: AppAssets.recommendedFood,
+      //   ),
+      // ),
+
+      // SliverToBoxAdapter(child: verticalSpace(5)),
+      // const SliverToBoxAdapter(
+      //     child: HeadOfCategory(title: 'Find your Dish')),
+
+      // SliverToBoxAdapter(
+      //   child: CustomListOfFoodHor(
+      //     foodTitle: 'Mushroom Soup',
+      //     foodAsset: AppAssets.findYourDish,
+      //   ),
+      // ),
+
+      // SliverToBoxAdapter(child: verticalSpace(5)),
+      // const SliverToBoxAdapter(child: HeadOfCategory(title: 'Healthy')),
+
+      // SliverToBoxAdapter(
+      //   child: CustomListOfFoodHor(
+      //     foodTitle: 'Greek Salad',
+      //     foodAsset: AppAssets.healthy,
+      //   ),
+      // ),
+      // SliverToBoxAdapter(child: verticalSpace(5)),
+      // const SliverToBoxAdapter(child: HeadOfCategory(title: 'Baked Goods')),
+
+      // SliverToBoxAdapter(
+      //   child: CustomListOfFoodHor(
+      //     foodTitle: 'Sourdough Bread',
+      //     foodAsset: AppAssets.baked,
+      //   ),
+      // ),
+      // SliverToBoxAdapter(child: verticalSpace(5)),
+      // const SliverToBoxAdapter(child: HeadOfCategory(title: 'Dessert')),
+
+      // SliverToBoxAdapter(
+      //   child: CustomListOfFoodHor(
+      //     foodTitle: 'Oatmeal Cookies',
+      //     foodAsset: AppAssets.dessert,
+      //   ),
+      // ),
+      // SliverToBoxAdapter(child: verticalSpace(10)),
+      // const SliverToBoxAdapter(child: HeadOfCategory(title: 'Drinks')),
+
+      // SliverToBoxAdapter(
+      //   child: CustomListOfFoodHor(
+      //     foodTitle: 'Coffee Latte',
+      //     foodAsset: AppAssets.drink,
+      //   ),
+      // ),
+
 
     // SliverList.builder(
     //   itemCount: 5,
