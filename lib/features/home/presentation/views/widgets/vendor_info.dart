@@ -1,21 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
 
 class VendorInfo extends StatelessWidget {
   const VendorInfo({
-    super.key,
-    required this.vendorName,
-    required this.vendorAddress,
-    required this.vendorTime,
-    required this.vendorDistance,
-    required this.vendorLogo,
+    super.key, required this.vendorItemModel,
+    
   });
-  final String vendorName;
-  final String vendorAddress;
-  final String vendorTime;
-  final String vendorDistance;
-  final String vendorLogo;
+ final VendorItemModel vendorItemModel;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -25,7 +19,7 @@ class VendorInfo extends StatelessWidget {
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text(
-              vendorName,
+              vendorItemModel.userName,
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w700,
@@ -34,11 +28,24 @@ class VendorInfo extends StatelessWidget {
             ),
             CircleAvatar(
               radius: 20.r,
-              backgroundImage: AssetImage(vendorLogo),
-            )
+              backgroundColor: Colors.white,
+              child: CachedNetworkImage(
+                        imageUrl:
+               vendorItemModel.picUrl,
+                        height: 137.h,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => const Center(
+                child: CircularProgressIndicator(
+              color: Colors.green,
+                        )),
+                        errorWidget: (context, url, error) => const Icon(Icons.error),
+                      ),
+            ),
+      
+            
           ]),
           Text(
-            vendorAddress,
+            vendorItemModel.address,
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,
@@ -49,8 +56,9 @@ class VendorInfo extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              
               Text(
-                vendorTime,
+                'from ${vendorItemModel.opening} to ${vendorItemModel.closing}',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
@@ -58,7 +66,7 @@ class VendorInfo extends StatelessWidget {
                 ),
               ),
               Text(
-                vendorDistance,
+                '5.7 km',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,

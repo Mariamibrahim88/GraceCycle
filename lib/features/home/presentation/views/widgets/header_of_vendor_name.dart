@@ -29,7 +29,7 @@ class HeaderOfVendorName extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 Routes.seeAll,
-                arguments: true,
+                //arguments: true,
               );
             },
             fontsize: 18,

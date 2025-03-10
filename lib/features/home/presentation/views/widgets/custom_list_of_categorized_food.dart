@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:grace_cycle/features/home/presentation/manager/Home_cubit/home_state.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/custom_list_of_food_hor.dart';
 
 import '../../manager/Home_cubit/home_cubit.dart';
@@ -13,7 +14,10 @@ class ListOfCategorizedFood extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is HomeLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+              child: CircularProgressIndicator(
+            color: Colors.green,
+          ));
         } else if (state is HomeSuccess) {
           return SingleChildScrollView(
               scrollDirection: Axis.vertical,
