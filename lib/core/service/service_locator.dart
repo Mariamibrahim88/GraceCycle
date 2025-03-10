@@ -9,6 +9,8 @@ import 'package:grace_cycle/features/Authentication/presentation/manager/forget_
 import 'package:grace_cycle/features/Authentication/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:grace_cycle/features/Authentication/data/repos/login_repo.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:grace_cycle/features/home/data/repos/home_repo.dart';
+import 'package:grace_cycle/features/home/presentation/manager/Home_cubit/home_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -17,9 +19,12 @@ void initServiceLocator() {
   sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(sl()));
   sl.registerLazySingleton(() => Dio());
   sl.registerLazySingleton(() => RegisterRepo());
+  sl.registerLazySingleton(() => HomeRepo());
   sl.registerLazySingleton(() => ForgetPassRepo());
   //sl.registerSingleton(() => RegisterCubit(sl()));
   sl.registerFactory<RegisterCubit>(() => RegisterCubit(sl<RegisterRepo>()));
+  sl.registerFactory<HomeCubit>(() => HomeCubit(sl<HomeRepo>()));
+
   sl.registerLazySingleton(() => LoginRepo());
   //sl.registerSingleton<ApiService>(ApiService(Dio()));
   sl.registerFactory<LoginCubit>(() => LoginCubit(sl<LoginRepo>()));

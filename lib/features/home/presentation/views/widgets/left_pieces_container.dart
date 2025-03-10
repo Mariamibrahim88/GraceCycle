@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 
 class LeftPiecesContainer extends StatelessWidget {
-  const LeftPiecesContainer({super.key});
+  const LeftPiecesContainer({super.key, required this.leftPieces});
+  final String leftPieces;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class LeftPiecesContainer extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          '+5 left',
+          leftPieces,
           style: GoogleFonts.nunito(
               color: Colors.black,
               fontSize: 14.sp,

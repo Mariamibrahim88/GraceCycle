@@ -27,9 +27,9 @@ class SeeAllViewBody extends StatelessWidget {
             foodTitle: 'Main Dashes', foodAsset: AppAssets.findYourDish),
       ),
       SliverToBoxAdapter(
-        child: CustomListOfFoodVer(
-            foodTitle: 'Main Dashes', foodAsset: AppAssets.findYourDish),
-      ),
+          // child: CustomListOfFoodVer(
+          //     foodTitle: 'Main Dashes', foodAsset: AppAssets.findYourDish),
+          ),
     ]);
   }
 }
