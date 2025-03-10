@@ -28,7 +28,7 @@ class VendorCard extends StatelessWidget {
     return Stack(
       children: [
         Card(
-          elevation: 2,
+            elevation: 2,
             color: AppColors.vendorCard,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -53,7 +53,9 @@ class VendorCard extends StatelessWidget {
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              RateContainer(),
+              RateContainer(
+                rate: 4.5,
+              ),
             ],
           ),
         ),

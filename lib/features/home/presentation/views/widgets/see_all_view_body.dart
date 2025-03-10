@@ -13,6 +13,25 @@ class SeeAllViewBody extends StatelessWidget {
   final bool isVendor;
   @override
   Widget build(BuildContext context) {
+    return CustomScrollView(slivers: [
+      const CustomHomeAppBar(),
+      SliverToBoxAdapter(
+        child: CustomAppBar(
+          title: 'Main Dashes',
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      SliverToBoxAdapter(
+        child: CustomListOfVendorVer(
+            foodTitle: 'Main Dashes', foodAsset: AppAssets.findYourDish),
+      ),
+      SliverToBoxAdapter(
+          // child: CustomListOfFoodVer(
+          //     foodTitle: 'Main Dashes', foodAsset: AppAssets.findYourDish),
+          ),
+    ]);
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 30.h),
       child: CustomScrollView(slivers: [

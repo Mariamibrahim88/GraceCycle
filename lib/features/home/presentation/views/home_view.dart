@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
+import 'package:grace_cycle/features/home/presentation/manager/Home_cubit/home_cubit.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/home_view_body.dart';
 
 class HomeView extends StatelessWidget {
@@ -7,10 +10,13 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.basicWhite,
-        body: HomeViewBody(),
+    return BlocProvider(
+      create: (context) => HomeCubit(sl())..getFoodMenu(),
+      child: const SafeArea(
+        child: Scaffold(
+          backgroundColor: AppColors.basicWhite,
+          body: HomeViewBody(),
+        ),
       ),
     );
   }
