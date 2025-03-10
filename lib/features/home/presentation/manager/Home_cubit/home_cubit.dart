@@ -20,6 +20,7 @@ class HomeCubit extends Cubit<HomeState> {
   Future< void> getVendors() async {
       emit(HomeVendorLoading());
       final response = await homeRepo.getVendor();
+      
       response.fold(
         (l) => emit(HomeVendorError(l)),
         (r) => emit(HomeVendorSuccess(r)),
