@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 
 class DiscountContainer extends StatelessWidget {
-  const DiscountContainer({super.key});
+  const DiscountContainer({super.key, required this.discount});
+
+  final int discount;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class DiscountContainer extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            '-20%',
+            '$discount%',
             style: GoogleFonts.nunito(
                 color: Colors.black,
                 fontSize: 15.sp,

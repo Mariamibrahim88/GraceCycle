@@ -4,7 +4,11 @@ import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 
 class PriceForFood extends StatelessWidget {
-  const PriceForFood({super.key});
+  const PriceForFood(
+      {super.key, required this.oldPrice, required this.newPrice});
+
+  final double oldPrice;
+  final double newPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +38,7 @@ class PriceForFood extends StatelessWidget {
                     style: TextStyle(fontSize: 12.sp),
                   ),
                   TextSpan(
-                    text: "96",
+                    text: oldPrice.toString(),
                     style: TextStyle(fontSize: 14.sp),
                   ),
                 ],
@@ -44,7 +48,7 @@ class PriceForFood extends StatelessWidget {
             RichText(
               text: TextSpan(
                 style: const TextStyle(
-                    color: AppColors.redForPrice, fontWeight: FontWeight.bold),
+                    color: AppColors.greenButt, fontWeight: FontWeight.bold),
                 children: [
                   TextSpan(
                     text: "EGP",
@@ -52,7 +56,7 @@ class PriceForFood extends StatelessWidget {
                         TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
                   ),
                   TextSpan(
-                    text: "150",
+                    text: newPrice.toString(),
                     style:
                         TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
                   ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/features/home/data/models/food_menu_model.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/asset_of_food.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/discount_container.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/dotted_line.dart';
@@ -11,10 +13,9 @@ import 'package:grace_cycle/features/home/presentation/views/widgets/price_for_f
 import 'package:grace_cycle/features/home/presentation/views/widgets/rate_container.dart';
 
 class FoodCard extends StatelessWidget {
-  const FoodCard({super.key, required this.foodName, required this.foodImage});
+  const FoodCard({super.key, required this.foodItemModel});
 
-  final String foodName;
-  final String foodImage;
+  final FoodItemModel foodItemModel;
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +34,21 @@ class FoodCard extends StatelessWidget {
                   Stack(
                     children: [
                       AssetOfFood(
-                        foodImage: foodImage,
+                        foodImage: foodItemModel.fImage,
                       ),
                       Positioned(
                         top: 10.h,
                         left: 10.w,
                         right: 10.w,
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            LeftPiecesContainer(),
-                            RateContainer(),
+                            LeftPiecesContainer(
+                              leftPieces: '${foodItemModel.quantity}+ left',
+                            ),
+                            RateContainer(
+                              rate: foodItemModel.fRating,
+                            ),
                           ],
                         ),
                       ),
@@ -59,7 +64,7 @@ class FoodCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              foodName,
+                              foodItemModel.fName,
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.w700,
@@ -75,7 +80,7 @@ class FoodCard extends StatelessWidget {
                         ),
                         verticalSpace(15),
                         Text(
-                          'Al Shallal Restaurant',
+                          foodItemModel.vName,
                           style: TextStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w400,
@@ -87,7 +92,8 @@ class FoodCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'from 10:00 AM to 12:00 AM',
+                              '${foodItemModel.vOpening} to ${foodItemModel.vClosing}',
+                              //'from 10:00 AM to 12:00 AM',
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
@@ -107,7 +113,10 @@ class FoodCard extends StatelessWidget {
                         verticalSpace(10),
                         const DottLine(),
                         verticalSpace(10),
-                        const PriceForFood(),
+                        PriceForFood(
+                          oldPrice: foodItemModel.oldPrice,
+                          newPrice: foodItemModel.priceAfterDisc,
+                        ),
                       ],
                     ),
                   ),
@@ -116,7 +125,9 @@ class FoodCard extends StatelessWidget {
             ),
           ),
           const FavouriteContainer(),
-          const DiscountContainer(),
+          DiscountContainer(
+            discount: foodItemModel.discountPercentage,
+          ),
         ],
       ),
     );

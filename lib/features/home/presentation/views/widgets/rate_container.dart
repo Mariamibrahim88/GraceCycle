@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 
 class RateContainer extends StatelessWidget {
-  const RateContainer({super.key});
+  const RateContainer({super.key, required this.rate});
+
+  final double rate;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class RateContainer extends StatelessWidget {
             size: 20,
           ),
           Text(
-            '4.5',
+            rate.toString(),
             style: GoogleFonts.nunito(
                 color: Colors.black,
                 fontSize: 14.sp,
