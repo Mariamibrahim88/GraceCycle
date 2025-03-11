@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_yellow_text.dart';
+import 'package:grace_cycle/features/home/presentation/views/see_all_view.dart';
 
 class HeadOfCategory extends StatelessWidget {
   const HeadOfCategory({super.key, required this.title});
@@ -28,11 +28,14 @@ class HeadOfCategory extends StatelessWidget {
           CustomYellowText(
             text2: 'See all',
             onPressed: () {
-              Navigator.pushNamed(
+              Navigator.push(
                 context,
-                Routes.seeAll,
-               // arguments: true,
+                MaterialPageRoute(
+                  builder: (context) => const SeeAllView(),
+                  settings: const RouteSettings(arguments: false),
+                ),
               );
+              
             },
             fontsize: 18,
             fontWeight: FontWeight.w700,
