@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
+import 'package:grace_cycle/features/discover/presentation/views/discover_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
@@ -16,7 +17,7 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
 
   final List<Widget> _widgetOptions = const <Widget>[
     HomeView(),
-    Center(child: Text('Discover')),
+    DiscoverView(),
     Center(child: Text('Favorites')),
     Center(child: Text('Orders')),
     // DiscoverScreen(),
