@@ -23,4 +23,5 @@ class AppAssets {
   static String restauratLogo = 'assets/images/restaurantLogo.jpg';
   static String supermarket = 'assets/images/supermarket.jpg';
   static String supermarketLogo = 'assets/images/supermarketlogo.jpg';
+  static String filter = 'assets/images/filter.svg';
 }

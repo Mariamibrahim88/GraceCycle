@@ -7,6 +7,7 @@ class CustomSafeArea extends StatelessWidget {
     required this.body,
   });
   final Widget body;
+  //final Drawer drawer;
   @override
   // Widget build(BuildContext context) {
   //   return Container(
@@ -25,9 +26,12 @@ class CustomSafeArea extends StatelessWidget {
   // }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.basicWhite,
-      body: body,
+    return SafeArea(
+      child: Scaffold(
+        // drawer: ,
+        backgroundColor: AppColors.basicWhite,
+        body: body,
+      ),
     );
   }
 }
