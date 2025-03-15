@@ -5,7 +5,8 @@ import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
 
 class AssetOfVendor extends StatelessWidget {
   const AssetOfVendor({
-    super.key, required this.vendorItemModel,
+    super.key,
+    required this.vendorItemModel,
   });
   final VendorItemModel vendorItemModel;
   @override
@@ -15,15 +16,15 @@ class AssetOfVendor extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(16.r)),
         child: CachedNetworkImage(
-          imageUrl:
-             vendorItemModel.picUrl,
+          imageUrl: vendorItemModel.picUrl,
           height: 137.h,
           fit: BoxFit.cover,
           placeholder: (context, url) => const Center(
               child: CircularProgressIndicator(
             color: Colors.green,
           )),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+          errorWidget: (context, url, error) =>
+              const Center(child: Icon(Icons.error)),
         ),
       ),
     );

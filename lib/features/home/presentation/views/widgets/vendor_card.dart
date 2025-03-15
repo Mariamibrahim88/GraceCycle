@@ -10,10 +10,10 @@ import 'package:grace_cycle/features/home/presentation/views/widgets/vendor_info
 
 class VendorCard extends StatelessWidget {
   const VendorCard({
-    super.key, required this.vendorItemModel,
-    
+    super.key,
+    required this.vendorItemModel,
   });
- final VendorItemModel vendorItemModel;
+  final VendorItemModel vendorItemModel;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -24,14 +24,14 @@ class VendorCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     AssetOfVendor(
                       vendorItemModel: vendorItemModel,
                     ),
                     verticalSpace(5),
                     VendorInfo(
-                     vendorItemModel: vendorItemModel,
+                      vendorItemModel: vendorItemModel,
                     ),
                   ]),
             )),

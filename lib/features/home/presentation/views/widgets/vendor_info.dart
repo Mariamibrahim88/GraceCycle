@@ -6,10 +6,10 @@ import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
 
 class VendorInfo extends StatelessWidget {
   const VendorInfo({
-    super.key, required this.vendorItemModel,
-    
+    super.key,
+    required this.vendorItemModel,
   });
- final VendorItemModel vendorItemModel;
+  final VendorItemModel vendorItemModel;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -30,19 +30,16 @@ class VendorInfo extends StatelessWidget {
               radius: 20.r,
               backgroundColor: Colors.white,
               child: CachedNetworkImage(
-                        imageUrl:
-               vendorItemModel.picUrl,
-                        height: 137.h,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(
-              color: Colors.green,
-                        )),
-                        errorWidget: (context, url, error) => const Icon(Icons.error),
-                      ),
+                imageUrl: vendorItemModel.logoUrl,
+                height: 137.h,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(
+                  color: Colors.green,
+                )),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
             ),
-      
-            
           ]),
           Text(
             vendorItemModel.address,
@@ -56,7 +53,6 @@ class VendorInfo extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              
               Text(
                 'from ${vendorItemModel.opening} to ${vendorItemModel.closing}',
                 style: TextStyle(
