@@ -34,7 +34,7 @@ class FoodCard extends StatelessWidget {
                   Stack(
                     children: [
                       AssetOfFood(
-                        foodImage: foodItemModel.fImage,
+                        foodImage: foodItemModel.picUrl,
                       ),
                       Positioned(
                         top: 10.h,
@@ -47,7 +47,7 @@ class FoodCard extends StatelessWidget {
                               leftPieces: '${foodItemModel.quantity}+ left',
                             ),
                             RateContainer(
-                              rate: foodItemModel.fRating,
+                              rate: foodItemModel.rating,
                             ),
                           ],
                         ),
@@ -64,7 +64,7 @@ class FoodCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              foodItemModel.fName,
+                              foodItemModel.name,
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.w700,
@@ -114,8 +114,8 @@ class FoodCard extends StatelessWidget {
                         const DottLine(),
                         verticalSpace(10),
                         PriceForFood(
-                          oldPrice: foodItemModel.oldPrice,
-                          newPrice: foodItemModel.priceAfterDisc,
+                          oldPrice: foodItemModel.unitPrice,
+                          newPrice: foodItemModel.newPrice,
                         ),
                       ],
                     ),
@@ -162,7 +162,7 @@ class FooddCard extends StatelessWidget {
                         top: 10.h,
                         left: 10.w,
                         right: 10.w,
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             LeftPiecesContainer(
@@ -235,7 +235,7 @@ class FooddCard extends StatelessWidget {
                         verticalSpace(10),
                         const DottLine(),
                         verticalSpace(10),
-                        PriceForFood(
+                        const PriceForFood(
                           oldPrice: 20,
                           newPrice: 15,
                         ),
@@ -247,7 +247,7 @@ class FooddCard extends StatelessWidget {
             ),
           ),
           const FavouriteContainer(),
-          DiscountContainer(
+          const DiscountContainer(
             discount: 10,
           ),
         ],

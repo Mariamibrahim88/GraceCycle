@@ -18,50 +18,47 @@ class FoodMenuModel {
 class FoodItemModel {
   final int id;
   final int quantity;
-  final double oldPrice;
-  final double priceAfterDisc;
+  final double unitPrice;
+  final double newPrice;
   final int discountPercentage;
-  final String vendorId;
   final String vName;
   final String vLogo;
   final String vOpening;
   final String vClosing;
-  final String fName;
-  final String fImage;
-  final double fRating;
+  final String name;
+  final String picUrl;
+  final double rating;
   final bool isFavourite;
 
   FoodItemModel(
       {required this.id,
       required this.quantity,
-      required this.oldPrice,
-      required this.priceAfterDisc,
+      required this.unitPrice,
+      required this.newPrice,
       required this.discountPercentage,
-      required this.vendorId,
       required this.vName,
       required this.vLogo,
       required this.vOpening,
       required this.vClosing,
-      required this.fName,
-      required this.fImage,
-      required this.fRating,
+      required this.name,
+      required this.picUrl,
+      required this.rating,
       required this.isFavourite});
 
   factory FoodItemModel.fromJson(Map<String, dynamic> json) {
     return FoodItemModel(
       id: json['id'],
       quantity: json['quantity'],
-      oldPrice: json['oldPrice'],
-      priceAfterDisc: json['price_After_Disc'],
+      unitPrice: json['unitPrice'],
+      newPrice: json['newPrice'],
       discountPercentage: json['discountPercentage'],
-      vendorId: json['vendorId'],
       vName: json['vName'],
       vLogo: json['vLogo'],
       vOpening: json['vOpening'],
       vClosing: json['vClosing'],
-      fName: json['fName'],
-      fImage: json['fImage'],
-      fRating: json['fRating'],
+      name: json['name'],
+      picUrl: json['picUrl'],
+      rating: json['rating'],
       isFavourite: json['isFavourite'],
     );
   }

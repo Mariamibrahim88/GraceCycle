@@ -19,7 +19,7 @@ class VendorInfo extends StatelessWidget {
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text(
-              vendorItemModel.userName,
+              vendorItemModel.displayName,
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w700,
