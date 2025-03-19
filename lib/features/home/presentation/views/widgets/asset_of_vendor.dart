@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +20,7 @@ class AssetOfVendor extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: vendorItemModel.picUrl,
           height: 137.h,
-          fit: BoxFit.cover,
+          fit: BoxFit.fitWidth,
           placeholder: (context, url) => const Center(
               child: CircularProgressIndicator(
             color: Colors.green,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
-import 'package:grace_cycle/features/discover/presentation/views/widgets/discover_view_body.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/list_tile_item_of_filter.dart';
 
 class FilterContainer extends StatelessWidget {
@@ -20,9 +19,9 @@ class FilterContainer extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.basicWhite,
           borderRadius: BorderRadius.circular(15.r),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black12,
               blurRadius: 5,
               spreadRadius: 2,
             ),

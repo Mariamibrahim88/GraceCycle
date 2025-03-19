@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grace_cycle/core/widgets/custom_buttom_nav_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/first_forget_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/login_in_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/set_new_pass_view.dart';
@@ -31,7 +30,7 @@ class AppRoutes {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (_) => const DiscoverView());
+        return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.onBourding:

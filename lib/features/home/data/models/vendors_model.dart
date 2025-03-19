@@ -17,9 +17,9 @@ class VendorsModel {
 }
 
 class VendorItemModel {
-  final String id;
+  final String userId;
   final String address;
-  final String userName;
+  final String displayName;
   final String logoUrl;
   final String opening;
   final String closing;
@@ -28,9 +28,9 @@ class VendorItemModel {
   final bool isFavourite;
 
   VendorItemModel(
-      {required this.id,
+      {required this.userId,
       required this.address,
-      required this.userName,
+      required this.displayName,
       required this.logoUrl,
       required this.opening,
       required this.closing,
@@ -40,9 +40,9 @@ class VendorItemModel {
   
   factory VendorItemModel.fromJson(Map<String, dynamic> json) {
     return VendorItemModel(
-      id: json['id'],
+      userId: json['userId'],
       address: json['address'],
-      userName: json['userName'],
+      displayName: json['displayName'],
       logoUrl: json['logoUrl'],
       opening: json['opening'],
       closing: json['closing'],
