@@ -28,7 +28,7 @@ class LoginCubit extends Cubit<LoginState> {
 
     result.fold((error) => emit(LoginFailure(error)), (login) async {
       await sl<CacheHelper>()
-          .writeSecureData(key: ApiKeys.authorization, value: login.token);
+          .saveData(key: ApiKeys.authorization, value: login.token);
 
       emit(LoginSuccessful());
     });

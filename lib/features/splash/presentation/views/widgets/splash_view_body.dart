@@ -73,7 +73,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       // await sl<CacheHelper>().readSecureData(key: ApiKeys.email) == null &&
       //             await sl<CacheHelper>().readSecureData(key: ApiKeys.name) ==
       //                 null ||
-      await sl<CacheHelper>().readSecureData(key: ApiKeys.authorization) == null
+      await sl<CacheHelper>().getData(key: ApiKeys.authorization) == null
           ? navigate(
               context: context,
               route:
