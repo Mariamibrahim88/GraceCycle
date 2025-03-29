@@ -32,6 +32,18 @@ class AssetOfVendor extends StatelessWidget {
             ),
           ),
           imageUrl: picUrl,
+          placeholder: (context, url) => Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              height: 137.h,
+              width: MediaQuery.of(context).size.isFinite ? 0.7.sw : 0.7.sw,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(16.r)),
+                color: Colors.white,
+              ),
+            ),
+          ),
           errorWidget: (context, url, error) =>
               const Center(child: Icon(Icons.error)),
         ),
