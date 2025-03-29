@@ -70,8 +70,10 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void navigateToOnBourding() {
     Future.delayed(const Duration(seconds: 6)).then((value) async {
       // ignore: use_build_context_synchronously
-      await sl<CacheHelper>().readSecureData(key: ApiKeys.email) == null ||
-              await sl<CacheHelper>().readSecureData(key: ApiKeys.name) == null
+      // await sl<CacheHelper>().readSecureData(key: ApiKeys.email) == null &&
+      //             await sl<CacheHelper>().readSecureData(key: ApiKeys.name) ==
+      //                 null ||
+      await sl<CacheHelper>().getData(key: ApiKeys.token) == null
           ? navigate(
               context: context,
               route:

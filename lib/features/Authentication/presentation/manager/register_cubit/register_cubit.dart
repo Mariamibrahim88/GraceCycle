@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:grace_cycle/core/database/local/cache_helper.dart';
+import 'package:grace_cycle/core/database/remote/end_points.dart';
+import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/features/Authentication/data/repos/register_repo.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/register_cubit/register_state.dart';
 
@@ -123,8 +126,12 @@ class RegisterCubit extends Cubit<RegisterState> {
         conditions: selectedConditions,
         phonenumber: phonenumberController.text);
 
-    response.fold(
-        (l) => emit(RegisterErrorState(l)), (r) => emit(RegisterSucessState()));
+    response.fold((l) => emit(RegisterErrorState(l)), (r) async {
+      await sl<CacheHelper>()
+          .writeSecureData(key: ApiKeys.token, value: r.token);
+
+      emit(RegisterSucessState());
+    });
   }
 
   // Future<void> signInWithGoogle() async {

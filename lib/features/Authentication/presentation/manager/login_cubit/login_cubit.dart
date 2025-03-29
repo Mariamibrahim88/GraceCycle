@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/core/database/local/cache_helper.dart';
+import 'package:grace_cycle/core/database/remote/end_points.dart';
 import 'package:grace_cycle/core/firebase/login_methods/login_methods.dart';
+import 'package:grace_cycle/core/service/service_locator.dart';
 
 import 'package:grace_cycle/features/Authentication/data/models/login_model.dart';
 import 'package:grace_cycle/features/Authentication/data/repos/login_repo.dart';
@@ -23,8 +26,11 @@ class LoginCubit extends Cubit<LoginState> {
     final result = await loginRepo.logIn(
         email: emailController.text, password: passwordController.text);
 
-    result.fold((error) => emit(LoginFailure(error)),
-        (login) => emit(LoginSuccessful()));
+    result.fold((error) => emit(LoginFailure(error)), (login) async {
+      await sl<CacheHelper>().saveData(key: ApiKeys.token, value: login.token);
+
+      emit(LoginSuccessful());
+    });
     //user = LoginModel.fromJson(result as Map<String, dynamic>);
     //emit(LoginSuccessful());
 

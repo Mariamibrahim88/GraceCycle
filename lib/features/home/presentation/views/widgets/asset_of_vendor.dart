@@ -8,9 +8,11 @@ import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
 class AssetOfVendor extends StatelessWidget {
   const AssetOfVendor({
     super.key,
-    required this.vendorItemModel,
+    //required this.vendorItemModel,
+    required this.picUrl,
   });
-  final VendorItemModel vendorItemModel;
+  // final VendorItemModel vendorItemModel;
+  final String picUrl;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,7 +20,7 @@ class AssetOfVendor extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(16.r)),
         child: CachedNetworkImage(
-          imageUrl: vendorItemModel.picUrl,
+          imageUrl: picUrl,
           height: 137.h,
           fit: BoxFit.fitWidth,
           placeholder: (context, url) => const Center(

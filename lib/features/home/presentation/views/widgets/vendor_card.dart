@@ -27,7 +27,7 @@ class VendorCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     AssetOfVendor(
-                      vendorItemModel: vendorItemModel,
+                      picUrl: vendorItemModel.picUrl,
                     ),
                     verticalSpace(5),
                     VendorInfo(

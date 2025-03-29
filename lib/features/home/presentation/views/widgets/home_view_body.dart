@@ -15,11 +15,11 @@ class HomeViewBody extends StatelessWidget {
     return CustomScrollView(slivers: [
       const CustomHomeAppBar(),
       SliverToBoxAdapter(child: verticalSpace(10)),
-      BlocProvider(
-        create: (context) => HomeCubit(sl())..getFoodMenu(),
-        child: const SliverToBoxAdapter(child: ListOfCategorizedFood()),
-      ),
-      SliverToBoxAdapter(child: verticalSpace(10)),
+      // BlocProvider(
+      //   create: (context) => HomeCubit(sl())..getFoodMenu(),
+      //   child: const SliverToBoxAdapter(child: ListOfCategorizedFood()),
+      // ),
+      // SliverToBoxAdapter(child: verticalSpace(10)),
       BlocProvider(
         create: (context) =>HomeCubit(sl())..getVendors(),
         child: const SliverToBoxAdapter(child: CustomListOfVendors()),
