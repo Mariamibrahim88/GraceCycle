@@ -11,7 +11,7 @@ class FavouriteRestaurantContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       left: 15.w,
-      bottom: 90.h,
+      bottom: 80.h,
       child: Container(
         height: 35.h,
         width: 35.w,
