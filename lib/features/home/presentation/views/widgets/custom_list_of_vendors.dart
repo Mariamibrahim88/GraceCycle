@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/features/home/presentation/manager/Home_cubit/home_cubit.dart';
 import 'package:grace_cycle/features/home/presentation/manager/Home_cubit/home_state.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/custom_list_of_vendor_hor.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CustomListOfVendors extends StatelessWidget {
   const CustomListOfVendors({
@@ -14,10 +15,7 @@ class CustomListOfVendors extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(
         builder: (BuildContext context, state) {
       if (state is HomeVendorLoading) {
-        return const Center(
-            child: CircularProgressIndicator(
-          color: Colors.green,
-        ));
+        return const CustomShimmer();
       } else if (state is HomeVendorSuccess) {
         return SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -71,7 +69,52 @@ class CustomListOfVendors extends StatelessWidget {
         //   ]),
         // );
       }
-     return const Text('Erroooooooooooooooooooooooooooooooooooooooor');
+      return const Text('Erroooooooooooooooooooooooooooooooooooooooor');
     });
+  }
+}
+
+class CustomShimmer extends StatelessWidget {
+  const CustomShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              width: 300,
+              height: 150,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 20),
+          Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              width: 150,
+              height: 30,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              width: 150,
+              height: 30,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
