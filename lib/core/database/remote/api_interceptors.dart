@@ -7,10 +7,11 @@ class ApiInterceptors extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers[ApiKeys.contentType] = ApiKeys.applicationJson;
-    options.headers[ApiKeys.token] =
-        sl<CacheHelper>().getData(key: ApiKeys.token) != null
-            ? sl<CacheHelper>().getData(key: ApiKeys.token)
-            : null;
+    options.headers['Authorization'] = sl<CacheHelper>()
+                .readSecureData(key: ApiKeys.authorization) !=
+            null
+        ? 'Bearer ${sl<CacheHelper>().readSecureData(key: ApiKeys.authorization)}'
+        : null;
     super.onRequest(options, handler);
   }
 }

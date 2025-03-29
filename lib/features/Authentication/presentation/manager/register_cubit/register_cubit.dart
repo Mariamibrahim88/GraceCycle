@@ -128,7 +128,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
     response.fold((l) => emit(RegisterErrorState(l)), (r) async {
       await sl<CacheHelper>()
-          .writeSecureData(key: ApiKeys.token, value: r.token);
+          .writeSecureData(key: ApiKeys.authorization, value: r.token);
 
       emit(RegisterSucessState());
     });

@@ -27,7 +27,8 @@ class LoginCubit extends Cubit<LoginState> {
         email: emailController.text, password: passwordController.text);
 
     result.fold((error) => emit(LoginFailure(error)), (login) async {
-      await sl<CacheHelper>().saveData(key: ApiKeys.token, value: login.token);
+      await sl<CacheHelper>()
+          .writeSecureData(key: ApiKeys.authorization, value: login.token);
 
       emit(LoginSuccessful());
     });
