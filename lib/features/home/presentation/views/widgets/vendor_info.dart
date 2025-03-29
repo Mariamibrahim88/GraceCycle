@@ -17,37 +17,47 @@ class VendorInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text(
-              vendorItemModel.displayName,
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w700,
-                color: Colors.black,
-              ),
-            ),
-            CircleAvatar(
-              radius: 20.r,
-              backgroundColor: Colors.white,
-              child: CachedNetworkImage(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(
+                  vendorItemModel.displayName,
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                  ),
+                ),
+                Text(
+                  vendorItemModel.address,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                ),
+              ]),
+              CachedNetworkImage(
                 imageUrl: vendorItemModel.logoUrl,
-                height: 137.h,
-                fit: BoxFit.cover,
+                imageBuilder: (context, imageProvider) => Container(
+                  height: 36.h,
+                  width: 38.h,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
                 placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(
                   color: Colors.green,
                 )),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
-            ),
-          ]),
-          Text(
-            vendorItemModel.address,
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ),
+            ],
           ),
           verticalSpace(5),
           Row(

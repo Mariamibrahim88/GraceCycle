@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
+import 'package:shimmer/shimmer.dart';
 
 class AssetOfVendor extends StatelessWidget {
   const AssetOfVendor({
@@ -20,13 +20,18 @@ class AssetOfVendor extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(16.r)),
         child: CachedNetworkImage(
+          imageBuilder: (context, imageProvider) => Container(
+            height: 137.h,
+            width: MediaQuery.of(context).size.isFinite ? 0.7.sw : 0.7.sw,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(16.r)),
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
           imageUrl: picUrl,
-          height: 137.h,
-          fit: BoxFit.fitWidth,
-          placeholder: (context, url) => const Center(
-              child: CircularProgressIndicator(
-            color: Colors.green,
-          )),
           errorWidget: (context, url, error) =>
               const Center(child: Icon(Icons.error)),
         ),
