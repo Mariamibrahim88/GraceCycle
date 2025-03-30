@@ -4,6 +4,7 @@ import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/features/home/presentation/manager/Home_cubit/home_cubit.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/custom_home_app_bar.dart';
+import 'package:grace_cycle/features/home/presentation/views/widgets/custom_list_of_categorized_food.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/custom_list_of_vendors.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -14,13 +15,13 @@ class HomeViewBody extends StatelessWidget {
     return CustomScrollView(slivers: [
       const CustomHomeAppBar(),
       SliverToBoxAdapter(child: verticalSpace(10)),
-      // BlocProvider(
-      //   create: (context) => HomeCubit(sl())..getFoodMenu(),
-      //   child: const SliverToBoxAdapter(child: ListOfCategorizedFood()),
-      // ),
-      // SliverToBoxAdapter(child: verticalSpace(10)),
       BlocProvider(
-        create: (context) =>HomeCubit(sl())..getVendors(),
+        create: (context) => HomeCubit(sl())..getFoodMenu(),
+        child: const SliverToBoxAdapter(child: ListOfCategorizedFood()),
+      ),
+      SliverToBoxAdapter(child: verticalSpace(10)),
+      BlocProvider(
+        create: (context) => HomeCubit(sl())..getVendors(),
         child: const SliverToBoxAdapter(child: CustomListOfVendors()),
       ),
     ]);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:grace_cycle/core/widgets/custom_list_of_shimmer_hor.dart';
 import 'package:grace_cycle/features/home/presentation/manager/Home_cubit/home_state.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/custom_list_of_food_hor.dart';
 
@@ -14,11 +15,10 @@ class ListOfCategorizedFood extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is HomeLoading) {
-          return const Center(
-              child: CircularProgressIndicator(
-            color: Colors.green,
-          ));
+          return const CustomListOfShimmerHor();
         } else if (state is HomeSuccess) {
+          //return const CustomListOfShimmerHor();
+
           return SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Padding(
