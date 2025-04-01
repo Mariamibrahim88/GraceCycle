@@ -25,7 +25,7 @@ class CustomListOfVendorHor extends StatelessWidget {
             children: [
               Expanded(
                 child: SizedBox(
-                  height: 293.h,
+                  height: 250.h,
                   child: ListView.builder(
                     itemCount: vendor.length,
                     scrollDirection: Axis.horizontal,

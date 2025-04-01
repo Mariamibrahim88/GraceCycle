@@ -25,11 +25,12 @@ class VendorCard extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     AssetOfVendor(
                       picUrl: vendorItemModel.picUrl,
                     ),
-                    verticalSpace(5),
+                    verticalSpace(10),
                     VendorInfo(
                       vendorItemModel: vendorItemModel,
                     ),

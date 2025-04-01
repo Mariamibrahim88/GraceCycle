@@ -11,13 +11,17 @@ class CustomListOfShimmerHor extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 20.h),
-        child: Row(
-          children: List.generate(
-            4,
-            (index) => Padding(
+        
+        child: SizedBox(
+          height: 250.h,
+          width: 400.w,
+          child: ListView.builder(
+            itemBuilder: (context, index) => Padding(
               padding: EdgeInsets.symmetric(horizontal: 5.w),
               child: const CustomShimmerCard(),
             ),
+            itemCount: 4,
+            scrollDirection: Axis.horizontal,
           ),
         ),
       ),

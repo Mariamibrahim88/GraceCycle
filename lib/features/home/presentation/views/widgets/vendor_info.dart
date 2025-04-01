@@ -61,6 +61,7 @@ class VendorInfo extends StatelessWidget {
           ),
           verticalSpace(5),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
