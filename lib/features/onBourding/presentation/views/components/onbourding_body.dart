@@ -25,7 +25,7 @@ class _OnbourdingBodyState extends State<OnbourdingBody> {
   final pageController = PageController();
   int currentIndex = 0;
   final bool onBourding =
-      sl<CacheHelper>().getData(key: ApiKeys.onBourding) ?? false;
+      sl<CacheHelper>().getDataBool(key: ApiKeys.onBourding) ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class _OnbourdingBodyState extends State<OnbourdingBody> {
                   currentIndex == 2
                       ? navigate(context: context, route: Routes.signup)
                       : pageController.nextPage(
-                          duration: const Duration(milliseconds: 700),
+                          duration: const Duration(milliseconds: 500),
                           curve: Curves.easeIn,
                         );
                 },

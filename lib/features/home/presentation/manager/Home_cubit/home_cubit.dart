@@ -23,9 +23,9 @@ class HomeCubit extends Cubit<HomeState> {
     final response = await homeRepo.getVendor();
 
     response.fold((l) => emit(HomeVendorError(l)), (r) {
-      if (!isClosed) {
-        emit(HomeVendorSuccess(r));
-      }
+      //if (!isClosed) {
+      emit(HomeVendorSuccess(r));
+      // }
     });
   }
 }

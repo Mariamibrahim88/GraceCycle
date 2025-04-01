@@ -2,6 +2,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
+  static final CacheHelper _instance = CacheHelper._internal();
+  factory CacheHelper() => _instance;
+  CacheHelper._internal();
+
   late SharedPreferences sharedPreferences;
   static final _storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
 

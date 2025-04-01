@@ -31,7 +31,8 @@ class HomeRepo {
       final Map<String, List<VendorItemModel>> venderItemList = {};
       response.forEach((vendor, vendorsList) {
         venderItemList[vendor] = (vendorsList as List)
-            .map((item) => VendorItemModel.fromJson(item)).toList();
+            .map((item) => VendorItemModel.fromJson(item))
+            .toList();
       });
       return Right(VendorsModel(vendors: venderItemList));
     } on ServerException catch (error) {

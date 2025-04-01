@@ -6,9 +6,11 @@ import 'package:grace_cycle/features/home/presentation/views/widgets/vendor_card
 
 class CustomListOfVendorHor extends StatelessWidget {
   const CustomListOfVendorHor({
-    super.key, required this.vendor, required this.vendorCategory, 
+    super.key,
+    required this.vendor,
+    required this.vendorCategory,
   });
-   final List<VendorItemModel> vendor;
+  final List<VendorItemModel> vendor;
   final String vendorCategory;
   @override
   Widget build(BuildContext context) {
@@ -17,22 +19,35 @@ class CustomListOfVendorHor extends StatelessWidget {
         HeaderOfVendorName(
           title: vendorCategory,
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-            child: Row(
-              children: List.generate(
-                vendor.length,
-                (index) => Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
-                  child: VendorCard(
-                    vendorItemModel: vendor[index],
-                    
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+          child: Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: 293.h,
+                  child: ListView.builder(
+                    itemCount: vendor.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => VendorCard(
+                      vendorItemModel: vendor[index],
+                    ),
+                    // itemCount: vendor.length,
                   ),
                 ),
-              ),
-            ),
+              )
+            ],
+
+            // children: List.generate(
+            //   vendor.length,
+            //   (index) => Padding(
+            //     padding: EdgeInsets.symmetric(horizontal: 5.w),
+            //     child: VendorCard(
+            //       vendorItemModel: vendor[index],
+
+            //     ),
+            //   ),
+            // ),
           ),
         ),
       ],

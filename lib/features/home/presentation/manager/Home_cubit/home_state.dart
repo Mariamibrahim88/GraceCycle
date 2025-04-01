@@ -13,6 +13,7 @@ final class HomeSuccess extends HomeState {
   final FoodMenuModel foodMenuModel;
   HomeSuccess(this.foodMenuModel);
 }
+
 final class HomeVendorSuccess extends HomeState {
   final VendorsModel vendorsModel;
   HomeVendorSuccess(this.vendorsModel);
@@ -22,6 +23,7 @@ final class HomeError extends HomeState {
   final String errorMessage;
   HomeError(this.errorMessage);
 }
+
 final class HomeVendorError extends HomeState {
   final String errorMessage;
   HomeVendorError(this.errorMessage);

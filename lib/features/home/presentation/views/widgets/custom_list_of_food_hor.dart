@@ -19,23 +19,39 @@ class CustomListOfFoodHor extends StatelessWidget {
     return Column(
       children: [
         HeadOfCategory(title: categoryTitle),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20.w,
-            ),
-            child: Row(
-              children: List.generate(
-                foodItemModel.length,
-                (index) => Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w),
-                  child: FoodCard(
-                    foodItemModel: foodItemModel[index],
-                  ),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 20.w,
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: 293.h,
+                  child: ListView.builder(
+                      itemCount: foodItemModel.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.w),
+                          child: FoodCard(
+                            foodItemModel: foodItemModel[index],
+                          ),
+                        );
+                      }),
                 ),
-              ),
-            ),
+              )
+            ],
+            //   children: List.generate(
+            //     foodItemModel.length,
+            //     (index) => Padding(
+            //       padding: EdgeInsets.symmetric(horizontal: 8.w),
+            //       child: FoodCard(
+            //         foodItemModel: foodItemModel[index],
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ),
         ),
       ],

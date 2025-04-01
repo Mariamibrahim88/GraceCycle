@@ -14,6 +14,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await sl<CacheHelper>().init();
-  await sl<CacheHelper>().clearData();
+  //await sl<CacheHelper>().clearData();
   runApp(const MyApp());
 }

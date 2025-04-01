@@ -12,19 +12,21 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(slivers: [
-      const CustomHomeAppBar(),
-      SliverToBoxAdapter(child: verticalSpace(10)),
-      BlocProvider(
-        create: (context) => HomeCubit(sl())..getFoodMenu(),
-        child: const SliverToBoxAdapter(child: ListOfCategorizedFood()),
-      ),
-      SliverToBoxAdapter(child: verticalSpace(10)),
-      BlocProvider(
-        create: (context) => HomeCubit(sl())..getVendors(),
-        child: const SliverToBoxAdapter(child: CustomListOfVendors()),
-      ),
-    ]);
+    return CustomScrollView(
+      slivers: [
+        const CustomHomeAppBar(),
+        SliverToBoxAdapter(child: verticalSpace(10)),
+        const SliverToBoxAdapter(child: ListOfCategorizedFood()),
+        SliverToBoxAdapter(child: verticalSpace(10)),
+        BlocProvider(
+          create: (context) => HomeCubit(sl())..getVendors(),
+          child: const SliverToBoxAdapter(child: CustomListOfVendors()),
+        ),
+      ],
+    );
+  }
+}
+
 
     // const CustomHomeAppBar(),
     // SliverToBoxAdapter(child: verticalSpace(10)),
@@ -99,5 +101,4 @@ class HomeViewBody extends StatelessWidget {
     //     ),
     //   ),
     // ),
-  }
-}
+ 

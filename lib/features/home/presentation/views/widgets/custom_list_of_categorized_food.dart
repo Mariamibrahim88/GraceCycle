@@ -18,7 +18,6 @@ class ListOfCategorizedFood extends StatelessWidget {
           return const CustomListOfShimmerHor();
         } else if (state is HomeSuccess) {
           //return const CustomListOfShimmerHor();
-
           return SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Padding(
