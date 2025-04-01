@@ -5,24 +5,29 @@ import 'package:grace_cycle/core/utils/app_spacing.dart';
 
 class PriceForFood extends StatelessWidget {
   const PriceForFood(
-      {super.key, required this.oldPrice, required this.newPrice});
+      {super.key,
+      required this.oldPrice,
+      required this.newPrice,
+      this.price = true});
 
   final double oldPrice;
   final double newPrice;
-
+  final bool? price;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          'Price',
-          style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
-        ),
+        price == false
+            ? const SizedBox()
+            : Text(
+                'Price',
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
         Row(
           children: [
             RichText(

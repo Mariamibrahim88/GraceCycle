@@ -17,9 +17,9 @@ class SortContainer extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.basicWhite,
           borderRadius: BorderRadius.circular(15.r),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black26,
               blurRadius: 5,
               spreadRadius: 2,
             ),
