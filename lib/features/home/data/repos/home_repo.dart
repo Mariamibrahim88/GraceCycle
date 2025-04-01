@@ -39,4 +39,17 @@ class HomeRepo {
       return Left(error.errorModel.errorMessage);
     }
   }
+
+  Future<Either<String, String>> addToFavorite(int id) async {
+    try {
+      final response = await sl<ApiConsumer>().post(
+          'https://gracecycleapi.azurewebsites.net/api/app/fav/foods?foodId=$id',
+          data: {
+            'id': id,
+          });
+      return Right(response);
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    }
+  }
 }
