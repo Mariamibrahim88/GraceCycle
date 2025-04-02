@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
+import 'package:grace_cycle/features/home/presentation/views/widgets/custom_vendor_logo.dart';
 
 class VendorInfo extends StatelessWidget {
   const VendorInfo({
@@ -38,24 +38,8 @@ class VendorInfo extends StatelessWidget {
                   ),
                 ),
               ]),
-              CachedNetworkImage(
-                imageUrl: vendorItemModel.logoUrl,
-                imageBuilder: (context, imageProvider) => Container(
-                  height: 36.h,
-                  width: 38.h,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(
-                  color: Colors.green,
-                )),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+              CustomVendorLogo(
+                logoUrl: vendorItemModel.logoUrl,
               ),
             ],
           ),

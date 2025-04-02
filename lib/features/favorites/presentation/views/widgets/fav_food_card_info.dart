@@ -45,4 +45,3 @@ class FavFoodCardInfo extends StatelessWidget {
     );
   }
 }
-

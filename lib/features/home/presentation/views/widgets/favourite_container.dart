@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 
 class FavouriteContainer extends StatelessWidget {
-  const FavouriteContainer({super.key});
-
+  const FavouriteContainer({super.key, this.color});
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -13,9 +13,9 @@ class FavouriteContainer extends StatelessWidget {
       child: Container(
         height: 35.h,
         width: 35.w,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: AppColors.grayForSmallContainer,
+          color: color ?? AppColors.grayForSmallContainer,
         ),
         child: Icon(
           Icons.favorite,
