@@ -13,23 +13,30 @@ class CustomListOfVendors extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
+        buildWhen: (previous, current) =>
+            current is HomeVendorSuccess ||
+            current is HomeUpdateVendorFavorites ||
+            current is HomeVendorLoading,
         builder: (BuildContext context, state) {
-      if (state is HomeVendorLoading) {
-        return const CustomListOfShimmerHor();
-      } else if (state is HomeVendorSuccess) {
-        return SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: state.vendorsModel.vendors.entries.map((vendor) {
-              return CustomListOfVendorHor(
-                vendor: vendor.value,
-                vendorCategory: vendor.key,
-              );
-            }).toList(),
-          ),
-        );
-      }
-      return const Text('Erroooooooooooooooooooooooooooooooooooooooor');
-    });
+          final homeCubit = BlocProvider.of<HomeCubit>(context);
+          final vendorMenuModel = homeCubit.vendorsModel;
+          if (state is HomeVendorLoading && vendorMenuModel == null) {
+            return const CustomListOfShimmerHor();
+          }
+          if (vendorMenuModel == null) {
+            return const SizedBox();
+          }
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: vendorMenuModel.vendors.entries.map((vendor) {
+                return CustomListOfVendorHor(
+                  vendor: vendor.value,
+                  vendorCategory: vendor.key,
+                );
+              }).toList(),
+            ),
+          );
+        });
   }
 }

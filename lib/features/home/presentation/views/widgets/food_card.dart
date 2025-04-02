@@ -124,7 +124,9 @@ class FoodCard extends StatelessWidget {
               ),
             ),
           ),
-          const FavouriteContainer(),
+          FavouriteContainer(
+            foodItem: foodItemModel,
+          ),
           DiscountContainer(
             discount: foodItemModel.discountPercentage,
           ),
@@ -246,7 +248,7 @@ class FooddCard extends StatelessWidget {
               ),
             ),
           ),
-          const FavouriteContainer(),
+          //FavouriteContainer( foodItemId: foodItemModel ),
           const DiscountContainer(
             discount: 10,
           ),
