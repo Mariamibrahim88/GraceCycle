@@ -99,8 +99,10 @@ class _FavoritesViewBodyState extends State<FavoritesViewBody> {
                             ),
                             ListView.builder(
                               itemCount: 10,
-                              itemBuilder: (context, index) =>
-                                  const FavoriteVendorCard(),
+                              itemBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const FavoriteVendorCard(),
+                              ),
                             ),
                           ],
                         ),
