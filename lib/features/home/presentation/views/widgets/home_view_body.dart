@@ -18,10 +18,10 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(child: verticalSpace(10)),
         const SliverToBoxAdapter(child: ListOfCategorizedFood()),
         SliverToBoxAdapter(child: verticalSpace(10)),
-        // BlocProvider(
-        //   create: (context) => HomeCubit(sl())..getVendors(),
-        //   child: const SliverToBoxAdapter(child: CustomListOfVendors()),
-        // ),
+        BlocProvider(
+          create: (context) => HomeCubit(sl())..getVendors(),
+          child: const SliverToBoxAdapter(child: CustomListOfVendors()),
+        ),
       ],
     );
   }
