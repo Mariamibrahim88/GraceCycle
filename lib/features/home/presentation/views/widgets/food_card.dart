@@ -127,8 +127,13 @@ class FoodCard extends StatelessWidget {
           FavouriteContainer(
             foodItem: foodItemModel,
           ),
-          DiscountContainer(
-            discount: foodItemModel.discountPercentage,
+          Positioned(
+            right: 10,
+            top: 88.h,
+            child: DiscountContainer(
+              fontSize: 15.sp,
+              discount: foodItemModel.discountPercentage,
+            ),
           ),
         ],
       ),
@@ -248,9 +253,16 @@ class FooddCard extends StatelessWidget {
               ),
             ),
           ),
-          //FavouriteContainer( foodItemId: foodItemModel ),
-          const DiscountContainer(
-            discount: 10,
+          //  FavouriteContainer(
+          //   foodItem:  foodItemModel,
+          // ),
+          Positioned(
+            right: 10,
+            top: 88.h,
+            child: DiscountContainer(
+              fontSize: 15.sp,
+              discount: 10,
+            ),
           ),
         ],
       ),

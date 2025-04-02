@@ -5,24 +5,29 @@ import 'package:grace_cycle/core/utils/app_spacing.dart';
 
 class PriceForFood extends StatelessWidget {
   const PriceForFood(
-      {super.key, required this.oldPrice, required this.newPrice});
+      {super.key,
+      required this.oldPrice,
+      required this.newPrice,
+      this.price = true});
 
   final double oldPrice;
   final double newPrice;
-
+  final bool? price;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          'Price',
-          style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
-        ),
+        price == false
+            ? const SizedBox()
+            : Text(
+                'Price',
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
         Row(
           children: [
             RichText(
@@ -35,16 +40,16 @@ class PriceForFood extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: "EGP",
-                    style: TextStyle(fontSize: 12.sp),
+                    style: TextStyle(fontSize: 13.sp),
                   ),
                   TextSpan(
                     text: oldPrice.toString(),
-                    style: TextStyle(fontSize: 14.sp),
+                    style: TextStyle(fontSize: 13.sp),
                   ),
                 ],
               ),
             ),
-            horizontalSpace(10),
+            horizontalSpace(7.w),
             RichText(
               text: TextSpan(
                 style: const TextStyle(
@@ -53,12 +58,12 @@ class PriceForFood extends StatelessWidget {
                   TextSpan(
                     text: "EGP",
                     style:
-                        TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+                        TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w600),
                   ),
                   TextSpan(
                     text: newPrice.toString(),
                     style:
-                        TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
+                        TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w600),
                   ),
                 ],
               ),

@@ -20,4 +20,5 @@ class AppColors {
   static const Color vendorCard = Color(0xffE5E1D2);
   static const Color foodCard = Color.fromARGB(255, 246, 242, 229);
   static const Color sortColor = Color(0xffEEEADF);
+  static const Color available = Color(0xff008000);
 }
