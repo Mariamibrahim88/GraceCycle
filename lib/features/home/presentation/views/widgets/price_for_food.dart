@@ -40,16 +40,16 @@ class PriceForFood extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: "EGP",
-                    style: TextStyle(fontSize: 12.sp),
+                    style: TextStyle(fontSize: 13.sp),
                   ),
                   TextSpan(
                     text: oldPrice.toString(),
-                    style: TextStyle(fontSize: 14.sp),
+                    style: TextStyle(fontSize: 13.sp),
                   ),
                 ],
               ),
             ),
-            horizontalSpace(10),
+            horizontalSpace(7.w),
             RichText(
               text: TextSpan(
                 style: const TextStyle(
@@ -58,12 +58,12 @@ class PriceForFood extends StatelessWidget {
                   TextSpan(
                     text: "EGP",
                     style:
-                        TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+                        TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w600),
                   ),
                   TextSpan(
                     text: newPrice.toString(),
                     style:
-                        TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
+                        TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w600),
                   ),
                 ],
               ),

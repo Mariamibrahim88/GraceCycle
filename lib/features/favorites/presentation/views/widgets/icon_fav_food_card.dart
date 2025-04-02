@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/widgets/custom_cancel_icon.dart';
+import 'package:grace_cycle/features/home/presentation/views/widgets/favourite_container.dart';
 
 class IconsFavFoodCard extends StatelessWidget {
   const IconsFavFoodCard({
@@ -13,9 +14,9 @@ class IconsFavFoodCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomCancelIcon(),
+        FavouriteContainer(),
         SizedBox(
-          height: 80,
+          height: 70,
         ),
         Icon(
           Icons.shopping_cart_outlined,
@@ -26,6 +27,3 @@ class IconsFavFoodCard extends StatelessWidget {
     );
   }
 }
-
-
-
