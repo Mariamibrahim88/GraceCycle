@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,7 +30,10 @@ class AssetOfVendor extends StatelessWidget {
             ),
           ),
           imageUrl: picUrl,
-          placeholder: (context, url) =>   CustomShimmerImage(height: 137.h,),
+          placeholder: (context, url) =>  CustomShimmerImage(
+            height: 137.h,
+            width: MediaQuery.of(context).size.isFinite ? 0.7.sw : 0.7.sw, 
+          ),
           errorWidget: (context, url, error) =>
               const Center(child: Icon(Icons.error)),
         ),
@@ -39,4 +41,3 @@ class AssetOfVendor extends StatelessWidget {
     );
   }
 }
-
