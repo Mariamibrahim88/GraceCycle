@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:dartz/dartz.dart';
 import 'package:grace_cycle/core/database/remote/api_consumer.dart';
 import 'package:grace_cycle/core/errors/exceptions.dart';
@@ -29,12 +31,15 @@ class HomeRepo {
       final response = await sl<ApiConsumer>().get(
           'https://gracecycleapi.azurewebsites.net/api/HomeFlutter/vendors');
 
-      final Map<String, List<VendorItemModel>> venderItemList = {};
+      final venderItemList = await Isolate.run(() {
+      final Map<String, List<VendorItemModel>> result = {};
       response.forEach((vendor, vendorsList) {
-        venderItemList[vendor] = (vendorsList as List)
+        result[vendor] = (vendorsList as List)
             .map((item) => VendorItemModel.fromJson(item))
             .toList();
       });
+      return result;
+    });
       return Right(VendorsModel(vendors: venderItemList));
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
