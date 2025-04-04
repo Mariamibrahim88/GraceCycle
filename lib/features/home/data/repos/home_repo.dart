@@ -14,12 +14,16 @@ class HomeRepo {
       final response = await sl<ApiConsumer>().get(
           'https://gracecycleapi.azurewebsites.net/api/HomeFlutter/ListedFoods');
 
-      final Map<String, List<FoodItemModel>> categorizedFood = {};
-      response.forEach((category, foodList) {
-        categorizedFood[category] = (foodList as List)
-            .map((item) => FoodItemModel.fromJson(item))
-            .toList();
+      final categorizedFood = await Isolate.run(() {
+        final Map<String, List<FoodItemModel>> result = {};
+        response.forEach((category, foodList) {
+          result[category] = (foodList as List)
+              .map((item) => FoodItemModel.fromJson(item))
+              .toList();
+        });
+        return result;
       });
+
       return Right(FoodMenuModel(categories: categorizedFood));
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
@@ -32,14 +36,14 @@ class HomeRepo {
           'https://gracecycleapi.azurewebsites.net/api/HomeFlutter/vendors');
 
       final venderItemList = await Isolate.run(() {
-      final Map<String, List<VendorItemModel>> result = {};
-      response.forEach((vendor, vendorsList) {
-        result[vendor] = (vendorsList as List)
-            .map((item) => VendorItemModel.fromJson(item))
-            .toList();
+        final Map<String, List<VendorItemModel>> result = {};
+        response.forEach((vendor, vendorsList) {
+          result[vendor] = (vendorsList as List)
+              .map((item) => VendorItemModel.fromJson(item))
+              .toList();
+        });
+        return result;
       });
-      return result;
-    });
       return Right(VendorsModel(vendors: venderItemList));
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);

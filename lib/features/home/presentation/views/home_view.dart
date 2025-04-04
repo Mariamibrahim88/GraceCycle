@@ -11,12 +11,13 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => HomeCubit(sl())..getFoodMenu(),
-          ),
-        ],
+      child: BlocProvider(
+        create: (context) {
+          final cubit = HomeCubit(sl());
+          cubit.getFoodMenu();
+          cubit.getVendors();
+          return cubit;
+        },
         child: const Scaffold(
           backgroundColor: AppColors.basicWhite,
           body: HomeViewBody(),

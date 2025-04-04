@@ -7,13 +7,11 @@ class CustomVendorLogo extends StatelessWidget {
     super.key,
     required this.logoUrl,
   });
-
   final String logoUrl;
-
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: logoUrl,
+      imageUrl: optimizeCloudinaryImage(url: logoUrl),
       imageBuilder: (context, imageProvider) => Container(
         width: 33.w,
         height: 30.h,
@@ -32,4 +30,19 @@ class CustomVendorLogo extends StatelessWidget {
       errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }
+}
+
+String optimizeCloudinaryImage({
+  required String url,
+  int width = 150,
+  int height = 150,
+  String quality = 'q_80:good',
+}) {
+  const segment = '/upload/';
+
+  if (!url.contains(segment)) return url;
+
+  final transformation = 'w_$width,h_$height,c_fill,$quality,q_80';
+
+  return url.replaceFirst(segment, '$segment$transformation/');
 }

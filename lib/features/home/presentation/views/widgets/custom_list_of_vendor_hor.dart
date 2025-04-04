@@ -37,17 +37,6 @@ class CustomListOfVendorHor extends StatelessWidget {
                 ),
               )
             ],
-
-            // children: List.generate(
-            //   vendor.length,
-            //   (index) => Padding(
-            //     padding: EdgeInsets.symmetric(horizontal: 5.w),
-            //     child: VendorCard(
-            //       vendorItemModel: vendor[index],
-
-            //     ),
-            //   ),
-            // ),
           ),
         ),
       ],

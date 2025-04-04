@@ -6,10 +6,8 @@ import 'package:grace_cycle/core/widgets/custom_shimmer_image.dart';
 class AssetOfVendor extends StatelessWidget {
   const AssetOfVendor({
     super.key,
-    //required this.vendorItemModel,
     required this.picUrl,
   });
-  // final VendorItemModel vendorItemModel;
   final String picUrl;
   @override
   Widget build(BuildContext context) {
@@ -18,10 +16,6 @@ class AssetOfVendor extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(16.r)),
         child: CachedNetworkImage(
-          memCacheWidth: 278,
-          memCacheHeight: 137,
-          maxHeightDiskCache: 137,
-          maxWidthDiskCache: 278,
           imageBuilder: (context, imageProvider) => Container(
             height: 137.h,
             width: MediaQuery.of(context).size.isFinite ? 0.7.sw : 0.7.sw,
@@ -33,7 +27,9 @@ class AssetOfVendor extends StatelessWidget {
               ),
             ),
           ),
-          imageUrl: picUrl,
+          imageUrl: optimizeCloudinaryImage(
+            url: picUrl,
+          ),
           placeholder: (context, url) => CustomShimmerImage(
             height: 137.h,
             width: MediaQuery.of(context).size.isFinite ? 0.7.sw : 0.7.sw,
@@ -44,4 +40,19 @@ class AssetOfVendor extends StatelessWidget {
       ),
     );
   }
+}
+
+String optimizeCloudinaryImage({
+  required String url,
+  int width = 150,
+  int height = 150,
+  String quality = 'q_80:good',
+}) {
+  const segment = '/upload/';
+
+  if (!url.contains(segment)) return url;
+
+  final transformation = 'w_$width,h_$height,c_fill,$quality,q_80';
+
+  return url.replaceFirst(segment, '$segment$transformation/');
 }
