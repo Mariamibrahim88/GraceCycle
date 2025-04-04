@@ -6,6 +6,7 @@ import 'package:grace_cycle/core/utils/app_text_styles.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_search_text_field.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_container.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_icon.dart';
+import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_by_container.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_container.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/food_card.dart';
 
@@ -53,20 +54,7 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
                       isExpanded = !isExpanded;
                     });
                   },
-                  child: Row(
-                    children: [
-                      Text('Sort by:',
-                          style: isExpanded
-                              ? AppTextStyles.nunito500Size16GreenButt
-                              : AppTextStyles.nunito400Size16Black),
-                      Icon(
-                        isExpanded
-                            ? Icons.keyboard_arrow_up
-                            : Icons.keyboard_arrow_down,
-                        color: isExpanded ? AppColors.greenButt : Colors.black,
-                      ),
-                    ],
-                  ),
+                  child: SortByContainer(isExpanded: isExpanded),
                 ),
                 verticalSpace(20),
                 DefaultTabController(
@@ -116,3 +104,4 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
     );
   }
 }
+
