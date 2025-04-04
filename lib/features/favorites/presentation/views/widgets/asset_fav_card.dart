@@ -14,7 +14,7 @@ class AssetFavCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 95.h,
+      height: 90.h,
       width: 110.w,
       child: CachedNetworkImage(
         imageBuilder: (context, imageProvider) => Container(

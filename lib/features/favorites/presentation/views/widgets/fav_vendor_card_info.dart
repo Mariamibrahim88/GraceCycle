@@ -17,31 +17,32 @@ class FavVendorCardInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisSize: MainAxisSize.min,
       children: [
         verticalSpace(4.h),
         Text(
           favVendorModel.displayName,
           style: TextStyle(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w600,
+            fontSize: 18.sp,
+            fontWeight: FontWeight.w700,
             color: Colors.black,
           ),
         ),
-        verticalSpace(8),
+        verticalSpace(6.h),
         SizedBox(
           child: Text(
             favVendorModel.address,
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 16.sp,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ),
           ),
         ),
-        verticalSpace(27.h),
+        verticalSpace(4.h),
         AvailableVendorContainer(
             color: AppColors.basicWhite,
-            available: '${favVendorModel.items} +items available'),
+            available: '${favVendorModel.items}+ items available'),
       ],
     );
   }
