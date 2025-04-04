@@ -15,7 +15,7 @@ class CustomVendorLogo extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: logoUrl,
       imageBuilder: (context, imageProvider) => Container(
-        width: 35.w,
+        width: 33.w,
         height: 30.h,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(50)),
