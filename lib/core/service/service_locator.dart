@@ -9,6 +9,8 @@ import 'package:grace_cycle/features/Authentication/presentation/manager/forget_
 import 'package:grace_cycle/features/Authentication/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:grace_cycle/features/Authentication/data/repos/login_repo.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:grace_cycle/features/favorites/data/repos/fav_repo.dart';
+import 'package:grace_cycle/features/favorites/presentation/manager/cubit/get_fav_cubit.dart';
 import 'package:grace_cycle/features/home/data/repos/home_repo.dart';
 import 'package:grace_cycle/features/home/presentation/manager/Home_cubit/home_cubit.dart';
 
@@ -21,9 +23,11 @@ void initServiceLocator() {
   sl.registerLazySingleton(() => RegisterRepo());
   sl.registerLazySingleton(() => HomeRepo());
   sl.registerLazySingleton(() => ForgetPassRepo());
+  sl.registerLazySingleton(() => FavRepo());
   //sl.registerSingleton(() => RegisterCubit(sl()));
   sl.registerFactory<RegisterCubit>(() => RegisterCubit(sl<RegisterRepo>()));
   sl.registerFactory<HomeCubit>(() => HomeCubit(sl<HomeRepo>()));
+  sl.registerFactory<GetFavCubit>(() => GetFavCubit(sl<FavRepo>()));
 
   sl.registerLazySingleton(() => LoginRepo());
   //sl.registerSingleton<ApiService>(ApiService(Dio()));

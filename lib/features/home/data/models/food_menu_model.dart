@@ -23,6 +23,7 @@ class FoodItemModel {
   final int discountPercentage;
   final String vName;
   // final String vLogo;
+  // final String vLogo;
   final String vOpening;
   final String vClosing;
   final String name;
@@ -37,6 +38,7 @@ class FoodItemModel {
       required this.newPrice,
       required this.discountPercentage,
       required this.vName,
+      // required this.vLogo,
       // required this.vLogo,
       required this.vOpening,
       required this.vClosing,
@@ -53,7 +55,7 @@ class FoodItemModel {
       newPrice: json['newPrice'],
       discountPercentage: json['discountPercentage'],
       vName: json['vName'],
-      // vLogo: json['vLogo'],
+      //vLogo: json['vLogo'],
       vOpening: json['vOpening'],
       vClosing: json['vClosing'],
       name: json['name'],

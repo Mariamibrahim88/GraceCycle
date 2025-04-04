@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/widgets/custom_safe_area.dart';
+import 'package:grace_cycle/features/favorites/presentation/manager/cubit/get_fav_cubit.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/favorites_view_body.dart';
 
 class FavoritesView extends StatelessWidget {
@@ -7,8 +10,11 @@ class FavoritesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const CustomSafeArea(
-      body: FavoritesViewBody(),
+    return BlocProvider(
+      create: (context) => GetFavCubit(sl())..getFavFood(),
+      child: const CustomSafeArea(
+        body: FavoritesViewBody(),
+      ),
     );
   }
 }

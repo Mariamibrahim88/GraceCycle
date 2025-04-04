@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/features/favorites/data/models/fav_vendor_model.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/available_vendor_container.dart';
-import 'package:grace_cycle/features/home/presentation/views/widgets/left_pieces_container.dart';
 
 class FavVendorCardInfo extends StatelessWidget {
   const FavVendorCardInfo({
     super.key,
+    required this.favVendorModel,
   });
 
+  final FavVendorModel favVendorModel;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,9 +20,9 @@ class FavVendorCardInfo extends StatelessWidget {
       children: [
         verticalSpace(4.h),
         Text(
-          'Hypermarket',
+          favVendorModel.displayName,
           style: TextStyle(
-            fontSize: 20.sp,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
@@ -28,7 +30,7 @@ class FavVendorCardInfo extends StatelessWidget {
         verticalSpace(8),
         SizedBox(
           child: Text(
-            'Misr Ismailia  ',
+            favVendorModel.address,
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,
@@ -37,8 +39,9 @@ class FavVendorCardInfo extends StatelessWidget {
           ),
         ),
         verticalSpace(27.h),
-        const AvailableVendorContainer(
-            color: AppColors.basicWhite, available: '7+ items available'),
+        AvailableVendorContainer(
+            color: AppColors.basicWhite,
+            available: '${favVendorModel.items} +items available'),
       ],
     );
   }
