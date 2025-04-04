@@ -15,19 +15,28 @@ class HomeCubit extends Cubit<HomeState> {
   VendorsModel? vendorsModel;
 
   Future<void> getFoodMenu() async {
+    if (isClosed) return;
     emit(HomeLoading());
+
     final response = await homeRepo.getFoodMenue();
+    if (isClosed) return;
 
     response.fold(
-      (l) => emit(HomeError(l)),
+      (l) {
+        if (isClosed) return;
+        emit(HomeError(l));
+      },
       (r) {
+        if (isClosed) return;
         foodMenuModel = r;
         favourites.clear();
+
         final allFoodItems =
             r.categories.entries.expand((entry) => entry.value).toList();
-        allFoodItems.forEach((food) {
+        for (var food in allFoodItems) {
           favourites[food.id] = food.isFavourite;
-        });
+        }
+
         emit(HomeSuccess(r));
       },
     );
