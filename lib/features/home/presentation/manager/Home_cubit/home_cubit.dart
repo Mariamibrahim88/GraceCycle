@@ -50,9 +50,9 @@ class HomeCubit extends Cubit<HomeState> {
       favouritesForVendors.clear();
       final allVendors =
           r.vendors.entries.expand((entry) => entry.value).toList();
-      allVendors.forEach((vendor) {
+      for (var vendor in allVendors) {
         favouritesForVendors[vendor.userId] = vendor.isFavourite;
-      });
+      }
       emit(HomeVendorSuccess(r));
     });
   }

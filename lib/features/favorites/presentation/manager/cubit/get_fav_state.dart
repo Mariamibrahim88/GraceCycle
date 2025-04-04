@@ -1,6 +1,5 @@
 part of 'get_fav_cubit.dart';
 
-@immutable
 sealed class GetFavState {}
 
 final class GetFavInitial extends GetFavState {}

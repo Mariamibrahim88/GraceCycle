@@ -23,8 +23,8 @@ class FavVendorCardInfo extends StatelessWidget {
         Text(
           favVendorModel.displayName,
           style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w700,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
         ),
@@ -33,7 +33,7 @@ class FavVendorCardInfo extends StatelessWidget {
           child: Text(
             favVendorModel.address,
             style: TextStyle(
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ),

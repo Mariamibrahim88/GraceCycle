@@ -13,7 +13,7 @@ class FilterIcon extends StatelessWidget {
       height: 42.h,
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black.withOpacity(0.7)),
+          border: Border.all(color: Colors.black87),
           borderRadius: BorderRadius.circular(15.r),
         ),
         child: Center(

@@ -18,6 +18,10 @@ class AssetOfVendor extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(16.r)),
         child: CachedNetworkImage(
+          memCacheWidth: 278,
+          memCacheHeight: 137,
+          maxHeightDiskCache: 137,
+          maxWidthDiskCache: 278,
           imageBuilder: (context, imageProvider) => Container(
             height: 137.h,
             width: MediaQuery.of(context).size.isFinite ? 0.7.sw : 0.7.sw,
@@ -30,9 +34,9 @@ class AssetOfVendor extends StatelessWidget {
             ),
           ),
           imageUrl: picUrl,
-          placeholder: (context, url) =>  CustomShimmerImage(
+          placeholder: (context, url) => CustomShimmerImage(
             height: 137.h,
-            width: MediaQuery.of(context).size.isFinite ? 0.7.sw : 0.7.sw, 
+            width: MediaQuery.of(context).size.isFinite ? 0.7.sw : 0.7.sw,
           ),
           errorWidget: (context, url, error) =>
               const Center(child: Icon(Icons.error)),
