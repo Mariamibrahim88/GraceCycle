@@ -64,6 +64,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const FavoritesView());
       case Routes.cart:
         return MaterialPageRoute(builder: (_) => const CartView());
+      case Routes.settings:
+        return MaterialPageRoute(builder: (_) => const SettingsView());
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }
