@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/features/favorites/data/models/fav_food_model.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/asset_fav_card.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_food_card_info.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/icon_fav_food_card.dart';
@@ -9,7 +10,9 @@ import 'package:grace_cycle/features/home/presentation/views/widgets/discount_co
 import 'package:grace_cycle/features/home/presentation/views/widgets/rate_container.dart';
 
 class FavoriteFoodCard extends StatelessWidget {
-  const FavoriteFoodCard({super.key});
+  const FavoriteFoodCard({super.key, required this.favFoodModel});
+
+  final FavFoodModel favFoodModel;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,9 @@ class FavoriteFoodCard extends StatelessWidget {
           Stack(
             clipBehavior: Clip.none,
             children: [
-              const AssetFavCard(),
+              AssetFavCard(
+                imageUrl: favFoodModel.picUrl,
+              ),
               Positioned(
                 right: 5.r,
                 top: 7.r,
@@ -34,7 +39,7 @@ class FavoriteFoodCard extends StatelessWidget {
               ),
               Positioned(
                 right: 5.r,
-                top: 80.h,
+                top: 60.h,
                 child: SizedBox(
                   width: 33.w,
                   height: 33.h,
@@ -44,7 +49,9 @@ class FavoriteFoodCard extends StatelessWidget {
             ],
           ),
           horizontalSpace(6.w),
-          const FavFoodCardInfo(),
+          FavFoodCardInfo(
+            favFoodModel: favFoodModel,
+          ),
           horizontalSpace(8.w),
           const IconsFavFoodCard()
         ],

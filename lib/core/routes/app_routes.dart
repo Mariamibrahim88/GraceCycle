@@ -11,6 +11,7 @@ import 'package:grace_cycle/features/favorites/presentation/views/favorites_view
 import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/see_all_view.dart';
 import 'package:grace_cycle/features/onBourding/presentation/views/onbourding_view.dart';
+import 'package:grace_cycle/features/splash/presentation/views/splash_view.dart';
 
 class Routes {
   static const String initialRoute = '/';
@@ -32,7 +33,7 @@ class AppRoutes {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (_) => const CustomBottomNavBar());
+        return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.onBourding:

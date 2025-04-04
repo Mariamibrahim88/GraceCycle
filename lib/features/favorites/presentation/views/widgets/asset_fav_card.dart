@@ -6,13 +6,16 @@ import 'package:grace_cycle/core/widgets/custom_shimmer_image.dart';
 class AssetFavCard extends StatelessWidget {
   const AssetFavCard({
     super.key,
+    required this.imageUrl,
   });
+
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 115.h,
-      width: 130.w,
+      height: 95.h,
+      width: 110.w,
       child: CachedNetworkImage(
         imageBuilder: (context, imageProvider) => Container(
           decoration: BoxDecoration(
@@ -23,11 +26,10 @@ class AssetFavCard extends StatelessWidget {
             ),
           ),
         ),
-        imageUrl:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Hamburger_%2812164386105%29.jpg/1200px-Hamburger_%2812164386105%29.jpg',
+        imageUrl: imageUrl,
         placeholder: (context, url) => CustomShimmerImage(
-          height: 115.h,
-          width: 130.w,
+          height: 95.h,
+          width: 110.w,
         ),
         errorWidget: (context, url, error) =>
             const Center(child: Icon(Icons.error)),
