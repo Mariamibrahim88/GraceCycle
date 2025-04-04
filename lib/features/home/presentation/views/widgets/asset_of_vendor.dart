@@ -44,15 +44,14 @@ class AssetOfVendor extends StatelessWidget {
 
 String optimizeCloudinaryImage({
   required String url,
-  int width = 150,
-  int height = 150,
-  String quality = 'q_80:good',
+  int width = 200,
+  int height = 200,
 }) {
   const segment = '/upload/';
 
   if (!url.contains(segment)) return url;
 
-  final transformation = 'w_$width,h_$height,c_fill,$quality,q_80';
+  final transformation = 'w_$width,h_$height,c_fill,q_80,f_auto';
 
   return url.replaceFirst(segment, '$segment$transformation/');
 }
