@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/available_vendor_container.dart';
-import 'package:grace_cycle/features/home/presentation/views/widgets/left_pieces_container.dart';
 
 class FavVendorCardInfo extends StatelessWidget {
   const FavVendorCardInfo({
