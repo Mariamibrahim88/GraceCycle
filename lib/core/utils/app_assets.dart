@@ -26,4 +26,12 @@ class AppAssets {
   static String filter = 'assets/images/filter.svg';
   static String cart = 'assets/images/cart.svg';
   static String money = 'assets/images/money.svg';
+  static String edit = 'assets/images/edit.svg';
+  static String location = 'assets/images/location.svg';
+  static String changePass = 'assets/images/changePass.svg';
+  static String payment = 'assets/images/payment.svg';
+  static String customer = 'assets/images/customer.svg';
+  static String privacy = 'assets/images/privacy.svg';
+  static String terms = 'assets/images/terms.svg';
+  static String logOut = 'assets/images/logOut.svg';
 }

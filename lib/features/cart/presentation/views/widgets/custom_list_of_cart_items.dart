@@ -8,18 +8,17 @@ class CustomListOfCartItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.sizeOf(context).height,
-      child: ListView.builder(
-        itemCount: 10,
-        scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) => const Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: 6,
-            horizontal: 8,
-          ),
-          child: ItemOfCart(),
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 10,
+      scrollDirection: Axis.vertical,
+      itemBuilder: (context, index) => const Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: 6,
+          horizontal: 8,
         ),
+        child: ItemOfCart(),
       ),
     );
   }

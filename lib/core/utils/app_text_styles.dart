@@ -56,4 +56,10 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
     fontSize: 17.sp,
   );
+
+  static TextStyle nunito600Size18GreenButt = GoogleFonts.nunito(
+    color: AppColors.basicGreen,
+    fontWeight: FontWeight.w600,
+    fontSize: 18.sp,
+  );
 }

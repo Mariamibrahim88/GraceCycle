@@ -12,6 +12,7 @@ import 'package:grace_cycle/features/favorites/presentation/views/favorites_view
 import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/see_all_view.dart';
 import 'package:grace_cycle/features/onBourding/presentation/views/onbourding_view.dart';
+import 'package:grace_cycle/features/settings/presentation/views/settings_view.dart';
 import 'package:grace_cycle/features/splash/presentation/views/splash_view.dart';
 
 class Routes {
@@ -29,6 +30,7 @@ class Routes {
   static const String seeAll = '/seeAll';
   static const String favorites = '/favorites';
   static const String cart = '/cart';
+  static const String settings = '/settings';
 }
 
 class AppRoutes {
