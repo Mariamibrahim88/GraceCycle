@@ -15,7 +15,7 @@ class AvailableVendorContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 6),
       child: Container(
         height: 19.h,
         width: 130.w,

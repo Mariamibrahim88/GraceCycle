@@ -38,18 +38,17 @@ class FavoriteVendorCard extends StatelessWidget {
               ),
               Positioned(
                 right: 5.r,
-                top: 60.h,
+                top: 55.h,
                 child: CustomVendorLogo(
                   logoUrl: favVendorModel.logoUrl,
                 ),
               ),
             ],
           ),
-          horizontalSpace(6.w),
           FavVendorCardInfo(
             favVendorModel: favVendorModel,
           ),
-          horizontalSpace(8.w),
+          horizontalSpace(30.w),
           // const Center(
           //   child: FavouriteContainer(
           //     color: AppColors.vendorCard,
