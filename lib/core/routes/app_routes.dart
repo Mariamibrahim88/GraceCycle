@@ -7,6 +7,7 @@ import 'package:grace_cycle/features/Authentication/presentation/views/signup_co
 import 'package:grace_cycle/features/Authentication/presentation/views/signup_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/succ_set_new_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
+import 'package:grace_cycle/features/cart/presentation/views/cart_view.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/favorites_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/see_all_view.dart';
@@ -27,6 +28,7 @@ class Routes {
   static const String navBar = '/navBar';
   static const String seeAll = '/seeAll';
   static const String favorites = '/favorites';
+  static const String cart = '/cart';
 }
 
 class AppRoutes {
@@ -53,11 +55,13 @@ class AppRoutes {
       case Routes.signup:
         return MaterialPageRoute(builder: (_) => const SignupView());
       case Routes.navBar:
-        return MaterialPageRoute(builder: (_) => const HomeView());
+        return MaterialPageRoute(builder: (_) => const CustomBottomNavBar());
       case Routes.seeAll:
         return MaterialPageRoute(builder: (_) => const SeeAllView());
       case Routes.favorites:
         return MaterialPageRoute(builder: (_) => const FavoritesView());
+      case Routes.cart:
+        return MaterialPageRoute(builder: (_) => const CartView());
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }

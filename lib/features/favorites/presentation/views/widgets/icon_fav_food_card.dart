@@ -14,7 +14,7 @@ class IconsFavFoodCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        FavouriteContainer(),
+        // FavouriteContainer(),
         SizedBox(
           height: 70,
         ),

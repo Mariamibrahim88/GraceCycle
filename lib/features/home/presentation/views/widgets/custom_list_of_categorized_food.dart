@@ -13,30 +13,38 @@ class ListOfCategorizedFood extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
+      buildWhen: (previous, current) =>
+          current is HomeSuccess ||
+          current is HomeUpdateFavorites ||
+          current is HomeLoading,
       builder: (context, state) {
-        if (state is HomeLoading) {
+        final homeCubit = BlocProvider.of<HomeCubit>(context);
+        final foodMenuModel = homeCubit.foodMenuModel;
+        if (state is HomeLoading && foodMenuModel == null) {
           return const CustomListOfShimmerHor();
-        } else if (state is HomeSuccess) {
-          //return const CustomListOfShimmerHor();
-          return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.h),
-                child: Column(
-                  children: state.foodMenuModel.categories.entries
-                      .map((foodItemList) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.h),
-                      child: CustomListOfFoodHor(
-                        categoryTitle: foodItemList.key,
-                        foodItemModel: foodItemList.value,
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ));
         }
-        return const SizedBox();
+
+        if (foodMenuModel == null) {
+          return const SizedBox();
+        }
+
+        return SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.h),
+            child: Column(
+              children: foodMenuModel.categories.entries.map((foodItemList) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                  child: CustomListOfFoodHor(
+                    categoryTitle: foodItemList.key,
+                    foodItemModel: foodItemList.value,
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        );
       },
     );
   }

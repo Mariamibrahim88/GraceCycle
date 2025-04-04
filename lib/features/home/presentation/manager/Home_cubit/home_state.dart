@@ -28,3 +28,27 @@ final class HomeVendorError extends HomeState {
   final String errorMessage;
   HomeVendorError(this.errorMessage);
 }
+
+final class HomeAddToFavoriteSuccess extends HomeState {
+  final String message;
+  HomeAddToFavoriteSuccess(this.message);
+}
+
+final class HomeAddToFavoriteError extends HomeState {
+  final String errorMessage;
+  HomeAddToFavoriteError(this.errorMessage);
+}
+
+final class HomeUpdateFavorites extends HomeState {}
+
+final class HomeUpdateVendorFavorites extends HomeState {}
+
+final class HomeRemoveFromFavoriteSuccess extends HomeState {
+  final String message;
+  HomeRemoveFromFavoriteSuccess(this.message);
+}
+
+final class HomeRemoveFromFavoriteError extends HomeState {
+  final String errorMessage;
+  HomeRemoveFromFavoriteError(this.errorMessage);
+}

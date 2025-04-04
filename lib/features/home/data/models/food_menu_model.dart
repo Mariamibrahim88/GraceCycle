@@ -23,6 +23,7 @@ class FoodItemModel {
   final int discountPercentage;
   final String vName;
   // final String vLogo;
+  // final String vLogo;
   final String vOpening;
   final String vClosing;
   final String name;
@@ -37,6 +38,7 @@ class FoodItemModel {
       required this.newPrice,
       required this.discountPercentage,
       required this.vName,
+      // required this.vLogo,
       // required this.vLogo,
       required this.vOpening,
       required this.vClosing,

@@ -49,7 +49,9 @@ class VendorCard extends StatelessWidget {
             ],
           ),
         ),
-        const FavouriteRestaurantContainer()
+        FavouriteRestaurantContainer(
+          vendorItemModel: vendorItemModel,
+        )
       ],
     );
   }

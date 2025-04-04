@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
+import 'package:grace_cycle/core/utils/app_navigate.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
   const CustomHomeAppBar({super.key});
@@ -35,6 +37,7 @@ class CustomHomeAppBar extends StatelessWidget {
                 Icons.menu,
                 color: AppColors.shoppingCart,
                 size: 28,
+
               ),
               Row(
                 children: [
@@ -50,10 +53,16 @@ class CustomHomeAppBar extends StatelessWidget {
                   ),
                 ],
               ),
-              const Icon(
-                Icons.shopping_cart_outlined,
-                color: AppColors.shoppingCart,
-                size: 28,
+              GestureDetector(
+                child: const Icon(
+                  Icons.shopping_cart_outlined,
+                  color: AppColors.shoppingCart,
+                  size: 28,
+                ),
+                onTap: () {
+                  
+                  navigate(context: context, route: Routes.cart);
+                },
               ),
             ],
           ),

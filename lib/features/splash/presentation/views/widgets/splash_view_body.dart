@@ -80,7 +80,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
                   sl<CacheHelper>().getDataBool(key: ApiKeys.onBourding) == true
                       ? Routes.signup
                       : Routes.onBourding)
-          : navigate(context: context, route: Routes.home);
+          : navigate(context: context, route: Routes.navBar);
     });
   }
 }
