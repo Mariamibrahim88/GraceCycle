@@ -33,11 +33,15 @@ class CustomHomeAppBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(
-                Icons.menu,
-                color: AppColors.shoppingCart,
-                size: 28,
-
+              GestureDetector(
+                onTap: () {
+                  navigate(context: context, route: Routes.settings);
+                },
+                child: const Icon(
+                  Icons.menu,
+                  color: AppColors.shoppingCart,
+                  size: 28,
+                ),
               ),
               Row(
                 children: [
@@ -60,7 +64,6 @@ class CustomHomeAppBar extends StatelessWidget {
                   size: 28,
                 ),
                 onTap: () {
-                  
                   navigate(context: context, route: Routes.cart);
                 },
               ),
