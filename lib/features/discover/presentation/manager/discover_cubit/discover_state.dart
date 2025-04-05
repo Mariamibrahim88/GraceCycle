@@ -7,7 +7,7 @@ final class DiscoverInitial extends DiscoverState {}
 final class DiscoverVendorLoading extends DiscoverState {}
 
 final class DiscoverVendorSuccess extends DiscoverState {
-  final VendorsModel vendorsModel;
+  final DiscoverVendorsModel vendorsModel;
   DiscoverVendorSuccess(this.vendorsModel);
 }
 
@@ -27,3 +27,7 @@ final class DiscoverFoodFailure extends DiscoverState {
   final String errorMessage;
   DiscoverFoodFailure(this.errorMessage);
 }
+
+final class DiscoverVendorPaginationLoading extends DiscoverState {}
+
+final class DiscoverVendorPaginationFailure extends DiscoverState {}

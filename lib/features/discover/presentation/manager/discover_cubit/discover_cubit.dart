@@ -1,40 +1,40 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/features/discover/data/models/discover_food_model.dart';
+import 'package:grace_cycle/features/discover/data/models/vendors_discover_model.dart';
 import 'package:grace_cycle/features/discover/data/repos/discover_repo.dart';
-import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
 
 part 'discover_state.dart';
 
 class DiscoverCubit extends Cubit<DiscoverState> {
   DiscoverCubit(this.discoverRepo) : super(DiscoverInitial());
-
   final DiscoverRepo discoverRepo;
 
-  Future<void> getFoodDiscover(
-      {int pageIndex = 1,
-      int pageSize = 10,
-      int? categoryId,
-      int? maxPrice,
+  // int pageIndex = 1;
+  // int pageSize = 10;
+
+  Future<void> getVendorDiscover(
+      {required int pageIndex,
+      required int pageSize,
+      int? vendorTypeId,
       String? sort,
-      String? search}) async {
-    emit(DiscoverFoodLoading());
+      String? search,
+      isLoadMore = false}) async {
+    emit(DiscoverVendorLoading());
+    final response = await discoverRepo.getVendorDiscover(
+      pageSize: pageSize,
+      pageIndex: pageIndex,
+      sort: sort,
+      vendorTypeId: vendorTypeId,
+      search: search,
+    );
 
-    final result = await discoverRepo.getFoodDiscover(
-        pageIndex, pageSize, categoryId, maxPrice, sort, search);
-
-    result.fold((ifLeft) => emit(DiscoverFoodFailure(ifLeft)), (ifRight) {
-      pageIndex++;
-
-      emit(DiscoverFoodSuccess(ifRight));
-    });
+    response.fold(
+      (l) => emit(DiscoverVendorFailure(l)),
+      (vendorsModel) {
+        emit(DiscoverVendorSuccess(
+          vendorsModel,
+        ));
+      },
+    );
   }
 }
-
-
-
-
- // if (ifRight.data.isEmpty) {
-      //   emit(DiscoverFoodNoMoreData(ifRight));
-      // } else {
-      //   emit(DiscoverFoodSuccess(ifRight));
-      // }
