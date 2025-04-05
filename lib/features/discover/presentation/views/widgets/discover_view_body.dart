@@ -5,15 +5,14 @@ import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
-import 'package:grace_cycle/core/widgets/custom_list_of_shimmer_ver.dart';
 import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_list_of_shimmer_ver.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_search_text_field.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_container.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_icon.dart';
+import 'package:grace_cycle/features/discover/presentation/views/widgets/food_discover_list.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_by_container.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_container.dart';
-import 'package:grace_cycle/features/home/presentation/views/widgets/food_card.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/vendor_card.dart';
 
 class DiscoverViewBody extends StatefulWidget {
@@ -29,11 +28,12 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 15.h),
-          child: SingleChildScrollView(
+    return DefaultTabController(
+      length: 2,
+      child: Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 15.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -63,82 +63,32 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
                   child: SortByContainer(isExpanded: isExpanded),
                 ),
                 verticalSpace(20),
-                DefaultTabController(
-                  length: 2,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                TabBar(
+                  labelStyle: AppTextStyles.nunito700Size16GreenButt,
+                  unselectedLabelStyle: AppTextStyles.nunito700Size16Black,
+                  indicatorColor: AppColors.greenButt,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  tabs: const [
+                    Tab(text: 'Food'),
+                    Tab(text: 'Vendor'),
+                  ],
+                ),
+                verticalSpace(20),
+                const Expanded(
+                  child: TabBarView(
                     children: [
-                      TabBar(
-                        labelStyle: AppTextStyles.nunito700Size16GreenButt,
-                        unselectedLabelStyle:
-                            AppTextStyles.nunito700Size16Black,
-                        indicatorColor: AppColors.greenButt,
-                        indicatorSize: TabBarIndicatorSize.tab,
-                        tabs: const [
-                          Tab(text: 'Food'),
-                          Tab(text: 'Vendor'),
-                        ],
-                      ),
-                      verticalSpace(20),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.8,
-                        child: TabBarView(
-                          children: [
-                            BlocBuilder<DiscoverCubit, DiscoverState>(
-                              builder: (context, state) {
-                                if (state is DiscoverFoodLoading) {
-                                  return const CustomListOfShimmerFavVer();
-                                } else if (state is DiscoverFoodSuccess) {
-                                  return NotificationListener<
-                                      ScrollNotification>(
-                                    onNotification: (notification) {
-                                      if (notification.metrics.pixels ==
-                                          notification
-                                              .metrics.maxScrollExtent) {
-                                        // context
-                                        //     .read<DiscoverCubit>()
-                                        //     .getMoreFoodItems();
-                                        print(
-                                            'Reached the end of the list, load more items');
-                                      }
-                                      return true;
-                                    },
-                                    child: ListView.builder(
-                                      itemCount:
-                                          state.discoverFoodModel.data.length,
-                                      itemBuilder: (context, index) => Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8.0, vertical: 12),
-                                        child: FoodCard(
-                                          foodItemModel: state
-                                              .discoverFoodModel.data[index],
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }
-                                return const SizedBox();
-                              },
-                            ),
-                            const DiscoverVendorsList(),
-                            // ListView.builder(
-                            //   itemCount: 10,
-                            //   itemBuilder: (context, index) =>
-                            //       const FooddCard(),
-                            // ),
-                          ],
-                        ),
-                      ),
+                      FoodDiscoverList(),
+                      DiscoverVendorsList(),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-        ),
-        if (isExpanded) const SortContainer(),
-        if (isFilterVisible) const FilterContainer(),
-      ],
+          if (isExpanded) const SortContainer(),
+          if (isFilterVisible) const FilterContainer(),
+        ],
+      ),
     );
   }
 }

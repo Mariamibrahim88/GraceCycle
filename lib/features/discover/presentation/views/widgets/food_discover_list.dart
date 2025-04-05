@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/core/widgets/custom_list_of_shimmer_ver.dart';
+import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
+import 'package:grace_cycle/features/home/presentation/views/widgets/food_card.dart';
+
+class FoodDiscoverList extends StatelessWidget {
+  const FoodDiscoverList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<DiscoverCubit, DiscoverState>(
+      builder: (context, state) {
+        if (state is DiscoverFoodLoading) {
+          return const CustomListOfShimmerFavVer();
+        } else if (state is DiscoverFoodSuccess) {
+          return NotificationListener<ScrollNotification>(
+            onNotification: (notification) {
+              if (notification.metrics.pixels ==
+                  notification.metrics.maxScrollExtent) {
+                // context
+                //     .read<DiscoverCubit>()
+                //     .getMoreFoodItems();
+                print('Reached the end of the list, load more items');
+              }
+              return true;
+            },
+            child: ListView.builder(
+              itemCount: state.discoverFoodModel.data.length,
+              itemBuilder: (context, index) => Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
+                child: FoodCard(
+                  foodItemModel: state.discoverFoodModel.data[index],
+                ),
+              ),
+            ),
+          );
+        }
+        return const SizedBox();
+      },
+    );
+  }
+}
