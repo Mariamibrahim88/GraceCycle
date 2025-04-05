@@ -3,16 +3,16 @@ import 'package:grace_cycle/core/database/remote/api_consumer.dart';
 import 'package:grace_cycle/core/errors/exceptions.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/features/discover/data/models/discover_food_model.dart';
-import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
+import 'package:grace_cycle/features/discover/data/models/vendors_discover_model.dart';
 
 class DiscoverRepo {
-  Future<Either<String, DiscoverVendorsModel>> getVendorDiscover({
-    required int pageIndex,
+  Future<Either<String, DiscoverVendorsModel>> getVendorDiscover(
+    int pageIndex,
     int? vendorTypeId,
-    required pageSize,
+    int pageSize,
     String? sort,
     String? search,
-  }) async {
+  ) async {
     try {
       final response = await sl<ApiConsumer>().get(
           'https://gracecycleapi.azurewebsites.net/api/app/discover/vendors',

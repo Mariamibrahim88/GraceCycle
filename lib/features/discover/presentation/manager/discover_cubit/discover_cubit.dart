@@ -9,32 +9,47 @@ class DiscoverCubit extends Cubit<DiscoverState> {
   DiscoverCubit(this.discoverRepo) : super(DiscoverInitial());
   final DiscoverRepo discoverRepo;
 
-  // int pageIndex = 1;
-  // int pageSize = 10;
-
-  Future<void> getVendorDiscover(
-      {required int pageIndex,
-      required int pageSize,
-      int? vendorTypeId,
-      String? sort,
-      String? search,
-      isLoadMore = false}) async {
+  Future<void> getVendorDiscover({
+    int pageIndex = 1,
+    int pageSize = 10,
+    int? vendorTypeId,
+    String? sort,
+    String? search,
+  }) async {
     emit(DiscoverVendorLoading());
     final response = await discoverRepo.getVendorDiscover(
-      pageSize: pageSize,
-      pageIndex: pageIndex,
-      sort: sort,
-      vendorTypeId: vendorTypeId,
-      search: search,
+      pageIndex,
+      vendorTypeId,
+      pageSize,
+      sort,
+      search,
     );
 
     response.fold(
       (l) => emit(DiscoverVendorFailure(l)),
-      (vendorsModel) {
-        emit(DiscoverVendorSuccess(
-          vendorsModel,
-        ));
+      (r) {
+        pageIndex++;
+        emit(DiscoverVendorSuccess(r));
       },
     );
+  }
+
+  Future<void> getFoodDiscover(
+      {int pageIndex = 1,
+      int pageSize = 10,
+      int? categoryId,
+      int? maxPrice,
+      String? sort,
+      String? search}) async {
+    emit(DiscoverFoodLoading());
+
+    final result = await discoverRepo.getFoodDiscover(
+        pageIndex, pageSize, categoryId, maxPrice, sort, search);
+
+    result.fold((ifLeft) => emit(DiscoverFoodFailure(ifLeft)), (ifRight) {
+      pageIndex++;
+
+      emit(DiscoverFoodSuccess(ifRight));
+    });
   }
 }

@@ -15,13 +15,17 @@ class DiscoverView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomSafeArea(
-      body: MultiBlocProvider(providers: [
-        BlocProvider<DiscoverCubit>(
-          create: (context) => DiscoverCubit(
-              sl()..getVendorDiscover(pageIndex: 1, pageSize: 10)),
-        ),
-        BlocProvider<HomeCubit>(create: (context) => HomeCubit(sl())),
-      ], child: const DiscoverViewBody()),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => DiscoverCubit(sl())..getFoodDiscover(),
+          ),
+          BlocProvider(
+            create: (context) => HomeCubit(sl()),
+          ),
+        ],
+        child: const DiscoverViewBody(),
+      ),
     );
   }
 }
