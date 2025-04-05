@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
+import 'package:grace_cycle/core/widgets/custom_list_of_shimmer_ver.dart';
+import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_search_text_field.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_container.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_icon.dart';
@@ -78,10 +81,41 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
                         height: MediaQuery.of(context).size.height * 0.8,
                         child: TabBarView(
                           children: [
-                            ListView.builder(
-                              itemCount: 10,
-                              itemBuilder: (context, index) =>
-                                  const FooddCard(),
+                            BlocBuilder<DiscoverCubit, DiscoverState>(
+                              builder: (context, state) {
+                                if (state is DiscoverFoodLoading) {
+                                  return const CustomListOfShimmerFavVer();
+                                } else if (state is DiscoverFoodSuccess) {
+                                  return NotificationListener<
+                                      ScrollNotification>(
+                                    onNotification: (notification) {
+                                      if (notification.metrics.pixels ==
+                                          notification
+                                              .metrics.maxScrollExtent) {
+                                        // context
+                                        //     .read<DiscoverCubit>()
+                                        //     .getMoreFoodItems();
+                                        print(
+                                            'Reached the end of the list, load more items');
+                                      }
+                                      return true;
+                                    },
+                                    child: ListView.builder(
+                                      itemCount:
+                                          state.discoverFoodModel.data.length,
+                                      itemBuilder: (context, index) => Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8.0, vertical: 12),
+                                        child: FoodCard(
+                                          foodItemModel: state
+                                              .discoverFoodModel.data[index],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                                return const SizedBox();
+                              },
                             ),
                             ListView.builder(
                               itemCount: 10,
