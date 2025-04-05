@@ -5,6 +5,7 @@ import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
+import 'package:grace_cycle/core/widgets/custom_list_of_shimmer_ver.dart';
 import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_list_of_shimmer_ver.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_search_text_field.dart';
@@ -105,12 +106,20 @@ class DiscoverVendorsList extends StatelessWidget {
       child: BlocBuilder<DiscoverCubit, DiscoverState>(
         builder: (context, state) {
           if (state is DiscoverVendorLoading) {
-            return const CustomListOfShimmerVer();
+            return const CustomListOfShimmerFavVer();
           } else if (state is DiscoverVendorSuccess) {
             return ListView.builder(
               itemCount: state.vendorsModel.data.length,
-              itemBuilder: (context, index) => VendorCard(
-                vendorItemModel: state.vendorsModel.data[index],
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  right: 10.0,
+                  bottom: 8,
+                  top: 8,
+                ),
+                child: VendorCard(
+                  vendorItemModel: state.vendorsModel.data[index],
+                ),
               ),
             );
           }

@@ -22,7 +22,7 @@ class CustomListOfShimmerVer extends StatelessWidget {
                   ),
                   child: const CustomShimmerCard(),
                 ),
-                itemCount: 4,
+                itemCount: 2,
                 scrollDirection: Axis.vertical,
               ),
             ),

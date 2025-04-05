@@ -24,8 +24,9 @@ class FavouriteRestaurantContainer extends StatelessWidget {
             homeCubit.favouritesForVendors[vendorItemModel.userId] ??
                 vendorItemModel.isFavourite;
         return Positioned(
-          left: 15.w,
-          bottom: 95.h,
+          left: 16.w,
+          top: 35.h,
+          bottom: 1,
           child: GestureDetector(
             onTap: () {
               homeCubit.toggleVendorFavorite(vendorItemModel.userId);
