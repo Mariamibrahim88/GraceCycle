@@ -30,9 +30,8 @@ class LoginViewBody extends StatelessWidget {
             if (state is LoginSuccessful) {
               showToast(
                   message: 'Login Successfully', state: ToastStates.success);
-              navigateReplacement(context: context, route: Routes.home);
+              navigateReplacement(context: context, route: Routes.navBar);
             } else if (state is LoginFailure) {
-              //showSnackBar(context, state.toString(), Colors.red);
               showToast(
                   message: 'check your email or password',
                   state: ToastStates.error);
