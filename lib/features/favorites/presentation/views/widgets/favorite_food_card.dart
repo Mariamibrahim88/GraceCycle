@@ -5,6 +5,7 @@ import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/features/favorites/data/models/fav_food_model.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/asset_fav_card.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_food_card_info.dart';
+import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_icon_for_food.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/icon_fav_food_card.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/discount_container.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/rate_container.dart';
@@ -52,8 +53,14 @@ class FavoriteFoodCard extends StatelessWidget {
           FavFoodCardInfo(
             favFoodModel: favFoodModel,
           ),
-          horizontalSpace(8.w),
-          const IconsFavFoodCard()
+          Column(
+            children: [
+              FavIconForFood(
+                foodItem: favFoodModel,
+              ),
+              const IconsFavFoodCard(),
+            ],
+          ),
         ],
       ),
     );

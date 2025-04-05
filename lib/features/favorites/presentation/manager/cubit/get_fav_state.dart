@@ -31,3 +31,22 @@ final class GetFavVendorsError extends GetFavState {
 }
 
 final class GetFavVendorsLoading extends GetFavState {}
+
+final class RemoveFavLoading extends GetFavState {}
+
+final class RemoveFavSuccess extends GetFavState {}
+
+final class RemoveFavError extends GetFavState {
+  final String errorMessage;
+
+  RemoveFavError(this.errorMessage);
+}
+
+final class RemoveFavVendorSuccess extends GetFavState {}
+
+final class RemoveFavVendorError extends GetFavState {
+  final String errorMessage;
+  RemoveFavVendorError(this.errorMessage);
+}
+
+final class RemoveFavVendorLoading extends GetFavState {}
