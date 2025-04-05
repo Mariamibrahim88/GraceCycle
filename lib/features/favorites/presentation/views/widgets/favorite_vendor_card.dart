@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
-import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/features/favorites/data/models/fav_vendor_model.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/asset_fav_card.dart';
+import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_icon_for_vendor.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_vendor_card_info.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/custom_vendor_logo.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/rate_container.dart';
@@ -45,16 +45,12 @@ class FavoriteVendorCard extends StatelessWidget {
               ),
             ],
           ),
-          horizontalSpace(10.w),
           FavVendorCardInfo(
             favVendorModel: favVendorModel,
           ),
-          horizontalSpace(20.w),
-          // const Center(
-          //   child: FavouriteContainer(
-          //     color: AppColors.vendorCard,
-          //   ),
-          // ),
+          FavIconForVendor(
+            favVendorModel: favVendorModel,
+          ),
         ],
       ),
     );

@@ -25,4 +25,24 @@ class GetFavCubit extends Cubit<GetFavState> {
     result.fold((error) => emit(GetFavVendorsError(error)),
         (r) => emit(GetFavVendorsSuccess(r)));
   }
+
+  void removeFromFavoriteFood(int id) async {
+    emit(RemoveFavLoading());
+
+    final result = await favRepo.removeFromFavoriteFood(id);
+    result.fold((error) => emit(RemoveFavError(error)), (r) {
+      emit(RemoveFavSuccess());
+      getFavFood();
+    });
+  }
+
+  void removeFromFavoriteVendor(String id) async {
+    emit(RemoveFavVendorLoading());
+
+    final result = await favRepo.removeFromFavoriteVendor(id);
+    result.fold((error) => emit(RemoveFavVendorError(error)), (r) {
+      emit(RemoveFavVendorSuccess());
+      getFavVendors();
+    });
+  }
 }

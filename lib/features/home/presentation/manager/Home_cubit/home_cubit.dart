@@ -43,9 +43,15 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> getVendors() async {
+    if (isClosed) return;
     emit(HomeVendorLoading());
     final response = await homeRepo.getVendor();
-    response.fold((l) => emit(HomeVendorError(l)), (r) {
+    if (isClosed) return;
+    response.fold((l) {
+      if (isClosed) return;
+      emit(HomeVendorError(l));
+    }, (r) {
+      if (isClosed) return;
       vendorsModel = r;
       favouritesForVendors.clear();
       final allVendors =
