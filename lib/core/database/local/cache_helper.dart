@@ -42,7 +42,12 @@ class CacheHelper {
 
 // this fun to put data in local data base using key
 
+  int maxOfCacheSize = 50;
+
   Future<bool> saveData({required String key, required dynamic value}) async {
+    if (sharedPreferences.getKeys().length >= maxOfCacheSize) {
+      await _removeOldestData();
+    }
     if (value is bool) {
       return await sharedPreferences.setBool(key, value);
     }
@@ -109,5 +114,12 @@ class CacheHelper {
 
   Future<void> cacheLanguage(String code) async {
     await sharedPreferences.setString(_cachedCode, code);
+  }
+
+  Future<void> _removeOldestData() async {
+    final keys = sharedPreferences.getKeys().toList();
+    if (keys.isNotEmpty) {
+      await sharedPreferences.remove(keys.first);
+    }
   }
 }
