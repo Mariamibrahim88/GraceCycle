@@ -1,27 +1,33 @@
-class FavFoodModel {
-  final int id;
-  final String name;
-  final String picUrl;
-  final double rating;
-  final bool isFavourite;
-  final int quantity;
-  final double unitPrice;
-  final double newPrice;
-  final int discountPercentage;
-  final String vName;
+import 'package:grace_cycle/features/home/data/models/food_menu_model.dart';
 
+class FavFoodModel extends FoodItemModel {
   FavFoodModel({
-    required this.id,
-    required this.name,
-    required this.picUrl,
-    required this.rating,
-    required this.isFavourite,
-    required this.quantity,
-    required this.unitPrice,
-    required this.newPrice,
-    required this.discountPercentage,
-    required this.vName,
-  });
+    required int id,
+    required String name,
+    required String picUrl,
+    required double rating,
+    required bool isFavourite,
+    required int quantity,
+    required double unitPrice,
+    required double newPrice,
+    required int discountPercentage,
+    required String vName,
+    String vOpening = '',
+    String vClosing = '',
+  }) : super(
+          id: id,
+          name: name,
+          picUrl: picUrl,
+          rating: rating,
+          isFavourite: isFavourite,
+          quantity: quantity,
+          unitPrice: unitPrice,
+          newPrice: newPrice,
+          discountPercentage: discountPercentage,
+          vName: vName,
+          vOpening: vOpening,
+          vClosing: vClosing,
+        );
 
   factory FavFoodModel.fromJson(Map<String, dynamic> json) {
     return FavFoodModel(
@@ -35,6 +41,8 @@ class FavFoodModel {
       newPrice: (json['newPrice'] as num).toDouble(),
       discountPercentage: json['discountPercentage'],
       vName: json['vName'],
+      vOpening: json['vOpening'] ?? '',
+      vClosing: json['vClosing'] ?? '',
     );
   }
 }

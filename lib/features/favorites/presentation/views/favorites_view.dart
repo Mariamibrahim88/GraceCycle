@@ -10,10 +10,10 @@ class FavoritesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetFavCubit(sl())..getFavFood(),
-      child: const CustomSafeArea(
-        body: FavoritesViewBody(),
+    return CustomSafeArea(
+      body: BlocProvider(
+        create: (context) => GetFavCubit(sl())..getFavFood(),
+        child: const FavoritesViewBody(),
       ),
     );
   }

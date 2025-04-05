@@ -104,4 +104,3 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
     );
   }
 }
-

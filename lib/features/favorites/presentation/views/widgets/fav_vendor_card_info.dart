@@ -23,7 +23,7 @@ class FavVendorCardInfo extends StatelessWidget {
         Text(
           favVendorModel.displayName,
           style: TextStyle(
-            fontSize: 16.sp,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
