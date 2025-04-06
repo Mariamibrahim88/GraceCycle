@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grace_cycle/features/discover/data/models/discover_food_model.dart';
 import 'package:grace_cycle/features/discover/data/models/vendors_discover_model.dart';
 import 'package:grace_cycle/features/discover/data/repos/discover_repo.dart';
+import 'package:grace_cycle/features/home/data/models/food_menu_model.dart';
 import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
 
 part 'discover_state.dart';
@@ -9,6 +10,12 @@ part 'discover_state.dart';
 class DiscoverCubit extends Cubit<DiscoverState> {
   DiscoverCubit(this.discoverRepo) : super(DiscoverInitial());
   final DiscoverRepo discoverRepo;
+
+  int _pageIndex = 1;
+  bool isLoadingMore = false;
+  List<FoodItemModel> allFoodItems = [];
+  TextEditingController serachController = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   List<VendorItemModel> vendorList = [];
 
   int pageIndex = 1;
@@ -27,7 +34,7 @@ class DiscoverCubit extends Cubit<DiscoverState> {
       vendorTypeId,
       pageSize,
       sort,
-      search,
+      search ?? serachController.text,
     );
 
     response.fold(
@@ -47,21 +54,35 @@ class DiscoverCubit extends Cubit<DiscoverState> {
   }
 
   Future<void> getFoodDiscover(
-      {int pageIndex = 1,
+      {bool isInitial = false,
       int pageSize = 10,
       int? categoryId,
       int? maxPrice,
       String? sort,
       String? search}) async {
-    emit(DiscoverFoodLoading());
+    if (isInitial) {
+      _pageIndex = 1;
+      allFoodItems.clear();
+      emit(DiscoverFoodLoading());
+    }
 
+    if (isLoadingMore) return;
+
+    isLoadingMore = true;
+    if (_pageIndex == 1) emit(DiscoverFoodLoading());
     final result = await discoverRepo.getFoodDiscover(
-        pageIndex, pageSize, categoryId, maxPrice, sort, search);
+        _pageIndex, pageSize, categoryId, maxPrice, sort, search);
 
     result.fold((ifLeft) => emit(DiscoverFoodFailure(ifLeft)), (ifRight) {
-      pageIndex++;
+      if (ifRight.data.isNotEmpty) {
+        allFoodItems.addAll(ifRight.data);
+        _pageIndex++;
 
-      emit(DiscoverFoodSuccess(ifRight));
+        emit(DiscoverFoodSuccess(allFoodItems));
+      } else {
+        emit(DiscoverFoodSuccess(allFoodItems));
+      }
     });
+    isLoadingMore = false;
   }
 }
