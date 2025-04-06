@@ -16,8 +16,7 @@ class SortByContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('Sort by:',
-            style: AppTextStyles.nunito400Size16Black),
+        Text('Sort by:', style: AppTextStyles.nunito400Size16Black),
         horizontalSpace(5),
         Container(
           height: 25.h,
@@ -41,17 +40,14 @@ class SortByContainer extends StatelessWidget {
                 isExpanded
                     ? Icons.keyboard_arrow_up
                     : Icons.keyboard_arrow_down,
-                color: isExpanded
-                    ? AppColors.greenButt
-                    : Colors.black,
+                color: isExpanded ? AppColors.greenButt : Colors.black,
               ),
               Center(
                 child: Text(
                   'Food Rating',
                   textAlign: TextAlign.center,
                   style: isExpanded
-                      ? AppTextStyles.nunito500Size14Black
-                          .copyWith(
+                      ? AppTextStyles.nunito500Size14Black.copyWith(
                           color: AppColors.greenButt,
                         )
                       : AppTextStyles.nunito500Size14Black,
