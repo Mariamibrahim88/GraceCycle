@@ -7,8 +7,8 @@ final class DiscoverInitial extends DiscoverState {}
 final class DiscoverVendorLoading extends DiscoverState {}
 
 final class DiscoverVendorSuccess extends DiscoverState {
-  final DiscoverVendorsModel vendorsModel;
-  DiscoverVendorSuccess(this.vendorsModel);
+  final List<VendorItemModel> vendorList;
+  DiscoverVendorSuccess(this.vendorList);
 }
 
 final class DiscoverVendorFailure extends DiscoverState {
@@ -30,6 +30,7 @@ final class DiscoverFoodFailure extends DiscoverState {
 
 final class DiscoverVendorPaginationLoading extends DiscoverState {}
 
-final class DiscoverVendorPaginationFailure extends DiscoverState {}
-
-final class GetDiscoverFoodFromPaginationLoading extends DiscoverState {}
+final class DiscoverVendorPaginationFailure extends DiscoverState {
+  final String errorMessage;
+  DiscoverVendorPaginationFailure(this.errorMessage);
+}
