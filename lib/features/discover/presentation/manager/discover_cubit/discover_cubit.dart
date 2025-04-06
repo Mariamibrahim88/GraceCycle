@@ -2,21 +2,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/features/discover/data/models/discover_food_model.dart';
 import 'package:grace_cycle/features/discover/data/models/vendors_discover_model.dart';
 import 'package:grace_cycle/features/discover/data/repos/discover_repo.dart';
+import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
 
 part 'discover_state.dart';
 
 class DiscoverCubit extends Cubit<DiscoverState> {
   DiscoverCubit(this.discoverRepo) : super(DiscoverInitial());
   final DiscoverRepo discoverRepo;
+  List<VendorItemModel> vendorList = [];
+
+  int pageIndex = 1;
 
   Future<void> getVendorDiscover({
-    int pageIndex = 1,
+    bool loadingFromPagination = false,
     int pageSize = 10,
     int? vendorTypeId,
     String? sort,
     String? search,
   }) async {
     emit(DiscoverVendorLoading());
+
     final response = await discoverRepo.getVendorDiscover(
       pageIndex,
       vendorTypeId,
@@ -26,10 +31,17 @@ class DiscoverCubit extends Cubit<DiscoverState> {
     );
 
     response.fold(
-      (l) => emit(DiscoverVendorFailure(l)),
+      (l) {
+        emit(DiscoverVendorFailure(l));
+      },
       (r) {
-        pageIndex++;
-        emit(DiscoverVendorSuccess(r));
+        if (r.data.isNotEmpty) {
+          vendorList.addAll(r.data);
+          pageIndex++;
+          emit(DiscoverVendorSuccess(vendorList));
+        } else {
+          emit(DiscoverVendorSuccess(vendorList));
+        }
       },
     );
   }
