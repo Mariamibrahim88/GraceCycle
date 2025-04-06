@@ -70,8 +70,8 @@ class DiscoverCubit extends Cubit<DiscoverState> {
 
     isLoadingMore = true;
     if (_pageIndex == 1) emit(DiscoverFoodLoading());
-    final result = await discoverRepo.getFoodDiscover(
-        _pageIndex, pageSize, categoryId, maxPrice, sort, search);
+    final result = await discoverRepo.getFoodDiscover(_pageIndex, pageSize,
+        categoryId, maxPrice, sort, search ?? serachController.text);
 
     result.fold((ifLeft) => emit(DiscoverFoodFailure(ifLeft)), (ifRight) {
       if (ifRight.data.isNotEmpty) {
