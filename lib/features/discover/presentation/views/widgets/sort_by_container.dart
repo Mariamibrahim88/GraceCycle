@@ -8,9 +8,11 @@ class SortByContainer extends StatelessWidget {
   const SortByContainer({
     super.key,
     required this.isExpanded,
+    required this.nameOfSort,
   });
 
   final bool isExpanded;
+  final String nameOfSort;
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +45,20 @@ class SortByContainer extends StatelessWidget {
                 color: isExpanded ? AppColors.greenButt : Colors.black,
               ),
               Center(
-                child: Text(
-                  'Food Rating',
-                  textAlign: TextAlign.center,
-                  style: isExpanded
-                      ? AppTextStyles.nunito500Size14Black.copyWith(
-                          color: AppColors.greenButt,
-                        )
-                      : AppTextStyles.nunito500Size14Black,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 5),
+                  child: Text(
+                    nameOfSort,
+                    textAlign: TextAlign.center,
+                    style: isExpanded
+                        ? AppTextStyles.nunito500Size14Black.copyWith(
+                            color: AppColors.greenButt,
+                            fontSize: 12.sp,
+                          )
+                        : AppTextStyles.nunito500Size14Black.copyWith(
+                            fontSize: 12.sp,
+                          ),
+                  ),
                 ),
               ),
             ],
