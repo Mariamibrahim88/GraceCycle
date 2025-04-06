@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
+import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_search_text_field.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/discover_vendors_list.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_container.dart';
@@ -96,71 +98,55 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
           ),
           if (isExpanded)
             SortContainer(
-                isFood: isFood,
-                sortOptions: isFood
-                    ? [
-                        ListTileItemOfSort(
-                            title: 'Food Rating',
-                            onTap: () {
-                              setState(() {
-                                title = 'Food Rating';
-                                nameOfSort = 'rating';
-                              });
-                            }),
-                        ListTileItemOfSort(
-                            title: 'Discount Rate',
-                            onTap: () {
-                              setState(() {
-                                title = 'Discount Rate';
-                                nameOfSort = 'discount rate';
-                              });
-                            }),
-                        ListTileItemOfSort(
-                            title: 'Most Popular',
-                            onTap: () {
-                              setState(() {
-                                nameOfSort = 'most Popular';
-                                title = 'Most Popular';
-                              });
-                            }),
-                        ListTileItemOfSort(
-                            title: 'Price',
-                            onTap: () {
-                              setState(() {
-                                nameOfSort = 'price';
-                                title = 'Price';
-                              });
-                            }),
-                      ]
-                    : [
-                        ListTileItemOfSort(
-                            title: 'Vendor Rating',
-                            onTap: () {
-                              setState(() {
-                                title = 'Vendor Rating';
-                                nameOfSort = 'rating';
-                              });
-                            }),
-                        ListTileItemOfSort(
-                            title: 'Most Popular',
-                            onTap: () {
-                              setState(() {
-                                nameOfSort = 'most popular';
-                                title = 'Most Popular';
-                              });
-                            }),
-                        ListTileItemOfSort(
-                            title: 'Distance',
-                            onTap: () {
-                              setState(() {
-                                title = 'Distance';
-                                nameOfSort = 'distance';
-                              });
-                            }),
-                      ]),
+              isFood: isFood,
+              sortOptions: getSortOptions(),
+            ),
           if (isFilterVisible) const FilterContainer(),
         ],
       ),
     );
+  }
+
+  List<ListTileItemOfSort> getSortOptions() {
+    if (isFood) {
+      return [
+        ListTileItemOfSort(
+            title: 'Food Rating',
+            onTap: () => updateSort('Food Rating', 'rating')),
+        ListTileItemOfSort(
+            title: 'Discount Rate',
+            onTap: () => updateSort('Discount Rate', 'discount')),
+        ListTileItemOfSort(
+            title: 'Most Popular',
+            onTap: () => updateSort('Most Popular', 'most Popular')),
+        ListTileItemOfSort(
+            title: 'Price', onTap: () => updateSort('Price', 'price')),
+      ];
+    } else {
+      return [
+        ListTileItemOfSort(
+            title: 'Vendor Rating',
+            onTap: () => updateSort('Vendor Rating', 'rating')),
+        ListTileItemOfSort(
+            title: 'Most Popular',
+            onTap: () => updateSort('Most Popular', 'most popular')),
+        ListTileItemOfSort(
+            title: 'Distance', onTap: () => updateSort('Distance', 'distance')),
+      ];
+    }
+  }
+
+  void updateSort(String newTitle, String sortName) {
+    setState(() {
+      title = newTitle;
+      nameOfSort = sortName;
+      isExpanded = false;
+    });
+    if (isFood) {
+      BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
+        isInitial: true,
+        sort: sortName,
+      );
+    }
   }
 }
