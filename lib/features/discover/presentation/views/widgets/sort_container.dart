@@ -4,8 +4,13 @@ import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/list_tile_item_of_sort.dart';
 
 class SortContainer extends StatelessWidget {
-  const SortContainer({super.key, required this.isFood});
+  const SortContainer({
+    super.key,
+    required this.isFood,
+    required this.sortOptions,
+  });
   final bool isFood;
+  final List<Widget> sortOptions;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class SortContainer extends StatelessWidget {
       left: 75.w,
       child: Container(
         width: 193.w,
-        height: 136.h,
+        height: 177.h,
         decoration: BoxDecoration(
           color: AppColors.basicWhite,
           borderRadius: BorderRadius.circular(15.r),
@@ -28,23 +33,7 @@ class SortContainer extends StatelessWidget {
           ],
         ),
         child: SingleChildScrollView(
-          child: Column(
-            children: isFood
-                ? [
-                    const ListTileItemOfSort(
-                      title: 'Food Rating',
-                    ),
-                    const ListTileItemOfSort(title: 'Discount Rate'),
-                    const ListTileItemOfSort(title: ('Most Popular')),
-                    const ListTileItemOfSort(title: ('Distance')),
-                    const ListTileItemOfSort(title: ('Price')),
-                  ]
-                : [
-                    const ListTileItemOfSort(title: 'Vendor Rating'),
-                    const ListTileItemOfSort(title: ('Most Popular')),
-                    const ListTileItemOfSort(title: ('Distance')),
-                  ],
-          ),
+          child: Column(children: sortOptions),
         ),
       ),
     );

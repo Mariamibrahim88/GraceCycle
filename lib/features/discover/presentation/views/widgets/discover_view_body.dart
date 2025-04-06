@@ -8,6 +8,7 @@ import 'package:grace_cycle/features/discover/presentation/views/widgets/discove
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_container.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_icon.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/food_discover_list.dart';
+import 'package:grace_cycle/features/discover/presentation/views/widgets/list_tile_item_of_sort.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_by_container.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_container.dart';
 
@@ -22,6 +23,8 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
   bool isFilterVisible = false;
   bool isExpanded = false;
   bool isFood = true;
+  String? nameOfSort;
+  String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +60,11 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
                       isExpanded = !isExpanded;
                     });
                   },
-                  child: SortByContainer(isExpanded: isExpanded),
+                  child: SortByContainer(
+                    isExpanded: isExpanded,
+                    nameOfSort:
+                        title ?? (isFood ? 'Food Rating' : 'Vendor Rating'),
+                  ),
                 ),
                 verticalSpace(20),
                 TabBar(
@@ -89,8 +96,68 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
           ),
           if (isExpanded)
             SortContainer(
-              isFood: isFood,
-            ),
+                isFood: isFood,
+                sortOptions: isFood
+                    ? [
+                        ListTileItemOfSort(
+                            title: 'Food Rating',
+                            onTap: () {
+                              setState(() {
+                                title = 'Food Rating';
+                                nameOfSort = 'rating';
+                              });
+                            }),
+                        ListTileItemOfSort(
+                            title: 'Discount Rate',
+                            onTap: () {
+                              setState(() {
+                                title = 'Discount Rate';
+                                nameOfSort = 'discount rate';
+                              });
+                            }),
+                        ListTileItemOfSort(
+                            title: 'Most Popular',
+                            onTap: () {
+                              setState(() {
+                                nameOfSort = 'most Popular';
+                                title = 'Most Popular';
+                              });
+                            }),
+                        ListTileItemOfSort(
+                            title: 'Price',
+                            onTap: () {
+                              setState(() {
+                                nameOfSort = 'price';
+                                title = 'Price';
+                              });
+                            }),
+                      ]
+                    : [
+                        ListTileItemOfSort(
+                            title: 'Vendor Rating',
+                            onTap: () {
+                              setState(() {
+                                title = 'Vendor Rating';
+                                nameOfSort = 'rating';
+                              });
+                            }),
+                        ListTileItemOfSort(
+                            title: 'Most Popular',
+                            onTap: () {
+                              setState(() {
+                                nameOfSort = 'most popular';
+                                title = 'Most Popular';
+                              });
+                            }),
+                        ListTileItemOfSort(
+                            title: 'Distance',
+                            onTap: () {
+                              setState(() {
+                                title = 'Distance';
+                                nameOfSort = 'distance';
+                              });
+                            }),
+                      ]),
           if (isFilterVisible) const FilterContainer(),
         ],
       ),
