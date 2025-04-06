@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grace_cycle/features/discover/data/models/vendors_discover_model.dart';
 import 'package:grace_cycle/features/discover/data/repos/discover_repo.dart';
 import 'package:grace_cycle/features/home/data/models/food_menu_model.dart';
 import 'package:grace_cycle/features/home/data/models/vendors_model.dart';

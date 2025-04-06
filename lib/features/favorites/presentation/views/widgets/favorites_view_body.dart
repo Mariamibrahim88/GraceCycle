@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
-import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_search_text_field.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_container.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_icon.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_by_container.dart';
@@ -81,7 +80,9 @@ class _FavoritesViewBodyState extends State<FavoritesViewBody> {
               ],
             ),
           ),
-          if (isExpanded) const SortContainer(),
+          if (isExpanded) const SortContainer(
+            isFood: false,
+          ),
           if (isFilterVisible) const FilterContainer(),
         ],
       ),
