@@ -17,6 +17,7 @@ class DiscoverCubit extends Cubit<DiscoverState> {
   TextEditingController serachController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   List<VendorItemModel> vendorList = [];
+  int noSearch = 0;
 
   int pageIndex = 1;
 
