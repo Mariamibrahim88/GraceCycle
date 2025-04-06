@@ -51,18 +51,18 @@ class _FavoritesViewBodyState extends State<FavoritesViewBody> {
                   ],
                 ),
                 verticalSpace(10),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isExpanded = !isExpanded;
-                    });
-                  },
-                  child: SortByContainer(
-                    isExpanded: isExpanded,
-                    nameOfSort: 'Food Rating',
-                  ),
-                ),
-                verticalSpace(20),
+                // GestureDetector(
+                //   onTap: () {
+                //     setState(() {
+                //       isExpanded = !isExpanded;
+                //     });
+                //   },
+                //   child: SortByContainer(
+                //     isExpanded: isExpanded,
+                //     nameOfSort: 'Food Rating',
+                //   ),
+                // ),
+                // verticalSpace(20),
                 TabBar(
                   labelStyle: AppTextStyles.nunito700Size16GreenButt,
                   unselectedLabelStyle: AppTextStyles.nunito700Size16Black,
@@ -85,28 +85,28 @@ class _FavoritesViewBodyState extends State<FavoritesViewBody> {
               ],
             ),
           ),
-          if (isExpanded)
-            SortContainer(
-              isFood: true,
-              sortOptions: [
-                ListTileItemOfSort(
-                  title: 'Food Rating',
-                  onTap: () {
-                    setState(() {
-                      isExpanded = false;
-                    });
-                  },
-                ),
-                ListTileItemOfSort(
-                  title: 'Vendor Rating',
-                  onTap: () {
-                    setState(() {
-                      isExpanded = false;
-                    });
-                  },
-                ),
-              ],
-            ),
+          // if (isExpanded)
+          //   SortContainer(
+          //     isFood: true,
+          //     sortOptions: [
+          //       ListTileItemOfSort(
+          //         title: 'Food Rating',
+          //         onTap: () {
+          //           setState(() {
+          //             isExpanded = false;
+          //           });
+          //         },
+          //       ),
+          //       ListTileItemOfSort(
+          //         title: 'Vendor Rating',
+          //         onTap: () {
+          //           setState(() {
+          //             isExpanded = false;
+          //           });
+          //         },
+          //       ),
+          //     ],
+          //   ),
           if (isFilterVisible) const FilterContainer(),
         ],
       ),

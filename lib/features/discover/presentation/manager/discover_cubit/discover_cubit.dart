@@ -14,10 +14,11 @@ class DiscoverCubit extends Cubit<DiscoverState> {
   bool isLoadingMore = false;
   List<FoodItemModel> allFoodItems = [];
   TextEditingController serachController = TextEditingController();
+  //sort
+  String? selectedSort;
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   List<VendorItemModel> vendorList = [];
-  int noSearch = 0;
-
   int pageIndex = 1;
 
   Future<void> getVendorDiscover({
@@ -33,7 +34,7 @@ class DiscoverCubit extends Cubit<DiscoverState> {
       pageIndex,
       vendorTypeId,
       pageSize,
-      sort,
+      sort ?? selectedSort,
       search ?? serachController.text,
     );
 
@@ -70,8 +71,13 @@ class DiscoverCubit extends Cubit<DiscoverState> {
 
     isLoadingMore = true;
     if (_pageIndex == 1) emit(DiscoverFoodLoading());
-    final result = await discoverRepo.getFoodDiscover(_pageIndex, pageSize,
-        categoryId, maxPrice, sort, search ?? serachController.text);
+    final result = await discoverRepo.getFoodDiscover(
+        _pageIndex,
+        pageSize,
+        categoryId,
+        maxPrice,
+        sort ?? selectedSort,
+        search ?? serachController.text);
 
     result.fold((ifLeft) => emit(DiscoverFoodFailure(ifLeft)), (ifRight) {
       if (ifRight.data.isNotEmpty) {

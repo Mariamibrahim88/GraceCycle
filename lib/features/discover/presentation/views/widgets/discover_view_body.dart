@@ -142,6 +142,8 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
       nameOfSort = sortName;
       isExpanded = false;
     });
+
+    BlocProvider.of<DiscoverCubit>(context).selectedSort = sortName;
     if (isFood) {
       BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
         isInitial: true,
