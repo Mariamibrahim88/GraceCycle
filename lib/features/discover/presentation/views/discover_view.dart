@@ -3,10 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/widgets/custom_safe_area.dart';
-import 'package:grace_cycle/features/discover/data/repos/discover_repo.dart';
 import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/discover_view_body.dart';
-import 'package:grace_cycle/features/home/data/repos/home_repo.dart';
 import 'package:grace_cycle/features/home/presentation/manager/Home_cubit/home_cubit.dart';
 
 class DiscoverView extends StatelessWidget {
@@ -18,10 +16,13 @@ class DiscoverView extends StatelessWidget {
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => DiscoverCubit(sl())..getFoodDiscover(),
+            create: (context) => HomeCubit(sl()),
           ),
           BlocProvider(
-            create: (context) => HomeCubit(sl()),
+            create: (context) => DiscoverCubit(sl())
+              ..getFoodDiscover(
+                isInitial: true,
+              ),
           ),
         ],
         child: const DiscoverViewBody(),

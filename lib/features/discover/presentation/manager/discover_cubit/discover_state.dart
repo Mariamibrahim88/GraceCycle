@@ -19,7 +19,7 @@ final class DiscoverVendorFailure extends DiscoverState {
 final class DiscoverFoodLoading extends DiscoverState {}
 
 final class DiscoverFoodSuccess extends DiscoverState {
-  final DiscoverFoodModel discoverFoodModel;
+  final List<FoodItemModel> discoverFoodModel;
   DiscoverFoodSuccess(this.discoverFoodModel);
 }
 
@@ -31,3 +31,5 @@ final class DiscoverFoodFailure extends DiscoverState {
 final class DiscoverVendorPaginationLoading extends DiscoverState {}
 
 final class DiscoverVendorPaginationFailure extends DiscoverState {}
+
+final class GetDiscoverFoodFromPaginationLoading extends DiscoverState {}

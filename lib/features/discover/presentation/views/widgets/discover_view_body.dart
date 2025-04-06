@@ -7,7 +7,6 @@ import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
 import 'package:grace_cycle/core/widgets/custom_list_of_shimmer_ver.dart';
 import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
-import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_list_of_shimmer_ver.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_search_text_field.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_container.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_icon.dart';

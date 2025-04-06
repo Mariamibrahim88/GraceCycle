@@ -35,9 +35,9 @@ class _FavoritesViewBodyState extends State<FavoritesViewBody> {
               children: [
                 Row(
                   children: [
-                    const Expanded(
-                      child: CustomSearchTextField(),
-                    ),
+                    // const Expanded(
+                    //   child: CustomSearchTextField(),
+                    // ),
                     horizontalSpace(10),
                     GestureDetector(
                       onTap: () {
