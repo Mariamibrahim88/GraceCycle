@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/core/widgets/custom_no_found_items.dart';
 import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_list_of_shimmer_ver.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/food_card.dart';
@@ -26,16 +27,18 @@ class FoodDiscoverList extends StatelessWidget {
               }
               return true;
             },
-            child: ListView.builder(
-              itemCount: state.discoverFoodModel.length,
-              itemBuilder: (context, index) => Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
-                child: FoodCard(
-                  foodItemModel: state.discoverFoodModel[index],
-                ),
-              ),
-            ),
+            child: state.discoverFoodModel.isEmpty
+                ? const CustomNoFoundItems(title: 'No food found!')
+                : ListView.builder(
+                    itemCount: state.discoverFoodModel.length,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 12),
+                      child: FoodCard(
+                        foodItemModel: state.discoverFoodModel[index],
+                      ),
+                    ),
+                  ),
           );
         }
         return const SizedBox();

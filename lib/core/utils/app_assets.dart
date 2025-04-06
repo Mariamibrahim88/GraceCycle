@@ -35,4 +35,5 @@ class AppAssets {
   static String terms = 'assets/images/terms.svg';
   static String logOut = 'assets/images/logOut.svg';
   static String emptyFav = 'assets/images/emptyFav.jpg';
+  static String emptySearch = 'assets/images/noSearch.svg';
 }
