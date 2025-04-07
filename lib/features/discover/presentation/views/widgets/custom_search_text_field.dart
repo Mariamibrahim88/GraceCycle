@@ -26,6 +26,13 @@ class CustomSearchTextField extends StatelessWidget {
               search: value,
               loadingFromPagination: true,
             );
+          } else {
+            BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
+              isInitial: true,
+            );
+            BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
+              loadingFromPagination: true,
+            );
           }
         },
         onFieldSubmitted: (value) {
@@ -38,33 +45,19 @@ class CustomSearchTextField extends StatelessWidget {
               search: value,
               loadingFromPagination: true,
             );
+          } else {
+            BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
+              isInitial: true,
+            );
+            BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
+              loadingFromPagination: true,
+            );
           }
         },
-        // onChanged: (value) {
-        //   BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
-        //     search: value,
-        //     isInitial: true,
-        //   );
-        //   BlocProvider.of<DiscoverCubit>(context)
-        //       .getVendorDiscover(search: value, loadingFromPagination: true
-        //           //isInitial: true,
-        //           );
-        // },
-        // onFieldSubmitted: (value) {
-        //   BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
-        //     search: value,
-        //     isInitial: true,
-        //   );
-        //   BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
-        //     search: value,
-        //     loadingFromPagination: true,
-        //     //isInitial: true,
-        //   );
-        // },
         decoration: InputDecoration(
           hintText: 'Find what you want',
           hintStyle: GoogleFonts.poppins(
-            color: Colors.black.withValues(alpha: 0x000000B2),
+            color: Colors.black.withOpacity(0.5),
             fontSize: 16.sp,
           ),
           suffixIcon: Icon(
