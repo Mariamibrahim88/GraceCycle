@@ -11,6 +11,8 @@ class FoodDiscoverList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DiscoverCubit, DiscoverState>(
+      buildWhen: (previous, current) =>
+          current is DiscoverFoodSuccess || current is DiscoverFoodLoading,
       builder: (context, state) {
         if (state is DiscoverFoodLoading) {
           return const CustomListOfShimmerVer();
@@ -30,6 +32,7 @@ class FoodDiscoverList extends StatelessWidget {
             child: state.discoverFoodModel.isEmpty
                 ? const CustomNoFoundItems(title: 'No food found!')
                 : ListView.builder(
+                    key: const PageStorageKey('foodList'),
                     itemCount: state.discoverFoodModel.length,
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.symmetric(
@@ -41,7 +44,7 @@ class FoodDiscoverList extends StatelessWidget {
                   ),
           );
         }
-        return const SizedBox();
+        return const CustomListOfShimmerVer();
       },
     );
   }

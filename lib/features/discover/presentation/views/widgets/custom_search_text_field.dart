@@ -17,16 +17,50 @@ class CustomSearchTextField extends StatelessWidget {
         cursorColor: AppColors.greenButt,
         controller: BlocProvider.of<DiscoverCubit>(context).serachController,
         onChanged: (value) {
-          BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
-            search: value,
-            isInitial: true,
-          );
-        },
-        onFieldSubmitted: (value) =>
+          if (value.trim().isNotEmpty) {
             BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
-          search: value,
-          isInitial: true,
-        ),
+              search: value,
+              isInitial: true,
+            );
+            BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
+              search: value,
+              loadingFromPagination: true,
+            );
+          }
+        },
+        onFieldSubmitted: (value) {
+          if (value.trim().isNotEmpty) {
+            BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
+              search: value,
+              isInitial: true,
+            );
+            BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
+              search: value,
+              loadingFromPagination: true,
+            );
+          }
+        },
+        // onChanged: (value) {
+        //   BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
+        //     search: value,
+        //     isInitial: true,
+        //   );
+        //   BlocProvider.of<DiscoverCubit>(context)
+        //       .getVendorDiscover(search: value, loadingFromPagination: true
+        //           //isInitial: true,
+        //           );
+        // },
+        // onFieldSubmitted: (value) {
+        //   BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
+        //     search: value,
+        //     isInitial: true,
+        //   );
+        //   BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
+        //     search: value,
+        //     loadingFromPagination: true,
+        //     //isInitial: true,
+        //   );
+        // },
         decoration: InputDecoration(
           hintText: 'Find what you want',
           hintStyle: GoogleFonts.poppins(

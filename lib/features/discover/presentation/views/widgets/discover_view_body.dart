@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
@@ -18,10 +19,10 @@ class DiscoverViewBody extends StatefulWidget {
   const DiscoverViewBody({super.key});
 
   @override
-  _DiscoverViewBodyState createState() => _DiscoverViewBodyState();
+  _HomeViewBodyState createState() => _HomeViewBodyState();
 }
 
-class _DiscoverViewBodyState extends State<DiscoverViewBody> {
+class _HomeViewBodyState extends State<DiscoverViewBody> {
   bool isFilterVisible = false;
   bool isExpanded = false;
   bool isFood = true;
@@ -85,9 +86,10 @@ class _DiscoverViewBodyState extends State<DiscoverViewBody> {
                   ],
                 ),
                 verticalSpace(20),
-                const Expanded(
-                  child: TabBarView(
-                    children: [
+                Expanded(
+                  child: IndexedStack(
+                    index: isFood ? 0 : 1,
+                    children: const [
                       FoodDiscoverList(),
                       DiscoverVendorsList(),
                     ],

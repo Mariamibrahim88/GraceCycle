@@ -18,12 +18,12 @@ class DiscoverView extends StatelessWidget {
           BlocProvider(
             create: (context) => HomeCubit(sl()),
           ),
-          BlocProvider(
-            create: (context) => DiscoverCubit(sl())
-              ..getFoodDiscover(
-                isInitial: true,
-              ),
-          ),
+          BlocProvider(create: (context) {
+            final cubit = DiscoverCubit(sl());
+            cubit.getFoodDiscover(isInitial: true);
+            cubit.getVendorDiscover(loadingFromPagination: true);
+            return cubit;
+          }),
         ],
         child: const DiscoverViewBody(),
       ),

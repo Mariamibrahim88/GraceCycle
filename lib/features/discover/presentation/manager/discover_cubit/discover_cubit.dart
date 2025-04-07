@@ -11,15 +11,15 @@ class DiscoverCubit extends Cubit<DiscoverState> {
   final DiscoverRepo discoverRepo;
 
   int _pageIndex = 1;
+  int pageIndexForVendors = 1;
   bool isLoadingMore = false;
+  bool isLoadingVendors = false;
   List<FoodItemModel> allFoodItems = [];
   TextEditingController serachController = TextEditingController();
-  //sort
   String? selectedSort;
-
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   List<VendorItemModel> vendorList = [];
-  int pageIndex = 1;
+  // int pgeIndex = 1;
 
   Future<void> getVendorDiscover({
     bool loadingFromPagination = false,
@@ -28,10 +28,16 @@ class DiscoverCubit extends Cubit<DiscoverState> {
     String? sort,
     String? search,
   }) async {
-    emit(DiscoverVendorLoading());
-
+    if (loadingFromPagination) {
+      pageIndexForVendors = 1;
+      vendorList.clear();
+      emit(DiscoverVendorLoading());
+    }
+    if (isLoadingVendors) return;
+    isLoadingVendors = true;
+    if (pageIndexForVendors == 1) emit(DiscoverVendorLoading());
     final response = await discoverRepo.getVendorDiscover(
-      pageIndex,
+      pageIndexForVendors,
       vendorTypeId,
       pageSize,
       sort ?? selectedSort,
@@ -45,13 +51,14 @@ class DiscoverCubit extends Cubit<DiscoverState> {
       (r) {
         if (r.data.isNotEmpty) {
           vendorList.addAll(r.data);
-          pageIndex++;
+          pageIndexForVendors++;
           emit(DiscoverVendorSuccess(vendorList));
         } else {
           emit(DiscoverVendorSuccess(vendorList));
         }
       },
     );
+    isLoadingVendors = false;
   }
 
   Future<void> getFoodDiscover(
@@ -61,6 +68,11 @@ class DiscoverCubit extends Cubit<DiscoverState> {
       int? maxPrice,
       String? sort,
       String? search}) async {
+    // if (isInitial && allFoodItems.isNotEmpty) {
+    //   // لو البيانات موجودة بالفعل، ما تعملش حاجة
+    //   emit(DiscoverFoodSuccess(allFoodItems));
+    //   return;
+    // }
     if (isInitial) {
       _pageIndex = 1;
       allFoodItems.clear();
