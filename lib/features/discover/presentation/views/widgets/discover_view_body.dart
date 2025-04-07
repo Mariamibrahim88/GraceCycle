@@ -65,8 +65,8 @@ class _HomeViewBodyState extends State<DiscoverViewBody> {
                   },
                   child: SortByContainer(
                     isExpanded: isExpanded,
-                    nameOfSort:
-                        title ?? (isFood ? 'Food Rating' : 'Vendor Rating'),
+                    nameOfSort:title ?? 'Choose Sort',
+                       
                   ),
                 ),
                 verticalSpace(20),
@@ -74,6 +74,7 @@ class _HomeViewBodyState extends State<DiscoverViewBody> {
                   onTap: (index) {
                     setState(() {
                       isFood = index == 0;
+                      title =index == 0 ? 'Choose sort' : 'Choose sort';
                     });
                   },
                   labelStyle: AppTextStyles.nunito700Size16GreenButt,
@@ -149,6 +150,12 @@ class _HomeViewBodyState extends State<DiscoverViewBody> {
     if (isFood) {
       BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
         isInitial: true,
+        sort: sortName,
+      );
+    }
+    else{
+      BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
+        loadingFromPagination: true,
         sort: sortName,
       );
     }

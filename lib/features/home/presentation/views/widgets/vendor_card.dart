@@ -40,11 +40,11 @@ class VendorCard extends StatelessWidget {
           top: 30.h,
           left: 1.w,
           right: 35.w,
-          child: const Row(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               RateContainer(
-                rate: 4.5,
+                rate: vendorItemModel.rating,
               ),
             ],
           ),
