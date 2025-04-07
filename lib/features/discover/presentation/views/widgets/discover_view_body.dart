@@ -28,6 +28,8 @@ class _HomeViewBodyState extends State<DiscoverViewBody> {
   bool isFood = true;
   String? nameOfSort;
   String? title;
+  String? sortNameFood;
+  String? sortNameVendor;
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +67,7 @@ class _HomeViewBodyState extends State<DiscoverViewBody> {
                   },
                   child: SortByContainer(
                     isExpanded: isExpanded,
-                    nameOfSort:title ?? 'Choose Sort',
-                       
+                    nameOfSort: title ?? 'Choose Sort',
                   ),
                 ),
                 verticalSpace(20),
@@ -74,7 +75,7 @@ class _HomeViewBodyState extends State<DiscoverViewBody> {
                   onTap: (index) {
                     setState(() {
                       isFood = index == 0;
-                      title =index == 0 ? 'Choose sort' : 'Choose sort';
+                      title = index == 0 ? sortNameFood : sortNameVendor;
                     });
                   },
                   labelStyle: AppTextStyles.nunito700Size16GreenButt,
@@ -152,12 +153,13 @@ class _HomeViewBodyState extends State<DiscoverViewBody> {
         isInitial: true,
         sort: sortName,
       );
-    }
-    else{
+      sortNameFood = title;
+    } else {
       BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
         loadingFromPagination: true,
         sort: sortName,
       );
+      sortNameVendor = title;
     }
   }
 }
