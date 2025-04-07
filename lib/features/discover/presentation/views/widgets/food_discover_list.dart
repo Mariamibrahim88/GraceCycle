@@ -32,7 +32,6 @@ class FoodDiscoverList extends StatelessWidget {
             child: state.discoverFoodModel.isEmpty
                 ? const CustomNoFoundItems(title: 'No food found!')
                 : ListView.builder(
-                    key: const PageStorageKey('foodList'),
                     itemCount: state.discoverFoodModel.length,
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.symmetric(

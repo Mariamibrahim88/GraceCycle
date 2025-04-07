@@ -41,7 +41,6 @@ class DiscoverVendorsList extends StatelessWidget {
                   child: state.vendorList.isEmpty
                       ? const CustomNoFoundItems(title: 'No vendors found!')
                       : ListView.builder(
-                          key: const PageStorageKey('vendorList'),
                           itemCount: state.vendorList.length,
                           itemBuilder: (context, index) => Padding(
                             padding: const EdgeInsets.only(
