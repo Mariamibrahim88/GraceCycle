@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/features/discover/data/repos/discover_repo.dart';
 import 'package:grace_cycle/features/home/data/models/food_menu_model.dart';
 import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
-
 part 'discover_state.dart';
 
 class DiscoverCubit extends Cubit<DiscoverState> {
@@ -19,6 +18,13 @@ class DiscoverCubit extends Cubit<DiscoverState> {
   String? selectedSort;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   List<VendorItemModel> vendorList = [];
+  bool isFilterVisible = false;
+  bool isExpanded = false;
+  bool isFood = true;
+  String? nameOfSort;
+  String? title;
+  String? sortNameFood;
+  String? sortNameVendor;
 
   // int pgeIndex = 1;
 
@@ -69,11 +75,6 @@ class DiscoverCubit extends Cubit<DiscoverState> {
       int? maxPrice,
       String? sort,
       String? search}) async {
-    // if (isInitial && allFoodItems.isNotEmpty) {
-    //   // لو البيانات موجودة بالفعل، ما تعملش حاجة
-    //   emit(DiscoverFoodSuccess(allFoodItems));
-    //   return;
-    // }
     if (isInitial) {
       _pageIndex = 1;
       allFoodItems.clear();
@@ -103,5 +104,49 @@ class DiscoverCubit extends Cubit<DiscoverState> {
       }
     });
     isLoadingMore = false;
+  }
+
+  void changeIsFilterVisible() {
+    isFilterVisible = !isFilterVisible;
+    emit(IsFilterVisible());
+  }
+
+  void changeIsExpanded() {
+    isExpanded = !isExpanded;
+    emit(IsExpanded());
+  }
+
+  void changeTap(int index) {
+    isFood = index == 0;
+    nameOfSort = isFood ? sortNameFood : sortNameVendor;
+    serachController.clear();
+    emit(ChangeTap());
+  }
+
+  void updateSort(String newTitle, String sortName) {
+    title = newTitle;
+    nameOfSort = sortName;
+    isExpanded = false;
+    serachController.clear();
+    selectedSort = sortName;
+    if (isFood) {
+      getFoodDiscover(
+        isInitial: true,
+        sort: sortName,
+      );
+      sortNameFood = title;
+    } else {
+      getVendorDiscover(
+        loadingFromPagination: true,
+        sort: sortName,
+      );
+      sortNameVendor = title;
+    }
+    emit(UpdateSort());
+  }
+
+  void dispose() {
+    serachController.dispose();
+    super.close();
   }
 }

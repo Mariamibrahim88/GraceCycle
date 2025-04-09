@@ -14,151 +14,85 @@ import 'package:grace_cycle/features/discover/presentation/views/widgets/list_ti
 import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_by_container.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_container.dart';
 
-class DiscoverViewBody extends StatefulWidget {
+class DiscoverViewBody extends StatelessWidget {
   const DiscoverViewBody({super.key});
-
-  @override
-  _HomeViewBodyState createState() => _HomeViewBodyState();
-}
-
-class _HomeViewBodyState extends State<DiscoverViewBody> {
-  bool isFilterVisible = false;
-  bool isExpanded = false;
-  bool isFood = true;
-  String? nameOfSort;
-  String? title;
-  String? sortNameFood;
-  String? sortNameVendor;
-
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 15.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+    return BlocBuilder<DiscoverCubit, DiscoverState>(
+      builder: (context, state) {
+        final discoverCubit = BlocProvider.of<DiscoverCubit>(context);
+        return DefaultTabController(
+          length: 2,
+          child: Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 15.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Expanded(
-                      child: CustomSearchTextField(),
+                    Row(
+                      children: [
+                        const Expanded(
+                          child: CustomSearchTextField(),
+                        ),
+                        horizontalSpace(10),
+                        GestureDetector(
+                          onTap: () {
+                            discoverCubit.changeIsFilterVisible();
+                          },
+                          child: const FilterIcon(),
+                        ),
+                      ],
                     ),
-                    horizontalSpace(10),
+                    verticalSpace(10),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          isFilterVisible = !isFilterVisible;
-                        });
+                        discoverCubit.changeIsExpanded();
                       },
-                      child: const FilterIcon(),
+                      child: SortByContainer(
+                        isExpanded: discoverCubit.isExpanded,
+                        nameOfSort: discoverCubit.nameOfSort ?? 'Choose Sort',
+                      ),
+                    ),
+                    verticalSpace(20),
+                    TabBar(
+                      onTap: (index) {
+                        discoverCubit.changeTap(index);
+                      },
+                      labelStyle: AppTextStyles.nunito700Size16GreenButt,
+                      unselectedLabelStyle: AppTextStyles.nunito700Size16Black,
+                      indicatorColor: AppColors.greenButt,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      tabs: const [
+                        Tab(text: 'Food'),
+                        Tab(text: 'Vendor'),
+                      ],
+                    ),
+                    verticalSpace(20),
+                    Expanded(
+                      child: IndexedStack(
+                        index: discoverCubit.isFood ? 0 : 1,
+                        children: const [
+                          FoodDiscoverList(),
+                          DiscoverVendorsList(),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-                verticalSpace(10),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isExpanded = !isExpanded;
-                    });
-                  },
-                  child: SortByContainer(
-                    isExpanded: isExpanded,
-                    nameOfSort: title ?? 'Choose Sort',
+              ),
+              if (discoverCubit.isExpanded)
+                SortContainer(
+                  isFood: discoverCubit.isFood,
+                  sortOptions: getSortOptions(
+                    context,
                   ),
                 ),
-                verticalSpace(20),
-                TabBar(
-                  onTap: (index) {
-                    setState(() {
-                      isFood = index == 0;
-                      title = index == 0 ? sortNameFood : sortNameVendor;
-                    });
-                  },
-                  labelStyle: AppTextStyles.nunito700Size16GreenButt,
-                  unselectedLabelStyle: AppTextStyles.nunito700Size16Black,
-                  indicatorColor: AppColors.greenButt,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  tabs: const [
-                    Tab(text: 'Food'),
-                    Tab(text: 'Vendor'),
-                  ],
-                ),
-                verticalSpace(20),
-                Expanded(
-                  child: IndexedStack(
-                    index: isFood ? 0 : 1,
-                    children: const [
-                      FoodDiscoverList(),
-                      DiscoverVendorsList(),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              if (discoverCubit.isFilterVisible) const FilterContainer(),
+            ],
           ),
-          if (isExpanded)
-            SortContainer(
-              isFood: isFood,
-              sortOptions: getSortOptions(),
-            ),
-          if (isFilterVisible) const FilterContainer(),
-        ],
-      ),
+        );
+      },
     );
-  }
-
-  List<ListTileItemOfSort> getSortOptions() {
-    if (isFood) {
-      return [
-        ListTileItemOfSort(
-            title: 'Food Rating',
-            onTap: () => updateSort('Food Rating', 'rating')),
-        ListTileItemOfSort(
-            title: 'Discount Rate',
-            onTap: () => updateSort('Discount Rate', 'discount')),
-        ListTileItemOfSort(
-            title: 'Most Popular',
-            onTap: () => updateSort('Most Popular', 'most Popular')),
-        ListTileItemOfSort(
-            title: 'Price', onTap: () => updateSort('Price', 'price')),
-      ];
-    } else {
-      return [
-        ListTileItemOfSort(
-            title: 'Vendor Rating',
-            onTap: () => updateSort('Vendor Rating', 'rating')),
-        ListTileItemOfSort(
-            title: 'Most Popular',
-            onTap: () => updateSort('Most Popular', 'most popular')),
-        ListTileItemOfSort(
-            title: 'Distance', onTap: () => updateSort('Distance', 'distance')),
-      ];
-    }
-  }
-
-  void updateSort(String newTitle, String sortName) {
-    setState(() {
-      title = newTitle;
-      nameOfSort = sortName;
-      isExpanded = false;
-    });
-
-    BlocProvider.of<DiscoverCubit>(context).selectedSort = sortName;
-    if (isFood) {
-      BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
-        isInitial: true,
-        sort: sortName,
-      );
-      sortNameFood = title;
-    } else {
-      BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
-        loadingFromPagination: true,
-        sort: sortName,
-      );
-      sortNameVendor = title;
-    }
   }
 }

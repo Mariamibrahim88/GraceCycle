@@ -28,7 +28,7 @@ class FavFoodList extends StatelessWidget {
             ),
           );
         }
-        return const SizedBox();
+        return const CustomListOfShimmerFavVer();
       },
     );
   }

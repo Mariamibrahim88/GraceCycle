@@ -34,3 +34,11 @@ final class DiscoverVendorPaginationFailure extends DiscoverState {
   final String errorMessage;
   DiscoverVendorPaginationFailure(this.errorMessage);
 }
+
+final class IsFilterVisible extends DiscoverState {}
+
+final class UpdateSort extends DiscoverState {}
+
+final class IsExpanded extends DiscoverState {}
+
+final class ChangeTap extends DiscoverState {}

@@ -33,7 +33,7 @@ class FavVendorsList extends StatelessWidget {
               ),
             );
           }
-          return const SizedBox();
+          return const CustomListOfShimmerFavVer();
         },
       ),
     );
