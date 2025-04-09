@@ -3,12 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
-import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_search_text_field.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_container.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_icon.dart';
-import 'package:grace_cycle/features/discover/presentation/views/widgets/list_tile_item_of_sort.dart';
-import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_by_container.dart';
-import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_container.dart';
+import 'package:grace_cycle/features/favorites/presentation/views/widgets/custom_search_for_fav.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_food_list.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_vendors_list.dart';
 
@@ -36,9 +33,9 @@ class _FavoritesViewBodyState extends State<FavoritesViewBody> {
               children: [
                 Row(
                   children: [
-                    // const Expanded(
-                    //   child: CustomSearchTextField(),
-                    // ),
+                    const Expanded(
+                      child: CustomSearchTextFieldFav(),
+                    ),
                     horizontalSpace(10),
                     GestureDetector(
                       onTap: () {

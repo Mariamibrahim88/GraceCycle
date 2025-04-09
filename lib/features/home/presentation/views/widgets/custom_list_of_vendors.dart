@@ -24,7 +24,7 @@ class CustomListOfVendors extends StatelessWidget {
             return const CustomListOfShimmerHor();
           }
           if (vendorMenuModel == null) {
-            return const SizedBox();
+            return const CustomListOfShimmerHor();
           }
           return SingleChildScrollView(
             scrollDirection: Axis.vertical,

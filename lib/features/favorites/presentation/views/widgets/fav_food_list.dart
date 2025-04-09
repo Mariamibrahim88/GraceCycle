@@ -21,8 +21,7 @@ class FavFoodList extends StatelessWidget {
           return ListView.builder(
             itemCount: state.favfoodModel.length,
             itemBuilder: (context, index) => Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
               child: FavoriteFoodCard(
                 favFoodModel: state.favfoodModel[index],
               ),

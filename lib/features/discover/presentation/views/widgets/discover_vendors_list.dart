@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grace_cycle/core/service/service_locator.dart';
-import 'package:grace_cycle/core/utils/app_text_styles.dart';
-import 'package:grace_cycle/core/widgets/custom_list_of_shimmer_ver.dart';
 import 'package:grace_cycle/core/widgets/custom_no_found_items.dart';
 import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
+import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_list_of_shimmer_ver.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/vendor_card.dart';
 
 class DiscoverVendorsList extends StatelessWidget {
@@ -15,14 +13,11 @@ class DiscoverVendorsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DiscoverCubit, DiscoverState>(
-      // buildWhen: (previous, current) {
-      //   return current is! DiscoverVendorLoading;
-      // },
       buildWhen: (previous, current) =>
           current is DiscoverVendorSuccess || current is DiscoverVendorLoading,
       builder: (context, state) {
         if (state is DiscoverVendorLoading) {
-          return const CustomListOfShimmerFavVer();
+          return const CustomListOfShimmerVer();
         } else if (state is DiscoverVendorSuccess) {
           return NotificationListener<ScrollNotification>(
             onNotification: (notification) {
@@ -63,12 +58,7 @@ class DiscoverVendorsList extends StatelessWidget {
           );
         }
         // return const SizedBox();
-        return Center(
-          child: Text(
-            'No Vendors Found',
-            style: AppTextStyles.nunito700Size16Black,
-          ),
-        );
+        return const CustomListOfShimmerVer();
       },
     );
   }

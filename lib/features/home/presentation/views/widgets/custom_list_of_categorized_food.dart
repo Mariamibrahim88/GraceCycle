@@ -25,7 +25,7 @@ class ListOfCategorizedFood extends StatelessWidget {
         }
 
         if (foodMenuModel == null) {
-          return const SizedBox();
+          return const CustomListOfShimmerHor();
         }
 
         return SingleChildScrollView(

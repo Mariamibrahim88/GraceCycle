@@ -22,7 +22,7 @@ class FavFoodCardInfo extends StatelessWidget {
         Text(
           favFoodModel.name,
           style: TextStyle(
-            fontSize: 16.sp,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w700,
             color: Colors.black,
           ),
