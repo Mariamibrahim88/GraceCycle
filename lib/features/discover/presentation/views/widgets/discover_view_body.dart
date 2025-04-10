@@ -51,7 +51,7 @@ class DiscoverViewBody extends StatelessWidget {
                       },
                       child: SortByContainer(
                         isExpanded: discoverCubit.isExpanded,
-                        nameOfSort: discoverCubit.nameOfSort ?? 'Choose Sort',
+                        nameOfSort: discoverCubit.title ?? 'Choose Sort',
                       ),
                     ),
                     verticalSpace(20),

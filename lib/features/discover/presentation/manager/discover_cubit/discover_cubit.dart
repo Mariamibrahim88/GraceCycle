@@ -118,7 +118,7 @@ class DiscoverCubit extends Cubit<DiscoverState> {
 
   void changeTap(int index) {
     isFood = index == 0;
-    nameOfSort = isFood ? sortNameFood : sortNameVendor;
+    title = isFood ? sortNameFood : sortNameVendor;
     serachController.clear();
     emit(ChangeTap());
   }
