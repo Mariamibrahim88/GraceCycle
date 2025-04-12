@@ -35,6 +35,18 @@ final class DiscoverVendorPaginationFailure extends DiscoverState {
   DiscoverVendorPaginationFailure(this.errorMessage);
 }
 
+final class VendorTypesSucess extends DiscoverState {
+  final List<VendorsTypeModel> vendorTypes;
+  VendorTypesSucess(this.vendorTypes);
+}
+
+final class VendorTypesLoading extends DiscoverState {}
+
+final class VendorTypesFailure extends DiscoverState {
+  final String errorMessage;
+  VendorTypesFailure(this.errorMessage);
+}
+
 final class IsFilterVisible extends DiscoverState {}
 
 final class UpdateSort extends DiscoverState {}

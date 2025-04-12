@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/features/discover/data/models/vendors_type_model.dart';
 import 'package:grace_cycle/features/discover/data/repos/discover_repo.dart';
 import 'package:grace_cycle/features/home/data/models/food_menu_model.dart';
 import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
@@ -25,6 +26,9 @@ class DiscoverCubit extends Cubit<DiscoverState> {
   String? title;
   String? sortNameFood;
   String? sortNameVendor;
+  bool hasMoreVendors = true;
+  List<VendorsTypeModel> vendorTypes = [];
+  int? selectedVendorTypeId;
 
   // int pgeIndex = 1;
 
@@ -35,17 +39,21 @@ class DiscoverCubit extends Cubit<DiscoverState> {
     String? sort,
     String? search,
   }) async {
+    //if (isLoadingVendors) return;
+
     if (loadingFromPagination) {
+      emit(DiscoverVendorPaginationLoading());
+    } else {
       pageIndexForVendors = 1;
       vendorList.clear();
       emit(DiscoverVendorLoading());
     }
-    if (isLoadingVendors) return;
+
     isLoadingVendors = true;
-    if (pageIndexForVendors == 1) emit(DiscoverVendorLoading());
+
     final response = await discoverRepo.getVendorDiscover(
       pageIndexForVendors,
-      vendorTypeId,
+      vendorTypeId ?? selectedVendorTypeId,
       pageSize,
       sort ?? selectedSort,
       search ?? serachController.text,
@@ -59,13 +67,46 @@ class DiscoverCubit extends Cubit<DiscoverState> {
         if (r.data.isNotEmpty) {
           vendorList.addAll(r.data);
           pageIndexForVendors++;
-          emit(DiscoverVendorSuccess(vendorList));
         } else {
-          emit(DiscoverVendorSuccess(vendorList));
+          hasMoreVendors = false;
         }
+        emit(DiscoverVendorSuccess(vendorList));
       },
     );
+
     isLoadingVendors = false;
+
+    // if (loadingFromPagination) {
+    //   pageIndexForVendors = 1;
+    //   vendorList.clear();
+    //   emit(DiscoverVendorLoading());
+    // }
+    // if (isLoadingVendors) return;
+    // isLoadingVendors = true;
+    // if (pageIndexForVendors == 1) emit(DiscoverVendorLoading());
+    // final response = await discoverRepo.getVendorDiscover(
+    //   pageIndexForVendors,
+    //   vendorTypeId,
+    //   pageSize,
+    //   sort ?? selectedSort,
+    //   search ?? serachController.text,
+    // );
+
+    // response.fold(
+    //   (l) {
+    //     emit(DiscoverVendorFailure(l));
+    //   },
+    //   (r) {
+    //     if (r.data.isNotEmpty) {
+    //       vendorList.addAll(r.data);
+    //       pageIndexForVendors++;
+    //       emit(DiscoverVendorSuccess(vendorList));
+    //     } else {
+    //       emit(DiscoverVendorSuccess(vendorList));
+    //     }
+    //   },
+    // );
+    // isLoadingVendors = false;
   }
 
   Future<void> getFoodDiscover(
@@ -118,7 +159,7 @@ class DiscoverCubit extends Cubit<DiscoverState> {
 
   void changeTap(int index) {
     isFood = index == 0;
-    nameOfSort = isFood ? sortNameFood : sortNameVendor;
+    title = isFood ? sortNameFood : sortNameVendor;
     serachController.clear();
     emit(ChangeTap());
   }
@@ -137,12 +178,26 @@ class DiscoverCubit extends Cubit<DiscoverState> {
       sortNameFood = title;
     } else {
       getVendorDiscover(
-        loadingFromPagination: true,
+        loadingFromPagination: false,
         sort: sortName,
       );
       sortNameVendor = title;
     }
     emit(UpdateSort());
+  }
+
+  Future<void> getVendorTypes() async {
+    emit(VendorTypesLoading());
+    final response = await discoverRepo.getVendorTypes();
+
+    response.fold(
+      (l) {
+        emit(VendorTypesFailure(l));
+      },
+      (r) {
+        emit(VendorTypesSucess(r));
+      },
+    );
   }
 
   void dispose() {

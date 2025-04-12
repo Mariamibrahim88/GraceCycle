@@ -39,6 +39,9 @@ class DiscoverViewBody extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             discoverCubit.changeIsFilterVisible();
+                            if (discoverCubit.isFilterVisible) {
+                              discoverCubit.getVendorTypes();
+                            }
                           },
                           child: const FilterIcon(),
                         ),
@@ -51,7 +54,7 @@ class DiscoverViewBody extends StatelessWidget {
                       },
                       child: SortByContainer(
                         isExpanded: discoverCubit.isExpanded,
-                        nameOfSort: discoverCubit.nameOfSort ?? 'Choose Sort',
+                        nameOfSort: discoverCubit.title ?? 'Choose Sort',
                       ),
                     ),
                     verticalSpace(20),
@@ -88,7 +91,10 @@ class DiscoverViewBody extends StatelessWidget {
                     context,
                   ),
                 ),
-              if (discoverCubit.isFilterVisible) const FilterContainer(),
+              if (discoverCubit.isFilterVisible)
+                FilterContainer(
+                  isFood: discoverCubit.isFood,
+                ),
             ],
           ),
         );

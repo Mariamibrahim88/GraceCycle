@@ -24,14 +24,14 @@ class CustomSearchTextField extends StatelessWidget {
             );
             BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
               search: value,
-              loadingFromPagination: true,
+              loadingFromPagination: false,
             );
           } else {
             BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
               isInitial: true,
             );
             BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
-              loadingFromPagination: true,
+              loadingFromPagination: false,
             );
           }
         },
@@ -43,14 +43,14 @@ class CustomSearchTextField extends StatelessWidget {
             );
             BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
               search: value,
-              loadingFromPagination: true,
+              loadingFromPagination: false,
             );
           } else {
             BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
               isInitial: true,
             );
             BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
-              loadingFromPagination: true,
+              loadingFromPagination: false,
             );
           }
         },

@@ -4,6 +4,7 @@ import 'package:grace_cycle/core/errors/exceptions.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/features/discover/data/models/discover_food_model.dart';
 import 'package:grace_cycle/features/discover/data/models/vendors_discover_model.dart';
+import 'package:grace_cycle/features/discover/data/models/vendors_type_model.dart';
 
 class DiscoverRepo {
   Future<Either<String, DiscoverVendorsModel>> getVendorDiscover(
@@ -53,6 +54,21 @@ class DiscoverRepo {
           });
 
       return Right(DiscoverFoodModel.fromJson(response));
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    }
+  }
+
+  Future<Either<String, List<VendorsTypeModel>>> getVendorTypes() async {
+    try {
+      final response = await sl<ApiConsumer>().get(
+          'https://gracecycleapi.azurewebsites.net/api/Vendors/vendortypes');
+
+      List<dynamic> dataList = response;
+      List<VendorsTypeModel> vendorsTypes =
+          dataList.map((json) => VendorsTypeModel.fromJson(json)).toList();
+
+      return Right(vendorsTypes);
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
     }
