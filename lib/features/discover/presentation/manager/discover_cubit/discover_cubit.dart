@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/features/discover/data/models/vendors_type_model.dart';
 import 'package:grace_cycle/features/discover/data/repos/discover_repo.dart';
 import 'package:grace_cycle/features/home/data/models/food_menu_model.dart';
 import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
@@ -26,6 +27,8 @@ class DiscoverCubit extends Cubit<DiscoverState> {
   String? sortNameFood;
   String? sortNameVendor;
   bool hasMoreVendors = true;
+  List<VendorsTypeModel> vendorTypes = [];
+  int? selectedVendorTypeId;
 
   // int pgeIndex = 1;
 
@@ -50,7 +53,7 @@ class DiscoverCubit extends Cubit<DiscoverState> {
 
     final response = await discoverRepo.getVendorDiscover(
       pageIndexForVendors,
-      vendorTypeId,
+      vendorTypeId ?? selectedVendorTypeId,
       pageSize,
       sort ?? selectedSort,
       search ?? serachController.text,
@@ -181,6 +184,20 @@ class DiscoverCubit extends Cubit<DiscoverState> {
       sortNameVendor = title;
     }
     emit(UpdateSort());
+  }
+
+  Future<void> getVendorTypes() async {
+    emit(VendorTypesLoading());
+    final response = await discoverRepo.getVendorTypes();
+
+    response.fold(
+      (l) {
+        emit(VendorTypesFailure(l));
+      },
+      (r) {
+        emit(VendorTypesSucess(r));
+      },
+    );
   }
 
   void dispose() {
