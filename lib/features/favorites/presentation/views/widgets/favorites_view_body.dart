@@ -10,7 +10,9 @@ import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_fo
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_vendors_list.dart';
 
 class FavoritesViewBody extends StatefulWidget {
-  const FavoritesViewBody({super.key});
+  const FavoritesViewBody({
+    super.key,
+  });
 
   @override
   State<FavoritesViewBody> createState() => _FavoritesViewBodyState();
@@ -104,7 +106,10 @@ class _FavoritesViewBodyState extends State<FavoritesViewBody> {
           //       ),
           //     ],
           //   ),
-          //if (isFilterVisible) const FilterContainer(),
+          if (isFilterVisible)
+            FilterContainer(
+              isFood: true,
+            ),
         ],
       ),
     );
