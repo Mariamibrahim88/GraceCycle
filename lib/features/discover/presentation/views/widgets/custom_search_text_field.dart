@@ -20,7 +20,7 @@ class CustomSearchTextField extends StatelessWidget {
           if (value.trim().isNotEmpty) {
             BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
               search: value,
-              isInitial: true,
+              isInitial: false,
             );
             BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
               search: value,
@@ -28,7 +28,7 @@ class CustomSearchTextField extends StatelessWidget {
             );
           } else {
             BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
-              isInitial: true,
+              isInitial: false,
             );
             BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
               loadingFromPagination: false,
@@ -39,7 +39,7 @@ class CustomSearchTextField extends StatelessWidget {
           if (value.trim().isNotEmpty) {
             BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
               search: value,
-              isInitial: true,
+              isInitial: false,
             );
             BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
               search: value,
@@ -47,7 +47,7 @@ class CustomSearchTextField extends StatelessWidget {
             );
           } else {
             BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
-              isInitial: true,
+              isInitial: false,
             );
             BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
               loadingFromPagination: false,

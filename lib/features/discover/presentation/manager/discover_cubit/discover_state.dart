@@ -40,6 +40,13 @@ final class VendorTypesSucess extends DiscoverState {
   VendorTypesSucess(this.vendorTypes);
 }
 
+final class DiscoverFoodPaginationFailure extends DiscoverState {
+  final String errorMessage;
+  DiscoverFoodPaginationFailure(this.errorMessage);
+}
+
+final class DiscoverFoodPaginationLoading extends DiscoverState {}
+
 final class VendorTypesLoading extends DiscoverState {}
 
 final class VendorTypesFailure extends DiscoverState {

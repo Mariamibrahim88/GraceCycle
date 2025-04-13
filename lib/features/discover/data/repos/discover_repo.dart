@@ -80,8 +80,11 @@ class DiscoverRepo {
       final response = await sl<ApiConsumer>().get(
         'https://gracecycleapi.azurewebsites.net/api/categories',
       );
+      List<dynamic> dataList = response;
+      List<GetCategoriesModel> categories =
+          dataList.map((json) => GetCategoriesModel.fromJson(json)).toList();
       return right(
-        (response as List).map((e) => GetCategoriesModel.fromJson(e)).toList(),
+        categories,
       );
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);

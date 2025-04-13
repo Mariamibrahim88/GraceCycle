@@ -34,8 +34,7 @@ class VendorExpansionTile extends StatelessWidget {
                         title: state.vendorTypes[index].type,
                       ),
                       onTap: () {
-                        
-                       final cubit = BlocProvider.of<DiscoverCubit>(context);
+                        final cubit = BlocProvider.of<DiscoverCubit>(context);
 
                         cubit.selectedVendorTypeId =
                             state.vendorTypes[index].id;
@@ -43,7 +42,7 @@ class VendorExpansionTile extends StatelessWidget {
                         cubit.getVendorDiscover(
                           loadingFromPagination: false,
                         );
-                       
+                        cubit.changeIsFilterVisible();
                       },
                     );
                   });

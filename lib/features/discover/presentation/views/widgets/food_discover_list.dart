@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/core/widgets/custom_loading.dart';
 import 'package:grace_cycle/core/widgets/custom_no_found_items.dart';
 import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_list_of_shimmer_ver.dart';
@@ -12,35 +13,71 @@ class FoodDiscoverList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<DiscoverCubit, DiscoverState>(
       buildWhen: (previous, current) =>
-          current is DiscoverFoodSuccess || current is DiscoverFoodLoading,
+          current is DiscoverFoodSuccess ||
+          current is DiscoverFoodLoading ||
+          current is DiscoverFoodPaginationLoading ||
+          current is DiscoverFoodFailure,
       builder: (context, state) {
-        if (state is DiscoverFoodLoading) {
+        final discoverCubit = BlocProvider.of<DiscoverCubit>(context);
+        if (state is DiscoverFoodLoading &&
+            discoverCubit.allFoodItems.isEmpty) {
           return const CustomListOfShimmerVer();
-        } else if (state is DiscoverFoodSuccess) {
+        } else if (state is DiscoverFoodSuccess ||
+            state is DiscoverFoodPaginationLoading &&
+                discoverCubit.allFoodItems.isNotEmpty) {
           return NotificationListener<ScrollNotification>(
             onNotification: (notification) {
-              if (notification.metrics.pixels ==
+              if (notification.metrics.pixels >=
                       notification.metrics.maxScrollExtent &&
-                  notification is ScrollUpdateNotification) {
-                DiscoverCubit cubit = BlocProvider.of(context);
-                cubit.getFoodDiscover(
-                  isInitial: false,
+                  notification is ScrollUpdateNotification &&
+                  !discoverCubit.isLoadingMore) {
+                discoverCubit.getFoodDiscover(
+                  isInitial: true,
                 );
               }
-              return true;
+              return false;
             },
-            child: state.discoverFoodModel.isEmpty
-                ? const CustomNoFoundItems(title: 'No food found!')
-                : ListView.builder(
-                    itemCount: state.discoverFoodModel.length,
-                    itemBuilder: (context, index) => Padding(
+            child: ListView.builder(
+                itemCount: discoverCubit.allFoodItems.length + 1,
+                itemBuilder: (context, index) {
+                  if (index < discoverCubit.allFoodItems.length) {
+                    return Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8.0, vertical: 12),
                       child: FoodCard(
-                        foodItemModel: state.discoverFoodModel[index],
+                        foodItemModel: discoverCubit.allFoodItems[index],
                       ),
-                    ),
-                  ),
+                    );
+                  } else {
+                    if (discoverCubit.isLoadingMore) {
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          child: CustomLoading(),
+                        ),
+                      );
+                    } else if (!discoverCubit.hasMoreFood) {
+                      if (discoverCubit.serachController.text.isNotEmpty &&
+                          discoverCubit.allFoodItems.isEmpty) {
+                        return SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.5,
+                          child: const CustomNoFoundItems(
+                            title: 'No foods found!',
+                          ),
+                        );
+                      } else {
+                        return const Center(
+                          child: Text(
+                            'No more foods',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        );
+                      }
+                    } else {
+                      return const CustomListOfShimmerVer();
+                    }
+                  }
+                }),
           );
         }
         return const CustomListOfShimmerVer();

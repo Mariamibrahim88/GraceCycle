@@ -65,8 +65,11 @@ class DiscoverVendorsList extends StatelessWidget {
                     } else if (!discoverCubit.hasMoreVendors) {
                       if (discoverCubit.serachController.text.isNotEmpty &&
                           discoverCubit.vendorList.isEmpty) {
-                        return const CustomNoFoundItems(
-                          title: 'No vendors found!',
+                        return SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.5,
+                          child: const CustomNoFoundItems(
+                            title: 'No vendors found!',
+                          ),
                         );
                       } else {
                         return const Center(
@@ -77,7 +80,7 @@ class DiscoverVendorsList extends StatelessWidget {
                         );
                       }
                     } else {
-                      return const SizedBox.shrink();
+                      return const SizedBox();
                     }
                   }
                 }),

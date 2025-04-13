@@ -23,6 +23,7 @@ class DiscoverView extends StatelessWidget {
             cubit.getFoodDiscover(isInitial: true);
             cubit.getVendorDiscover(loadingFromPagination: true);
             cubit.getVendorTypes();
+            cubit.getCategories();
             return cubit;
           }),
         ],
