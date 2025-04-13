@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/features/discover/data/models/get_categories_model.dart';
 import 'package:grace_cycle/features/discover/data/repos/discover_repo.dart';
 import 'package:grace_cycle/features/home/data/models/food_menu_model.dart';
 import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
@@ -143,6 +144,15 @@ class DiscoverCubit extends Cubit<DiscoverState> {
       sortNameVendor = title;
     }
     emit(UpdateSort());
+  }
+
+  void getCategories() async {
+    emit(GetCategoriesLoading());
+    final response = await discoverRepo.getCategories();
+    response.fold(
+      (l) => emit(GetCategoriesFailure(l)),
+      (r) => emit(GetCategoriesSuccess(r)),
+    );
   }
 
   void dispose() {

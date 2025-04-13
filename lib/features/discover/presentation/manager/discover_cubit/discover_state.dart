@@ -42,3 +42,15 @@ final class UpdateSort extends DiscoverState {}
 final class IsExpanded extends DiscoverState {}
 
 final class ChangeTap extends DiscoverState {}
+
+final class GetCategoriesLoading extends DiscoverState {}
+
+final class GetCategoriesSuccess extends DiscoverState {
+  final List<GetCategoriesModel> categoriesList;
+  GetCategoriesSuccess(this.categoriesList);
+}
+
+final class GetCategoriesFailure extends DiscoverState {
+  final String errorMessage;
+  GetCategoriesFailure(this.errorMessage);
+}

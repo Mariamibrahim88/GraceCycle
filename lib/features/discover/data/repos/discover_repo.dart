@@ -3,6 +3,7 @@ import 'package:grace_cycle/core/database/remote/api_consumer.dart';
 import 'package:grace_cycle/core/errors/exceptions.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/features/discover/data/models/discover_food_model.dart';
+import 'package:grace_cycle/features/discover/data/models/get_categories_model.dart';
 import 'package:grace_cycle/features/discover/data/models/vendors_discover_model.dart';
 
 class DiscoverRepo {
@@ -53,6 +54,19 @@ class DiscoverRepo {
           });
 
       return Right(DiscoverFoodModel.fromJson(response));
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    }
+  }
+
+  Future<Either<String, List<GetCategoriesModel>>> getCategories() async {
+    try {
+      final response = await sl<ApiConsumer>().get(
+        'https://gracecycleapi.azurewebsites.net/api/categories',
+      );
+      return right(
+        (response as List).map((e) => GetCategoriesModel.fromJson(e)).toList(),
+      );
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
     }

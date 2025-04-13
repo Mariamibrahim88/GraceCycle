@@ -104,7 +104,7 @@ class _FavoritesViewBodyState extends State<FavoritesViewBody> {
           //       ),
           //     ],
           //   ),
-          if (isFilterVisible) const FilterContainer(),
+          //if (isFilterVisible) const FilterContainer(),
         ],
       ),
     );
