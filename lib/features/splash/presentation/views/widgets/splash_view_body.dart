@@ -6,6 +6,7 @@ import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
+import 'package:grace_cycle/core/widgets/check_token_expired.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -69,18 +70,17 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToOnBourding() {
     Future.delayed(const Duration(seconds: 6)).then((value) async {
-      // ignore: use_build_context_synchronously
-      // await sl<CacheHelper>().readSecureData(key: ApiKeys.email) == null &&
-      //             await sl<CacheHelper>().readSecureData(key: ApiKeys.name) ==
-      //                 null ||
-      await sl<CacheHelper>().getData(key: ApiKeys.authorization) == null
-          ? navigate(
-              context: context,
-              route:
-                  sl<CacheHelper>().getDataBool(key: ApiKeys.onBourding) == true
-                      ? Routes.signup
-                      : Routes.onBourding)
-          : navigate(context: context, route: Routes.navBar);
+      final token = await sl<CacheHelper>().getData(key: ApiKeys.authorization);
+      final didFinishOnboarding =
+          sl<CacheHelper>().getDataBool(key: ApiKeys.onBourding) == true;
+      if (token == null || isTokenExpired(token)) {
+        navigate(
+          context: context,
+          route: didFinishOnboarding ? Routes.signup : Routes.onBourding,
+        );
+      } else {
+        navigate(context: context, route: Routes.navBar);
+      }
     });
   }
 }

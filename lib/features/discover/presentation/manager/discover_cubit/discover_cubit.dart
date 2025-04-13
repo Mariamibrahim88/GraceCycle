@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/features/discover/data/models/vendors_type_model.dart';
+import 'package:grace_cycle/features/discover/data/models/get_categories_model.dart';
 import 'package:grace_cycle/features/discover/data/repos/discover_repo.dart';
 import 'package:grace_cycle/features/home/data/models/food_menu_model.dart';
 import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
@@ -27,8 +28,11 @@ class DiscoverCubit extends Cubit<DiscoverState> {
   String? sortNameFood;
   String? sortNameVendor;
   bool hasMoreVendors = true;
+  bool hasMoreFood = true;
   List<VendorsTypeModel> vendorTypes = [];
   int? selectedVendorTypeId;
+  int? selectedCategoryId;
+  int? selectedMaxPrice;
 
   // int pgeIndex = 1;
 
@@ -109,6 +113,43 @@ class DiscoverCubit extends Cubit<DiscoverState> {
     // isLoadingVendors = false;
   }
 
+  // Future<void> getFoodDiscover(
+  //     {bool isInitial = false,
+  //     int pageSize = 10,
+  //     int? categoryId,
+  //     int? maxPrice,
+  //     String? sort,
+  //     String? search}) async {
+  //   if (isInitial) {
+  //     _pageIndex = 1;
+  //     allFoodItems.clear();
+  //     emit(DiscoverFoodLoading());
+  //   }
+
+  //   if (isLoadingMore) return;
+
+  //   isLoadingMore = true;
+  //   if (_pageIndex == 1) emit(DiscoverFoodLoading());
+  //   final result = await discoverRepo.getFoodDiscover(
+  //       _pageIndex,
+  //       pageSize,
+  //       categoryId ?? selectedCategoryId,
+  //       maxPrice ?? selectedMaxPrice,
+  //       sort ?? selectedSort,
+  //       search ?? serachController.text);
+
+  //   result.fold((ifLeft) => emit(DiscoverFoodFailure(ifLeft)), (ifRight) {
+  //     if (ifRight.data.isNotEmpty) {
+  //       allFoodItems.addAll(ifRight.data);
+  //       _pageIndex++;
+
+  //       emit(DiscoverFoodSuccess(allFoodItems));
+  //     } else {
+  //       emit(DiscoverFoodSuccess(allFoodItems));
+  //     }
+  //   });
+  //   isLoadingMore = false;
+  // }
   Future<void> getFoodDiscover(
       {bool isInitial = false,
       int pageSize = 10,
@@ -117,20 +158,24 @@ class DiscoverCubit extends Cubit<DiscoverState> {
       String? sort,
       String? search}) async {
     if (isInitial) {
+      // _pageIndex = 1;
+      // allFoodItems.clear();
+      emit(DiscoverFoodPaginationLoading());
+    } else {
       _pageIndex = 1;
       allFoodItems.clear();
       emit(DiscoverFoodLoading());
     }
 
-    if (isLoadingMore) return;
+    // if (isLoadingMore) return;
 
     isLoadingMore = true;
-    if (_pageIndex == 1) emit(DiscoverFoodLoading());
+    // if (_pageIndex == 1) emit(DiscoverFoodLoading());
     final result = await discoverRepo.getFoodDiscover(
         _pageIndex,
         pageSize,
-        categoryId,
-        maxPrice,
+        categoryId ?? selectedCategoryId,
+        maxPrice ?? selectedMaxPrice,
         sort ?? selectedSort,
         search ?? serachController.text);
 
@@ -139,16 +184,24 @@ class DiscoverCubit extends Cubit<DiscoverState> {
         allFoodItems.addAll(ifRight.data);
         _pageIndex++;
 
-        emit(DiscoverFoodSuccess(allFoodItems));
+        // emit(DiscoverFoodSuccess(allFoodItems));
       } else {
-        emit(DiscoverFoodSuccess(allFoodItems));
+        hasMoreFood = false;
       }
+      emit(DiscoverFoodSuccess(allFoodItems));
     });
     isLoadingMore = false;
   }
 
   void changeIsFilterVisible() {
     isFilterVisible = !isFilterVisible;
+    if (isFilterVisible) {
+      if (isFood) {
+        getCategories();
+      } else {
+        getVendorTypes();
+      }
+    }
     emit(IsFilterVisible());
   }
 
@@ -161,6 +214,11 @@ class DiscoverCubit extends Cubit<DiscoverState> {
     isFood = index == 0;
     title = isFood ? sortNameFood : sortNameVendor;
     serachController.clear();
+    if (isFood) {
+      getFoodDiscover(isInitial: false);
+    } else {
+      getVendorDiscover(loadingFromPagination: false);
+    }
     emit(ChangeTap());
   }
 
@@ -172,7 +230,7 @@ class DiscoverCubit extends Cubit<DiscoverState> {
     selectedSort = sortName;
     if (isFood) {
       getFoodDiscover(
-        isInitial: true,
+        isInitial: false,
         sort: sortName,
       );
       sortNameFood = title;
@@ -197,6 +255,15 @@ class DiscoverCubit extends Cubit<DiscoverState> {
       (r) {
         emit(VendorTypesSucess(r));
       },
+    );
+  }
+
+  Future<void> getCategories() async {
+    emit(GetCategoriesLoading());
+    final response = await discoverRepo.getCategories();
+    response.fold(
+      (l) => emit(GetCategoriesFailure(l)),
+      (r) => emit(GetCategoriesSuccess(r)),
     );
   }
 
