@@ -26,7 +26,12 @@ class AssetFavCard extends StatelessWidget {
             ),
           ),
         ),
-        imageUrl: imageUrl,
+        imageUrl: optimizeCloudinaryImage(
+          url: imageUrl,
+          width: 110.w.toInt(),
+          height: 90.h.toInt(),
+          quality: 90,
+        ),
         placeholder: (context, url) => CustomShimmerImage(
           height: 95.h,
           width: 110.w,
@@ -36,4 +41,19 @@ class AssetFavCard extends StatelessWidget {
       ),
     );
   }
+}
+
+String optimizeCloudinaryImage({
+  required String url,
+  int width = 400,
+  int height = 300,
+  int quality = 90,
+}) {
+  const segment = '/upload/';
+
+  if (!url.contains(segment)) return url;
+
+  final transformation = 'w_$width,h_$height,c_fill,q_$quality,f_auto';
+
+  return url.replaceFirst(segment, '$segment$transformation/');
 }

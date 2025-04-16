@@ -38,6 +38,7 @@ class FoodDiscoverList extends StatelessWidget {
               return false;
             },
             child: ListView.builder(
+                // shrinkWrap: true,
                 itemCount: discoverCubit.allFoodItems.length + 1,
                 itemBuilder: (context, index) {
                   if (index < discoverCubit.allFoodItems.length) {
@@ -74,7 +75,7 @@ class FoodDiscoverList extends StatelessWidget {
                         );
                       }
                     } else {
-                      return const CustomListOfShimmerVer();
+                      return const SizedBox();
                     }
                   }
                 }),

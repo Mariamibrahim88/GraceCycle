@@ -39,12 +39,6 @@ class DiscoverViewBody extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             discoverCubit.changeIsFilterVisible();
-                            // Future.delayed(Duration.zero, () {
-                            //   if (discoverCubit.isFilterVisible) {
-                            //     discoverCubit.getCategories();
-                            //     discoverCubit.getVendorTypes();
-                            //   }
-                            // });
                           },
                           child: const FilterIcon(),
                         ),
