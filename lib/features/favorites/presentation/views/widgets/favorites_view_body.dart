@@ -4,11 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
-import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_container.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/filter_icon.dart';
+import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_container.dart';
 import 'package:grace_cycle/features/favorites/presentation/manager/cubit/get_fav_cubit.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/custom_search_text_field_fav.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_food_list.dart';
+import 'package:grace_cycle/features/favorites/presentation/views/widgets/filter_fav_container.dart';
+import 'package:grace_cycle/features/favorites/presentation/views/widgets/list_tile_fav_item_of_sort.dart';
+import 'package:grace_cycle/features/favorites/presentation/views/widgets/sort_by_container_fav.dart';
 
 class FavoritesViewBody extends StatelessWidget {
   const FavoritesViewBody({
@@ -37,25 +40,22 @@ class FavoritesViewBody extends StatelessWidget {
                         horizontalSpace(10),
                         GestureDetector(
                           onTap: () {
-                            favCubit.isFilterVisible;
+                            favCubit.changeIsFilterVisible(context);
                           },
                           child: const FilterIcon(),
                         ),
                       ],
                     ),
                     verticalSpace(10),
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     setState(() {
-                    //       isExpanded = !isExpanded;
-                    //     });
-                    //   },
-                    //   child: SortByContainer(
-                    //     isExpanded: isExpanded,
-                    //     nameOfSort: 'Food Rating',
-                    //   ),
-                    // ),
-                    // verticalSpace(20),
+                    GestureDetector(
+                      onTap: () {
+                        favCubit.changeIsExpanded();
+                      },
+                      child: SortByContainerFav(
+                        isExpanded: favCubit.isExpanded,
+                        nameOfSort: favCubit.title ?? 'Choose Sort',
+                      ),
+                    ),
                     TabBar(
                       labelStyle: AppTextStyles.nunito700Size16GreenButt,
                       unselectedLabelStyle: AppTextStyles.nunito700Size16Black,
@@ -79,31 +79,16 @@ class FavoritesViewBody extends StatelessWidget {
                   ],
                 ),
               ),
-              // if (isExpanded)
-              //   SortContainer(
-              //     isFood: true,
-              //     sortOptions: [
-              //       ListTileItemOfSort(
-              //         title: 'Food Rating',
-              //         onTap: () {
-              //           setState(() {
-              //             isExpanded = false;
-              //           });
-              //         },
-              //       ),
-              //       ListTileItemOfSort(
-              //         title: 'Vendor Rating',
-              //         onTap: () {
-              //           setState(() {
-              //             isExpanded = false;
-              //           });
-              //         },
-              //       ),
-              //     ],
-              //   ),
+              if (favCubit.isExpanded)
+                SortContainer(
+                  isFood: favCubit.isFood,
+                  sortOptions: getSortOptionsFav(
+                    context,
+                  ),
+                ),
               if (favCubit.isFilterVisible)
-                FilterContainer(
-                  isFood: true,
+                FilterFavContainer(
+                  isFood: favCubit.isFood,
                 ),
             ],
           ),

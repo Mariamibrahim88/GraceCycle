@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
 import 'package:grace_cycle/features/favorites/data/models/fav_food_model.dart';
 import 'package:grace_cycle/features/favorites/data/models/fav_vendor_model.dart';
 import 'package:grace_cycle/features/favorites/data/repos/fav_repo.dart';
@@ -102,21 +103,45 @@ class GetFavCubit extends Cubit<GetFavState> {
     });
   }
 
-  void changeIsFilterVisible() {
+  void changeIsFilterVisible(BuildContext context) {
     isFilterVisible = !isFilterVisible;
-    // if (isFilterVisible) {
-    //   if (isFood) {
-    //     getCategories();
-    //   } else {
-    //     getVendorTypes();
-    //   }
-    // }
-    emit(IsFilterVisible());
+    if (isFilterVisible) {
+      if (isFood) {
+        BlocProvider.of<DiscoverCubit>(context).getCategories();
+      }
+      //   } else {
+      //     getVendorTypes();
+      //   }
+      // }
+      emit(IsFilterVisible());
+    }
   }
 
   void changeIsExpanded() {
     isExpanded = !isExpanded;
     emit(IsExpanded());
+  }
+
+  void updateSort(String newTitle, String sortName) {
+    title = newTitle;
+    nameOfSort = sortName;
+    isExpanded = false;
+    serachFavController.clear();
+    selectedSort = sortName;
+    if (isFood) {
+      getFavFood(
+        isInitial: false,
+        sort: sortName,
+      );
+      sortNameFood = title;
+    } else {
+      // getVendorDiscover(
+      //   loadingFromPagination: false,
+      //   sort: sortName,
+      // );
+      // sortNameVendor = title;
+    }
+    emit(UpdateSort());
   }
 
   void dispose() {

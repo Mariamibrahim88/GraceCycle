@@ -56,3 +56,5 @@ final class RemoveFavVendorLoading extends GetFavState {}
 final class IsFilterVisible extends GetFavState {}
 
 final class IsExpanded extends GetFavState {}
+
+final class UpdateSort extends GetFavState {}

@@ -58,8 +58,11 @@ class FavFoodList extends StatelessWidget {
                     } else if (!getFavCubit.hasMoreFood) {
                       if (getFavCubit.serachFavController.text.isNotEmpty &&
                           getFavCubit.allFavFoodItems.isEmpty) {
-                        return const CustomNoFoundItems(
-                          title: 'No Food Found',
+                        return SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.5,
+                          child: const CustomNoFoundItems(
+                            title: 'No Food Found',
+                          ),
                         );
                       } else {
                         return const Center(
