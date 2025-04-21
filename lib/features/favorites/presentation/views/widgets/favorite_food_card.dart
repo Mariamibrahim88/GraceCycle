@@ -13,7 +13,7 @@ import 'package:grace_cycle/features/home/presentation/views/widgets/rate_contai
 class FavoriteFoodCard extends StatelessWidget {
   const FavoriteFoodCard({super.key, required this.favFoodModel});
 
-  final FavFoodModel favFoodModel;
+  final FoodItem favFoodModel;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class FavoriteFoodCard extends StatelessWidget {
           ),
           horizontalSpace(6.w),
           FavFoodCardInfo(
-            favFoodModel: favFoodModel,
+            foodItem: favFoodModel,
           ),
           Column(
             children: [

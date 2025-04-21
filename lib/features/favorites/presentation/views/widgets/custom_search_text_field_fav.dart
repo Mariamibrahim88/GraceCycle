@@ -3,55 +3,55 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
-import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
+import 'package:grace_cycle/features/favorites/presentation/manager/cubit/get_fav_cubit.dart';
 
-class CustomSearchTextField extends StatelessWidget {
-  const CustomSearchTextField({super.key});
+class CustomSearchTextFieldFav extends StatelessWidget {
+  const CustomSearchTextFieldFav({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      key: BlocProvider.of<DiscoverCubit>(context).formKey,
+      key: BlocProvider.of<GetFavCubit>(context).formFavKey,
       child: TextFormField(
         cursorColor: AppColors.greenButt,
-        controller: BlocProvider.of<DiscoverCubit>(context).serachController,
+        controller: BlocProvider.of<GetFavCubit>(context).serachFavController,
         onChanged: (value) {
           if (value.trim().isNotEmpty) {
-            BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
+            BlocProvider.of<GetFavCubit>(context).getFavFood(
               search: value,
               isInitial: false,
             );
-            BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
-              search: value,
-              loadingFromPagination: false,
-            );
+            // BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
+            //   search: value,
+            //   loadingFromPagination: false,
+            // );
           } else {
-            BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
+            BlocProvider.of<GetFavCubit>(context).getFavFood(
               isInitial: false,
             );
-            BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
-              loadingFromPagination: false,
-            );
+            // BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
+            //   loadingFromPagination: false,
+            // );
           }
         },
         onFieldSubmitted: (value) {
           if (value.trim().isNotEmpty) {
-            BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
+            BlocProvider.of<GetFavCubit>(context).getFavFood(
               search: value,
               isInitial: false,
             );
-            BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
-              search: value,
-              loadingFromPagination: false,
-            );
+            // BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
+            //   search: value,
+            //   loadingFromPagination: false,
+            // );
           } else {
-            BlocProvider.of<DiscoverCubit>(context).getFoodDiscover(
+            BlocProvider.of<GetFavCubit>(context).getFavFood(
               isInitial: false,
             );
-            BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
-              loadingFromPagination: false,
-            );
+            // BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
+            //   loadingFromPagination: false,
+            // );
           }
         },
         decoration: InputDecoration(

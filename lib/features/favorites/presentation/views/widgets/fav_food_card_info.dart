@@ -9,10 +9,10 @@ import 'package:grace_cycle/features/home/presentation/views/widgets/price_for_f
 class FavFoodCardInfo extends StatelessWidget {
   const FavFoodCardInfo({
     super.key,
-    required this.favFoodModel,
+    required this.foodItem,
   });
 
-  final FavFoodModel favFoodModel;
+  final FoodItem foodItem;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class FavFoodCardInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          favFoodModel.name,
+          foodItem.name,
           style: TextStyle(
             fontSize: 14.sp,
             fontWeight: FontWeight.w700,
@@ -29,7 +29,7 @@ class FavFoodCardInfo extends StatelessWidget {
         ),
         verticalSpace(9),
         Text(
-          favFoodModel.vName,
+          foodItem.vName,
           style: TextStyle(
             fontSize: 14.sp,
             fontWeight: FontWeight.w400,
@@ -39,12 +39,12 @@ class FavFoodCardInfo extends StatelessWidget {
         verticalSpace(6),
         LeftPiecesContainer(
             color: AppColors.sortColor,
-            leftPieces: '${favFoodModel.quantity.toString()} + left'),
+            leftPieces: '${foodItem.quantity.toString()} + left'),
         verticalSpace(7),
         PriceForFood(
           price: false,
-          oldPrice: favFoodModel.unitPrice,
-          newPrice: favFoodModel.newPrice,
+          oldPrice: foodItem.unitPrice,
+          newPrice: foodItem.newPrice,
         ),
       ],
     );

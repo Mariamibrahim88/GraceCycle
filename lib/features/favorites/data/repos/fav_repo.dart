@@ -7,13 +7,39 @@ import 'package:grace_cycle/features/favorites/data/models/fav_vendor_model.dart
 import 'package:grace_cycle/features/home/data/models/add_favourite_model.dart';
 
 class FavRepo {
-  Future<Either<String, List<FavFoodModel>>> getFavouriteFood() async {
-    try {
-      final response = await sl<ApiConsumer>()
-          .get('https://gracecycleapi.azurewebsites.net/api/app/fav/foods');
+  // Future<Either<String, List<FoodFavResponse>>> getFavouriteFood() async {
+  //   try {
+  //     final response = await sl<ApiConsumer>()
+  //         .get('https://gracecycleapi.azurewebsites.net/api/app/fav/foods');
 
-      return Right(
-          (response as List).map((e) => FavFoodModel.fromJson(e)).toList());
+  //     return Right(
+  //         (response as List).map((e) => FoodFavResponse.fromJson(e)).toList());
+  //   } on ServerException catch (error) {
+  //     return Left(error.errorModel.errorMessage);
+  //   }
+  // }
+
+  Future<Either<String, FoodFavResponse>> getFavouriteFood(
+    int pageIndex,
+    int pageSize,
+    int? categoryId,
+    int? maxPrice,
+    String? sort,
+    String? search,
+  ) async {
+    try {
+      final response = await sl<ApiConsumer>().get(
+          'https://gracecycleapi.azurewebsites.net/api/app/fav/foods',
+          queryParameters: {
+            'pageSize': pageSize,
+            'pageIndex': pageIndex,
+            if (search != null && search.isNotEmpty) 'search': search,
+            if (sort != null && sort.isNotEmpty) 'sort': sort,
+            if (categoryId != null) 'categoryId': categoryId,
+            if (maxPrice != null) 'maxPrice': maxPrice,
+          });
+
+      return Right(FoodFavResponse.fromJson(response));
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
     }

@@ -74,7 +74,7 @@ class FoodDiscoverList extends StatelessWidget {
                         );
                       }
                     } else {
-                      return const CustomListOfShimmerVer();
+                      return const SizedBox();
                     }
                   }
                 }),
