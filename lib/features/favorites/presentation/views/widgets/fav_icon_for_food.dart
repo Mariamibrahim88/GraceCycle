@@ -8,7 +8,7 @@ import 'package:grace_cycle/features/favorites/presentation/manager/cubit/get_fa
 class FavIconForFood extends StatelessWidget {
   const FavIconForFood({super.key, required this.foodItem});
 
-  final FavFoodModel foodItem;
+  final FoodItem foodItem;
 
   @override
   Widget build(BuildContext context) {

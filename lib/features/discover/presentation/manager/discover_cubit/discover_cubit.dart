@@ -79,77 +79,8 @@ class DiscoverCubit extends Cubit<DiscoverState> {
     );
 
     isLoadingVendors = false;
-
-    // if (loadingFromPagination) {
-    //   pageIndexForVendors = 1;
-    //   vendorList.clear();
-    //   emit(DiscoverVendorLoading());
-    // }
-    // if (isLoadingVendors) return;
-    // isLoadingVendors = true;
-    // if (pageIndexForVendors == 1) emit(DiscoverVendorLoading());
-    // final response = await discoverRepo.getVendorDiscover(
-    //   pageIndexForVendors,
-    //   vendorTypeId,
-    //   pageSize,
-    //   sort ?? selectedSort,
-    //   search ?? serachController.text,
-    // );
-
-    // response.fold(
-    //   (l) {
-    //     emit(DiscoverVendorFailure(l));
-    //   },
-    //   (r) {
-    //     if (r.data.isNotEmpty) {
-    //       vendorList.addAll(r.data);
-    //       pageIndexForVendors++;
-    //       emit(DiscoverVendorSuccess(vendorList));
-    //     } else {
-    //       emit(DiscoverVendorSuccess(vendorList));
-    //     }
-    //   },
-    // );
-    // isLoadingVendors = false;
   }
 
-  // Future<void> getFoodDiscover(
-  //     {bool isInitial = false,
-  //     int pageSize = 10,
-  //     int? categoryId,
-  //     int? maxPrice,
-  //     String? sort,
-  //     String? search}) async {
-  //   if (isInitial) {
-  //     _pageIndex = 1;
-  //     allFoodItems.clear();
-  //     emit(DiscoverFoodLoading());
-  //   }
-
-  //   if (isLoadingMore) return;
-
-  //   isLoadingMore = true;
-  //   if (_pageIndex == 1) emit(DiscoverFoodLoading());
-  //   final result = await discoverRepo.getFoodDiscover(
-  //       _pageIndex,
-  //       pageSize,
-  //       categoryId ?? selectedCategoryId,
-  //       maxPrice ?? selectedMaxPrice,
-  //       sort ?? selectedSort,
-  //       search ?? serachController.text);
-
-  //   result.fold((ifLeft) => emit(DiscoverFoodFailure(ifLeft)), (ifRight) {
-  //     if (ifRight.data.isNotEmpty) {
-  //       allFoodItems.addAll(ifRight.data);
-  //       _pageIndex++;
-
-  //       emit(DiscoverFoodSuccess(allFoodItems));
-  //     } else {
-  //       emit(DiscoverFoodSuccess(allFoodItems));
-  //     }
-  //   });
-  //   isLoadingMore = false;
-  // }
   Future<void> getFoodDiscover(
       {bool isInitial = false,
       int pageSize = 10,
