@@ -24,6 +24,15 @@ class FavFoodList extends StatelessWidget {
         } else if (state is GetFavSuccess ||
             state is FavFoodPaginationLoading &&
                 getFavCubit.allFavFoodItems.isNotEmpty) {
+          if (getFavCubit.allFavFoodItems.isEmpty &&
+              getFavCubit.serachFavController.text.isEmpty) {
+            return SizedBox(
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: const CustomNoFoundFavItems(
+                title: 'There are no favorites yet',
+              ),
+            );
+          }
           return NotificationListener<ScrollNotification>(
             onNotification: (notification) {
               if (notification.metrics.pixels >=

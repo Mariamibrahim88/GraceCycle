@@ -26,6 +26,15 @@ class FavVendorsList extends StatelessWidget {
         } else if (state is GetFavVendorsSuccess ||
             (state is FavVendorPaginationLoading &&
                 favCubit.favVendorList.isNotEmpty)) {
+          if (favCubit.favVendorList.isEmpty &&
+              favCubit.serachFavController.text.isEmpty) {
+            return SizedBox(
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: const CustomNoFoundFavItems(
+                title: 'There are no favorites yet',
+              ),
+            );
+          }
           return NotificationListener<ScrollNotification>(
             onNotification: (notification) {
               if (notification.metrics.pixels >=
@@ -69,9 +78,7 @@ class FavVendorsList extends StatelessWidget {
                             title: 'No Vendor Found',
                           ),
                         );
-                      } 
-                     
-                      else {
+                      } else {
                         return const Center(
                           child: Text(
                             'No more vendors',
