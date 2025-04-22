@@ -23,4 +23,5 @@ class AppColors {
   static const Color available = Color(0xff008000);
   static const Color cardofCart = Color(0xffEFF0E9);
   static const Color basicGreen = Color(0xff225A4B);
+  static const Color yellowForDetails = Color(0xff816404);
 }
