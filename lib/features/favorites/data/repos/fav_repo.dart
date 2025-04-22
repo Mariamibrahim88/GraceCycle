@@ -45,13 +45,25 @@ class FavRepo {
     }
   }
 
-  Future<Either<String, List<FavVendorModel>>> getFavouriteVendor() async {
+  Future<Either<String, VendorFavResponse>> getFavouriteVendor(
+    int pageIndex,
+    int? vendorTypeId,
+    int pageSize,
+    String? sort,
+    String? search,
+  ) async {
     try {
-      final response = await sl<ApiConsumer>()
-          .get('https://gracecycleapi.azurewebsites.net/api/app/fav/vendors');
+      final response = await sl<ApiConsumer>().get(
+          'https://gracecycleapi.azurewebsites.net/api/app/fav/vendors',
+          queryParameters: {
+            'pageSize': pageSize,
+            'pageIndex': pageIndex,
+            if (vendorTypeId != null) 'vendorTypeId': vendorTypeId,
+            if (sort != null) 'sort': sort,
+            if (search != null) 'search': search,
+          });
 
-      return Right(
-          (response as List).map((e) => FavVendorModel.fromJson(e)).toList());
+      return Right(VendorFavResponse.fromJson(response));
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
     }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
-import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
 import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
 
@@ -23,10 +22,13 @@ class SortByContainer extends StatelessWidget {
         return Row(
           children: [
             Text('Sort by:', style: AppTextStyles.nunito400Size16Black),
-            horizontalSpace(5),
             Container(
               height: 25.h,
-              width: 110.w,
+              width: nameOfSort == 'Distance'
+                  ? 80.w
+                  : nameOfSort == 'Price'
+                      ? 70.w
+                      : 110.w,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.r),
                   color: AppColors.sortColor,
@@ -41,6 +43,7 @@ class SortByContainer extends StatelessWidget {
                     ),
                   ]),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Icon(
                     isExpanded
@@ -48,22 +51,17 @@ class SortByContainer extends StatelessWidget {
                         : Icons.keyboard_arrow_down,
                     color: isExpanded ? AppColors.greenButt : Colors.black,
                   ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Text(
-                        nameOfSort,
-                        textAlign: TextAlign.center,
-                        style: isExpanded
-                            ? AppTextStyles.nunito500Size14Black.copyWith(
-                                color: AppColors.greenButt,
-                                fontSize: 12.sp,
-                              )
-                            : AppTextStyles.nunito500Size14Black.copyWith(
-                                fontSize: 12.sp,
-                              ),
-                      ),
-                    ),
+                  Text(
+                    nameOfSort,
+                    textAlign: TextAlign.center,
+                    style: isExpanded
+                        ? AppTextStyles.nunito500Size14Black.copyWith(
+                            color: AppColors.greenButt,
+                            fontSize: 12.sp,
+                          )
+                        : AppTextStyles.nunito500Size14Black.copyWith(
+                            fontSize: 12.sp,
+                          ),
                   ),
                 ],
               ),

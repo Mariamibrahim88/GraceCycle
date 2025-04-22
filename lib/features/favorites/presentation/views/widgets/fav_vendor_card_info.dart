@@ -8,10 +8,10 @@ import 'package:grace_cycle/features/favorites/presentation/views/widgets/availa
 class FavVendorCardInfo extends StatelessWidget {
   const FavVendorCardInfo({
     super.key,
-    required this.favVendorModel,
+    required this.favVendorItem,
   });
 
-  final FavVendorModel favVendorModel;
+  final FavVendorItem favVendorItem;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,30 +19,29 @@ class FavVendorCardInfo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       mainAxisSize: MainAxisSize.min,
       children: [
-        verticalSpace(4.h),
+        verticalSpace(6.h),
         Text(
-          favVendorModel.displayName,
+          favVendorItem.displayName,
           style: TextStyle(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w600,
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w800,
             color: Colors.black,
           ),
         ),
         verticalSpace(6.h),
         SizedBox(
           child: Text(
-            favVendorModel.address,
+            favVendorItem.address,
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 13.sp,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ),
           ),
         ),
-        verticalSpace(4.h),
+        verticalSpace(6.h),
         AvailableVendorContainer(
-            color: AppColors.basicWhite,
-            available: '${favVendorModel.items}+ items available'),
+            color: AppColors.basicWhite, available: favVendorItem.items),
       ],
     );
   }

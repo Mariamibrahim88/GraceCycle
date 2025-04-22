@@ -6,15 +6,15 @@ import 'package:grace_cycle/features/favorites/data/models/fav_vendor_model.dart
 import 'package:grace_cycle/features/favorites/presentation/manager/cubit/get_fav_cubit.dart';
 
 class FavIconForVendor extends StatelessWidget {
-  const FavIconForVendor({super.key, required this.favVendorModel});
-  final FavVendorModel favVendorModel;
+  const FavIconForVendor({super.key, required this.favVendorItem});
+  final FavVendorItem favVendorItem;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         BlocProvider.of<GetFavCubit>(context)
-            .removeFromFavoriteVendor(favVendorModel.userId);
+            .removeFromFavoriteVendor(favVendorItem.userId);
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

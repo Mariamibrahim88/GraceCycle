@@ -11,29 +11,29 @@ class AvailableVendorContainer extends StatelessWidget {
       {super.key, this.color, required this.available});
 
   final Color? color;
-  final String available;
+  final int available;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Container(
         height: 19.h,
-        width: 130.w,
+        width: 129.w,
         decoration: BoxDecoration(
           color: color ?? AppColors.grayForSmallContainer,
           borderRadius: BorderRadius.circular(7),
         ),
         child: Center(
           child: Text(
-            available,
-            style: available == 'No items available'
+            '$available+ available items',
+            style: available == 0
                 ? GoogleFonts.nunito(
                     color: AppColors.redForPrice,
-                    fontSize: 14.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w500)
                 : GoogleFonts.nunito(
                     color: AppColors.available,
-                    fontSize: 14.sp,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w500),
           ),
         ),
