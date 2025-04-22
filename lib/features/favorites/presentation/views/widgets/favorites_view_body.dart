@@ -9,6 +9,7 @@ import 'package:grace_cycle/features/discover/presentation/views/widgets/sort_co
 import 'package:grace_cycle/features/favorites/presentation/manager/cubit/get_fav_cubit.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/custom_search_text_field_fav.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_food_list.dart';
+import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_vendor_list.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/filter_fav_container.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/list_tile_fav_item_of_sort.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/sort_by_container_fav.dart';
@@ -57,6 +58,9 @@ class FavoritesViewBody extends StatelessWidget {
                       ),
                     ),
                     TabBar(
+                      onTap: (index) {
+                        favCubit.changeTap(index);
+                      },
                       labelStyle: AppTextStyles.nunito700Size16GreenButt,
                       unselectedLabelStyle: AppTextStyles.nunito700Size16Black,
                       indicatorColor: AppColors.greenButt,
@@ -72,7 +76,7 @@ class FavoritesViewBody extends StatelessWidget {
                         index: favCubit.isFood ? 0 : 1,
                         children: const [
                           FavFoodList(),
-                          //FavVendorsList(),
+                          FavVendorsList(),
                         ],
                       ),
                     ),

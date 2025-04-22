@@ -22,17 +22,18 @@ class CustomSearchTextFieldFav extends StatelessWidget {
               search: value,
               isInitial: false,
             );
-            // BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
-            //   search: value,
-            //   loadingFromPagination: false,
-            // );
+            BlocProvider.of<GetFavCubit>(context).getVendorFav(
+              search: value,
+              loadingFromPagination: false,
+            );
           } else {
             BlocProvider.of<GetFavCubit>(context).getFavFood(
               isInitial: false,
             );
-            // BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
-            //   loadingFromPagination: false,
-            // );
+
+            BlocProvider.of<GetFavCubit>(context).getVendorFav(
+              loadingFromPagination: false,
+            );
           }
         },
         onFieldSubmitted: (value) {
@@ -41,17 +42,17 @@ class CustomSearchTextFieldFav extends StatelessWidget {
               search: value,
               isInitial: false,
             );
-            // BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
-            //   search: value,
-            //   loadingFromPagination: false,
-            // );
+            BlocProvider.of<GetFavCubit>(context).getVendorFav(
+              search: value,
+              loadingFromPagination: false,
+            );
           } else {
             BlocProvider.of<GetFavCubit>(context).getFavFood(
               isInitial: false,
             );
-            // BlocProvider.of<DiscoverCubit>(context).getVendorDiscover(
-            //   loadingFromPagination: false,
-            // );
+            BlocProvider.of<GetFavCubit>(context).getVendorFav(
+              loadingFromPagination: false,
+            );
           }
         },
         decoration: InputDecoration(

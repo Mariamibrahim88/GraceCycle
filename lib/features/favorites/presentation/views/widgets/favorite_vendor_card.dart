@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
+import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/features/favorites/data/models/fav_vendor_model.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/asset_fav_card.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_icon_for_vendor.dart';
@@ -9,9 +10,9 @@ import 'package:grace_cycle/features/home/presentation/views/widgets/custom_vend
 import 'package:grace_cycle/features/home/presentation/views/widgets/rate_container.dart';
 
 class FavoriteVendorCard extends StatelessWidget {
-  const FavoriteVendorCard({super.key, required this.favVendorModel});
+  const FavoriteVendorCard({super.key, required this.favVendorItem});
 
-  final FavVendorModel favVendorModel;
+  final FavVendorItem favVendorItem;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -29,27 +30,28 @@ class FavoriteVendorCard extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               AssetFavCard(
-                imageUrl: favVendorModel.picUrl,
+                imageUrl: favVendorItem.picUrl,
               ),
               Positioned(
                 right: 5.r,
                 top: 7.r,
-                child: const RateContainer(rate: 4.5),
+                child: RateContainer(rate: favVendorItem.rating),
               ),
               Positioned(
                 right: 5.r,
                 top: 55.h,
                 child: CustomVendorLogo(
-                  logoUrl: favVendorModel.logoUrl,
+                  logoUrl: favVendorItem.logoUrl,
                 ),
               ),
             ],
           ),
+          horizontalSpace(2.w),
           FavVendorCardInfo(
-            favVendorModel: favVendorModel,
+            favVendorItem: favVendorItem,
           ),
           FavIconForVendor(
-            favVendorModel: favVendorModel,
+            favVendorItem: favVendorItem,
           ),
         ],
       ),

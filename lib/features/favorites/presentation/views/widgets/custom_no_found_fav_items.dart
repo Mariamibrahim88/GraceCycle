@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:grace_cycle/core/utils/app_assets.dart';
+import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/core/utils/app_text_styles.dart';
+
+class CustomNoFoundFavItems extends StatelessWidget {
+  const CustomNoFoundFavItems({
+    super.key,
+    required this.title,
+  });
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          verticalSpace(30),
+          SvgPicture.asset(
+            AppAssets.emptyFav,
+            height: 170.h,
+          ),
+          verticalSpace(10),
+          Text(
+            title,
+            style: AppTextStyles.nunito700Size16Black,
+          ),
+        ],
+      ),
+    );
+  }
+}
