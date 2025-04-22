@@ -12,8 +12,9 @@ class GetFavCubit extends Cubit<GetFavState> {
 
   final FavRepo favRepo;
   int _pageIndex = 1;
-  //int pageIndexForVendors = 1;
+  int pageIndexForVendors = 1;
   bool isLoadingMore = false;
+  bool isLoadingVendors = false;
   List<FoodItem> allFavFoodItems = [];
   String? nameOfSort;
   String? title;
@@ -22,7 +23,7 @@ class GetFavCubit extends Cubit<GetFavState> {
   bool hasMoreVendors = true;
   bool hasMoreFood = true;
   String? selectedSort;
-  // List<VendorsTypeModel> vendorTypes = [];
+  List<FavVendorItem> favVendorList = [];
   TextEditingController serachFavController = TextEditingController();
   GlobalKey<FormState> formFavKey = GlobalKey<FormState>();
   int? selectedVendorTypeId;
@@ -75,12 +76,45 @@ class GetFavCubit extends Cubit<GetFavState> {
     isLoadingMore = false;
   }
 
-  void getFavVendors() async {
-    emit(GetFavVendorsLoading());
+  Future<void> getVendorFav({
+    bool loadingFromPagination = false,
+    int pageSize = 10,
+    int? vendorTypeId,
+    String? sort,
+    String? search,
+  }) async {
+    if (loadingFromPagination) {
+      emit(FavVendorPaginationLoading());
+    } else {
+      pageIndexForVendors = 1;
+      favVendorList.clear();
+      emit(GetFavVendorsLoading());
+    }
 
-    final result = await favRepo.getFavouriteVendor();
-    result.fold((error) => emit(GetFavVendorsError(error)),
-        (r) => emit(GetFavVendorsSuccess(r)));
+    isLoadingVendors = true;
+    final response = await favRepo.getFavouriteVendor(
+      pageIndexForVendors,
+      vendorTypeId ?? selectedVendorTypeId,
+      pageSize,
+      sort ?? selectedSort,
+      search ?? serachFavController.text,
+    );
+    response.fold(
+      (l) {
+        emit(GetFavVendorsError(l));
+      },
+      (r) {
+        if (r.data.isNotEmpty) {
+          favVendorList.addAll(r.data);
+          pageIndexForVendors++;
+        } else {
+          hasMoreVendors = false;
+        }
+        emit(GetFavVendorsSuccess(favVendorList));
+      },
+    );
+
+    isLoadingVendors = false;
   }
 
   void removeFromFavoriteFood(int id) async {
@@ -99,7 +133,7 @@ class GetFavCubit extends Cubit<GetFavState> {
     final result = await favRepo.removeFromFavoriteVendor(id);
     result.fold((error) => emit(RemoveFavVendorError(error)), (r) {
       emit(RemoveFavVendorSuccess());
-      getFavVendors();
+      getVendorFav();
     });
   }
 
@@ -108,6 +142,8 @@ class GetFavCubit extends Cubit<GetFavState> {
     if (isFilterVisible) {
       if (isFood) {
         BlocProvider.of<DiscoverCubit>(context).getCategories();
+      } else {
+        BlocProvider.of<DiscoverCubit>(context).getVendorTypes();
       }
       //   } else {
       //     getVendorTypes();
@@ -135,6 +171,10 @@ class GetFavCubit extends Cubit<GetFavState> {
       );
       sortNameFood = title;
     } else {
+      getVendorFav(
+        loadingFromPagination: false,
+        sort: sortName,
+      );
       // getVendorDiscover(
       //   loadingFromPagination: false,
       //   sort: sortName,
@@ -142,6 +182,18 @@ class GetFavCubit extends Cubit<GetFavState> {
       // sortNameVendor = title;
     }
     emit(UpdateSort());
+  }
+
+  void changeTap(int index) {
+    isFood = index == 0;
+    title = isFood ? sortNameFood : sortNameVendor;
+    serachFavController.clear();
+    if (isFood) {
+      getFavFood(isInitial: false);
+    } else {
+      getVendorFav(loadingFromPagination: false);
+    }
+    emit(ChangeTap());
   }
 
   void dispose() {

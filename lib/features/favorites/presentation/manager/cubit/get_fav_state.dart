@@ -21,7 +21,7 @@ final class GetFavError extends GetFavState {
 final class FavFoodPaginationLoading extends GetFavState {}
 
 final class GetFavVendorsSuccess extends GetFavState {
-  final List<FavVendorModel> favVendorModel;
+  final List<FavVendorItem> favVendorModel;
 
   GetFavVendorsSuccess(this.favVendorModel);
 }
@@ -33,6 +33,9 @@ final class GetFavVendorsError extends GetFavState {
 }
 
 final class GetFavVendorsLoading extends GetFavState {}
+
+final class FavVendorPaginationLoading extends GetFavState {}
+
 
 final class RemoveFavLoading extends GetFavState {}
 
@@ -58,3 +61,4 @@ final class IsFilterVisible extends GetFavState {}
 final class IsExpanded extends GetFavState {}
 
 final class UpdateSort extends GetFavState {}
+final class ChangeTap extends GetFavState {}

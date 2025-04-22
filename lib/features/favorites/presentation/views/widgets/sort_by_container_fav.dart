@@ -23,7 +23,11 @@ class SortByContainerFav extends StatelessWidget {
             horizontalSpace(5),
             Container(
               height: 25.h,
-              width: 110.w,
+              width: nameOfSort == 'Distance'
+                  ? 80.w
+                  : nameOfSort == 'Price'
+                      ? 70.w
+                      : 110.w,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.r),
                   color: AppColors.sortColor,

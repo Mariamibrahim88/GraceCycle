@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/core/widgets/custom_list_of_shimmer_ver.dart';
 import 'package:grace_cycle/core/widgets/custom_loading.dart';
-import 'package:grace_cycle/core/widgets/custom_no_found_items.dart';
 import 'package:grace_cycle/features/favorites/presentation/manager/cubit/get_fav_cubit.dart';
+import 'package:grace_cycle/features/favorites/presentation/views/widgets/custom_no_found_fav_items.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/favorite_food_card.dart';
 
 class FavFoodList extends StatelessWidget {
@@ -60,7 +60,7 @@ class FavFoodList extends StatelessWidget {
                           getFavCubit.allFavFoodItems.isEmpty) {
                         return SizedBox(
                           height: MediaQuery.of(context).size.height * 0.5,
-                          child: const CustomNoFoundItems(
+                          child: const CustomNoFoundFavItems(
                             title: 'No Food Found',
                           ),
                         );

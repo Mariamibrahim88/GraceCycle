@@ -15,13 +15,23 @@ class FavoritesView extends StatelessWidget {
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => GetFavCubit(sl())
-              ..getFavFood(
-                isInitial: true,
-              ),
+            create: (context) {
+              final cubit = GetFavCubit(sl());
+              cubit.getFavFood(isInitial: true);
+              cubit.getVendorFav(
+                loadingFromPagination: true,
+              );
+              return cubit;
+            },
           ),
           BlocProvider(
-            create: (context) => DiscoverCubit(sl())..getCategories(),
+            create: (context) {
+              final cubit = DiscoverCubit(sl());
+              cubit.getCategories();
+              cubit.getVendorTypes();
+
+              return cubit;
+            },
           ),
         ],
         child: const FavoritesViewBody(),

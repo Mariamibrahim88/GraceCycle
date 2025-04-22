@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
-import 'package:grace_cycle/features/discover/presentation/views/widgets/vendor_expansion_tile.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_food_expansion_tile.dart';
+import 'package:grace_cycle/features/favorites/presentation/views/widgets/fav_vendor_expansion_tile.dart';
 
 class FilterFavContainer extends StatelessWidget {
   const FilterFavContainer({super.key, required this.isFood});
@@ -30,7 +30,7 @@ class FilterFavContainer extends StatelessWidget {
           ],
         ),
         child:
-            isFood ? const FavFoodExpansionTile() : const VendorExpansionTile(),
+            isFood ? const FavFoodExpansionTile() : const FavVendorExpansionTile(),
       ),
     );
   }
