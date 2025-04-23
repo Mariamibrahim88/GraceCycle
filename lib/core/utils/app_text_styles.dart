@@ -108,4 +108,14 @@ class AppTextStyles {
     fontWeight: FontWeight.w700,
     color: Colors.black,
   );
+  static TextStyle nunito700Size32Black = GoogleFonts.nunito(
+    fontSize: 32.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+  );
+  static TextStyle nunito600Size16White = GoogleFonts.nunito(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.basicWhite2,
+  );
 }
