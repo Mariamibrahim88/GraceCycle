@@ -11,6 +11,8 @@ class AppColors {
   static const Color greenButt = Color(0xff225A4B);
   static const Color grey2 = Color(0xffC4C7C5);
   static const Color grey3 = Color(0xff8E8D8D);
+  static const Color grey4 = Color(0xff585656);
+
   static const Color secondgreenItself = Color(0xffC8DBD2);
   static const Color grayForSmallContainer = Color(0xffFCF9F3);
   static const Color yellowForStar = Color(0xffBC870B);
