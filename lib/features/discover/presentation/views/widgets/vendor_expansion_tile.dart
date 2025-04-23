@@ -29,12 +29,16 @@ class VendorExpansionTile extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: state.vendorTypes.length,
                   itemBuilder: (context, index) {
+                    final cubit = BlocProvider.of<DiscoverCubit>(context);
+                    final type = state.vendorTypes[index];
+
                     return GestureDetector(
                       child: ListTileItemOfFilter(
                         title: state.vendorTypes[index].type,
+                        isSelected: cubit.selectedVendorTypeId == type.id,
                       ),
                       onTap: () {
-                        final cubit = BlocProvider.of<DiscoverCubit>(context);
+                        cubit.selectedVendorTypeId = type.id;
 
                         cubit.selectedVendorTypeId =
                             state.vendorTypes[index].id;

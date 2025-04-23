@@ -31,10 +31,10 @@ class FavFoodExpansionTile extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: state.categoriesList.length,
                         itemBuilder: (context, index) {
+                          final cubit = BlocProvider.of<GetFavCubit>(context);
+                          final type = state.categoriesList[index];
                           return GestureDetector(
                             onTap: () {
-                              final cubit =
-                                  BlocProvider.of<GetFavCubit>(context);
                               cubit.selectedCategoryId =
                                   state.categoriesList[index].id;
                               cubit.getFavFood(
@@ -46,6 +46,7 @@ class FavFoodExpansionTile extends StatelessWidget {
                             },
                             child: ListTileItemOfFilter(
                               title: state.categoriesList[index].nameOfCategory,
+                              isSelected: cubit.selectedCategoryId == type.id,
                             ),
                           );
                         });
@@ -85,14 +86,17 @@ class FavPriceExpansionTile extends StatelessWidget {
         style: AppTextStyles.nunito700Size18Black,
       ),
       children: staticPrices.map((price) {
+        final cubit = BlocProvider.of<GetFavCubit>(context);
         return GestureDetector(
           onTap: () {
-            final cubit = BlocProvider.of<GetFavCubit>(context);
             cubit.selectedMaxPrice = price;
             cubit.getFavFood(isInitial: false);
             cubit.changeIsFilterVisible(context);
           },
-          child: ListTileItemOfFilter(title: '<$price EGP'),
+          child: ListTileItemOfFilter(
+            isSelected: cubit.selectedMaxPrice == price,
+            title: '<$price EGP',
+          ),
         );
       }).toList(),
     );

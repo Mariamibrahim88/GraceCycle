@@ -30,12 +30,14 @@ class FavVendorExpansionTile extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: state.vendorTypes.length,
                   itemBuilder: (context, index) {
+                    final cubit = BlocProvider.of<GetFavCubit>(context);
+                    final type = state.vendorTypes[index];
                     return GestureDetector(
                       child: ListTileItemOfFilter(
                         title: state.vendorTypes[index].type,
+                        isSelected: cubit.selectedVendorTypeId == type.id,
                       ),
                       onTap: () {
-                        final cubit = BlocProvider.of<GetFavCubit>(context);
 
                         cubit.selectedVendorTypeId =
                             state.vendorTypes[index].id;
