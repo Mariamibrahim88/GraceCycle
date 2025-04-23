@@ -58,10 +58,10 @@ class FoodDetailsBody extends StatelessWidget {
                 verticalSpace(18),
                 const ListOfCustomerReviewsSection(),
                 const CustomReviewContainer(
+                  title: 'Rate this Item',
                   leftPadding: 2,
                   rightPadding: 2,
                 ),
-                verticalSpace(20),
               ],
             ),
           )

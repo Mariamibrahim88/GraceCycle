@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
-import 'package:grace_cycle/features/details/presentation/views/widgets/green_butt_text.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/yellow_title.dart';
 
 class CustomReviewContainer extends StatelessWidget {
@@ -12,9 +11,12 @@ class CustomReviewContainer extends StatelessWidget {
     super.key,
     this.leftPadding,
     this.rightPadding,
+    required this.title,
   });
   final double? leftPadding;
   final double? rightPadding;
+  final String title;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,7 +45,7 @@ class CustomReviewContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               YellowTitle(
-                title: 'Rate this vendor',
+                title: title,
                 leftPadding: 10.w,
               ),
               verticalSpace(5.h),
@@ -77,10 +79,37 @@ class CustomReviewContainer extends StatelessWidget {
                 ),
                 onRatingUpdate: (double value) {},
               ),
-              verticalSpace(10.h),
-              GreenButtText(
-                text: 'Write a review',
-                leftPadding: 10.w,
+              verticalSpace(5.h),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: TextField(
+                  style: AppTextStyles.nunito400Size14Black,
+                  cursorColor: AppColors.greenButt,
+                  maxLines: null,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Write your review here...',
+                    hintStyle: const TextStyle(color: AppColors.grey3),
+                    contentPadding: EdgeInsets.all(10.h),
+                  ),
+                ),
+              ),
+              verticalSpace(5.h),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.yellowForDetails,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    'Submit Review',
+                    style: AppTextStyles.nunito600Size12White,
+                  ),
+                ),
               ),
             ],
           ),

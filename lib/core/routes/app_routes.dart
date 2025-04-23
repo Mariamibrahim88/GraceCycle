@@ -8,6 +8,7 @@ import 'package:grace_cycle/features/Authentication/presentation/views/signup_vi
 import 'package:grace_cycle/features/Authentication/presentation/views/succ_set_new_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_view.dart';
+import 'package:grace_cycle/features/details/presentation/views/food_details.dart';
 import 'package:grace_cycle/features/details/presentation/views/vendor_details_view.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/favorites_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
