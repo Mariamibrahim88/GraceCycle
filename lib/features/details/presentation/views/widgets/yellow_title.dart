@@ -7,16 +7,21 @@ class YellowTitle extends StatelessWidget {
   const YellowTitle({
     super.key,
     required this.title,
+    this.leftPadding,
   });
   final String title;
+  final double? leftPadding;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 30.w),
+      padding: EdgeInsets.only(
+        left: leftPadding ?? 0.w,
+      ),
       child: Text(
         title,
         style: AppTextStyles.nunito700Size16GreenButt.copyWith(
           color: AppColors.yellowForDetails,
+          fontSize: 17.sp,
         ),
         textAlign: TextAlign.center,
       ),

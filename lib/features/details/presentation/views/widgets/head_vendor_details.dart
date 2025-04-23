@@ -15,7 +15,6 @@ class HeadVendorDetails extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         horizontalSpace(20.w),
-        verticalSpace(52.h),
         Text('Al Shallal Restaurant ',
             style: AppTextStyles.nunito700Size20Black),
         Text(
