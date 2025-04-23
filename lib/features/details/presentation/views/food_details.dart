@@ -11,12 +11,14 @@ class FoodDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            backgroundColor: AppColors.basicWhite,
-            body: BlocProvider(
-              create: (context) => DetailsCubit(),
-              child: const FoodDetailsBody(),
-            ),
-            bottomNavigationBar: const CustomBottomCartNavBar()));
+      child: Scaffold(
+        backgroundColor: AppColors.basicWhite,
+        body: BlocProvider(
+          create: (context) => DetailsCubit(),
+          child: const FoodDetailsBody(),
+        ),
+        bottomNavigationBar: const CustomBottomCartNavBar(),
+      ),
+    );
   }
 }
