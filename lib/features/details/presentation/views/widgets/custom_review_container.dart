@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
@@ -9,15 +10,18 @@ import 'package:grace_cycle/features/details/presentation/views/widgets/yellow_t
 class CustomReviewContainer extends StatelessWidget {
   const CustomReviewContainer({
     super.key,
+    this.leftPadding,
+    this.rightPadding,
   });
-
+  final double? leftPadding;
+  final double? rightPadding;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
         top: 20.h,
-        left: 30.w,
-        right: 30.w,
+        left: leftPadding ?? 25.w,
+        right: rightPadding ?? 30.w,
       ),
       child: Container(
         width: double.infinity,
@@ -53,16 +57,26 @@ class CustomReviewContainer extends StatelessWidget {
                 ),
               ),
               verticalSpace(5.h),
-              // RatingStars(
-              //   valueLabelVisibility: false,
-              //   axis: Axis.horizontal,
-              //   starCount: 5,
-              //   starSize: 37,
-              //   starSpacing: 30.w,
-              //   maxValue: 5,
-              //   starOffColor: AppColors.grey,
-              //   starColor: Colors.yellow,
-              // ),
+              RatingBar(
+                minRating: 0,
+                maxRating: 5,
+                glowColor: AppColors.grey,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemPadding: EdgeInsets.only(
+                  left: 12.w,
+                ),
+                itemSize: 40.h,
+                unratedColor: AppColors.grey,
+                ratingWidget: RatingWidget(
+                  full: const Icon(Icons.star, color: AppColors.yellowForStar),
+                  half: const Icon(Icons.star_half,
+                      color: AppColors.yellowForStar),
+                  empty: const Icon(Icons.star_border, color: AppColors.grey),
+                ),
+                onRatingUpdate: (double value) {},
+              ),
               verticalSpace(10.h),
               GreenButtText(
                 text: 'Write a review',

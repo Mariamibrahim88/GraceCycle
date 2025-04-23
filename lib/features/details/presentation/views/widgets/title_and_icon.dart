@@ -16,8 +16,11 @@ class TitleAndIcon extends StatelessWidget {
           style: AppTextStyles.nunito500Size14YellowDetails,
         ),
         const Spacer(),
-        Icon(Icons.arrow_forward_ios,
-            color: AppColors.yellowForDetails, size: 14.sp),
+        Icon(
+          Icons.arrow_forward_ios,
+          color: AppColors.yellowForDetails,
+          size: 14.sp,
+        ),
       ],
     );
   }
