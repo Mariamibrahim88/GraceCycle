@@ -30,6 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: onPressed,
               iconSize: 32,
               icon: const Icon(Icons.arrow_back_outlined),
+              color: Colors.black,
             ),
           ),
           Align(

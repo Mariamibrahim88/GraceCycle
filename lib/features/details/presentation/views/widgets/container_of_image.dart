@@ -19,7 +19,7 @@ class ContainerOfImage extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.only(top: 40.h),
+        padding: EdgeInsets.only(top: 52.h),
         child: SizedBox(
           height: 323.h,
           width: 161.w,

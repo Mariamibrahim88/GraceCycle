@@ -6,15 +6,19 @@ class CustomVendorLogo extends StatelessWidget {
   const CustomVendorLogo({
     super.key,
     required this.logoUrl,
+    this.width,
+    this.height,
   });
   final String logoUrl;
+  final double? width;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: optimizeCloudinaryImage(url: logoUrl),
       imageBuilder: (context, imageProvider) => Container(
-        width: 33.w,
-        height: 30.h,
+        width: width ?? 33.w,
+        height: height ?? 30.h,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(50)),
           image: DecorationImage(

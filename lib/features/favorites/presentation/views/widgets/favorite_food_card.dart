@@ -36,7 +36,7 @@ class FavoriteFoodCard extends StatelessWidget {
               Positioned(
                 right: 5.r,
                 top: 7.r,
-                child: const RateContainer(rate: 4.5),
+                child:  RateContainer(rate: favFoodModel.rating),
               ),
               Positioned(
                 right: 5.r,
@@ -44,7 +44,7 @@ class FavoriteFoodCard extends StatelessWidget {
                 child: SizedBox(
                   width: 33.w,
                   height: 33.h,
-                  child: DiscountContainer(fontSize: 13.sp, discount: 30),
+                  child: DiscountContainer(fontSize: 13.sp, discount: favFoodModel.discountPercentage),
                 ),
               ),
             ],

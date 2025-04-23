@@ -8,14 +8,12 @@ import 'package:grace_cycle/features/Authentication/presentation/views/signup_vi
 import 'package:grace_cycle/features/Authentication/presentation/views/succ_set_new_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_view.dart';
-import 'package:grace_cycle/features/details/presentation/views/food_details.dart';
-import 'package:grace_cycle/features/discover/presentation/views/discover_view.dart';
+import 'package:grace_cycle/features/details/presentation/views/vendor_details_view.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/favorites_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/see_all_view.dart';
 import 'package:grace_cycle/features/onBourding/presentation/views/onbourding_view.dart';
 import 'package:grace_cycle/features/settings/presentation/views/settings_view.dart';
-import 'package:grace_cycle/features/splash/presentation/views/splash_view.dart';
 
 class Routes {
   static const String initialRoute = '/';
@@ -33,13 +31,14 @@ class Routes {
   static const String favorites = '/favorites';
   static const String cart = '/cart';
   static const String settings = '/settings';
+  static const String vendorDetails = '/vendorDetails';
 }
 
 class AppRoutes {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (_) => const FoodDetails());
+        return MaterialPageRoute(builder: (_) => const VendorDetailsView());
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.onBourding:
@@ -68,6 +67,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const CartView());
       case Routes.settings:
         return MaterialPageRoute(builder: (_) => const SettingsView());
+      case Routes.vendorDetails:
+        return MaterialPageRoute(builder: (_) => const VendorDetailsView());
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }
