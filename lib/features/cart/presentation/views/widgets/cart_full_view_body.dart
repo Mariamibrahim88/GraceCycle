@@ -21,7 +21,6 @@ class CartFullViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            verticalSpace(30.h),
             CustomAppBar(
               onPressed: () {
                 Navigator.pop(context);
