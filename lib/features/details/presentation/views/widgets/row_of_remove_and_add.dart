@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
+import 'package:grace_cycle/core/widgets/show_custom_dialog.dart';
 import 'package:grace_cycle/features/details/presentation/manager/cubit/details_cubit.dart';
 
 class RowOfRemoveAndAdd extends StatelessWidget {
@@ -46,6 +48,11 @@ class RowOfRemoveAndAdd extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 context.read<DetailsCubit>().increaseQuantity();
+                showCustomDialog(
+                    context,
+                    'You have exceeded the \nnumber of available pieces!',
+                    AppAssets.extra,
+                    250.h);
                 //context.read<DetailsCubit>().calculateTotalPrice();
               },
               child: Container(

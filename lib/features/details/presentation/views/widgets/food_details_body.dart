@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
+import 'package:grace_cycle/core/widgets/show_custom_dialog.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/container_of_image.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/custom_review_container.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/discount_container_for_details.dart';
@@ -57,9 +59,18 @@ class FoodDetailsBody extends StatelessWidget {
                 ),
                 verticalSpace(18),
                 const ListOfCustomerReviewsSection(),
-                const CustomReviewContainer(
-                  leftPadding: 2,
-                  rightPadding: 2,
+                GestureDetector(
+                  child: const CustomReviewContainer(
+                    leftPadding: 2,
+                    rightPadding: 2,
+                  ),
+                  onTap: () {
+                    showCustomDialog(
+                        context,
+                        'Sorry, you haven\'t tried this\nvendor yet, so you can\'t\nrate it',
+                        AppAssets.haveNotVendor,
+                        200.h);
+                  },
                 ),
                 verticalSpace(20),
               ],
