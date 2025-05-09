@@ -6,7 +6,6 @@ import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
 import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/custom_rating_bar_of_write_review.dart';
-import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_search_text_field.dart';
 
 class WriteReviewViewBody extends StatelessWidget {
   const WriteReviewViewBody({super.key});

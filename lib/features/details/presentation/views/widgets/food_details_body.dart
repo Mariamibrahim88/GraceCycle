@@ -61,6 +61,7 @@ class FoodDetailsBody extends StatelessWidget {
                 const ListOfCustomerReviewsSection(),
                 GestureDetector(
                   child: const CustomReviewContainer(
+                    title: 'Rate this Item',
                     leftPadding: 2,
                     rightPadding: 2,
                   ),
@@ -72,7 +73,11 @@ class FoodDetailsBody extends StatelessWidget {
                         200.h);
                   },
                 ),
-                verticalSpace(20),
+                // const CustomReviewContainer(
+                //   title: 'Rate this Item',
+                //   leftPadding: 2,
+                //   rightPadding: 2,
+                // ),
               ],
             ),
           )

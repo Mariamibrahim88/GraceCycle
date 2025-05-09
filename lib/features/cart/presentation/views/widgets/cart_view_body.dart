@@ -19,7 +19,7 @@ class CartViewBody extends StatelessWidget {
         ),
         child: Column(
           children: [
-            verticalSpace(30.h),
+            // verticalSpace(30.h),
             CustomAppBar(
               title: 'Your Cart',
               fontStyle: 22.sp,

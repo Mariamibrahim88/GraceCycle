@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
-import 'package:grace_cycle/features/details/presentation/views/widgets/custom_forward_arrow.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/custom_review_container.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/head_vendor_details.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/icon_data_vendor_details.dart';
@@ -12,7 +10,6 @@ import 'package:grace_cycle/features/details/presentation/views/widgets/rating_b
 import 'package:grace_cycle/features/details/presentation/views/widgets/rating_linear_progress_indicator.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/title_and_icon.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/vendor_details_card.dart';
-import 'package:grace_cycle/features/details/presentation/views/widgets/yellow_title.dart';
 
 class VendorDetailsViewBody extends StatelessWidget {
   const VendorDetailsViewBody({super.key});
@@ -64,11 +61,12 @@ class VendorDetailsViewBody extends StatelessWidget {
                 ),
                 verticalSpace(18),
                 const ListOfCustomerReviewsSection(),
-               
               ],
             ),
           ),
-          const CustomReviewContainer(),
+          const CustomReviewContainer(
+            title: 'Rate this vendor',
+          ),
           verticalSpace(20.h),
           Padding(
             padding: EdgeInsets.only(
@@ -76,16 +74,8 @@ class VendorDetailsViewBody extends StatelessWidget {
               right: 30,
               bottom: 20.h,
             ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                YellowTitle(
-                  title: 'Similar Restaurant',
-                ),
-                CustomForwardArrow(
-                  color: AppColors.yellowForDetails,
-                )
-              ],
+            child: const TitleAndIcon(
+              title: 'Similar Restaurant',
             ),
           ),
         ],

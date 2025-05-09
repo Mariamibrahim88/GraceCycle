@@ -13,9 +13,12 @@ class CustomReviewContainer extends StatelessWidget {
     super.key,
     this.leftPadding,
     this.rightPadding,
+    required this.title,
   });
   final double? leftPadding;
   final double? rightPadding;
+  final String title;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -44,7 +47,7 @@ class CustomReviewContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               YellowTitle(
-                title: 'Rate this vendor',
+                title: title,
                 leftPadding: 10.w,
               ),
               verticalSpace(5.h),
@@ -72,6 +75,7 @@ class CustomReviewContainer extends StatelessWidget {
                   );
                 },
               ),
+              verticalSpace(5.h),
             ],
           ),
         ),
