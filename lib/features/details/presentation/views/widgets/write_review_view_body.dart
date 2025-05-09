@@ -24,7 +24,7 @@ class WriteReviewViewBody extends StatelessWidget {
           child: Column(children: [
             verticalSpace(30.h),
             CustomAppBar(
-              title: 'Wreite a review',
+              title: 'Write a review',
               fontStyle: 22.sp,
               color: Colors.black,
               onPressed: () {
