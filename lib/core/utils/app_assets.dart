@@ -39,6 +39,9 @@ class AppAssets {
   static String emptyFav = 'assets/images/emptyFav.svg';
   static String emptySearch = 'assets/images/noSearch.svg';
   static String cartt = 'assets/images/cartt.svg';
+  static String emptyCart = 'assets/images/emptyCart.svg';
+  static String extra = 'assets/images/extra.png';
+  static String haveNotVendor = 'assets/images/havenotvendor.png';
   static String home = 'assets/images/home.svg';
   static String confirm = 'assets/images/confirm.svg';
   static String order = 'assets/images/order.svg';

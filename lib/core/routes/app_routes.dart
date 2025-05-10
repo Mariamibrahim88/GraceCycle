@@ -12,13 +12,13 @@ import 'package:grace_cycle/features/cart/presentation/views/cart_view.dart';
 import 'package:grace_cycle/features/orders/presentation/views/checkout_view.dart';
 import 'package:grace_cycle/features/details/presentation/views/food_details.dart';
 import 'package:grace_cycle/features/details/presentation/views/vendor_details_view.dart';
+import 'package:grace_cycle/features/details/presentation/views/write_review_view.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/favorites_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/see_all_view.dart';
 import 'package:grace_cycle/features/onBourding/presentation/views/onbourding_view.dart';
 import 'package:grace_cycle/features/orders/presentation/views/orders_view.dart';
 import 'package:grace_cycle/features/settings/presentation/views/settings_view.dart';
-import 'package:grace_cycle/features/splash/presentation/views/splash_view.dart';
 
 class Routes {
   static const String initialRoute = '/';
@@ -39,6 +39,7 @@ class Routes {
   static const String vendorDetails = '/vendorDetails';
   static const String cartFull = '/cartFull';
   static const String checkout = 'checkout';
+  static const String writeReview = '/writeReview';
   static const String ordersView = '/ordersView';
 }
 
@@ -46,7 +47,7 @@ class AppRoutes {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (_) => const SplashView());
+        return MaterialPageRoute(builder: (_) => const FoodDetails());
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.onBourding:
@@ -81,6 +82,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const CartFullView());
       case Routes.checkout:
         return MaterialPageRoute(builder: (_) => const CheckoutView());
+      case Routes.writeReview:
+        return MaterialPageRoute(builder: (_) => const WriteReviewView());
       case Routes.ordersView:
         return MaterialPageRoute(builder: (_) => const OrdersView());
       default:
