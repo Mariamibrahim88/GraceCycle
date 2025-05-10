@@ -42,6 +42,14 @@ class AppAssets {
   static String emptyCart = 'assets/images/emptyCart.svg';
   static String extra = 'assets/images/extra.png';
   static String haveNotVendor = 'assets/images/havenotvendor.png';
+  static String home = 'assets/images/home.svg';
+  static String confirm = 'assets/images/confirm.svg';
+  static String order = 'assets/images/order.svg';
+  static String cash = 'assets/images/cash.svg';
+  static String visa = 'assets/images/visa.svg';
+  static String payPal = 'assets/images/payPal.svg';
+  static String master = 'assets/images/master.svg';
+  static String instaPay = 'assets/images/instaPay.svg';
   static String finished1= 'assets/images/finished1.png';
   static String finished2= 'assets/images/finished2.png';
 

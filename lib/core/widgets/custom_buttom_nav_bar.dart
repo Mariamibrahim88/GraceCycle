@@ -5,6 +5,7 @@ import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/features/discover/presentation/views/discover_view.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/favorites_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
+import 'package:grace_cycle/features/orders/presentation/views/orders_view.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   const CustomBottomNavBar({super.key});
@@ -20,7 +21,7 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
     HomeView(),
     DiscoverView(),
     FavoritesView(),
-    Center(child: Text('Orders')),
+    OrdersView(),
     // DiscoverScreen(),
     // OrdersView(),
     // SettingsScreen(),

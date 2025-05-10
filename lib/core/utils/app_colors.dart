@@ -27,5 +27,8 @@ class AppColors {
   static const Color basicGreen = Color(0xff225A4B);
   static const Color yellowForDetails = Color(0xff816404);
   static const Color basicWhite2 = Color(0xffFFFCF6);
+  static const Color grayForOrders = Color(0xff5B5B5B);
+  static const Color grayForCheckout = Color(0xffA19F9C);
+  static const Color grayForUnenableField = Color(0xffF6F3ED);
   static const Color greenSwipe = Color(0xffD0DAD1);
 }
