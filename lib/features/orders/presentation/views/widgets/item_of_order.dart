@@ -7,8 +7,8 @@ import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
 
-class ItemOfCart extends StatelessWidget {
-  const ItemOfCart({
+class ItemOfOrder extends StatelessWidget {
+  const ItemOfOrder({
     super.key,
   });
 
@@ -16,7 +16,7 @@ class ItemOfCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, Routes.cartFull);
+        Navigator.pushNamed(context, Routes.checkout);
       },
       child: Container(
         height: 73.h,
@@ -33,15 +33,21 @@ class ItemOfCart extends StatelessWidget {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'From Al Shallal Restaurant',
-                    style: AppTextStyles.nunito800Size18Black,
+                    style: AppTextStyles.nunito700Size16Black,
+                  ),
+                  Text('(10/10/2023)',
+                      style: AppTextStyles.nunito500Size12Black),
+                  const Spacer(),
+                  const Icon(
+                    Icons.error,
+                    color: AppColors.redForPrice,
                   ),
                   const Icon(
                     Icons.arrow_forward_ios_rounded,
-                    size: 25,
+                    size: 14,
                   ),
                 ],
               ),

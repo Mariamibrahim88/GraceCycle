@@ -5,7 +5,11 @@ import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
 
 class CustomOrderNavBarContainer extends StatelessWidget {
-  const CustomOrderNavBarContainer({super.key});
+  const CustomOrderNavBarContainer(
+      {super.key, required this.onTap, required this.text});
+
+  final void Function()? onTap;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class CustomOrderNavBarContainer extends StatelessWidget {
             ),
             verticalSpace(20.h),
             GestureDetector(
-              onTap: () {},
+              onTap: onTap,
               child: Container(
                   height: 46.h,
                   width: 344.w,
@@ -45,8 +49,8 @@ class CustomOrderNavBarContainer extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16.r),
                   ),
                   child: Center(
-                    child: Text('Continue',
-                        style: AppTextStyles.nunito600Size16White),
+                    child:
+                        Text(text, style: AppTextStyles.nunito600Size16White),
                   )),
             )
           ],

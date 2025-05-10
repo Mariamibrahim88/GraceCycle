@@ -143,4 +143,29 @@ class AppTextStyles {
     fontWeight: FontWeight.w700,
     color: Colors.black,
   );
+  static TextStyle nunito500Size12Black = GoogleFonts.nunito(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    color: Colors.black.withValues(alpha: 0.6),
+  );
+  static TextStyle nunito500Size11BasicGreen = GoogleFonts.nunito(
+    fontSize: 11.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.basicGreen,
+  );
+  static TextStyle nunito400Size16GrayForOrders = GoogleFonts.nunito(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.grayForOrders,
+  );
+  static TextStyle nunito400Size16GrayForCheckout = GoogleFonts.nunito(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.grayForCheckout,
+  );
+  static TextStyle nunito600Size16Black = GoogleFonts.nunito(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
 }
