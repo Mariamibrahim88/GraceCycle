@@ -15,7 +15,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   }
 
   void goToNextStep() {
-    if (currentStep < 3) {
+    if (currentStep < 4) {
       currentStep++;
       emit(CheckoutStepChanged(currentStep: currentStep));
     }

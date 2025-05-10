@@ -22,14 +22,18 @@ class CheckoutView extends StatelessWidget {
                 return cubit.currentStep == 2
                     ? CustomOrderNavBarContainer(
                         text: 'Confirm the Order',
-                        onTap: () {},
-                      )
-                    : CustomOrderNavBarContainer(
-                        text: 'Continue',
                         onTap: () {
                           cubit.goToNextStep();
                         },
-                      );
+                      )
+                    : cubit.currentStep == 3
+                        ? const SizedBox()
+                        : CustomOrderNavBarContainer(
+                            text: 'Continue',
+                            onTap: () {
+                              cubit.goToNextStep();
+                            },
+                          );
               },
             )),
       ),

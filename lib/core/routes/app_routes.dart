@@ -18,8 +18,8 @@ import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/see_all_view.dart';
 import 'package:grace_cycle/features/onBourding/presentation/views/onbourding_view.dart';
 import 'package:grace_cycle/features/orders/presentation/views/orders_view.dart';
-import 'package:grace_cycle/features/order/presentation/views/confirm_reciving_view.dart';
-import 'package:grace_cycle/features/order/presentation/views/done_order_view.dart';
+import 'package:grace_cycle/features/orders/presentation/views/confirm_reciving_view.dart';
+import 'package:grace_cycle/features/orders/presentation/views/done_order_view.dart';
 import 'package:grace_cycle/features/settings/presentation/views/settings_view.dart';
 
 class Routes {
@@ -50,7 +50,7 @@ class AppRoutes {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (_) => const ConfirmRecivingView());
+        return MaterialPageRoute(builder: (_) => const OrdersView());
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.onBourding:

@@ -5,7 +5,7 @@ import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
-import 'package:grace_cycle/features/order/presentation/views/widgets/back_home.dart';
+import 'package:grace_cycle/features/orders/presentation/views/widgets/back_home.dart';
 import 'package:swipe_to/swipe_to.dart';
 
 class ConfirmRecivingViewBody extends StatefulWidget {
@@ -28,7 +28,10 @@ class _ConfirmRecivingViewBodyState extends State<ConfirmRecivingViewBody> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image(image: AssetImage(AppAssets.finished1)),
+            Image(
+                image: AssetImage(AppAssets.finished1),
+                width: 200.w,
+                height: 200.h),
             const SizedBox(height: 20),
             Text(
               'congratulations!',
@@ -117,9 +120,8 @@ class _ConfirmRecivingViewBodyState extends State<ConfirmRecivingViewBody> {
                       ],
                     ),
                   ),
-            verticalSpace(25.h),
+            verticalSpace(20.h),
             const BackHome(),
-            
           ],
         ),
       ),

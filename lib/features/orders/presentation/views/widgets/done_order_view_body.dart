@@ -4,7 +4,9 @@ import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
-import 'package:grace_cycle/features/order/presentation/views/widgets/back_home.dart';
+import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
+import 'package:grace_cycle/features/cart/presentation/views/widgets/head_of_vendor_in_full_cart.dart';
+import 'package:grace_cycle/features/orders/presentation/views/widgets/back_home.dart';
 
 class DoneOrderViewBody extends StatelessWidget {
   const DoneOrderViewBody({super.key});
@@ -18,8 +20,14 @@ class DoneOrderViewBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(AppAssets.finished2),
-            const SizedBox(height: 20),
+            CustomAppBar(onPressed: () {
+              Navigator.pop(context);
+            }),
+            verticalSpace(4.h),
+            const HeadOfVendorInFullCart(),
+            verticalSpace(20.h),
+            Image.asset(AppAssets.finished2, width: 270.w, height: 290.h),
+            const SizedBox(height: 33),
             Text(
               'All Done!',
               style: AppTextStyles.nunito700Size22GreenButt.copyWith(
@@ -27,7 +35,8 @@ class DoneOrderViewBody extends StatelessWidget {
                 fontSize: 24,
               ),
             ),
-            verticalSpace(50.h),
+            const SizedBox(height: 103),
+            verticalSpace(20.h),
             Container(
                 width: double.infinity,
                 height: 35.h,
@@ -45,9 +54,9 @@ class DoneOrderViewBody extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 )),
-            verticalSpace(25.h),
+            verticalSpace(26.h),
             const BackHome(),
-            verticalSpace(25.h),
+            verticalSpace(10.h),
           ],
         ),
       ),

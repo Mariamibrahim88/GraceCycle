@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/features/orders/data/cubit/checkout_cubit.dart';
+import 'package:grace_cycle/features/orders/presentation/views/confirm_reciving_view.dart';
 import 'package:grace_cycle/features/orders/presentation/views/widgets/container_of_icon.dart';
 import 'package:grace_cycle/features/cart/presentation/views/widgets/head_of_vendor_in_full_cart.dart';
 import 'package:grace_cycle/features/orders/presentation/views/widgets/order_section.dart';
@@ -33,7 +34,7 @@ class CheckoutViewBody extends StatelessWidget {
             sectionOfStepper = const PaymentSection();
             break;
           default:
-            sectionOfStepper = const Center(child: Text("Confirmation Step"));
+            sectionOfStepper = const ConfirmRecivingView();
         }
         return SingleChildScrollView(
           child: Padding(
