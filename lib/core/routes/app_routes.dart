@@ -10,13 +10,14 @@ import 'package:grace_cycle/features/Authentication/presentation/views/verify_yo
 import 'package:grace_cycle/features/cart/presentation/views/cart_full_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/checkout_view.dart';
-import 'package:grace_cycle/features/details/presentation/views/food_details.dart';
 import 'package:grace_cycle/features/details/presentation/views/vendor_details_view.dart';
 import 'package:grace_cycle/features/details/presentation/views/write_review_view.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/favorites_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/see_all_view.dart';
 import 'package:grace_cycle/features/onBourding/presentation/views/onbourding_view.dart';
+import 'package:grace_cycle/features/order/presentation/views/confirm_reciving_view.dart';
+import 'package:grace_cycle/features/order/presentation/views/done_order_view.dart';
 import 'package:grace_cycle/features/settings/presentation/views/settings_view.dart';
 
 class Routes {
@@ -39,13 +40,14 @@ class Routes {
   static const String cartFull = '/cartFull';
   static const String checkout = 'checkout';
   static const String writeReview = '/writeReview';
+  static const String doneOrder = '/doneOrder';
 }
 
 class AppRoutes {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (_) => const FoodDetails());
+        return MaterialPageRoute(builder: (_) => const ConfirmRecivingView());
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.onBourding:
@@ -82,6 +84,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const CheckoutView());
       case Routes.writeReview:
         return MaterialPageRoute(builder: (_) => const WriteReviewView());
+      case Routes.doneOrder:
+        return MaterialPageRoute(builder: (_) => const DoneOrderView());
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }

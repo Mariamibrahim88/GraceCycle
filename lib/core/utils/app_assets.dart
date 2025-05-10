@@ -42,4 +42,7 @@ class AppAssets {
   static String emptyCart = 'assets/images/emptyCart.svg';
   static String extra = 'assets/images/extra.png';
   static String haveNotVendor = 'assets/images/havenotvendor.png';
+  static String finished1= 'assets/images/finished1.png';
+  static String finished2= 'assets/images/finished2.png';
+
 }
