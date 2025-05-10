@@ -9,13 +9,14 @@ import 'package:grace_cycle/features/Authentication/presentation/views/succ_set_
 import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_full_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_view.dart';
-import 'package:grace_cycle/features/cart/presentation/views/checkout_view.dart';
+import 'package:grace_cycle/features/orders/presentation/views/checkout_view.dart';
 import 'package:grace_cycle/features/details/presentation/views/food_details.dart';
 import 'package:grace_cycle/features/details/presentation/views/vendor_details_view.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/favorites_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/see_all_view.dart';
 import 'package:grace_cycle/features/onBourding/presentation/views/onbourding_view.dart';
+import 'package:grace_cycle/features/orders/presentation/views/orders_view.dart';
 import 'package:grace_cycle/features/settings/presentation/views/settings_view.dart';
 import 'package:grace_cycle/features/splash/presentation/views/splash_view.dart';
 
@@ -38,6 +39,7 @@ class Routes {
   static const String vendorDetails = '/vendorDetails';
   static const String cartFull = '/cartFull';
   static const String checkout = 'checkout';
+  static const String ordersView = '/ordersView';
 }
 
 class AppRoutes {
@@ -79,6 +81,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const CartFullView());
       case Routes.checkout:
         return MaterialPageRoute(builder: (_) => const CheckoutView());
+      case Routes.ordersView:
+        return MaterialPageRoute(builder: (_) => const OrdersView());
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }

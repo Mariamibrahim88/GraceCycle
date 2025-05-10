@@ -39,4 +39,12 @@ class AppAssets {
   static String emptyFav = 'assets/images/emptyFav.svg';
   static String emptySearch = 'assets/images/noSearch.svg';
   static String cartt = 'assets/images/cartt.svg';
+  static String home = 'assets/images/home.svg';
+  static String confirm = 'assets/images/confirm.svg';
+  static String order = 'assets/images/order.svg';
+  static String cash = 'assets/images/cash.svg';
+  static String visa = 'assets/images/visa.svg';
+  static String payPal = 'assets/images/payPal.svg';
+  static String master = 'assets/images/master.svg';
+  static String instaPay = 'assets/images/instaPay.svg';
 }
