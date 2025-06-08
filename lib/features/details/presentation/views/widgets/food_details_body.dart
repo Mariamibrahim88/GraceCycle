@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/core/widgets/show_custom_dialog.dart';
+import 'package:grace_cycle/features/details/presentation/manager/cubit/details_cubit.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/container_of_image.dart';
+import 'package:grace_cycle/features/details/presentation/views/widgets/custom_list_of_similar_food_item.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/custom_review_container.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/discount_container_for_details.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/fav_container.dart';
@@ -20,69 +23,111 @@ class FoodDetailsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Stack(
-            children: [
-              const ContainerOfImage(),
-              CustomAppBar(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              const LeftContainer(),
-              const FavContainer(),
-              const DiscountContainerForDetails(),
-            ],
-          ),
-          verticalSpace(20),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
+    return BlocBuilder<DetailsCubit, DetailsState>(
+      builder: (context, state) {
+        if (state is GetFoodByIdLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is GetFoodByIdFailure) {
+          return Center(child: Text(state.errorMessage));
+        } else if (state is GetFoodByIdSuccess) {
+          final foodItemDetailsModel = state.foodItemDetails;
+
+          return SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const FoodInfo(),
-                verticalSpace(20),
-                GestureDetector(
-                  onTap: () {},
-                  child: const TitleAndIcon(
-                    title: 'Ratings and Reviews',
-                  ),
-                ),
-                verticalSpace(5),
-                Row(
+                Stack(
                   children: [
-                    const RatingBarWidget(),
-                    RatingLinearProgressIndicator(),
+                    ContainerOfImage(
+                      imageOfFood: foodItemDetailsModel.picUrl,
+                    ),
+                    CustomAppBar(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    LeftContainer(
+                      leftPieces: '${foodItemDetailsModel.quantity}+ left',
+                    ),
+                    FavContainer(
+                      foodItem: foodItemDetailsModel,
+                    ),
+                    DiscountContainerForDetails(
+                      discount: foodItemDetailsModel.discountPercentage,
+                    ),
                   ],
                 ),
-                verticalSpace(18),
-                const ListOfCustomerReviewsSection(),
-                GestureDetector(
-                  child: const CustomReviewContainer(
-                    title: 'Rate this Item',
-                    leftPadding: 2,
-                    rightPadding: 2,
+                verticalSpace(20),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FoodInfo(
+                        foodItemDetailsModel: foodItemDetailsModel,
+                      ),
+                      verticalSpace(20),
+                      GestureDetector(
+                        onTap: () {},
+                        child: const TitleAndIcon(
+                          title: 'Ratings and Reviews',
+                        ),
+                      ),
+                      verticalSpace(5),
+                      Row(
+                        children: [
+                          RatingBarWidget(
+                            rating: foodItemDetailsModel.rating,
+                          ),
+                          RatingLinearProgressIndicator(
+                            oneStar:
+                                foodItemDetailsModel.reviewsSummary.oneStar,
+                            twoStar:
+                                foodItemDetailsModel.reviewsSummary.twoStars,
+                            threeStar:
+                                foodItemDetailsModel.reviewsSummary.threeStars,
+                            fourStar:
+                                foodItemDetailsModel.reviewsSummary.fourStars,
+                            fiveStar:
+                                foodItemDetailsModel.reviewsSummary.fiveStars,
+                            totalReviews: foodItemDetailsModel
+                                .reviewsSummary.totalReviews,
+                          ),
+                        ],
+                      ),
+                      verticalSpace(18),
+                      ListOfCustomerReviewsSection(
+                        foodItemDetailsModel: foodItemDetailsModel,
+                      ),
+                      GestureDetector(
+                        child: const CustomReviewContainer(
+                          title: 'Rate this Item',
+                          leftPadding: 2,
+                          rightPadding: 2,
+                        ),
+                        onTap: () {
+                          showCustomDialog(
+                              context,
+                              'Sorry, you haven\'t tried this\nvendor yet, so you can\'t\nrate it',
+                              AppAssets.haveNotVendor,
+                              200.h);
+                        },
+                      ),
+                      verticalSpace(20),
+                      const TitleAndIcon(
+                        title: 'Similar Items',
+                      ),
+                      CustomListOfSimilarFoodItem(
+                        foodItemDetailsModel: foodItemDetailsModel,
+                      ),
+                    ],
                   ),
-                  onTap: () {
-                    showCustomDialog(
-                        context,
-                        'Sorry, you haven\'t tried this\nvendor yet, so you can\'t\nrate it',
-                        AppAssets.haveNotVendor,
-                        200.h);
-                  },
-                ),
-                // const CustomReviewContainer(
-                //   title: 'Rate this Item',
-                //   leftPadding: 2,
-                //   rightPadding: 2,
-                // ),
+                )
               ],
             ),
-          )
-        ],
-      ),
+          );
+        }
+        return const CircularProgressIndicator();
+      },
     );
   }
 }

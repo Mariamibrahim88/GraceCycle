@@ -32,7 +32,7 @@ class SignupContinueBody extends StatelessWidget {
             if (state is RegisterSucessState) {
               showToast(
                   message: 'Sign Up Successful', state: ToastStates.success);
-              navigateReplacement(context: context, route: Routes.home);
+              navigateReplacement(context: context, route: Routes.login);
             } else if (state is RegisterErrorState) {
               showToast(message: state.message, state: ToastStates.error);
             }

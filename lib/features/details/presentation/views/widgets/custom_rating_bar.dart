@@ -13,7 +13,7 @@ class CustomRatingBar extends StatelessWidget {
     super.key,
     required this.iconSize,
     this.isReadOnly = true,
-    this.initialRating = 2.5,
+    this.initialRating = 0.0,
     this.onRatingUpdate,
   });
 

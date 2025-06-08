@@ -1,11 +1,13 @@
 class EndPoint {
-  static const String baseurl =
-      'https://gracecycleapi.azurewebsites.net/api/AppUser/';
-  static const String signIn = 'login';
-  static const String signUp = 'register-app';
-  static const String forgetPassword = 'forgot-password';
-  static const String verifyResetEmail = 'verify-reset-code';
-  static const String resetPassword = 'reset-password';
+  static const String baseurl = 'https://gracecycleapi.azurewebsites.net/api/';
+  static const String signIn = 'AppUser/login';
+  static const String signUp = 'AppUser/register-app';
+  static const String forgetPassword = 'AppUser/forgot-password';
+  static const String verifyResetEmail = 'AppUser/verify-reset-code';
+  static const String resetPassword = 'AppUser/reset-password';
+  static String foodById(id) {
+    return 'Foods/$id';
+  }
 }
 
 class ApiKeys {

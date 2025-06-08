@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
+import 'package:grace_cycle/features/details/data/models/review_summary_model.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/custom_rating_bar.dart';
 
 class CustomerReviewSection extends StatelessWidget {
   const CustomerReviewSection({
     super.key,
+    required this.review,
   });
+
+  final Review review;
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +31,20 @@ class CustomerReviewSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ola Ahmed',
+                  review.customerName,
                   style: AppTextStyles.nunito700Size16Black,
                 ),
                 verticalSpace(5),
                 Row(
                   children: [
-                    const CustomRatingBar(
+                    CustomRatingBar(
                       iconSize: 16,
+                      initialRating: review.rating.toDouble(),
                       isReadOnly: true,
                     ),
                     horizontalSpace(5),
                     Text(
-                      '25/2/25',
+                      review.date,
                       style: AppTextStyles.nunito400Size14Black,
                     ),
                   ],
@@ -49,7 +54,7 @@ class CustomerReviewSection extends StatelessWidget {
           ],
         ),
         Text(
-          'I dont understand why people like this bread. Its too sour, and the texture is rubbery yuou ldjhv dnbhfj lkhnb ',
+          review.comment,
           style: AppTextStyles.nunito400Size14Black,
         ),
       ],

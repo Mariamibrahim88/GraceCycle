@@ -1,4 +1,12 @@
-import 'package:flutter/material.dart' show Alignment, BuildContext, Navigator, Positioned, Stack, StatelessWidget, Widget;
+import 'package:flutter/material.dart'
+    show
+        Alignment,
+        BuildContext,
+        Navigator,
+        Positioned,
+        Stack,
+        StatelessWidget,
+        Widget;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/container_of_image.dart';
@@ -15,7 +23,7 @@ class VendorDetailsCard extends StatelessWidget {
     return Stack(
       alignment: Alignment.topCenter,
       children: [
-        const ContainerOfImage(),
+        //const ContainerOfImage(),
         Positioned(
           top: 28.h,
           left: 10.w,
@@ -25,7 +33,7 @@ class VendorDetailsCard extends StatelessWidget {
             },
           ),
         ),
-        const FavContainer(),
+        //const FavContainer(),
         Positioned(
           bottom: 40.h,
           right: 50.w,

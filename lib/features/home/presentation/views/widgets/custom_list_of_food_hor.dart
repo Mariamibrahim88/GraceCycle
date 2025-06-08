@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:grace_cycle/core/routes/app_routes.dart';
+import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/features/home/data/models/food_menu_model.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/food_card.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/header_of_category.dart';
@@ -34,8 +36,16 @@ class CustomListOfFoodHor extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.w),
-                          child: FoodCard(
-                            foodItemModel: foodItemModel[index],
+                          child: GestureDetector(
+                            onTap: () {
+                              navigate(
+                                  context: context,
+                                  route: Routes.foodDetails,
+                                  arg: foodItemModel[index].id);
+                            },
+                            child: FoodCard(
+                              foodItemModel: foodItemModel[index],
+                            ),
                           ),
                         );
                       }),

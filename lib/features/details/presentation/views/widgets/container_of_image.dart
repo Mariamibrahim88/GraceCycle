@@ -1,10 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 
 class ContainerOfImage extends StatelessWidget {
-  const ContainerOfImage({super.key});
+  const ContainerOfImage({super.key, required this.imageOfFood});
+
+  final String imageOfFood;
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +21,25 @@ class ContainerOfImage extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.only(top: 52.h),
-        child: SizedBox(
-          height: 323.h,
-          width: 161.w,
-          child: Image.asset(
-            AppAssets.baked2,
+        padding:
+            EdgeInsets.only(top: 52.h, left: 25.w, right: 25.w, bottom: 20.h),
+        child: ClipRRect(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(30.r),
+            bottom: Radius.circular(30.r),
           ),
+          child: SizedBox(
+              height: 323.h,
+              width: 161.w,
+              child: CachedNetworkImage(
+                imageUrl: imageOfFood,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => Image.asset(
+                  imageOfFood,
+                  //   fit: BoxFit.cover,
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              )),
         ),
       ),
     );

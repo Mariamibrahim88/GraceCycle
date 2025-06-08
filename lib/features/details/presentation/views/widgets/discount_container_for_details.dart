@@ -4,7 +4,9 @@ import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
 
 class DiscountContainerForDetails extends StatelessWidget {
-  const DiscountContainerForDetails({super.key});
+  const DiscountContainerForDetails({super.key, required this.discount});
+
+  final int discount;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class DiscountContainerForDetails extends StatelessWidget {
           color: AppColors.greenForDiscount,
         ),
         child: Center(
-          child: Text('15%', style: AppTextStyles.nunito700Size15Black),
+          child: Text('$discount%', style: AppTextStyles.nunito700Size15Black),
         ),
       ),
     );

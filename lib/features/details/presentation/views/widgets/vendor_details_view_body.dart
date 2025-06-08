@@ -55,12 +55,14 @@ class VendorDetailsViewBody extends StatelessWidget {
                 verticalSpace(5),
                 Row(
                   children: [
-                    const RatingBarWidget(),
-                    RatingLinearProgressIndicator(),
+                    // const RatingBarWidget(),
+                    // RatingLinearProgressIndicator(),
                   ],
                 ),
                 verticalSpace(18),
-                const ListOfCustomerReviewsSection(),
+                // const ListOfCustomerReviewsSection(
+
+                // ),
               ],
             ),
           ),

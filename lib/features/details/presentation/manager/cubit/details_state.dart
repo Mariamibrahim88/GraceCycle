@@ -24,3 +24,17 @@ final class AddToCartState extends DetailsState {
 
   AddToCartState({required this.quantity});
 }
+
+final class GetFoodByIdLoading extends DetailsState {}
+
+final class GetFoodByIdSuccess extends DetailsState {
+  final FoodItemDetailsModel foodItemDetails;
+
+  GetFoodByIdSuccess({required this.foodItemDetails});
+}
+
+final class GetFoodByIdFailure extends DetailsState {
+  final String errorMessage;
+
+  GetFoodByIdFailure({required this.errorMessage});
+}

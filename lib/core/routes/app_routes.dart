@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/widgets/custom_buttom_nav_bar.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/first_forget_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/login_in_view.dart';
@@ -9,8 +11,10 @@ import 'package:grace_cycle/features/Authentication/presentation/views/succ_set_
 import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_full_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_view.dart';
+import 'package:grace_cycle/features/details/data/models/food_item_details_model.dart';
+import 'package:grace_cycle/features/details/presentation/manager/cubit/details_cubit.dart';
 import 'package:grace_cycle/features/orders/presentation/views/checkout_view.dart';
-import 'package:grace_cycle/features/details/presentation/views/food_details.dart';
+import 'package:grace_cycle/features/details/presentation/views/food_details_view.dart';
 import 'package:grace_cycle/features/details/presentation/views/vendor_details_view.dart';
 import 'package:grace_cycle/features/details/presentation/views/write_review_view.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/favorites_view.dart';
@@ -21,6 +25,7 @@ import 'package:grace_cycle/features/orders/presentation/views/orders_view.dart'
 import 'package:grace_cycle/features/orders/presentation/views/confirm_reciving_view.dart';
 import 'package:grace_cycle/features/orders/presentation/views/done_order_view.dart';
 import 'package:grace_cycle/features/settings/presentation/views/settings_view.dart';
+import 'package:grace_cycle/features/splash/presentation/views/splash_view.dart';
 
 class Routes {
   static const String initialRoute = '/';
@@ -44,13 +49,14 @@ class Routes {
   static const String writeReview = '/writeReview';
   static const String ordersView = '/ordersView';
   static const String doneOrder = '/doneOrder';
+  static const String foodDetails = '/foodDetails';
 }
 
 class AppRoutes {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (_) => const OrdersView());
+        return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.onBourding:
@@ -91,6 +97,14 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const OrdersView());
       case Routes.doneOrder:
         return MaterialPageRoute(builder: (_) => const DoneOrderView());
+      case Routes.foodDetails:
+        final id = settings.arguments as int;
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) =>
+                      DetailsCubit(sl())..getFoodDetails(id: id),
+                  child: FoodDetailsView(),
+                ));
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }
