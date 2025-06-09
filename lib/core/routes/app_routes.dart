@@ -11,7 +11,6 @@ import 'package:grace_cycle/features/Authentication/presentation/views/succ_set_
 import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_full_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_view.dart';
-import 'package:grace_cycle/features/details/data/models/food_item_details_model.dart';
 import 'package:grace_cycle/features/details/presentation/manager/cubit/details_cubit.dart';
 import 'package:grace_cycle/features/orders/presentation/views/checkout_view.dart';
 import 'package:grace_cycle/features/details/presentation/views/food_details_view.dart';
@@ -22,7 +21,6 @@ import 'package:grace_cycle/features/home/presentation/views/home_view.dart';
 import 'package:grace_cycle/features/home/presentation/views/see_all_view.dart';
 import 'package:grace_cycle/features/onBourding/presentation/views/onbourding_view.dart';
 import 'package:grace_cycle/features/orders/presentation/views/orders_view.dart';
-import 'package:grace_cycle/features/orders/presentation/views/confirm_reciving_view.dart';
 import 'package:grace_cycle/features/orders/presentation/views/done_order_view.dart';
 import 'package:grace_cycle/features/settings/presentation/views/settings_view.dart';
 import 'package:grace_cycle/features/splash/presentation/views/splash_view.dart';
@@ -85,8 +83,6 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const CartView());
       case Routes.settings:
         return MaterialPageRoute(builder: (_) => const SettingsView());
-      case Routes.vendorDetails:
-        return MaterialPageRoute(builder: (_) => const VendorDetailsView());
       case Routes.cartFull:
         return MaterialPageRoute(builder: (_) => const CartFullView());
       case Routes.checkout:
@@ -97,13 +93,21 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const OrdersView());
       case Routes.doneOrder:
         return MaterialPageRoute(builder: (_) => const DoneOrderView());
+      case Routes.vendorDetails:
+        final id = settings.arguments as String;
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) =>
+                      DetailsCubit(sl())..getVendorDetails(id: id),
+                  child: const VendorDetailsView(),
+                ));
       case Routes.foodDetails:
         final id = settings.arguments as int;
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) =>
                       DetailsCubit(sl())..getFoodDetails(id: id),
-                  child: FoodDetailsView(),
+                  child: const FoodDetailsView(),
                 ));
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());

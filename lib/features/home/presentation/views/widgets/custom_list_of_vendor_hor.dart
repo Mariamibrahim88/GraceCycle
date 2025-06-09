@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/features/home/data/models/vendors_model.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/header_of_vendor_name.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/vendor_card.dart';
@@ -29,8 +30,17 @@ class CustomListOfVendorHor extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: vendor.length,
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => VendorCard(
-                      vendorItemModel: vendor[index],
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          Routes.vendorDetails,
+                          arguments: vendor[index].userId,
+                        );
+                      },
+                      child: VendorCard(
+                        vendorItemModel: vendor[index],
+                      ),
                     ),
                     // itemCount: vendor.length,
                   ),
