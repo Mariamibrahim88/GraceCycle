@@ -8,6 +8,9 @@ class EndPoint {
   static String foodById(id) {
     return 'Foods/$id';
   }
+  static String vendorById(id) {
+    return 'VendorDetails/$id';
+  }
 }
 
 class ApiKeys {

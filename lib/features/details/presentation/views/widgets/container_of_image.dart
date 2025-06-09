@@ -34,10 +34,8 @@ class ContainerOfImage extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: imageOfFood,
                 fit: BoxFit.cover,
-                placeholder: (context, url) => Image.asset(
-                  imageOfFood,
-                  //   fit: BoxFit.cover,
-                ),
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               )),
         ),

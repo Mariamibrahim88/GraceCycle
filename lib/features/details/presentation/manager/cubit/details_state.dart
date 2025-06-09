@@ -38,3 +38,19 @@ final class GetFoodByIdFailure extends DetailsState {
 
   GetFoodByIdFailure({required this.errorMessage});
 }
+
+
+
+final class GetVendorByIdLoading extends DetailsState {}
+
+final class GetVendorByIdSuccess extends DetailsState {
+  final VendorItemDetailsModel vendorItemDetails;
+
+  GetVendorByIdSuccess({required this.vendorItemDetails});
+}
+
+final class GetVendorByIdFailure extends DetailsState {
+  final String errorMessage;
+
+  GetVendorByIdFailure({required this.errorMessage});
+}
