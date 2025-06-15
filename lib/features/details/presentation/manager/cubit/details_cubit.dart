@@ -13,6 +13,7 @@ class DetailsCubit extends Cubit<DetailsState> {
 
   int quantity = 1;
   final DetailsRepo detailsRepo;
+  FoodItemDetailsModel? foodItemDetails;
 
   void increaseQuantity() {
     quantity++;
@@ -30,7 +31,10 @@ class DetailsCubit extends Cubit<DetailsState> {
     emit(GetFoodByIdLoading());
     final response = await detailsRepo.getFoodDetails(id: id);
     response.fold((error) => emit(GetFoodByIdFailure(errorMessage: error)),
-        (r) => emit(GetFoodByIdSuccess(foodItemDetails: r)));
+        (r) {
+      foodItemDetails = r;
+      emit(GetFoodByIdSuccess(foodItemDetails: r));
+    });
   }
 
   Future<void> getVendorDetails({required String id}) async {
