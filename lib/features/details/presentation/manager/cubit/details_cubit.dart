@@ -7,7 +7,9 @@ import 'package:grace_cycle/features/details/data/repos/details_repo.dart';
 part 'details_state.dart';
 
 class DetailsCubit extends Cubit<DetailsState> {
-  DetailsCubit(this.detailsRepo,) : super(DetailsInitial());
+  DetailsCubit(
+    this.detailsRepo,
+  ) : super(DetailsInitial());
 
   int quantity = 1;
   final DetailsRepo detailsRepo;
@@ -25,6 +27,7 @@ class DetailsCubit extends Cubit<DetailsState> {
   }
 
   Future<void> getFoodDetails({required int id}) async {
+    emit(GetFoodByIdLoading());
     final response = await detailsRepo.getFoodDetails(id: id);
     response.fold((error) => emit(GetFoodByIdFailure(errorMessage: error)),
         (r) => emit(GetFoodByIdSuccess(foodItemDetails: r)));

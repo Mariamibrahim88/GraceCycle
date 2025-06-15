@@ -9,6 +9,7 @@ import 'package:grace_cycle/features/details/presentation/manager/cubit/details_
 import 'package:grace_cycle/features/details/presentation/views/widgets/container_of_image.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/custom_list_of_similar_food_item.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/custom_review_container.dart';
+import 'package:grace_cycle/features/details/presentation/views/widgets/custom_shimmer_of_food_details.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/discount_container_for_details.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/fav_container.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/food_info.dart';
@@ -24,9 +25,12 @@ class FoodDetailsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DetailsCubit, DetailsState>(
+      buildWhen: (previous, current) =>
+          current is! IncreaseQuantityState &&
+          current is! DecreaseQuantityState,
       builder: (context, state) {
         if (state is GetFoodByIdLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const FoodDetailsShimmerBody();
         } else if (state is GetFoodByIdFailure) {
           return Center(child: Text(state.errorMessage));
         } else if (state is GetFoodByIdSuccess) {
