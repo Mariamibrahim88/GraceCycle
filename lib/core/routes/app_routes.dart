@@ -24,6 +24,7 @@ import 'package:grace_cycle/features/orders/presentation/views/orders_view.dart'
 import 'package:grace_cycle/features/orders/presentation/views/done_order_view.dart';
 import 'package:grace_cycle/features/settings/presentation/views/settings_view.dart';
 import 'package:grace_cycle/features/splash/presentation/views/splash_view.dart';
+import 'package:grace_cycle/no_internet_page.dart';
 
 class Routes {
   static const String initialRoute = '/';
@@ -48,6 +49,7 @@ class Routes {
   static const String ordersView = '/ordersView';
   static const String doneOrder = '/doneOrder';
   static const String foodDetails = '/foodDetails';
+  static const String noInternet = '/noInternet';
 }
 
 class AppRoutes {
@@ -55,6 +57,8 @@ class AppRoutes {
     switch (settings.name) {
       case Routes.initialRoute:
         return MaterialPageRoute(builder: (_) => const SplashView());
+      case Routes.noInternet:
+        return MaterialPageRoute(builder: (_) => const NoInternetPage());
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.onBourding:

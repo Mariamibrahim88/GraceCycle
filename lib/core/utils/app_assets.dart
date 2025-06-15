@@ -50,7 +50,7 @@ class AppAssets {
   static String payPal = 'assets/images/payPal.svg';
   static String master = 'assets/images/master.svg';
   static String instaPay = 'assets/images/instaPay.svg';
-  static String finished1= 'assets/images/finished1.png';
-  static String finished2= 'assets/images/finished2.png';
-
+  static String finished1 = 'assets/images/finished1.png';
+  static String finished2 = 'assets/images/finished2.png';
+  static String noInternet = 'assets/images/No connection.svg';
 }

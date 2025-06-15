@@ -83,13 +83,13 @@ class DioConsumer extends ApiConsumer {
 handleDioException(e) {
   switch (e.type) {
     case DioExceptionType.badCertificate:
-      throw BadCertificateException(ErrorModel.fromJson(e.response!.data));
+      throw BadCertificateException(ErrorModel.fromJson(e.response?.data));
     case DioExceptionType.connectionTimeout:
-      throw ConnectionTimeoutException(ErrorModel.fromJson(e.response!.data));
+      throw ConnectionTimeoutException(ErrorModel.fromJson(e.response?.data));
     case DioExceptionType.receiveTimeout:
     case DioExceptionType.connectionError:
     case DioExceptionType.sendTimeout:
-      throw ServerException(ErrorModel.fromJson(e.response!.data));
+      throw ServerException(ErrorModel.fromJson(e.response?.data));
 
     case DioExceptionType.badResponse:
       switch (e.response?.statusCode) {
