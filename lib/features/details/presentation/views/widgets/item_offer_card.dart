@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/features/details/data/models/vendor_item_details_model.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/custom_forward_arrow.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/item_offered_info.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/asset_fav_card.dart';
 
 class ItemOfferedCard extends StatelessWidget {
   const ItemOfferedCard({
-    super.key,
+    super.key, required this.offeredItem,
   });
-
+  final OfferedItem offeredItem;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,12 +30,13 @@ class ItemOfferedCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const AssetFavCard(
-              imageUrl:
-                  'https://images.immediate.co.uk/production/volatile/sites/30/2024/06/Gluten-free-chocolate-pear-pudding-cake-2-9550ff2.jpg',
+            AssetFavCard(
+              imageUrl: offeredItem.picUrl,
             ),
             horizontalSpace(15.w),
-            const ItemOfferedInfo(),
+            ItemOfferedInfo(
+              offeredItem: offeredItem,
+            ),
             horizontalSpace(20.w),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -54,4 +56,3 @@ class ItemOfferedCard extends StatelessWidget {
     );
   }
 }
-

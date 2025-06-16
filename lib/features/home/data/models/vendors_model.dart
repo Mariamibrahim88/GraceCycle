@@ -51,4 +51,17 @@ class VendorItemModel {
       isFavourite: json['isFavourite'],
     );
   }
+  Map<String, dynamic> toJson() {
+    return {
+      'userId': userId,
+      'address': address,
+      'displayName': displayName,
+      'logoUrl': logoUrl,
+      'opening': opening,
+      'closing': closing,
+      'picUrl': picUrl,
+      'rating': rating,
+      'isFavourite': isFavourite,
+    };
+  }
 }
