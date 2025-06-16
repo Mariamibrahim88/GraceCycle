@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/widgets/custom_loading.dart';
 import 'package:grace_cycle/core/widgets/custom_no_found_items.dart';
 import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
@@ -50,8 +51,17 @@ class DiscoverVendorsList extends StatelessWidget {
                         bottom: 8,
                         top: 8,
                       ),
-                      child: VendorCard(
-                        vendorItemModel: discoverCubit.vendorList[index],
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            Routes.vendorDetails,
+                            arguments: discoverCubit.vendorList[index].userId,
+                          );
+                        },
+                        child: VendorCard(
+                          vendorItemModel: discoverCubit.vendorList[index],
+                        ),
                       ),
                     );
                   } else {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/features/details/presentation/manager/cubit/details_cubit.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/custom_review_container.dart';
@@ -11,6 +12,7 @@ import 'package:grace_cycle/features/details/presentation/views/widgets/rating_b
 import 'package:grace_cycle/features/details/presentation/views/widgets/rating_linear_progress_indicator.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/title_and_icon.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/vendor_details_card.dart';
+import 'package:grace_cycle/features/home/presentation/views/widgets/vendor_card.dart';
 
 class VendorDetailsViewBody extends StatelessWidget {
   const VendorDetailsViewBody({super.key});
@@ -18,7 +20,7 @@ class VendorDetailsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DetailsCubit, DetailsState>(
-      buildWhen: (previous, current) => 
+      buildWhen: (previous, current) =>
           current is GetVendorByIdLoading ||
           current is GetVendorByIdFailure ||
           current is GetVendorByIdSuccess,
@@ -55,7 +57,9 @@ class VendorDetailsViewBody extends StatelessWidget {
                   text: 'It is 10 km away from you',
                 ),
                 verticalSpace(15.h),
-                const ItemsOfferedSection(),
+                ItemsOfferedSection(
+                  offeredItemList: vendorDetailsModel.itemsOffered,
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: Column(
@@ -96,14 +100,45 @@ class VendorDetailsViewBody extends StatelessWidget {
                   title: 'Rate this vendor',
                 ),
                 verticalSpace(20.h),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(
                     left: 30,
                     right: 30,
-                    bottom: 20.h,
                   ),
-                  child: const TitleAndIcon(
+                  child: TitleAndIcon(
                     title: 'Similar Restaurant',
+                  ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 250.h,
+                          child: ListView.builder(
+                            itemCount: vendorDetailsModel.similarItems.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) => GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  Routes.vendorDetails,
+                                  arguments: vendorDetailsModel
+                                      .similarItems[index].userId,
+                                );
+                              },
+                              child: VendorCard(
+                                vendorItemModel:
+                                    vendorDetailsModel.similarItems[index],
+                              ),
+                            ),
+                            // itemCount: vendor.length,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ],
@@ -112,7 +147,6 @@ class VendorDetailsViewBody extends StatelessWidget {
         } else {
           return const SizedBox.shrink();
         }
-
       },
     );
   }

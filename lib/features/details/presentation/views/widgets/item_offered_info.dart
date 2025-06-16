@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/features/details/data/models/vendor_item_details_model.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/left_pieces_container.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/price_for_food.dart';
 
 class ItemOfferedInfo extends StatelessWidget {
   const ItemOfferedInfo({
     super.key,
+    required this.offeredItem,
   });
-
+  final OfferedItem offeredItem;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,7 +19,7 @@ class ItemOfferedInfo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          'Apple Pie',
+          offeredItem.name,
           style: TextStyle(
             fontSize: 14.sp,
             fontWeight: FontWeight.w700,
@@ -25,14 +27,15 @@ class ItemOfferedInfo extends StatelessWidget {
           ),
         ),
         verticalSpace(12),
-        const PriceForFood(
+        PriceForFood(
           price: false,
-          oldPrice: 40,
-          newPrice: 10,
+          oldPrice: offeredItem.unitPrice,
+          newPrice: offeredItem.newPrice,
         ),
         verticalSpace(7),
         LeftPiecesContainer(
-            color: AppColors.sortColor, leftPieces: '${5.toString()} + left'),
+            color: AppColors.sortColor,
+            leftPieces: '${offeredItem.quantity} + left'),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/widgets/custom_loading.dart';
 import 'package:grace_cycle/features/discover/presentation/views/widgets/custom_list_of_shimmer_ver.dart';
 import 'package:grace_cycle/features/favorites/presentation/manager/cubit/get_fav_cubit.dart';
@@ -58,8 +59,17 @@ class FavVendorsList extends StatelessWidget {
                           bottom: 8,
                           top: 8,
                         ),
-                        child: FavoriteVendorCard(
-                          favVendorItem: favCubit.favVendorList[index],
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              Routes.vendorDetails,
+                              arguments: favCubit.favVendorList[index].userId,
+                            );
+                          },
+                          child: FavoriteVendorCard(
+                            favVendorItem: favCubit.favVendorList[index],
+                          ),
                         ));
                   } else {
                     if (favCubit.isLoadingVendors) {
