@@ -1,9 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
-import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

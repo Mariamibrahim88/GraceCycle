@@ -10,27 +10,13 @@ class CustomLoadingCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const SizedBox(
-          height: 22,
-        ),
-        CustomAppBar(
-          title: 'Your Cart',
-          fontStyle: 22.sp,
-          color: Colors.black,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        const SizedBox(
-          height: 120,
-        ),
-        const CustomCartItemShimmer(),
-        const CustomCartItemShimmer(),
-        const CustomCartItemShimmer(),
-        const CustomCartItemShimmer(),
-        const CustomCartItemShimmer(),
+        CustomCartItemShimmer(),
+        CustomCartItemShimmer(),
+        CustomCartItemShimmer(),
+        CustomCartItemShimmer(),
+        CustomCartItemShimmer(),
       ],
     );
   }
