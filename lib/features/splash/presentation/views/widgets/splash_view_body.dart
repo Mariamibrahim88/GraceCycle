@@ -6,7 +6,9 @@ import 'package:grace_cycle/core/database/remote/end_points.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/utils/app_assets.dart';
+import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
+import 'package:grace_cycle/core/utils/app_text_styles.dart';
 import 'package:grace_cycle/core/widgets/check_token_expired.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
@@ -22,6 +24,9 @@ class _SplashViewBodyState extends State<SplashViewBody>
   late final AnimationController _controller;
   late final Animation<double> _animation;
   StreamSubscription<InternetStatus>? _connectionSubscription;
+
+  bool hasNavigated = false;
+  bool isDialogShown = false;
 
   @override
   void initState() {
@@ -40,18 +45,16 @@ class _SplashViewBodyState extends State<SplashViewBody>
     _checkInitialConnection();
 
     _connectionSubscription =
-        InternetConnection().onStatusChange.listen((status) {
+        InternetConnection().onStatusChange.listen((status) async {
       if (status == InternetStatus.disconnected) {
-        navigate(
-          context: context,
-          route: Routes.noInternet,
-        );
+        _showNoInternetDialog();
       } else if (status == InternetStatus.connected) {
-        navigateToOnBoarding();
+        _dismissNoInternetDialog();
+        if (!hasNavigated) {
+          navigateToOnBoarding();
+        }
       }
     });
-
-    navigateToOnBoarding();
   }
 
   @override
@@ -91,15 +94,63 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void _checkInitialConnection() async {
     final isConnected = await InternetConnection().hasInternetAccess;
     if (!isConnected) {
-      navigate(context: context, route: Routes.noInternet);
+      _showNoInternetDialog();
     } else {
       navigateToOnBoarding();
     }
   }
 
+  void _showNoInternetDialog() {
+    if (isDialogShown) return;
+    isDialogShown = true;
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => AlertDialog(
+        backgroundColor: AppColors.basicWhite,
+        title: Text(
+          'No Internet',
+          style: AppTextStyles.nunito500Size17GreenButt,
+        ),
+        content: Text(
+          'Please check your connection and try again.',
+          style: AppTextStyles.nunito400Size16Black,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () async {
+              final isConnected = await InternetConnection().hasInternetAccess;
+              if (isConnected) {
+                _dismissNoInternetDialog();
+                if (!hasNavigated) navigateToOnBoarding();
+              }
+              Navigator.of(context, rootNavigator: true).pop();
+            },
+            child: Text(
+              'Retry',
+              style: AppTextStyles.nunito500Size16GreenButt,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _dismissNoInternetDialog() {
+    if (isDialogShown) {
+      Navigator.of(context, rootNavigator: true).pop();
+      isDialogShown = false;
+    }
+  }
+
   void navigateToOnBoarding() async {
+    if (hasNavigated) return;
+    hasNavigated = true;
+
     final isConnected = await InternetConnection().hasInternetAccess;
     if (!isConnected) return;
+
     await Future.delayed(const Duration(seconds: 6));
     if (!mounted) return;
 
@@ -107,13 +158,10 @@ class _SplashViewBodyState extends State<SplashViewBody>
     final didFinishOnboarding =
         sl<CacheHelper>().getDataBool(key: ApiKeys.onBourding) == true;
 
-    if (token == null || isTokenExpired(token)) {
-      navigate(
-        context: context,
-        route: didFinishOnboarding ? Routes.signup : Routes.onBourding,
-      );
-    } else {
-      navigate(context: context, route: Routes.navBar);
-    }
+    final route = (token == null || isTokenExpired(token))
+        ? (didFinishOnboarding ? Routes.signup : Routes.onBourding)
+        : Routes.navBar;
+
+    navigate(context: context, route: route);
   }
 }

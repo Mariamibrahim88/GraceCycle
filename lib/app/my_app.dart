@@ -5,42 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  bool isConnected = true;
-  StreamSubscription? connectionSubscription;
-
-  @override
-  void initState() {
-    super.initState();
-    connectionSubscription =
-        InternetConnection().onStatusChange.listen((status) {
-      switch (status) {
-        case InternetStatus.connected:
-          setState(() {
-            isConnected = true;
-          });
-          break;
-        case InternetStatus.disconnected:
-          setState(() {
-            isConnected = false;
-          });
-          break;
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    connectionSubscription?.cancel();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
