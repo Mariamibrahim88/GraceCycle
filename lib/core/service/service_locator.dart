@@ -9,6 +9,8 @@ import 'package:grace_cycle/features/Authentication/presentation/manager/forget_
 import 'package:grace_cycle/features/Authentication/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:grace_cycle/features/Authentication/data/repos/login_repo.dart';
 import 'package:grace_cycle/features/Authentication/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:grace_cycle/features/cart/data/repos/cart_repo.dart';
+import 'package:grace_cycle/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'package:grace_cycle/features/details/data/repos/details_repo.dart';
 import 'package:grace_cycle/features/details/presentation/manager/cubit/details_cubit.dart';
 import 'package:grace_cycle/features/discover/data/repos/discover_repo.dart';
@@ -30,6 +32,7 @@ void initServiceLocator() {
   sl.registerLazySingleton(() => FavRepo());
   sl.registerLazySingleton(() => DiscoverRepo());
   sl.registerLazySingleton(() => DetailsRepo());
+  sl.registerLazySingleton(() => CartRepo());
 
   //sl.registerSingleton(() => RegisterCubit(sl()));
   sl.registerFactory<RegisterCubit>(() => RegisterCubit(sl<RegisterRepo>()));
@@ -42,4 +45,5 @@ void initServiceLocator() {
   sl.registerFactory<LoginCubit>(() => LoginCubit(sl<LoginRepo>()));
   sl.registerFactory<ForgetPassCubit>(
       () => ForgetPassCubit(sl<ForgetPassRepo>()));
+  sl.registerFactory<CartCubit>(() =>CartCubit(sl<CartRepo>()));
 }

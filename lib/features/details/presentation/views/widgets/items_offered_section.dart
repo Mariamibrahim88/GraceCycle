@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:grace_cycle/core/routes/app_routes.dart';
-import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/features/details/data/models/vendor_item_details_model.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/custom_list_item_offered.dart';
