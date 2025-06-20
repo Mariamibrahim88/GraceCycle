@@ -6,11 +6,14 @@ import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
+import 'package:grace_cycle/features/cart/data/models/cart_items_for_any_vendor_model.dart';
 
 class ItemOfCart extends StatelessWidget {
   const ItemOfCart({
     super.key,
+    required this.cartItemsForAnyVendorModel,
   });
+  final CartItemsForAnyVendorModel cartItemsForAnyVendorModel;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +39,13 @@ class ItemOfCart extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'From Al Shallal Restaurant',
+                    cartItemsForAnyVendorModel.vendorName,
                     style: AppTextStyles.nunito800Size18Black,
                   ),
+                  Text(
+                    ' (${cartItemsForAnyVendorModel.createdAt.year.toString()}/${cartItemsForAnyVendorModel.createdAt.month.toString().padLeft(2, '0')}/${cartItemsForAnyVendorModel.createdAt.day.toString().padLeft(2, '0')})',
+                  ),
+                  const Spacer(),
                   const Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 25,
@@ -59,7 +66,7 @@ class ItemOfCart extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        '2 items',
+                        '${cartItemsForAnyVendorModel.count.toString()} items',
                         style: AppTextStyles.nunito500Size14Black
                             .copyWith(color: Colors.white),
                       ),
@@ -85,7 +92,7 @@ class ItemOfCart extends StatelessWidget {
                         style: AppTextStyles.nunito500Size11BasicGreen,
                       ),
                       Text(
-                        '200',
+                        cartItemsForAnyVendorModel.total.toString(),
                         style: AppTextStyles.nunito500Size17GreenButt,
                       ),
                     ],

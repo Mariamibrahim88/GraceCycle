@@ -5,6 +5,8 @@ class EndPoint {
   static const String forgetPassword = 'AppUser/forgot-password';
   static const String verifyResetEmail = 'AppUser/verify-reset-code';
   static const String resetPassword = 'AppUser/reset-password';
+    static const String cart='Cart';
+
   static String foodById(id) {
     return 'Foods/$id';
   }
