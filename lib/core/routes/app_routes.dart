@@ -9,6 +9,7 @@ import 'package:grace_cycle/features/Authentication/presentation/views/signup_co
 import 'package:grace_cycle/features/Authentication/presentation/views/signup_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/succ_set_new_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
+import 'package:grace_cycle/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_full_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_view.dart';
 import 'package:grace_cycle/features/details/presentation/manager/cubit/details_cubit.dart';
@@ -87,8 +88,6 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const CartView());
       case Routes.settings:
         return MaterialPageRoute(builder: (_) => const SettingsView());
-      case Routes.cartFull:
-        return MaterialPageRoute(builder: (_) => const CartFullView());
       case Routes.checkout:
         return MaterialPageRoute(builder: (_) => const CheckoutView());
       case Routes.writeReview:
@@ -113,6 +112,17 @@ class AppRoutes {
                       DetailsCubit(sl())..getFoodDetails(id: id),
                   child: const FoodDetailsView(),
                 ));
+      case Routes.cartFull:
+        print('venndoramid :$settings.arguments');
+        final id = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                CartCubit(sl())..getCartItemsForSpecificVendor(vendorId: id),
+            child: const CartFullView(),
+          ),
+        );
+
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }

@@ -19,7 +19,8 @@ class ItemOfCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, Routes.cartFull);
+        Navigator.pushNamed(context, Routes.cartFull,
+            arguments: cartItemsForAnyVendorModel.vendorId);
       },
       child: Container(
         height: 73.h,

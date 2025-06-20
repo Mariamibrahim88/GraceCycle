@@ -13,7 +13,7 @@ class OrderSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const ListOfFoodInCheckout(),
+        //const ListOfFoodInCheckout(),
         verticalSpace(20.h),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

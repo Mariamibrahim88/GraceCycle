@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
+import 'package:grace_cycle/features/cart/data/models/cart_items_for_specefic_vendor_model.dart';
 import 'package:grace_cycle/features/details/presentation/views/widgets/remove_and_add_cart_item.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/asset_fav_card.dart';
+import 'package:grace_cycle/features/home/presentation/views/widgets/left_pieces_container.dart';
+import 'package:grace_cycle/features/home/presentation/views/widgets/price_for_food.dart';
 
 class FoodCardInfullCart extends StatelessWidget {
   const FoodCardInfullCart({
     super.key,
+    required this.cartItem,
   });
+
+  final CartItem cartItem;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +29,32 @@ class FoodCardInfullCart extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const AssetFavCard(
-            imageUrl:
-                'https://images.immediate.co.uk/production/volatile/sites/30/2024/06/Gluten-free-chocolate-pear-pudding-cake-2-9550ff2.jpg',
-          ),
+          AssetFavCard(imageUrl: cartItem.picUrl),
           horizontalSpace(15.w),
-          //const ItemOfferedInfo(offeredItem: offeredItem),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                cartItem.name,
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black,
+                ),
+              ),
+              verticalSpace(12),
+              PriceForFood(
+                price: false,
+                oldPrice: cartItem.unitPrice,
+                newPrice: cartItem.newPrice,
+              ),
+              verticalSpace(7),
+              LeftPiecesContainer(
+                  color: AppColors.sortColor,
+                  leftPieces: '${cartItem.available} + left'),
+            ],
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [

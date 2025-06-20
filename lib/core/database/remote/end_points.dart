@@ -5,13 +5,18 @@ class EndPoint {
   static const String forgetPassword = 'AppUser/forgot-password';
   static const String verifyResetEmail = 'AppUser/verify-reset-code';
   static const String resetPassword = 'AppUser/reset-password';
-    static const String cart='Cart';
+  static const String cart = 'Cart';
 
   static String foodById(id) {
     return 'Foods/$id';
   }
-  static String vendorById(id) {
+
+  static String vendorById(String id) {
     return 'VendorDetails/$id';
+  }
+
+  static String getCartsForSpecificVendor(vendorId) {
+    return 'Cart/$vendorId';
   }
 }
 
