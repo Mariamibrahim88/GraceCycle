@@ -19,6 +19,7 @@ class EndPoint {
   static String getCartsForSpecificVendor(vendorId) {
     return 'Cart/$vendorId';
   }
+  static String addItemToCart = 'Cart/add-item';
 }
 
 class ApiKeys {

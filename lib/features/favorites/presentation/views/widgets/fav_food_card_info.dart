@@ -39,7 +39,7 @@ class FavFoodCardInfo extends StatelessWidget {
         verticalSpace(6),
         LeftPiecesContainer(
             color: AppColors.sortColor,
-            leftPieces: '${foodItem.quantity.toString()} + left'),
+            leftPieces: foodItem.quantity),
         verticalSpace(7),
         PriceForFood(
           price: false,

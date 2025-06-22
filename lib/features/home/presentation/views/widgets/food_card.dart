@@ -43,7 +43,7 @@ class FoodCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             LeftPiecesContainer(
-                              leftPieces: '${foodItemModel.quantity}+ left',
+                              leftPieces: foodItemModel.quantity,
                             ),
                             RateContainer(
                               rate: foodItemModel.rating,

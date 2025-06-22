@@ -16,45 +16,48 @@ class CartViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartCubit = BlocProvider.of<CartCubit>(context);
 
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: 12.w,
-          right: 12.w,
-          top: 22.h,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomAppBar(
-              title: 'Your Cart',
-              fontStyle: 22.sp,
-              color: Colors.black,
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            verticalSpace(20.h),
-            BlocBuilder<CartCubit, CartState>(
-              builder: (context, state) {
-                if (state is GetCartItemsForAnyVendorFailure) {
-                  return Center(child: Text(state.errorMessage));
-                } else if (state is GetCartItemsForAnyVendorSuccess) {
-                  return state.cartItemsForAnyVendorList.isEmpty
-                      ? const Padding(
-                          padding: EdgeInsets.only(top: 90.0),
-                          child: EmptyCart(),
-                        )
-                      : CustomListOfCartItemsForAnyVendor(
-                          cartItemsForAnyVendorModel:
-                              state.cartItemsForAnyVendorList);
-                } else {
-                  return const CustomLoadingCart();
-                }
-              },
-            ),
-          ],
+    return PopScope(
+      canPop: false,
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: 12.w,
+            right: 12.w,
+            top: 22.h,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomAppBar(
+                title: 'Your Cart',
+                fontStyle: 22.sp,
+                color: Colors.black,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              verticalSpace(20.h),
+              BlocBuilder<CartCubit, CartState>(
+                builder: (context, state) {
+                  if (state is GetCartItemsForAnyVendorFailure) {
+                    return Center(child: Text(state.errorMessage));
+                  } else if (state is GetCartItemsForAnyVendorSuccess) {
+                    return state.cartItemsForAnyVendorList.isEmpty
+                        ? const Padding(
+                            padding: EdgeInsets.only(top: 90.0),
+                            child: EmptyCart(),
+                          )
+                        : CustomListOfCartItemsForAnyVendor(
+                            cartItemsForAnyVendorModel:
+                                state.cartItemsForAnyVendorList.);
+                  } else {
+                    return const CustomLoadingCart();
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

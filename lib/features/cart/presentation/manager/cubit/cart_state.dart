@@ -1,3 +1,4 @@
+import 'package:grace_cycle/features/cart/data/models/add_item_to_cart_model.dart';
 import 'package:grace_cycle/features/cart/data/models/cart_items_for_any_vendor_model.dart';
 import 'package:grace_cycle/features/cart/data/models/cart_items_for_specefic_vendor_model.dart';
 import 'package:grace_cycle/features/cart/data/models/update_item_model.dart';
@@ -44,4 +45,16 @@ final class UpdateItemInCartSuccess extends CartState {
 final class UpdateItemInCartFailure extends CartState {
   final String errorMessage;
   UpdateItemInCartFailure({required this.errorMessage});
+}
+
+final class AddItemToCartLoading extends CartState {}
+
+final class AddItemToCartSuccess extends CartState {
+  final AddItemToCartModel addItemToCartModel;
+  AddItemToCartSuccess({required this.addItemToCartModel});
+}
+
+final class AddItemToCartFailure extends CartState {
+  final String errorMessage;
+  AddItemToCartFailure({required this.errorMessage});
 }
