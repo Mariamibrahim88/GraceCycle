@@ -3,7 +3,9 @@ part of 'details_cubit.dart';
 @immutable
 sealed class DetailsState {}
 
-final class DetailsInitial extends DetailsState {}
+final class DetailsInitial extends DetailsState {
+  
+}
 
 final class IncreaseQuantityState extends DetailsState {
   final int quantity;
@@ -15,6 +17,12 @@ final class DecreaseQuantityState extends DetailsState {
   final int quantity;
 
   DecreaseQuantityState({required this.quantity});
+}
+
+final class ResetQuantityState extends DetailsState {
+  final int quantity;
+
+  ResetQuantityState({required this.quantity});
 }
 
 final class ReviewVisibilityState extends DetailsState {}

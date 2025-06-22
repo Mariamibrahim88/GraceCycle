@@ -3,6 +3,7 @@ import 'package:grace_cycle/features/cart/data/models/cart_items_for_any_vendor_
 import 'package:grace_cycle/features/cart/data/models/cart_items_for_specefic_vendor_model.dart';
 import 'package:grace_cycle/features/cart/data/repos/cart_repo.dart';
 import 'package:grace_cycle/features/cart/presentation/manager/cubit/cart_state.dart';
+import 'package:grace_cycle/features/details/data/models/food_item_details_model.dart';
 
 class CartCubit extends Cubit<CartState> {
   CartCubit(this.cartRepo) : super(CartInit());
@@ -34,5 +35,17 @@ class CartCubit extends Cubit<CartState> {
       emit(GetCartItemsForSpecificVendorSuccess(
           cartItemsForSpecificVendorList: r));
     });
+  }
+
+  Future<void> addItemToCart({
+    required FoodItemDetailsModel foodItemDetailsModel,
+    required int quantity,
+  }) async {
+    emit(AddItemToCartLoading());
+    final response = await cartRepo.addItemToCart(
+        foodItemDetailsModel: foodItemDetailsModel
+        , quantity: quantity);
+    response.fold((error) => emit(AddItemToCartFailure(errorMessage: error)),
+        (r) => emit(AddItemToCartSuccess(addItemToCartModel: r)));
   }
 }

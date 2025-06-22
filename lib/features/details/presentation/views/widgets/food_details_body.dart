@@ -50,7 +50,8 @@ class FoodDetailsBody extends StatelessWidget {
                       },
                     ),
                     LeftContainer(
-                      leftPieces: '${foodItemDetailsModel.quantity}+ left',
+                      leftPieces:
+                          '${foodItemDetailsModel.quantityAvailableDisplay}+ left',
                     ),
                     FavContainer(
                       foodItem: foodItemDetailsModel,
@@ -130,7 +131,7 @@ class FoodDetailsBody extends StatelessWidget {
             ),
           );
         }
-        return const CircularProgressIndicator();
+        return const FoodDetailsShimmerBody();
       },
     );
   }

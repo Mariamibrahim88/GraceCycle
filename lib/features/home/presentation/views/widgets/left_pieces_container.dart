@@ -5,7 +5,7 @@ import 'package:grace_cycle/core/utils/app_text_styles.dart';
 
 class LeftPiecesContainer extends StatelessWidget {
   const LeftPiecesContainer({super.key, required this.leftPieces, this.color});
-  final String leftPieces;
+  final int leftPieces;
   final Color? color;
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,8 @@ class LeftPiecesContainer extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          leftPieces,
-          style: leftPieces == '0 left'
+          '$leftPieces +left',
+          style: leftPieces == 0
               ? AppTextStyles.nunito500Size14Red
               : AppTextStyles.nunito500Size14Balck,
         ),

@@ -15,63 +15,90 @@ class RowOfRemoveAndAdd extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<DetailsCubit>();
-
-    return Row(
-      children: [
-        // زرار النقصان
-        GestureDetector(
-          onTap: cubit.decreaseQuantity,
-          child: Container(
-            height: 30.h,
-            width: 30.w,
-            decoration: BoxDecoration(
-              border: Border.all(color: AppColors.greenButt),
-              borderRadius: BorderRadius.circular(10.r),
+    return BlocBuilder<DetailsCubit, DetailsState>(
+      builder: (context, state) {
+        final cubit = context.read<DetailsCubit>();
+        int quantity = 1;
+        if (state is IncreaseQuantityState) {
+          quantity = state.quantity;
+        } else if (state is DecreaseQuantityState) {
+          quantity = state.quantity;
+        }
+        return Row(
+          children: [
+            // زرار النقصان
+            GestureDetector(
+              onTap: cubit.decreaseQuantity,
+              child: Container(
+                height: 30.h,
+                width: 30.w,
+                decoration: BoxDecoration(
+                  border: quantity == 1
+                      ? Border.all(color: Colors.grey[600] ?? Colors.grey)
+                      : Border.all(color: AppColors.greenButt),
+                  borderRadius: BorderRadius.circular(10.r),
+                  boxShadow: quantity == 1
+                      ? [
+                          BoxShadow(
+                            color: Colors.grey[400] ?? Colors.grey,
+                            offset: const Offset(
+                                0, 1), // changes position of shadow
+                            blurStyle: BlurStyle.solid,
+                          ),
+                        ]
+                      : [],
+                ),
+                child: quantity == 1
+                    ? Icon(
+                        Icons.remove,
+                        color: Colors.grey[400] ?? Colors.grey,
+                      )
+                    : const Icon(Icons.remove, color: AppColors.greenButt),
+              ),
             ),
-            child: const Icon(Icons.remove, color: AppColors.greenButt),
-          ),
-        ),
-        horizontalSpace(10.w),
 
-        // BlocBuilder لعرض العدد
-        BlocBuilder<DetailsCubit, DetailsState>(
-          builder: (context, state) {
-            int quantity = cubit.quantity; // استخدم القيمة من الكيوبت
-            return Text(
-              '$quantity',
-              style: AppTextStyles.nunito700Size16Black,
-            );
-          },
-        ),
+            horizontalSpace(10.w),
 
-        horizontalSpace(10.w),
-
-        // زرار الزيادة
-        GestureDetector(
-          onTap: () {
-            if (cubit.quantity >= foodItemDetailsModel.quantity) {
-              showCustomDialog(
-                context,
-                'You have exceeded the \nnumber of available pieces!',
-                AppAssets.extra,
-                250.h,
-              );
-            } else {
-              cubit.increaseQuantity();
-            }
-          },
-          child: Container(
-            height: 30.h,
-            width: 30.w,
-            decoration: BoxDecoration(
-              color: AppColors.greenButt,
-              borderRadius: BorderRadius.circular(10.r),
+            // BlocBuilder لعرض العدد
+            BlocBuilder<DetailsCubit, DetailsState>(
+              builder: (context, state) {
+                int quantity = cubit.quantity;
+                return Text(
+                  '$quantity',
+                  style: AppTextStyles.nunito700Size16Black,
+                );
+              },
             ),
-            child: const Icon(Icons.add, color: Colors.white),
-          ),
-        ),
-      ],
+
+            horizontalSpace(10.w),
+
+            // زرار الزيادة
+            GestureDetector(
+              onTap: () {
+                if (cubit.quantity >= foodItemDetailsModel.quantity) {
+                  showCustomDialog(
+                    context,
+                    'You have exceeded the \nnumber of available pieces!',
+                    AppAssets.extra,
+                    250.h,
+                  );
+                } else {
+                  cubit.increaseQuantity();
+                }
+              },
+              child: Container(
+                height: 30.h,
+                width: 30.w,
+                decoration: BoxDecoration(
+                  color: AppColors.greenButt,
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
+                child: const Icon(Icons.add, color: Colors.white),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
