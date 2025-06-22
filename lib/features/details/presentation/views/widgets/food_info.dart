@@ -40,7 +40,7 @@ class FoodInfo extends StatelessWidget {
               size: 18.sp,
             ),
             Text(
-              foodItemDetailsModel.rating.toString() + ')',
+              '${foodItemDetailsModel.rating})',
               style: AppTextStyles.nunito500Size16Black,
             ),
           ],
@@ -64,7 +64,7 @@ class FoodInfo extends StatelessWidget {
         ),
         verticalSpace(5),
         Text(
-          foodItemDetailsModel.vendorName,
+          foodItemDetailsModel.vName,
           style: AppTextStyles.nunito400Size16Black,
         ),
         verticalSpace(5),

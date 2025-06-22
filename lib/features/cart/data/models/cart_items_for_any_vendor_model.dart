@@ -2,7 +2,7 @@ class CartItemsForAnyVendorModel {
   final String vendorId;
   final String vendorName;
   final DateTime createdAt;
-  final int total;
+  final dynamic total;
   final int count;
 
   CartItemsForAnyVendorModel({

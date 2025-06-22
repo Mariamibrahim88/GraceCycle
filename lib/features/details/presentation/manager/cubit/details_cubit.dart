@@ -27,6 +27,11 @@ class DetailsCubit extends Cubit<DetailsState> {
     emit(DecreaseQuantityState(quantity: quantity));
   }
 
+  void resetQuantity() {
+    quantity = 1;
+    emit(ResetQuantityState(quantity: quantity));
+  }
+
   Future<void> getFoodDetails({required int id}) async {
     emit(GetFoodByIdLoading());
     final response = await detailsRepo.getFoodDetails(id: id);

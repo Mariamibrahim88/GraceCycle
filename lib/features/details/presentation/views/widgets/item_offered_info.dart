@@ -35,7 +35,7 @@ class ItemOfferedInfo extends StatelessWidget {
         verticalSpace(7),
         LeftPiecesContainer(
             color: AppColors.sortColor,
-            leftPieces: '${offeredItem.quantity} + left'),
+            leftPieces: offeredItem.quantity),
       ],
     );
   }

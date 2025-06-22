@@ -51,8 +51,9 @@ class FoodCardInfullCart extends StatelessWidget {
               ),
               verticalSpace(7),
               LeftPiecesContainer(
-                  color: AppColors.sortColor,
-                  leftPieces: '${cartItem.available} + left'),
+                color: AppColors.sortColor,
+                leftPieces: cartItem.available,
+              ),
             ],
           ),
           Column(
