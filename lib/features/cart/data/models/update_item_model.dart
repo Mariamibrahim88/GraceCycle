@@ -1,11 +1,11 @@
-class CartItemsForSpecificVendorModel {
+class UpdateItemModel {
   final String vendorId;
-  final String vendorName;
-  final List<CartItem> items;
+  final String? vendorName;
+  final List<CartItemForUpdate> items;
   final double total;
   final int count;
 
-  CartItemsForSpecificVendorModel({
+  UpdateItemModel({
     required this.vendorId,
     required this.vendorName,
     required this.items,
@@ -13,12 +13,12 @@ class CartItemsForSpecificVendorModel {
     required this.count,
   });
 
-  factory CartItemsForSpecificVendorModel.fromJson(Map<String, dynamic> json) {
-    return CartItemsForSpecificVendorModel(
+  factory UpdateItemModel.fromJson(Map<String, dynamic> json) {
+    return UpdateItemModel(
       vendorId: json['vendorId'],
       vendorName: json['vendorName'] ?? '',
       items: (json['items'] as List?)?.map((item) {
-            return CartItem.fromJson(item);
+            return CartItemForUpdate.fromJson(item);
           }).toList() ??
           [],
       total: (json['total'] as num).toDouble(),
@@ -37,7 +37,7 @@ class CartItemsForSpecificVendorModel {
   }
 }
 
-class CartItem {
+class CartItemForUpdate {
   final int available;
   final int id;
   final String name;
@@ -46,7 +46,7 @@ class CartItem {
   final double newPrice;
   int quantity;
 
-  CartItem({
+  CartItemForUpdate({
     required this.available,
     required this.id,
     required this.name,
@@ -56,8 +56,8 @@ class CartItem {
     required this.quantity,
   });
 
-  factory CartItem.fromJson(Map<String, dynamic> json) {
-    return CartItem(
+  factory CartItemForUpdate.fromJson(Map<String, dynamic> json) {
+    return CartItemForUpdate(
       available: json['available'],
       id: json['id'],
       name: json['name'],

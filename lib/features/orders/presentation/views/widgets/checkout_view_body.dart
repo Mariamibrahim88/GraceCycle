@@ -46,7 +46,7 @@ class CheckoutViewBody extends StatelessWidget {
                   Navigator.pop(context);
                 }),
                 verticalSpace(5.h),
-                const HeadOfVendorInFullCart(),
+                //const HeadOfVendorInFullCart(),
                 verticalSpace(20.h),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),

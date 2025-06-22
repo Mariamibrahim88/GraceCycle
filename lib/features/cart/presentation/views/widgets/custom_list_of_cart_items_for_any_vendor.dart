@@ -23,13 +23,12 @@ class CustomListOfCartItemsForAnyVendor extends StatelessWidget {
           horizontal: 8,
         ),
         child: GestureDetector(
-          onTap: () {
-            print(
-                'vendorIiiiid: ${cartItemsForAnyVendorModel[index].vendorId}');
+          onTap: () async {
             navigate(
-                context: context,
-                route: Routes.cartFull,
-                arg: cartItemsForAnyVendorModel[index].vendorId);
+              context: context,
+              route: Routes.cartFull,
+              arg: cartItemsForAnyVendorModel[index],
+            );
           },
           child: ItemOfCart(
               cartItemsForAnyVendorModel: cartItemsForAnyVendorModel[index]),

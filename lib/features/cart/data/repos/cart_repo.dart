@@ -5,6 +5,7 @@ import 'package:grace_cycle/core/errors/exceptions.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/features/cart/data/models/cart_items_for_any_vendor_model.dart';
 import 'package:grace_cycle/features/cart/data/models/cart_items_for_specefic_vendor_model.dart';
+import 'package:grace_cycle/features/cart/data/models/update_item_model.dart';
 
 class CartRepo {
   Future<Either<String, List<CartItemsForAnyVendorModel>>>
@@ -29,6 +30,27 @@ class CartRepo {
 
       final item = CartItemsForSpecificVendorModel.fromJson(response);
       return Right([item]);
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    }
+  }
+
+  Future<Either<String, UpdateItemModel>> updateItemInCart({
+    required String vendorId,
+    required CartItemForUpdate cartItem,
+  }) async {
+    try {
+      final response = await sl<ApiConsumer>().post(
+        EndPoint.updateItemInCart,
+        data: {
+          ApiKeys.vendorId: vendorId,
+          ApiKeys.cartItems: cartItem.toJson(),
+        },
+      );
+
+      final updatedCart = UpdateItemModel.fromJson(response);
+
+      return Right(updatedCart);
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
     }

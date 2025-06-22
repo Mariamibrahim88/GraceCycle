@@ -17,6 +17,11 @@ class CustomListOfCartItemsForSpeceficVendor extends StatelessWidget {
         } else if (state is GetCartItemsForSpecificVendorLoading) {
           return const CustomLoadingCart();
         } else if (state is GetCartItemsForSpecificVendorSuccess) {
+          if (state.cartItemsForSpecificVendorList.isEmpty) {
+            Navigator.pop(context);
+            context.read<CartCubit>().getCartItemsForAnyVendor();
+          }
+
           return ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -28,7 +33,10 @@ class CustomListOfCartItemsForSpeceficVendor extends StatelessWidget {
                 children: vendor.items.map((cartItem) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 16),
-                    child: FoodCardInfullCart(cartItem: cartItem),
+                    child: FoodCardInfullCart(
+                      cartItem: cartItem,
+                      vendorId: vendor.vendorId,
+                    ),
                   );
                 }).toList(),
               );

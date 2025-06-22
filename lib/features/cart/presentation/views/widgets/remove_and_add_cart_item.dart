@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
+import 'package:grace_cycle/features/cart/data/models/cart_items_for_specefic_vendor_model.dart';
+import 'package:grace_cycle/features/cart/presentation/manager/cubit/cart_cubit.dart';
 
 class RemoveAndAddCartItem extends StatelessWidget {
-  const RemoveAndAddCartItem({super.key});
+  final CartItem cartItem;
+  final String vendorId;
+
+  const RemoveAndAddCartItem({
+    super.key,
+    required this.cartItem,
+    required this.vendorId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,34 +23,39 @@ class RemoveAndAddCartItem extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            //context.read<DetailsCubit>().calculateTotalPrice();
+            context.read<CartCubit>().changeItemQuantity(
+                  vendorId: vendorId,
+                  item: cartItem,
+                  isAdd: false,
+                );
           },
           child: Container(
             height: 18.h,
             width: 21.w,
             decoration: BoxDecoration(
-              border: Border.all(
-                color: AppColors.greenButt,
-                width: 1,
-              ),
+              border: Border.all(color: AppColors.greenButt, width: 1),
               borderRadius: BorderRadius.circular(6.r),
             ),
-            child: const Icon(
-              Icons.remove,
+            child: Icon(
+              cartItem.quantity == 1 ? Icons.delete_outline : Icons.remove,
               color: AppColors.greenButt,
-              size: 20,
+              size: 18,
             ),
           ),
         ),
         horizontalSpace(10.w),
         Text(
-          '1',
+          '${cartItem.quantity}',
           style: AppTextStyles.nunito700Size16Black,
         ),
         horizontalSpace(10.w),
         GestureDetector(
           onTap: () {
-            //context.read<DetailsCubit>().calculateTotalPrice();
+            context.read<CartCubit>().changeItemQuantity(
+                  vendorId: vendorId,
+                  item: cartItem,
+                  isAdd: true,
+                );
           },
           child: Container(
             height: 18.h,
@@ -49,11 +64,7 @@ class RemoveAndAddCartItem extends StatelessWidget {
               color: AppColors.greenButt,
               borderRadius: BorderRadius.circular(6.r),
             ),
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 20,
-            ),
+            child: const Icon(Icons.add, color: Colors.white, size: 20),
           ),
         ),
       ],

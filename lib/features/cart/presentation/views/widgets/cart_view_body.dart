@@ -41,13 +41,14 @@ class CartViewBody extends StatelessWidget {
                 if (state is GetCartItemsForAnyVendorFailure) {
                   return Center(child: Text(state.errorMessage));
                 } else if (state is GetCartItemsForAnyVendorSuccess) {
-                  return cartCubit.cartItemsList!.isEmpty
+                  return state.cartItemsForAnyVendorList.isEmpty
                       ? const Padding(
                           padding: EdgeInsets.only(top: 90.0),
                           child: EmptyCart(),
                         )
                       : CustomListOfCartItemsForAnyVendor(
-                          cartItemsForAnyVendorModel: cartCubit.cartItemsList!);
+                          cartItemsForAnyVendorModel:
+                              state.cartItemsForAnyVendorList);
                 } else {
                   return const CustomLoadingCart();
                 }

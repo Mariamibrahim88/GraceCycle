@@ -6,6 +6,7 @@ class EndPoint {
   static const String verifyResetEmail = 'AppUser/verify-reset-code';
   static const String resetPassword = 'AppUser/reset-password';
   static const String cart = 'Cart';
+  static const String updateItemInCart = 'Cart/update-item';
 
   static String foodById(id) {
     return 'Foods/$id';
@@ -37,4 +38,6 @@ class ApiKeys {
   static const String code = 'code';
   static const String onBourding = 'onBourding';
   static const String authorization = 'Authorization';
+  static const String vendorId = 'vendorId';
+  static const String cartItems = 'item';
 }

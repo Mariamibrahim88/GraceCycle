@@ -31,7 +31,7 @@ class HeadOfVendorInFullCart extends StatelessWidget {
           ),
           horizontalSpace(5.w),
           Text(
-            'Al Shallal Restaurant',
+            'All shall',
             style: AppTextStyles.nunito400Size16Black.copyWith(
               color: AppColors.grey4,
             ),

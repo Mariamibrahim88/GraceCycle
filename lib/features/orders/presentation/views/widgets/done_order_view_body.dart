@@ -24,7 +24,7 @@ class DoneOrderViewBody extends StatelessWidget {
               Navigator.pop(context);
             }),
             verticalSpace(4.h),
-            const HeadOfVendorInFullCart(),
+            // const HeadOfVendorInFullCart(),
             verticalSpace(20.h),
             Image.asset(AppAssets.finished2, width: 270.w, height: 290.h),
             const SizedBox(height: 33),
