@@ -8,7 +8,12 @@ import 'package:grace_cycle/core/utils/app_text_styles.dart';
 class CustomButtomNavBarFullCart extends StatelessWidget {
   const CustomButtomNavBarFullCart({
     super.key,
+    required this.total,
+    required this.count,
   });
+
+  final double total;
+  final int count;
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +41,12 @@ class CustomButtomNavBarFullCart extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '(5 items)',
+                    '($count items)',
                     style: AppTextStyles.nunito400Size16Black,
                   ),
                   const Spacer(),
                   Text(
-                    'EGP 20',
+                    'EGP $total',
                     style: AppTextStyles.nunito700Size20Black,
                   ),
                 ],

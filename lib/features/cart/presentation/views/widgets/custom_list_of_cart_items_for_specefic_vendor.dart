@@ -18,8 +18,9 @@ class CustomListOfCartItemsForSpeceficVendor extends StatelessWidget {
           return const CustomLoadingCart();
         } else if (state is GetCartItemsForSpecificVendorSuccess) {
           if (state.cartItemsForSpecificVendorList.isEmpty) {
-            Navigator.pop(context);
-            context.read<CartCubit>().getCartItemsForAnyVendor();
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              Navigator.pop(context);
+            });
           }
 
           return ListView.builder(

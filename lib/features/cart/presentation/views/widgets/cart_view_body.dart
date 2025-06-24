@@ -14,8 +14,6 @@ class CartViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartCubit = BlocProvider.of<CartCubit>(context);
-
     return PopScope(
       canPop: false,
       child: SingleChildScrollView(
@@ -50,7 +48,7 @@ class CartViewBody extends StatelessWidget {
                           )
                         : CustomListOfCartItemsForAnyVendor(
                             cartItemsForAnyVendorModel:
-                                state.cartItemsForAnyVendorList.);
+                                state.cartItemsForAnyVendorList);
                   } else {
                     return const CustomLoadingCart();
                   }

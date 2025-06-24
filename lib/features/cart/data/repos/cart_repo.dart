@@ -60,25 +60,25 @@ class CartRepo {
       return Left(error.errorModel.errorMessage);
     }
   }
-}
 
-Future<Either<String, UpdateItemModel>> updateItemInCart({
-  required String vendorId,
-  required CartItemForUpdate cartItem,
-}) async {
-  try {
-    final response = await sl<ApiConsumer>().post(
-      EndPoint.updateItemInCart,
-      data: {
-        ApiKeys.vendorId: vendorId,
-        ApiKeys.cartItems: cartItem.toJson(),
-      },
-    );
+  Future<Either<String, UpdateItemModel>> updateItemInCart({
+    required String vendorId,
+    required CartItemForUpdate cartItem,
+  }) async {
+    try {
+      final response = await sl<ApiConsumer>().post(
+        EndPoint.updateItemInCart,
+        data: {
+          ApiKeys.vendorId: vendorId,
+          ApiKeys.cartItems: cartItem.toJson(),
+        },
+      );
 
-    final updatedCart = UpdateItemModel.fromJson(response);
+      final updatedCart = UpdateItemModel.fromJson(response);
 
-    return Right(updatedCart);
-  } on ServerException catch (error) {
-    return Left(error.errorModel.errorMessage);
+      return Right(updatedCart);
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    }
   }
 }

@@ -7,7 +7,10 @@ import 'package:grace_cycle/core/utils/app_text_styles.dart';
 class HeadOfVendorInFullCart extends StatelessWidget {
   const HeadOfVendorInFullCart({
     super.key,
+    required this.vendorName,
   });
+
+  final String vendorName;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class HeadOfVendorInFullCart extends StatelessWidget {
           ),
           horizontalSpace(5.w),
           Text(
-            'All shall',
+            vendorName,
             style: AppTextStyles.nunito400Size16Black.copyWith(
               color: AppColors.grey4,
             ),

@@ -127,8 +127,7 @@ class CartCubit extends Cubit<CartState> {
   }) async {
     emit(AddItemToCartLoading());
     final response = await cartRepo.addItemToCart(
-        foodItemDetailsModel: foodItemDetailsModel
-        , quantity: quantity);
+        foodItemDetailsModel: foodItemDetailsModel, quantity: quantity);
     response.fold((error) => emit(AddItemToCartFailure(errorMessage: error)),
         (r) => emit(AddItemToCartSuccess(addItemToCartModel: r)));
   }
