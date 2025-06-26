@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
-import 'package:grace_cycle/core/utils/app_navigate.dart';
+import 'package:grace_cycle/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'package:grace_cycle/features/cart/data/models/cart_items_for_any_vendor_model.dart';
 import 'package:grace_cycle/features/cart/presentation/views/widgets/item_of_cart.dart';
 
@@ -24,11 +25,14 @@ class CustomListOfCartItemsForAnyVendor extends StatelessWidget {
         ),
         child: GestureDetector(
           onTap: () async {
-            navigate(
-              context: context,
-              route: Routes.cartFull,
-              arg: cartItemsForAnyVendorModel[index],
+            final shouldRefresh = await Navigator.pushNamed(
+              context,
+              Routes.cartFull,
+              arguments: cartItemsForAnyVendorModel[index].vendorId,
             );
+            if (shouldRefresh == true) {
+              context.read<CartCubit>().getCartItemsForAnyVendor();
+            }
           },
           child: ItemOfCart(
               cartItemsForAnyVendorModel: cartItemsForAnyVendorModel[index]),

@@ -46,7 +46,7 @@ class FoodDetailsBody extends StatelessWidget {
                     ),
                     CustomAppBar(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.pop(context, true);
                       },
                     ),
                     LeftContainer(

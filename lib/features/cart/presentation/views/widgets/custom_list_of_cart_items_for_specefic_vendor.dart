@@ -19,7 +19,7 @@ class CustomListOfCartItemsForSpeceficVendor extends StatelessWidget {
         } else if (state is GetCartItemsForSpecificVendorSuccess) {
           if (state.cartItemsForSpecificVendorList.isEmpty) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              Navigator.pop(context);
+              Navigator.pop(context, true);
             });
           }
 
