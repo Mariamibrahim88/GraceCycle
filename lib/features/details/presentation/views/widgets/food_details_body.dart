@@ -50,8 +50,7 @@ class FoodDetailsBody extends StatelessWidget {
                       },
                     ),
                     LeftContainer(
-                      leftPieces:
-                          '${foodItemDetailsModel.quantityAvailableDisplay}+ left',
+                      leftPieces: '${foodItemDetailsModel.quantity}+ left',
                     ),
                     FavContainer(
                       foodItem: foodItemDetailsModel,

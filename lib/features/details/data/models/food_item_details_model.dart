@@ -10,10 +10,9 @@ class FoodItemDetailsModel {
   final List<SimilarItemModel> similarItems;
   final ReviewSummaryModel reviewsSummary;
   final List<Review> reviews;
-  final String originalPriceFormatted;
-  final String discountedPriceFormatted;
-  final int quantityAvailableDisplay;
-  final String operatingHours;
+  //final String originalPriceFormatted;
+  //final int quantityAvailableDisplay;
+  //final String operatingHours;
   final int id;
   final String name;
   final String picUrl;
@@ -34,10 +33,10 @@ class FoodItemDetailsModel {
     required this.similarItems,
     required this.reviewsSummary,
     required this.reviews,
-    required this.originalPriceFormatted,
-    required this.discountedPriceFormatted,
-    required this.quantityAvailableDisplay,
-    required this.operatingHours,
+    //required this.originalPriceFormatted,
+    //required this.discountedPriceFormatted,
+    //required this.quantityAvailableDisplay,
+    //required this.operatingHours,
     required this.id,
     required this.name,
     required this.picUrl,
@@ -62,10 +61,10 @@ class FoodItemDetailsModel {
       reviewsSummary: ReviewSummaryModel.fromJson(json['reviewsSummary']),
       reviews:
           List<Review>.from(json['reviews'].map((x) => Review.fromJson(x))),
-      originalPriceFormatted: json['originalPriceFormatted'],
-      discountedPriceFormatted: json['discountedPriceFormatted'],
-      quantityAvailableDisplay: json['quantity'],
-      operatingHours: json['operatingHours'],
+      //originalPriceFormatted: json['originalPriceFormatted'],
+      //discountedPriceFormatted: json['discountedPriceFormatted'],
+      //quantityAvailableDisplay: json['quantity'],
+      //operatingHours: json['operatingHours'],
       id: json['id'],
       name: json['name'],
       picUrl: json['picUrl'],

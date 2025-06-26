@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/features/cart/data/models/cart_items_for_specefic_vendor_model.dart';
+import 'package:grace_cycle/features/cart/data/models/update_item_model.dart';
+import 'package:grace_cycle/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'package:grace_cycle/features/cart/presentation/views/widgets/remove_and_add_cart_item.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/asset_fav_card.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/left_pieces_container.dart';
@@ -61,16 +64,34 @@ class FoodCardInfullCart extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const Icon(
-                Icons.close_sharp,
-                size: 22,
-                color: AppColors.redForPrice,
+              GestureDetector(
+                onTap: () {
+                  final updatedItem = CartItemForUpdate(
+                    id: cartItem.id,
+                    name: cartItem.name,
+                    quantity: 0,
+                    available: cartItem.available,
+                    picUrl: cartItem.picUrl,
+                    unitPrice: cartItem.unitPrice,
+                    newPrice: cartItem.newPrice,
+                  );
+
+                  context.read<CartCubit>().updateCartForVendor(
+                        vendorId: vendorId,
+                        item: updatedItem,
+                      );
+                },
+                child: const Icon(
+                  Icons.close_sharp,
+                  size: 22,
+                  color: AppColors.redForPrice,
+                ),
               ),
               verticalSpace(30.h),
               RemoveAndAddCartItem(
                 cartItem: cartItem,
                 vendorId: vendorId,
-              )
+              ),
             ],
           ),
         ],

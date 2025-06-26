@@ -29,8 +29,8 @@ class CustomBottomCartNavBar extends StatelessWidget {
           height: 90.h,
           child: ElevatedButton(
             onPressed: () {
-              if (cubit.foodItemDetails!.quantityAvailableDisplay <= 0 ||
-                  quantity > cubit.foodItemDetails!.quantityAvailableDisplay) {
+              if (cubit.foodItemDetails!.quantity <= 0 ||
+                  quantity > cubit.foodItemDetails!.quantity) {
                 showCustomDialog(
                   context,
                   'You can\'t add this item to the cart because it is out of stock or the quantity you selected exceeds the available stock.',

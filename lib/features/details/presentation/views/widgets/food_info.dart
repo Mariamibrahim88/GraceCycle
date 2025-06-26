@@ -71,7 +71,7 @@ class FoodInfo extends StatelessWidget {
         Row(
           children: [
             Text(
-              foodItemDetailsModel.operatingHours,
+              '${foodItemDetailsModel.vendorOpeningTime} - ${foodItemDetailsModel.vendorClosingTime}',
               style: AppTextStyles.nunito400Size16Black,
             ),
             const Spacer(),
