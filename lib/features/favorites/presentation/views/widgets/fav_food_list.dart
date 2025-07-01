@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/core/routes/app_routes.dart';
+import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/widgets/custom_list_of_shimmer_ver.dart';
 import 'package:grace_cycle/core/widgets/custom_loading.dart';
 import 'package:grace_cycle/features/favorites/presentation/manager/cubit/get_fav_cubit.dart';
@@ -52,8 +54,17 @@ class FavFoodList extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8.0, vertical: 12),
-                      child: FavoriteFoodCard(
-                        favFoodModel: getFavCubit.allFavFoodItems[index],
+                      child: GestureDetector(
+                        onTap: () {
+                          navigate(
+                            context: context,
+                            route: Routes.foodDetails,
+                            arg: getFavCubit.allFavFoodItems[index].id,
+                          );
+                        },
+                        child: FavoriteFoodCard(
+                          favFoodModel: getFavCubit.allFavFoodItems[index],
+                        ),
                       ),
                     );
                   } else {

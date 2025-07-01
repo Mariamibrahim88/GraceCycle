@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/core/routes/app_routes.dart';
+import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/widgets/custom_loading.dart';
 import 'package:grace_cycle/core/widgets/custom_no_found_items.dart';
 import 'package:grace_cycle/features/discover/presentation/manager/discover_cubit/discover_cubit.dart';
@@ -44,8 +46,17 @@ class FoodDiscoverList extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8.0, vertical: 12),
-                      child: FoodCard(
-                        foodItemModel: discoverCubit.allFoodItems[index],
+                      child: GestureDetector(
+                        onTap: () {
+                          navigate(
+                            context: context,
+                            route: Routes.foodDetails,
+                            arg: discoverCubit.allFoodItems[index].id,
+                          );
+                        },
+                        child: FoodCard(
+                          foodItemModel: discoverCubit.allFoodItems[index],
+                        ),
                       ),
                     );
                   } else {

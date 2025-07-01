@@ -35,7 +35,7 @@ class FoodCardInfullCart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           AssetFavCard(imageUrl: cartItem.picUrl),
-          horizontalSpace(15.w),
+          horizontalSpace(8.w),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
