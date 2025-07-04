@@ -75,10 +75,6 @@ class FoodInfo extends StatelessWidget {
               style: AppTextStyles.nunito400Size16Black,
             ),
             const Spacer(),
-            Text(
-              '5.7 km',
-              style: AppTextStyles.nunito400Size16Black,
-            )
           ],
         ),
         verticalSpace(10),

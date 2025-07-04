@@ -48,9 +48,7 @@ List<ListTileItemOfSort> getSortOptions(BuildContext context) {
       ListTileItemOfSort(
           title: 'Most Popular',
           onTap: () => cubit.updateSort('Most Popular', 'most popular')),
-      ListTileItemOfSort(
-          title: 'Distance',
-          onTap: () => cubit.updateSort('Distance', 'distance')),
+     
     ];
   }
 }

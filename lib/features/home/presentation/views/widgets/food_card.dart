@@ -99,14 +99,6 @@ class FoodCard extends StatelessWidget {
                                 color: Colors.black54,
                               ),
                             ),
-                            Text(
-                              '5.7 km',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                            ),
                           ],
                         ),
                         verticalSpace(10),
