@@ -37,10 +37,10 @@ class CustomHomeAppBar extends StatelessWidget {
                 onTap: () {
                   navigate(context: context, route: Routes.settings);
                 },
-                child: const Icon(
-                  Icons.menu,
-                  color: AppColors.shoppingCart,
-                  size: 28,
+                child: SvgPicture.asset(
+                  AppAssets.menu,
+                  height: 16.h,
+                  width: 16.w,
                 ),
               ),
               Row(
@@ -58,10 +58,10 @@ class CustomHomeAppBar extends StatelessWidget {
                 ],
               ),
               GestureDetector(
-                child: const Icon(
-                  Icons.shopping_cart_outlined,
-                  color: AppColors.shoppingCart,
-                  size: 28,
+                child: SvgPicture.asset(
+                  AppAssets.cart,
+                  height: 22.h,
+                  width: 22.w,
                 ),
                 onTap: () {
                   navigate(context: context, route: Routes.cart);

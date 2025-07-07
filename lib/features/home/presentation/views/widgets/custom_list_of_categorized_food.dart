@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/widgets/custom_list_of_shimmer_hor.dart';
 import 'package:grace_cycle/features/home/presentation/manager/Home_cubit/home_state.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/custom_list_of_food_hor.dart';
+import 'package:grace_cycle/no_internet_page.dart';
 
 import '../../manager/Home_cubit/home_cubit.dart';
 
@@ -26,6 +27,28 @@ class ListOfCategorizedFood extends StatelessWidget {
 
         if (foodMenuModel == null) {
           return const CustomListOfShimmerHor();
+        }
+
+        if (state is HomeError) {
+          if (state.errorMessage.contains('No Internet') ||
+              state.errorMessage.contains('Connection')) {
+            return const NoInternetPage();
+          } else {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(state.errorMessage),
+                  ElevatedButton(
+                    onPressed: () {
+                      BlocProvider.of<HomeCubit>(context).getFoodMenu();
+                    },
+                    child: const Text('Retry'),
+                  ),
+                ],
+              ),
+            );
+          }
         }
 
         return SingleChildScrollView(

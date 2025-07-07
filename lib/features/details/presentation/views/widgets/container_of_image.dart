@@ -34,8 +34,10 @@ class ContainerOfImage extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: imageOfFood,
                 fit: BoxFit.cover,
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
+                placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(
+                  color: AppColors.greenButt,
+                )),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               )),
         ),

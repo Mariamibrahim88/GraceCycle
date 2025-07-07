@@ -53,4 +53,5 @@ class AppAssets {
   static String finished1 = 'assets/images/finished1.png';
   static String finished2 = 'assets/images/finished2.png';
   static String noInternet = 'assets/images/No connection.svg';
+  static String menu = 'assets/images/menu.svg';
 }

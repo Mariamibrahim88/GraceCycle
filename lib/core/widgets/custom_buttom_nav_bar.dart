@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/features/discover/presentation/views/discover_view.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/favorites_view.dart';
@@ -22,9 +24,6 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
     DiscoverView(),
     FavoritesView(),
     OrdersView(),
-    // DiscoverScreen(),
-    // OrdersView(),
-    // SettingsScreen(),
   ];
 
   void _onItemTap(int index) {
@@ -80,11 +79,33 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
       icon: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            icon,
-            color: _selectedIndex == index ? AppColors.greenButt : Colors.black,
-            size: 26.sp,
-          ),
+          if (index == 0)
+            SvgPicture.asset(
+              height: 20.h,
+              width: 20.w,
+              AppAssets.home,
+              colorFilter: ColorFilter.mode(
+                _selectedIndex == index ? AppColors.greenButt : Colors.black,
+                BlendMode.srcIn,
+              ),
+            )
+          else if (index == 3)
+            SvgPicture.asset(
+              height: 20.h,
+              width: 20.w,
+              AppAssets.order,
+              colorFilter: ColorFilter.mode(
+                _selectedIndex == index ? AppColors.greenButt : Colors.black,
+                BlendMode.srcIn,
+              ),
+            )
+          else
+            Icon(
+              icon,
+              color:
+                  _selectedIndex == index ? AppColors.greenButt : Colors.black,
+              size: 26.sp,
+            ),
           SizedBox(height: 2.h),
           Text(
             label,

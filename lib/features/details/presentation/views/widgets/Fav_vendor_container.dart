@@ -14,11 +14,11 @@ class FavVendorContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
-      buildWhen: (previous, current) => current is HomeUpdateFavorites,
+      buildWhen: (previous, current) => current is HomeUpdateVendorFavorites,
       builder: (context, state) {
         final homeCubit = BlocProvider.of<HomeCubit>(context);
-        final isFavorite =
-            homeCubit.favouritesForVendors[vendorItem.userId] ?? vendorItem.isFavourite;
+        final isFavorite = homeCubit.favouritesForVendors[vendorItem.userId] ??
+            vendorItem.isFavourite;
         return Positioned(
           left: 30.w,
           top: 150.h,

@@ -31,10 +31,13 @@ class ServerFailure extends Failure {
           return ServerFailure('No Internet Connection');
         }
         return ServerFailure('Unknown Error');
-      }
+    }
   }
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
+    if (response == null) {
+      return ServerFailure('An error occurred. Please try again.');
+    }
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       final errorMessage = response['Error']?.isNotEmpty == true
           ? response['Error'][0]
