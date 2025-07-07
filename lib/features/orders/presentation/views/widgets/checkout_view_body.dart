@@ -6,7 +6,6 @@ import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
 import 'package:grace_cycle/features/orders/data/cubit/checkout_cubit.dart';
 import 'package:grace_cycle/features/orders/presentation/views/confirm_reciving_view.dart';
 import 'package:grace_cycle/features/orders/presentation/views/widgets/container_of_icon.dart';
-import 'package:grace_cycle/features/cart/presentation/views/widgets/head_of_vendor_in_full_cart.dart';
 import 'package:grace_cycle/features/orders/presentation/views/widgets/order_section.dart';
 import 'package:grace_cycle/features/orders/presentation/views/widgets/payment_section.dart';
 import 'package:grace_cycle/features/orders/presentation/views/widgets/receive_section.dart';

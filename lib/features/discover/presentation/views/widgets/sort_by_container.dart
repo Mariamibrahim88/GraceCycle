@@ -24,9 +24,7 @@ class SortByContainer extends StatelessWidget {
             Text('Sort by:', style: AppTextStyles.nunito400Size16Black),
             Container(
               height: 25.h,
-              width: nameOfSort == 'Distance'
-                  ? 80.w
-                  : nameOfSort == 'Price'
+              width: nameOfSort == 'Price'
                       ? 70.w
                       : 110.w,
               decoration: BoxDecoration(

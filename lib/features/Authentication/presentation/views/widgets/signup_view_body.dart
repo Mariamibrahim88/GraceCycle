@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
-import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
@@ -14,7 +13,6 @@ import 'package:grace_cycle/features/Authentication/presentation/views/signup_co
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/question_text.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_text_form_field.dart';
-import 'package:grace_cycle/features/Authentication/presentation/views/widgets/or_section.dart';
 
 class SignupViewBody extends StatelessWidget {
   const SignupViewBody({super.key});
@@ -164,30 +162,30 @@ class SignupViewBody extends StatelessWidget {
                     ),
 
                     //verticalSpace(20),
-                    const OrSection(),
-                    verticalSpace(10),
+                    //const OrSection(),
+                    verticalSpace(80),
 
-                    CustomButton(
-                      text: 'Google',
-                      onPressed: () async {
-                        // final registerCubit = context.read<RegisterCubit>();
+                    // CustomButton(
+                    //   text: 'Google',
+                    //   onPressed: () async {
+                    //     // final registerCubit = context.read<RegisterCubit>();
 
-                        // await registerCubit.signInWithGoogle();
+                    //     // await registerCubit.signInWithGoogle();
 
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => BlocProvider.value(
-                        //       value: registerCubit,
-                        //       child: SignupContinueView(),
-                        //     ),
-                        //   ),
-                        // );
-                      },
-                      textColor: AppColors.greensubtit,
-                      image: AppAssets.imgGoogle,
-                      color: AppColors.grey,
-                    ),
+                    //     // Navigator.push(
+                    //     //   context,
+                    //     //   MaterialPageRoute(
+                    //     //     builder: (context) => BlocProvider.value(
+                    //     //       value: registerCubit,
+                    //     //       child: SignupContinueView(),
+                    //     //     ),
+                    //     //   ),
+                    //     // );
+                    //   },
+                    //   textColor: AppColors.greensubtit,
+                    //   image: AppAssets.imgGoogle,
+                    //   color: AppColors.grey,
+                    // ),
                   ],
                 ),
               ),

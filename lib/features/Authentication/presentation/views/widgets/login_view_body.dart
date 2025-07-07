@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
-import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
@@ -15,7 +14,6 @@ import 'package:grace_cycle/features/Authentication/presentation/views/widgets/q
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_button.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_yellow_text.dart';
-import 'package:grace_cycle/features/Authentication/presentation/views/widgets/or_section.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -130,19 +128,19 @@ class LoginViewBody extends StatelessWidget {
                         navigate(context: context, route: Routes.signup);
                       },
                     ),
-                    const OrSection(),
-                    verticalSpace(10),
-                    state is LoginLoadingWithGoogle
-                        ? const CustomLoading()
-                        : CustomButton(
-                            text: 'Google',
-                            onPressed: () {
-                              BlocProvider.of<LoginCubit>(context)
-                                  .loginWithGoogle();
-                            },
-                            textColor: AppColors.greensubtit,
-                            image: AppAssets.imgGoogle,
-                            color: AppColors.grey),
+                    //  const OrSection(),
+                    verticalSpace(100),
+                    // state is LoginLoadingWithGoogle
+                    //     ? const CustomLoading()
+                    //     : CustomButton(
+                    //         text: 'Google',
+                    //         onPressed: () {
+                    //           BlocProvider.of<LoginCubit>(context)
+                    //               .loginWithGoogle();
+                    //         },
+                    //         textColor: AppColors.greensubtit,
+                    //         image: AppAssets.imgGoogle,
+                    //         color: AppColors.grey),
                     verticalSpace(50),
                   ],
                 ),

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
-import 'package:grace_cycle/features/orders/presentation/views/widgets/list_of_food_in_checkout.dart';
 import 'package:grace_cycle/features/orders/presentation/views/widgets/list_of_name_of_food_checkout.dart';
 
 class OrderSection extends StatelessWidget {

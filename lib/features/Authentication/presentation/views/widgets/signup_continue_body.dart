@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
-import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
@@ -17,7 +16,6 @@ import 'package:grace_cycle/features/Authentication/presentation/views/widgets/c
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_checkbox.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_selection_container.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/widgets/custom_text_form_field.dart';
-import 'package:grace_cycle/features/Authentication/presentation/views/widgets/or_section.dart';
 
 class SignupContinueBody extends StatelessWidget {
   const SignupContinueBody({super.key});
@@ -115,15 +113,15 @@ class SignupContinueBody extends StatelessWidget {
                         onPressed: () {
                           navigate(context: context, route: Routes.login);
                         }),
-                    const OrSection(),
-                    verticalSpace(10),
-                    CustomButton(
-                      text: 'Google',
-                      onPressed: () {},
-                      textColor: AppColors.greensubtit,
-                      color: AppColors.grey,
-                      image: AppAssets.imgGoogle,
-                    )
+                    // const OrSection(),
+                    verticalSpace(80),
+                    // CustomButton(
+                    //   text: 'Google',
+                    //   onPressed: () {},
+                    //   textColor: AppColors.greensubtit,
+                    //   color: AppColors.grey,
+                    //   image: AppAssets.imgGoogle,
+                    // )
                   ],
                 ),
               ),
