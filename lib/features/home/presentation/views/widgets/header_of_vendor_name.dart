@@ -5,7 +5,10 @@ import 'package:grace_cycle/features/Authentication/presentation/views/widgets/c
 import 'package:grace_cycle/features/home/presentation/views/see_all_view.dart';
 
 class HeaderOfVendorName extends StatelessWidget {
-  const HeaderOfVendorName({super.key, required this.title, });
+  const HeaderOfVendorName({
+    super.key,
+    required this.title,
+  });
 
   final String title;
   @override
@@ -23,20 +26,20 @@ class HeaderOfVendorName extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          CustomYellowText(
-            text2: 'See all',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SeeAllView(),
-                  settings: const RouteSettings(arguments: true),
-                ),
-              );
-            },
-            fontsize: 18,
-            fontWeight: FontWeight.w700,
-          )
+          // CustomYellowText(
+          //   text2: 'See all',
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => const SeeAllView(),
+          //         settings: const RouteSettings(arguments: true),
+          //       ),
+          //     );
+          //   },
+          //   fontsize: 18,
+          //   fontWeight: FontWeight.w700,
+          // )
         ],
       ),
     );

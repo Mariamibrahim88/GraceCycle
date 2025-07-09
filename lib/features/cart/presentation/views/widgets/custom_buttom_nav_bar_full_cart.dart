@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
+import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
 
@@ -55,21 +56,26 @@ class CustomButtomNavBarFullCart extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    height: 36.h,
-                    width: 150.w,
-                    decoration: BoxDecoration(
-                      color: AppColors.basicWhite,
-                      borderRadius: BorderRadius.circular(16.r),
-                      border: Border.all(
-                        color: AppColors.greenButt,
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Add items',
-                        style: AppTextStyles.nunito600Size16White.copyWith(
+                  GestureDetector(
+                    onTap: () {
+                      navigate(context: context, route: Routes.navBar);
+                    },
+                    child: Container(
+                      height: 36.h,
+                      width: 150.w,
+                      decoration: BoxDecoration(
+                        color: AppColors.basicWhite,
+                        borderRadius: BorderRadius.circular(16.r),
+                        border: Border.all(
                           color: AppColors.greenButt,
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Add items',
+                          style: AppTextStyles.nunito600Size16White.copyWith(
+                            color: AppColors.greenButt,
+                          ),
                         ),
                       ),
                     ),
@@ -77,9 +83,7 @@ class CustomButtomNavBarFullCart extends StatelessWidget {
                   horizontalSpace(10.w),
                   GestureDetector(
                     onTap: () {
-                      // Handle checkout action here
-                      // For example, navigate to the checkout page or perform any other action
-                      Navigator.pushNamed(context, Routes.checkout);
+                      navigate(context: context, route: Routes.ordersView);
                     },
                     child: Container(
                         height: 36.h,
