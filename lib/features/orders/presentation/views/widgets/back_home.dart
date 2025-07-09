@@ -15,7 +15,7 @@ class BackHome extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
           context,
-          Routes.home,
+          Routes.navBar,
         );
       },
       child: Row(

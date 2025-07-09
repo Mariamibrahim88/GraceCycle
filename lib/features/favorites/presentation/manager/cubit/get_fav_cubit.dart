@@ -152,12 +152,8 @@ class GetFavCubit extends Cubit<GetFavState> {
       } else {
         BlocProvider.of<DiscoverCubit>(context).getVendorTypes();
       }
-      //   } else {
-      //     getVendorTypes();
-      //   }
-      // }
-      emit(IsFilterVisible());
     }
+    emit(IsFilterVisible());
   }
 
   void changeIsExpanded() {

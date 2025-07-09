@@ -60,12 +60,14 @@ class FavVendorsList extends StatelessWidget {
                           top: 8,
                         ),
                         child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(
+                          onTap: () async {
+                            await Navigator.pushNamed(
                               context,
                               Routes.vendorDetails,
                               arguments: favCubit.favVendorList[index].userId,
                             );
+                            // Refresh favorites list when returning from vendor details
+                            favCubit.getVendorFav(loadingFromPagination: false);
                           },
                           child: FavoriteVendorCard(
                             favVendorItem: favCubit.favVendorList[index],

@@ -72,16 +72,6 @@ class CustomListOfFoodHor extends StatelessWidget {
                 ),
               )
             ],
-            //   children: List.generate(
-            //     foodItemModel.length,
-            //     (index) => Padding(
-            //       padding: EdgeInsets.symmetric(horizontal: 8.w),
-            //       child: FoodCard(
-            //         foodItemModel: foodItemModel[index],
-            //       ),
-            //     ),
-            //   ),
-            // ),
           ),
         ),
       ],

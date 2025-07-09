@@ -17,13 +17,9 @@ class OrdersViewBody extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-            child: CustomAppBar(
-              title: 'Orders',
-              fontStyle: 22.sp,
-              color: Colors.black,
-              onPressed: () {
-                Navigator.pop(context);
-              },
+            child: Text(
+              'Orders',
+              style: AppTextStyles.nunito700Size22Black,
             ),
           ),
           TabBar(

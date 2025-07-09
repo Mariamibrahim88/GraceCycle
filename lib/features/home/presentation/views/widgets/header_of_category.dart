@@ -25,21 +25,6 @@ class HeadOfCategory extends StatelessWidget {
               color: AppColors.greenButt,
             ),
           ),
-          CustomYellowText(
-            text2: 'See all',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SeeAllView(),
-                  settings: const RouteSettings(arguments: false),
-                ),
-              );
-              
-            },
-            fontsize: 18,
-            fontWeight: FontWeight.w700,
-          )
         ],
       ),
     );
