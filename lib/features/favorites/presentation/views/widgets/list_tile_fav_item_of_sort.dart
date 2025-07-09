@@ -40,11 +40,11 @@ List<ListTileFavItemOfSort> getSortOptionsFav(BuildContext context) {
         isSelected: selectedSort == 'rating',
         onTap: () => cubit.updateSort('Food Rating', 'rating'),
       ),
-      ListTileFavItemOfSort(
-        title: 'Discount Rate',
-        isSelected: selectedSort == 'discount',
-        onTap: () => cubit.updateSort('Discount Rate', 'discount'),
-      ),
+      // ListTileFavItemOfSort(
+      //   title: 'Discount Rate',
+      //   isSelected: selectedSort == 'discount',
+      //   onTap: () => cubit.updateSort('Discount Rate', 'discount'),
+      // ),
       ListTileFavItemOfSort(
         title: 'Most Popular',
         isSelected: selectedSort == 'most Popular',

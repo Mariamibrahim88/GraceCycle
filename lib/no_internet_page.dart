@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
-import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+// import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 class NoInternetPage extends StatelessWidget {
   const NoInternetPage({
@@ -38,18 +38,18 @@ class NoInternetPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   // Check internet connection
-                  final isConnected =
-                      await InternetConnection().hasInternetAccess;
-                  if (isConnected) {
-                    if (context.mounted) Navigator.of(context).pop();
-                  } else {
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text('Still no internet connection.')),
-                      );
-                    }
-                  }
+                  // final isConnected =
+                  //     await InternetConnection().hasInternetAccess;
+                  // if (isConnected) {
+                  if (context.mounted) Navigator.of(context).pop();
+                  // } else {
+                  //   if (context.mounted) {
+                  //     ScaffoldMessenger.of(context).showSnackBar(
+                  //       const SnackBar(
+                  //           content: Text('Still no internet connection.')),
+                  //     );
+                  //   }
+                  // }
                 },
                 child: const Text('Retry'),
               ),

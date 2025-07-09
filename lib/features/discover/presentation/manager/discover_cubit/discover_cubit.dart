@@ -176,8 +176,10 @@ class DiscoverCubit extends Cubit<DiscoverState> {
   }
 
   Future<void> getVendorTypes() async {
+    if (isClosed) return;
     emit(VendorTypesLoading());
     final response = await discoverRepo.getVendorTypes();
+    if (isClosed) return;
 
     response.fold(
       (l) {
@@ -190,8 +192,10 @@ class DiscoverCubit extends Cubit<DiscoverState> {
   }
 
   Future<void> getCategories() async {
+    if (isClosed) return;
     emit(GetCategoriesLoading());
     final response = await discoverRepo.getCategories();
+    if (isClosed) return;
     response.fold(
       (l) => emit(GetCategoriesFailure(l)),
       (r) => emit(GetCategoriesSuccess(r)),

@@ -10,7 +10,7 @@ import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
 import 'package:grace_cycle/core/widgets/check_token_expired.dart';
-import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+// import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -23,7 +23,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     with TickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
-  StreamSubscription<InternetStatus>? _connectionSubscription;
+  // StreamSubscription<InternetStatus>? _connectionSubscription;
 
   bool hasNavigated = false;
   bool isDialogShown = false;
@@ -41,26 +41,27 @@ class _SplashViewBodyState extends State<SplashViewBody>
       parent: _controller,
       curve: Curves.elasticInOut,
     );
+    navigateToOnBoarding();
 
-    _checkInitialConnection();
+    // _checkInitialConnection();
 
-    _connectionSubscription =
-        InternetConnection().onStatusChange.listen((status) async {
-      if (status == InternetStatus.disconnected) {
-        _showNoInternetDialog();
-      } else if (status == InternetStatus.connected) {
-        _dismissNoInternetDialog();
-        if (!hasNavigated) {
-          navigateToOnBoarding();
-        }
-      }
-    });
+    // _connectionSubscription =
+    //     InternetConnection().onStatusChange.listen((status) async {
+    //   if (status == InternetStatus.disconnected) {
+    //     _showNoInternetDialog();
+    //   } else if (status == InternetStatus.connected) {
+    //     _dismissNoInternetDialog();
+    //     if (!hasNavigated) {
+    //       navigateToOnBoarding();
+    //     }
+    //   }
+    // });
   }
 
   @override
   void dispose() {
     _controller.dispose();
-    _connectionSubscription?.cancel();
+    // _connectionSubscription?.cancel();
     super.dispose();
   }
 
@@ -91,65 +92,65 @@ class _SplashViewBodyState extends State<SplashViewBody>
     );
   }
 
-  void _checkInitialConnection() async {
-    final isConnected = await InternetConnection().hasInternetAccess;
-    if (!isConnected) {
-      _showNoInternetDialog();
-    } else {
-      navigateToOnBoarding();
-    }
-  }
+  // void _checkInitialConnection() async {
+  //   final isConnected = await InternetConnection().hasInternetAccess;
+  //   if (!isConnected) {
+  //     _showNoInternetDialog();
+  //   } else {
+  //     navigateToOnBoarding();
+  //   }
+  // }
 
-  void _showNoInternetDialog() {
-    if (isDialogShown) return;
-    isDialogShown = true;
+  // void _showNoInternetDialog() {
+  //   if (isDialogShown) return;
+  //   isDialogShown = true;
 
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => AlertDialog(
-        backgroundColor: AppColors.basicWhite,
-        title: Text(
-          'No Internet',
-          style: AppTextStyles.nunito500Size17GreenButt,
-        ),
-        content: Text(
-          'Please check your connection and try again.',
-          style: AppTextStyles.nunito400Size16Black,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () async {
-              final isConnected = await InternetConnection().hasInternetAccess;
-              if (isConnected) {
-                _dismissNoInternetDialog();
-                if (!hasNavigated) navigateToOnBoarding();
-              }
-              Navigator.of(context, rootNavigator: true).pop();
-            },
-            child: Text(
-              'Retry',
-              style: AppTextStyles.nunito500Size16GreenButt,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  //   showDialog(
+  //     context: context,
+  //     barrierDismissible: false,
+  //     builder: (_) => AlertDialog(
+  //       backgroundColor: AppColors.basicWhite,
+  //       title: Text(
+  //         'No Internet',
+  //         style: AppTextStyles.nunito500Size17GreenButt,
+  //       ),
+  //       content: Text(
+  //         'Please check your connection and try again.',
+  //         style: AppTextStyles.nunito400Size16Black,
+  //       ),
+  //       actions: [
+  //         TextButton(
+  //           onPressed: () async {
+  //             final isConnected = await InternetConnection().hasInternetAccess;
+  //             if (isConnected) {
+  //               _dismissNoInternetDialog();
+  //               if (!hasNavigated) navigateToOnBoarding();
+  //             }
+  //             Navigator.of(context, rootNavigator: true).pop();
+  //           },
+  //           child: Text(
+  //             'Retry',
+  //             style: AppTextStyles.nunito500Size16GreenButt,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  void _dismissNoInternetDialog() {
-    if (isDialogShown) {
-      Navigator.of(context, rootNavigator: true).pop();
-      isDialogShown = false;
-    }
-  }
+  // void _dismissNoInternetDialog() {
+  //   if (isDialogShown) {
+  //     Navigator.of(context, rootNavigator: true).pop();
+  //     isDialogShown = false;
+  //   }
+  // }
 
   void navigateToOnBoarding() async {
     if (hasNavigated) return;
     hasNavigated = true;
 
-    final isConnected = await InternetConnection().hasInternetAccess;
-    if (!isConnected) return;
+    // final isConnected = await InternetConnection().hasInternetAccess;
+    // if (!isConnected) return;
 
     await Future.delayed(const Duration(seconds: 6));
     if (!mounted) return;

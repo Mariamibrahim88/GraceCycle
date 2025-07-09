@@ -68,11 +68,11 @@ List<ListTileItemOfSort> getSortOptions(BuildContext context) {
         isSelected: selectedSort == 'most popular',
         onTap: () => cubit.updateSort('Most Popular', 'most popular'),
       ),
-      ListTileItemOfSort(
-        title: 'Distance',
-        isSelected: selectedSort == 'distance',
-        onTap: () => cubit.updateSort('Distance', 'distance'),
-      ),
+      // ListTileItemOfSort(
+      //   title: 'Distance',
+      //   isSelected: selectedSort == 'distance',
+      //   onTap: () => cubit.updateSort('Distance', 'distance'),
+      // ),
     ];
   }
 }

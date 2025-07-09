@@ -33,8 +33,10 @@ class DetailsCubit extends Cubit<DetailsState> {
   }
 
   Future<void> getFoodDetails({required int id}) async {
+    if (isClosed) return;
     emit(GetFoodByIdLoading());
     final response = await detailsRepo.getFoodDetails(id: id);
+    if (isClosed) return;
     response.fold((error) => emit(GetFoodByIdFailure(errorMessage: error)),
         (r) {
       foodItemDetails = r;
@@ -43,7 +45,10 @@ class DetailsCubit extends Cubit<DetailsState> {
   }
 
   Future<void> getVendorDetails({required String id}) async {
+    if (isClosed) return;
+    emit(GetVendorByIdLoading());
     final response = await detailsRepo.getVendorDetails(vendorId: id);
+    if (isClosed) return;
     response.fold(
       (error) => emit(GetVendorByIdFailure(errorMessage: error)),
       (r) => emit(GetVendorByIdSuccess(vendorItemDetails: r)),

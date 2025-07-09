@@ -64,12 +64,14 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> toggleFoodFavorite(int id) async {
+    if (isClosed) return;
     final isCurrentlyFavorite = favourites[id] ?? false;
     favourites[id] = !isCurrentlyFavorite;
     emit(HomeUpdateFavorites());
 
     if (isCurrentlyFavorite) {
       final response = await homeRepo.removeFromFavoriteFood(id);
+      if (isClosed) return;
       response.fold(
         (l) {
           favourites[id] = true;
@@ -82,6 +84,7 @@ class HomeCubit extends Cubit<HomeState> {
       );
     } else {
       final response = await homeRepo.addToFavoriteFood(id);
+      if (isClosed) return;
       response.fold(
         (l) {
           favourites[id] = false;
@@ -96,12 +99,14 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> toggleVendorFavorite(String id) async {
+    if (isClosed) return;
     final isCurrentlyFavoriteVendor = favouritesForVendors[id] ?? false;
     favouritesForVendors[id] = !isCurrentlyFavoriteVendor;
     emit(HomeUpdateVendorFavorites());
 
     if (isCurrentlyFavoriteVendor) {
       final response = await homeRepo.removeFromFavoriteVendor(id);
+      if (isClosed) return;
       response.fold(
         (l) {
           favouritesForVendors[id] = true;
@@ -114,6 +119,7 @@ class HomeCubit extends Cubit<HomeState> {
       );
     } else {
       final response = await homeRepo.addToFavoriteVendor(id);
+      if (isClosed) return;
       response.fold(
         (l) {
           favouritesForVendors[id] = false;

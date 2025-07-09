@@ -40,6 +40,7 @@ class GetFavCubit extends Cubit<GetFavState> {
       int? maxPrice,
       String? sort,
       String? search}) async {
+    if (isClosed) return;
     if (isInitial) {
       // _pageIndex = 1;
       // allFoodItems.clear();
@@ -61,7 +62,7 @@ class GetFavCubit extends Cubit<GetFavState> {
         maxPrice ?? selectedMaxPrice,
         sort ?? selectedSort,
         search ?? serachFavController.text);
-
+    if (isClosed) return;
     result.fold((ifLeft) => emit(GetFavError(ifLeft)), (ifRight) {
       if (ifRight.data.isNotEmpty) {
         allFavFoodItems.addAll(ifRight.data);
@@ -83,6 +84,7 @@ class GetFavCubit extends Cubit<GetFavState> {
     String? sort,
     String? search,
   }) async {
+    if (isClosed) return;
     if (loadingFromPagination) {
       emit(FavVendorPaginationLoading());
     } else {
@@ -99,6 +101,7 @@ class GetFavCubit extends Cubit<GetFavState> {
       sort ?? selectedSort,
       search ?? serachFavController.text,
     );
+    if (isClosed) return;
     response.fold(
       (l) {
         emit(GetFavVendorsError(l));
@@ -118,9 +121,11 @@ class GetFavCubit extends Cubit<GetFavState> {
   }
 
   void removeFromFavoriteFood(int id) async {
+    if (isClosed) return;
     emit(RemoveFavLoading());
 
     final result = await favRepo.removeFromFavoriteFood(id);
+    if (isClosed) return;
     result.fold((error) => emit(RemoveFavError(error)), (r) {
       emit(RemoveFavSuccess());
       getFavFood();
@@ -128,9 +133,11 @@ class GetFavCubit extends Cubit<GetFavState> {
   }
 
   void removeFromFavoriteVendor(String id) async {
+    if (isClosed) return;
     emit(RemoveFavVendorLoading());
 
     final result = await favRepo.removeFromFavoriteVendor(id);
+    if (isClosed) return;
     result.fold((error) => emit(RemoveFavVendorError(error)), (r) {
       emit(RemoveFavVendorSuccess());
       getVendorFav();
