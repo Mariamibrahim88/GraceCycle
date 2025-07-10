@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/core/widgets/custom_safe_area.dart';
+import 'package:grace_cycle/features/orders/presentation/manager/cubit/checkout_cubit.dart';
 import 'package:grace_cycle/features/orders/presentation/views/widgets/orders_view_body.dart';
 
 class OrdersView extends StatelessWidget {
@@ -7,6 +9,10 @@ class OrdersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomSafeArea(body: OrdersViewBody());
+    return CustomSafeArea(
+        body: BlocProvider(
+      create: (context) => CheckoutCubit()..getOrderSummary(),
+      child: const OrdersViewBody(),
+    ));
   }
 }

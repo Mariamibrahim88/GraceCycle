@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/widgets/custom_app_bar.dart';
-import 'package:grace_cycle/features/orders/data/cubit/checkout_cubit.dart';
+import 'package:grace_cycle/features/orders/presentation/manager/cubit/checkout_cubit.dart';
 import 'package:grace_cycle/features/orders/presentation/views/confirm_reciving_view.dart';
 import 'package:grace_cycle/features/orders/presentation/views/widgets/container_of_icon.dart';
 import 'package:grace_cycle/features/orders/presentation/views/widgets/order_section.dart';

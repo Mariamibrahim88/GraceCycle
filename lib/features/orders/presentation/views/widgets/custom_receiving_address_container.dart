@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
-import 'package:grace_cycle/features/orders/data/cubit/checkout_cubit.dart';
+import 'package:grace_cycle/features/orders/presentation/manager/cubit/checkout_cubit.dart';
 
 class CustomReceivingAddressContainer extends StatelessWidget {
   const CustomReceivingAddressContainer(

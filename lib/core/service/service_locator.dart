@@ -19,6 +19,7 @@ import 'package:grace_cycle/features/favorites/data/repos/fav_repo.dart';
 import 'package:grace_cycle/features/favorites/presentation/manager/cubit/get_fav_cubit.dart';
 import 'package:grace_cycle/features/home/data/repos/home_repo.dart';
 import 'package:grace_cycle/features/home/presentation/manager/Home_cubit/home_cubit.dart';
+import 'package:grace_cycle/features/orders/data/repo/order_repo.dart';
 
 final sl = GetIt.instance;
 
@@ -33,6 +34,7 @@ void initServiceLocator() {
   sl.registerLazySingleton(() => DiscoverRepo());
   sl.registerLazySingleton(() => DetailsRepo());
   sl.registerLazySingleton(() => CartRepo());
+  sl.registerLazySingleton(() => OrderRepo());
 
   //sl.registerSingleton(() => RegisterCubit(sl()));
   sl.registerFactory<RegisterCubit>(() => RegisterCubit(sl<RegisterRepo>()));
@@ -45,5 +47,5 @@ void initServiceLocator() {
   sl.registerFactory<LoginCubit>(() => LoginCubit(sl<LoginRepo>()));
   sl.registerFactory<ForgetPassCubit>(
       () => ForgetPassCubit(sl<ForgetPassRepo>()));
-  sl.registerFactory<CartCubit>(() =>CartCubit(sl<CartRepo>()));
+  sl.registerFactory<CartCubit>(() => CartCubit(sl<CartRepo>()));
 }

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grace_cycle/core/routes/app_routes.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
+import 'package:grace_cycle/core/utils/app_navigate.dart';
+import 'package:grace_cycle/core/widgets/custom_snack_bar.dart';
 import 'package:grace_cycle/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'package:grace_cycle/features/cart/presentation/manager/cubit/cart_state.dart';
 import 'package:grace_cycle/features/cart/presentation/views/widgets/cart_full_view_body.dart';
 import 'package:grace_cycle/features/cart/presentation/views/widgets/custom_buttom_nav_bar_full_cart.dart';
+import 'package:grace_cycle/features/orders/presentation/manager/cubit/checkout_cubit.dart';
 
 class CartFullView extends StatelessWidget {
   const CartFullView({super.key});
@@ -21,8 +25,21 @@ class CartFullView extends StatelessWidget {
                 state.cartItemsForSpecificVendorList.isNotEmpty) {
               final vendor = state.cartItemsForSpecificVendorList.first;
 
-              return CustomButtomNavBarFullCart(
-                  total: vendor.total, count: vendor.count);
+              return BlocListener<CheckoutCubit, CheckoutState>(
+                listener: (context, checkoutState) {
+                  if (checkoutState is ConvertCartToOrderSuccess) {
+                    navigate(context: context, route: Routes.ordersView);
+                  } else if (checkoutState is ConvertCartToOrderError) {
+                    showToast(
+                        message: checkoutState.error, state: ToastStates.error);
+                  }
+                },
+                child: CustomButtomNavBarFullCart(
+                  total: vendor.total,
+                  count: vendor.count,
+                  vendorId: vendor.vendorId,
+                ),
+              );
             }
 
             return const SizedBox();

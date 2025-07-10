@@ -13,6 +13,7 @@ import 'package:grace_cycle/features/cart/presentation/manager/cubit/cart_cubit.
 import 'package:grace_cycle/features/cart/presentation/views/cart_full_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_view.dart';
 import 'package:grace_cycle/features/details/presentation/manager/cubit/details_cubit.dart';
+import 'package:grace_cycle/features/orders/presentation/manager/cubit/checkout_cubit.dart';
 import 'package:grace_cycle/features/orders/presentation/views/checkout_view.dart';
 import 'package:grace_cycle/features/details/presentation/views/food_details_view.dart';
 import 'package:grace_cycle/features/details/presentation/views/vendor_details_view.dart';
@@ -116,9 +117,18 @@ class AppRoutes {
         print('venndoramid :$settings.arguments');
         final id = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) =>
-                CartCubit(sl())..getCartItemsForSpecificVendor(vendorId: id),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => CartCubit(sl())
+                  ..getCartItemsForSpecificVendor(vendorId: id),
+                child: const CartFullView(),
+              ),
+              BlocProvider(
+                create: (context) => CheckoutCubit(),
+                child: const CartFullView(),
+              ),
+            ],
             child: const CartFullView(),
           ),
         );
