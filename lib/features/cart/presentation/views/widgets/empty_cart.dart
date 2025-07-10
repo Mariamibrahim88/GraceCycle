@@ -16,7 +16,7 @@ class EmptyCart extends StatelessWidget {
       child: Column(
         children: [
           SvgPicture.asset(
-            AppAssets.cart,
+            AppAssets.emptyCart,
             height: 250.h,
           ),
           verticalSpace(16.h),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
-import 'package:grace_cycle/features/orders/data/cubit/checkout_cubit.dart';
+import 'package:grace_cycle/features/orders/presentation/manager/cubit/checkout_cubit.dart';
 import 'package:grace_cycle/features/orders/presentation/views/widgets/checkout_view_body.dart';
 import 'package:grace_cycle/features/cart/presentation/views/widgets/custom_order_nav_bar_container.dart';
 

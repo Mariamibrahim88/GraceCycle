@@ -6,11 +6,15 @@ import 'package:grace_cycle/core/utils/app_assets.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
+import 'package:grace_cycle/features/orders/data/models/order_summary_model.dart';
 
 class ItemOfOrder extends StatelessWidget {
   const ItemOfOrder({
     super.key,
+    required this.orderSummary,
   });
+
+  final OrderSummaryModel orderSummary;
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +39,12 @@ class ItemOfOrder extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'From Al Shallal Restaurant',
+                    orderSummary.vendorName,
                     style: AppTextStyles.nunito700Size16Black,
                   ),
-                  Text('(10/10/2023)',
+                  Text('(${orderSummary.orderDate})',
                       style: AppTextStyles.nunito500Size12Black),
                   const Spacer(),
-                  const Icon(
-                    Icons.error,
-                    color: AppColors.redForPrice,
-                  ),
                   const Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 14,
@@ -65,7 +65,7 @@ class ItemOfOrder extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        '2 items',
+                        '${orderSummary.itemsCount} items',
                         style: AppTextStyles.nunito500Size14Black
                             .copyWith(color: Colors.white),
                       ),
@@ -91,7 +91,7 @@ class ItemOfOrder extends StatelessWidget {
                         style: AppTextStyles.nunito500Size11BasicGreen,
                       ),
                       Text(
-                        '200',
+                        '${orderSummary.total}',
                         style: AppTextStyles.nunito500Size17GreenButt,
                       ),
                     ],

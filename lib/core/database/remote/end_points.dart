@@ -7,6 +7,7 @@ class EndPoint {
   static const String resetPassword = 'AppUser/reset-password';
   static const String cart = 'Cart';
   static const String updateItemInCart = 'Cart/update-item';
+  static const String orderSummary = 'Orders/summary';
 
   static String foodById(id) {
     return 'Foods/$id';
@@ -19,6 +20,11 @@ class EndPoint {
   static String getCartsForSpecificVendor(vendorId) {
     return 'Cart/$vendorId';
   }
+
+  static String convertCartToOrder(String vendorId) {
+    return 'Orders/from-cart/$vendorId';
+  }
+
   static String addItemToCart = 'Cart/add-item';
 }
 
