@@ -44,3 +44,16 @@ class GetOrderSummaryError extends CheckoutState {
 
   GetOrderSummaryError({required this.error});
 }
+
+class GetOrderDetailsLoading extends CheckoutState {}
+
+class GetOrderDetailsSuccess extends CheckoutState {
+  final OrderDetailsModel orderDetails;
+
+  GetOrderDetailsSuccess({required this.orderDetails});
+}
+
+class GetOrderDetailsError extends CheckoutState {
+  final String error;
+  GetOrderDetailsError({required this.error});
+}
