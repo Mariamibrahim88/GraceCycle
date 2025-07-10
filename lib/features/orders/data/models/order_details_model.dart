@@ -5,6 +5,7 @@ class OrderDetailsModel {
   final String vendorName;
   final double totalSavings;
   final PaymentSummary paymentSummary;
+  final int totalItems;
 
   OrderDetailsModel({
     required this.id,
@@ -13,6 +14,7 @@ class OrderDetailsModel {
     required this.vendorName,
     required this.totalSavings,
     required this.paymentSummary,
+    required this.totalItems,
   });
 
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class OrderDetailsModel {
       vendorName: json['vendorName'],
       totalSavings: json['totalSavings'],
       paymentSummary: PaymentSummary.fromJson(json['paymentSummary']),
+      totalItems: json['totalItems'],
     );
   }
 

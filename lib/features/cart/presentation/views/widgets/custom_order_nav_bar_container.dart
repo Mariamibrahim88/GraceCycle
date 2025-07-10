@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
+import 'package:grace_cycle/features/orders/presentation/manager/cubit/checkout_cubit.dart';
 
 class CustomOrderNavBarContainer extends StatelessWidget {
   const CustomOrderNavBarContainer(
@@ -13,6 +15,7 @@ class CustomOrderNavBarContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final checkoutCubit = BlocProvider.of<CheckoutCubit>(context);
     return Container(
       height: 152.h,
       width: double.infinity,
@@ -28,12 +31,12 @@ class CustomOrderNavBarContainer extends StatelessWidget {
                 Text('Total', style: AppTextStyles.nunito600Size18Black),
                 horizontalSpace(4),
                 Text(
-                  '(5 items)',
+                  '(${checkoutCubit.totalNumberOfitems} items)',
                   style: AppTextStyles.nunito400Size16Black,
                 ),
                 const Spacer(),
                 Text(
-                  'EGP 20',
+                  'EGP ${checkoutCubit.totalPrice}',
                   style: AppTextStyles.nunito700Size22Black,
                 ),
               ],

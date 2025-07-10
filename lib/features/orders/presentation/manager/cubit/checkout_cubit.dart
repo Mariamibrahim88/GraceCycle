@@ -11,9 +11,13 @@ part 'checkout_state.dart';
 class CheckoutCubit extends Cubit<CheckoutState> {
   CheckoutCubit(Object object) : super(CheckoutInitial());
 
+  double totalPrice = 0;
+  int totalNumberOfitems = 0;
+
   int selectedIndex = 0;
   int currentStep = 0;
 
+ 
   void isOrderPlaced(int index) {
     selectedIndex = index;
     emit(IsOrderPlaced(index));
@@ -49,16 +53,18 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   Future<void> getOrderDetails({required int orderId}) async {
     emit(GetOrderDetailsLoading());
     print('loading.........');
+    
     final result = await sl<OrderRepo>().getOrderDetails(orderId: orderId);
 
     result.fold((l) {
       emit(GetOrderDetailsError(error: l));
-          print('error.........');
-
+      print('error.........');
     }, (r) {
       emit(GetOrderDetailsSuccess(orderDetails: r));
-          print('succ.........');
+      totalPrice = r.total;
+      totalNumberOfitems = r.totalItems;
 
+      print('succ.........');
     });
   }
 }

@@ -78,12 +78,12 @@ class OfferedItem {
   final int id;
   final String name;
   final String picUrl;
-  final double rating;
+  //final double rating;
   final bool isFavourite;
   final int quantity;
   final double unitPrice;
   final double newPrice;
-  final int discountPercentage;
+ // final int discountPercentage;
   final String vName;
   final String vOpening;
   final String vClosing;
@@ -92,12 +92,12 @@ class OfferedItem {
     required this.id,
     required this.name,
     required this.picUrl,
-    required this.rating,
+   // required this.rating,
     required this.isFavourite,
     required this.quantity,
     required this.unitPrice,
     required this.newPrice,
-    required this.discountPercentage,
+    //required this.discountPercentage,
     required this.vName,
     required this.vOpening,
     required this.vClosing,
@@ -108,12 +108,12 @@ class OfferedItem {
       id: json['id'],
       name: json['name'] ?? '',
       picUrl: json['picUrl'] ?? '',
-      rating: (json['rating'] as num).toDouble(),
+      //rating: (json['rating'] as num).toDouble(),
       isFavourite: json['isFavourite'] ?? false,
       quantity: json['quantity'],
       unitPrice: (json['unitPrice'] as num).toDouble(),
       newPrice: (json['newPrice'] as num).toDouble(),
-      discountPercentage: json['discountPercentage'],
+      //discountPercentage: json['discountPercentage'],
       vName: json['vName'] ?? '',
       vOpening: json['vOpening'] ?? '',
       vClosing: json['vClosing'] ?? '',
@@ -124,12 +124,12 @@ class OfferedItem {
       'id': id,
       'name': name,
       'picUrl': picUrl,
-      'rating': rating,
+      //'rating': rating,
       'isFavourite': isFavourite,
       'quantity': quantity,
       'unitPrice': unitPrice,
       'newPrice': newPrice,
-      'discountPercentage': discountPercentage,
+      //'discountPercentage': discountPercentage,
       'vName': vName,
       'vOpening': vOpening,
       'vClosing': vClosing,

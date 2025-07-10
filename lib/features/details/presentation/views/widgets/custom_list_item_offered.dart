@@ -5,9 +5,10 @@ import 'package:grace_cycle/features/details/presentation/views/widgets/item_off
 
 class CustomListItemOffered extends StatelessWidget {
   const CustomListItemOffered({
-    super.key, required this.offeredItemList,
+    super.key,
+    required this.offeredItemList,
   });
- final List<OfferedItem> offeredItemList;
+  final List<OfferedItem> offeredItemList;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +19,10 @@ class CustomListItemOffered extends StatelessWidget {
       itemBuilder: (context, index) => GestureDetector(
         onTap: () {
           Navigator.pushNamed(
-              context,
-              Routes.vendorDetails,
-              arguments: offeredItemList[index].id,
-            );
+            context,
+            Routes.foodDetails,
+            arguments: offeredItemList[index].id,
+          );
         },
         child: ItemOfferedCard(
           offeredItem: offeredItemList[index],

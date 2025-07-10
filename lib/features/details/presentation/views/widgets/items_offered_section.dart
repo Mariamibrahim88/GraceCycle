@@ -25,6 +25,7 @@ class ItemsOfferedSection extends StatelessWidget {
         verticalSpace(5.h),
         offeredItemList.isNotEmpty
             ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomListItemOffered(
                     offeredItemList: offeredItemList,
@@ -60,7 +61,7 @@ class ItemsOfferedSection extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.info_outline,
-                        color: const   Color.fromARGB(255, 50, 112, 88),
+                        color: const Color.fromARGB(255, 50, 112, 88),
                         size: 20.sp,
                       ),
                       SizedBox(width: 8.w),

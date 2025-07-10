@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grace_cycle/core/routes/app_routes.dart';
@@ -9,7 +8,6 @@ import 'package:grace_cycle/core/utils/app_navigate.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
 import 'package:grace_cycle/features/orders/data/models/order_summary_model.dart';
-import 'package:grace_cycle/features/orders/presentation/manager/cubit/checkout_cubit.dart';
 
 class ItemOfOrder extends StatelessWidget {
   const ItemOfOrder({

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:grace_cycle/core/service/service_locator.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
 import 'package:grace_cycle/features/cart/presentation/views/custom_loading_cart.dart';
 import 'package:grace_cycle/features/orders/presentation/manager/cubit/checkout_cubit.dart';
+import 'package:grace_cycle/features/orders/presentation/views/widgets/custom_list_of_items_in_order_section.dart';
 import 'package:grace_cycle/features/orders/presentation/views/widgets/list_of_name_of_food_checkout.dart';
 
 class OrderSection extends StatelessWidget {
@@ -20,14 +20,14 @@ class OrderSection extends StatelessWidget {
         if (state is GetOrderDetailsError) {
           return Text(state.error);
         } else if (state is GetOrderDetailsSuccess) {
-          print(
-              'Order details loaded successfully for orderId: ${state.orderDetails.id}');
+          final checkoutCubit = BlocProvider.of<CheckoutCubit>(context);
+          checkoutCubit.totalNumberOfitems = state.orderDetails.totalItems;
+          checkoutCubit.totalPrice = state.orderDetails.total;
           return Column(
             children: [
-              //  FoodCardInfullCart(
-              //   cartItem: CartItem.fromOrderItem(state.orderDetails.items.first),
-              //   vendorId: state.orderDetails.vendorName,
-              //  ),
+              CustomListOfItemsInOrderSection(
+                orderDetailsModel: state.orderDetails,
+              ),
               verticalSpace(20.h),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

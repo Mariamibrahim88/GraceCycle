@@ -45,17 +45,17 @@ class VendorDetailsViewBody extends StatelessWidget {
                   icon: Icons.location_on_outlined,
                   text: vendorDetailsModel.address,
                 ),
-                verticalSpace(5.h),
+                verticalSpace(7.h),
                 ContainerVendorIconDataDetails(
                   icon: Icons.access_time,
                   text:
                       'Open from ${vendorDetailsModel.opening} AM to ${vendorDetailsModel.closing} PM',
                 ),
                 verticalSpace(5.h),
-                const ContainerVendorIconDataDetails(
-                  icon: Icons.near_me_outlined,
-                  text: 'It is 10 km away from you',
-                ),
+                // const ContainerVendorIconDataDetails(
+                //   icon: Icons.near_me_outlined,
+                //   text: 'It is 10 km away from you',
+                // ),
                 verticalSpace(15.h),
                 ItemsOfferedSection(
                   offeredItemList: vendorDetailsModel.itemsOffered,
