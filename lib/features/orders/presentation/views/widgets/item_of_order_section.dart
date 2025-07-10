@@ -18,6 +18,8 @@ class ItemOfOrderSection extends StatelessWidget {
   final OrderItem orderItem;
   @override
   Widget build(BuildContext context) {
+    String url = orderItem.picUrl;
+    String newUrl = url.startsWith("/") ? url.substring(1) : url;
     return Card(
       elevation: 1,
       shape: RoundedRectangleBorder(
@@ -29,7 +31,7 @@ class ItemOfOrderSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          AssetFavCard(imageUrl: orderItem.picUrl),
+          AssetFavCard(imageUrl: newUrl),
           horizontalSpace(8.w),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
