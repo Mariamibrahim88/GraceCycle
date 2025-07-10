@@ -11,7 +11,7 @@ class CheckoutView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CheckoutCubit(),
+      create: (context) => CheckoutCubit(context),
       child: SafeArea(
         child: Scaffold(
             backgroundColor: AppColors.basicWhite,

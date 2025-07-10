@@ -23,15 +23,15 @@ class ReviewSummaryModel {
 
   factory ReviewSummaryModel.fromJson(Map<String, dynamic> json) {
     return ReviewSummaryModel(
-      foodId: json['foodId'],
-      averageRating: (json['averageRating'] as num).toDouble(),
-      totalReviews: json['totalReviews'],
-      oneStar: json['oneStar'],
-      twoStars: json['twoStars'],
-      threeStars: json['threeStars'],
-      fourStars: json['fourStars'],
-      fiveStars: json['fiveStars'],
-      starRating: json['starRating'],
+      foodId: json['foodId'] ?? 0,
+      averageRating: (json['averageRating'] as num?)?.toDouble() ?? 0.0,
+      totalReviews: json['totalReviews'] ?? 0,
+      oneStar: json['oneStar'] ?? 0,
+      twoStars: json['twoStars'] ?? 0,
+      threeStars: json['threeStars'] ?? 0,
+      fourStars: json['fourStars'] ?? 0,
+      fiveStars: json['fiveStars'] ?? 0,
+      starRating: json['starRating'] ?? '',
     );
   }
 }

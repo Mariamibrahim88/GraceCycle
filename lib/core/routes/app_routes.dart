@@ -90,7 +90,13 @@ class AppRoutes {
       case Routes.settings:
         return MaterialPageRoute(builder: (_) => const SettingsView());
       case Routes.checkout:
-        return MaterialPageRoute(builder: (_) => const CheckoutView());
+        final orderId = settings.arguments as int;
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) =>
+                      CheckoutCubit(sl())..getOrderDetails( orderId:orderId),
+                  child: const CheckoutView(),
+                ));
       case Routes.writeReview:
         return MaterialPageRoute(builder: (_) => const WriteReviewView());
       case Routes.ordersView:
@@ -125,8 +131,7 @@ class AppRoutes {
                 child: const CartFullView(),
               ),
               BlocProvider(
-                create: (context) => CheckoutCubit(),
-                child: const CartFullView(),
+                create: (context) => CheckoutCubit(sl()),
               ),
             ],
             child: const CartFullView(),

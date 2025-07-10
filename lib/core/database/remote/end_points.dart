@@ -25,6 +25,10 @@ class EndPoint {
     return 'Orders/from-cart/$vendorId';
   }
 
+  static String orderDetails(int orderId) {
+    return 'Orders/$orderId/details';
+  }
+
   static String addItemToCart = 'Cart/add-item';
 }
 

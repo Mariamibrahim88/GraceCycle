@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
+import 'package:grace_cycle/features/orders/data/models/order_details_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_summary_model.dart';
 import 'package:grace_cycle/features/orders/data/repo/order_repo.dart';
@@ -8,7 +9,7 @@ import 'package:meta/meta.dart';
 part 'checkout_state.dart';
 
 class CheckoutCubit extends Cubit<CheckoutState> {
-  CheckoutCubit() : super(CheckoutInitial());
+  CheckoutCubit(Object object) : super(CheckoutInitial());
 
   int selectedIndex = 0;
   int currentStep = 0;
@@ -42,6 +43,22 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       emit(GetOrderSummaryError(error: l));
     }, (r) {
       emit(GetOrderSummarySuccess(orderSummary: r));
+    });
+  }
+
+  Future<void> getOrderDetails({required int orderId}) async {
+    emit(GetOrderDetailsLoading());
+    print('loading.........');
+    final result = await sl<OrderRepo>().getOrderDetails(orderId: orderId);
+
+    result.fold((l) {
+      emit(GetOrderDetailsError(error: l));
+          print('error.........');
+
+    }, (r) {
+      emit(GetOrderDetailsSuccess(orderDetails: r));
+          print('succ.........');
+
     });
   }
 }

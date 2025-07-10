@@ -10,9 +10,10 @@ class OrdersView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomSafeArea(
-        body: BlocProvider(
-      create: (context) => CheckoutCubit()..getOrderSummary(),
-      child: const OrdersViewBody(),
-    ));
+      body: BlocProvider(
+        create: (context) => CheckoutCubit(context)..getOrderSummary(),
+        child: const OrdersViewBody(),
+      ),
+    );
   }
 }
