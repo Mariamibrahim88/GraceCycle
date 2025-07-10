@@ -11,7 +11,7 @@ class ListOfNameOfFoodCheckout extends StatelessWidget {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: 6,
+      itemCount: paymentSummary.items.length,
       itemBuilder: (context, index) => Padding(
         padding: EdgeInsets.only(
           bottom: 10.h,

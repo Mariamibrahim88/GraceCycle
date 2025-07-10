@@ -29,9 +29,9 @@ class ItemOfOrder extends StatelessWidget {
           arg: orderSummary.id,
         );
 
-        context.read<CheckoutCubit>().getOrderDetails(
-              orderId: orderSummary.id,
-            );
+        // context.read<CheckoutCubit>().getOrderDetails(
+        //       orderId: orderSummary.id,
+        //     );
       },
       child: Container(
         height: 73.h,

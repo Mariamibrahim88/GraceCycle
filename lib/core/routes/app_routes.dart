@@ -9,10 +9,12 @@ import 'package:grace_cycle/features/Authentication/presentation/views/signup_co
 import 'package:grace_cycle/features/Authentication/presentation/views/signup_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/succ_set_new_pass_view.dart';
 import 'package:grace_cycle/features/Authentication/presentation/views/verify_your_email_view.dart';
+import 'package:grace_cycle/features/cart/data/repos/cart_repo.dart';
 import 'package:grace_cycle/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_full_view.dart';
 import 'package:grace_cycle/features/cart/presentation/views/cart_view.dart';
 import 'package:grace_cycle/features/details/presentation/manager/cubit/details_cubit.dart';
+import 'package:grace_cycle/features/orders/data/repo/order_repo.dart';
 import 'package:grace_cycle/features/orders/presentation/manager/cubit/checkout_cubit.dart';
 import 'package:grace_cycle/features/orders/presentation/views/checkout_view.dart';
 import 'package:grace_cycle/features/details/presentation/views/food_details_view.dart';
@@ -92,9 +94,9 @@ class AppRoutes {
       case Routes.checkout:
         final orderId = settings.arguments as int;
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
+            builder: (_) => BlocProvider<CheckoutCubit>(
                   create: (context) =>
-                      CheckoutCubit(sl())..getOrderDetails( orderId:orderId),
+                      sl<CheckoutCubit>()..getOrderDetails(orderId: orderId),
                   child: const CheckoutView(),
                 ));
       case Routes.writeReview:
@@ -126,12 +128,11 @@ class AppRoutes {
           builder: (_) => MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) => CartCubit(sl())
+                create: (context) => CartCubit(sl<CartRepo>())
                   ..getCartItemsForSpecificVendor(vendorId: id),
-                child: const CartFullView(),
               ),
               BlocProvider(
-                create: (context) => CheckoutCubit(sl()),
+                create: (context) => CheckoutCubit(sl<OrderRepo>()),
               ),
             ],
             child: const CartFullView(),
