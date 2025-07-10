@@ -10,33 +10,30 @@ class CheckoutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CheckoutCubit(context),
-      child: SafeArea(
-        child: Scaffold(
-            backgroundColor: AppColors.basicWhite,
-            body: const CheckoutViewBody(),
-            bottomNavigationBar: BlocBuilder<CheckoutCubit, CheckoutState>(
-              builder: (context, state) {
-                final cubit = context.read<CheckoutCubit>();
-                return cubit.currentStep == 2
-                    ? CustomOrderNavBarContainer(
-                        text: 'Confirm the Order',
-                        onTap: () {
-                          cubit.goToNextStep();
-                        },
-                      )
-                    : cubit.currentStep == 3
-                        ? const SizedBox()
-                        : CustomOrderNavBarContainer(
-                            text: 'Continue',
-                            onTap: () {
-                              cubit.goToNextStep();
-                            },
-                          );
-              },
-            )),
-      ),
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: AppColors.basicWhite,
+          body: const CheckoutViewBody(),
+          bottomNavigationBar: BlocBuilder<CheckoutCubit, CheckoutState>(
+            builder: (context, state) {
+              final cubit = context.read<CheckoutCubit>();
+              return cubit.currentStep == 2
+                  ? CustomOrderNavBarContainer(
+                      text: 'Confirm the Order',
+                      onTap: () {
+                        cubit.goToNextStep();
+                      },
+                    )
+                  : cubit.currentStep == 3
+                      ? const SizedBox()
+                      : CustomOrderNavBarContainer(
+                          text: 'Continue',
+                          onTap: () {
+                            cubit.goToNextStep();
+                          },
+                        );
+            },
+          )),
     );
   }
 }

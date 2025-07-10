@@ -20,6 +20,7 @@ import 'package:grace_cycle/features/favorites/presentation/manager/cubit/get_fa
 import 'package:grace_cycle/features/home/data/repos/home_repo.dart';
 import 'package:grace_cycle/features/home/presentation/manager/Home_cubit/home_cubit.dart';
 import 'package:grace_cycle/features/orders/data/repo/order_repo.dart';
+import 'package:grace_cycle/features/orders/presentation/manager/cubit/checkout_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -48,4 +49,5 @@ void initServiceLocator() {
   sl.registerFactory<ForgetPassCubit>(
       () => ForgetPassCubit(sl<ForgetPassRepo>()));
   sl.registerFactory<CartCubit>(() => CartCubit(sl<CartRepo>()));
+  sl.registerFactory<CheckoutCubit>(() => CheckoutCubit(sl<OrderRepo>()));
 }
