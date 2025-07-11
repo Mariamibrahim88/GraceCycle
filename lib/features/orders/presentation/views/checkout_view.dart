@@ -17,21 +17,26 @@ class CheckoutView extends StatelessWidget {
           bottomNavigationBar: BlocBuilder<CheckoutCubit, CheckoutState>(
             builder: (context, state) {
               final cubit = context.read<CheckoutCubit>();
-              return cubit.currentStep == 2
-                  ? CustomOrderNavBarContainer(
-                      text: 'Confirm the Order',
-                      onTap: () {
-                        cubit.goToNextStep();
-                      },
-                    )
-                  : cubit.currentStep == 3
-                      ? const SizedBox()
-                      : CustomOrderNavBarContainer(
-                          text: 'Continue',
-                          onTap: () {
-                            cubit.goToNextStep();
-                          },
-                        );
+              // إذا كنا في الخطوة الأخيرة (3) لا نظهر أي زر
+              if (cubit.currentStep == 3) {
+                return const SizedBox();
+              }
+              // إذا كنا في خطوة التأكيد (2)
+              if (cubit.currentStep == 2) {
+                return CustomOrderNavBarContainer(
+                  text: 'Confirm the Order',
+                  onTap: () {
+                    cubit.goToNextStep();
+                  },
+                );
+              }
+              // باقي الخطوات
+              return CustomOrderNavBarContainer(
+                text: 'Continue',
+                onTap: () {
+                  cubit.goToNextStep();
+                },
+              );
             },
           )),
     );

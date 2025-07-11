@@ -42,7 +42,12 @@ class CheckoutViewBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomAppBar(onPressed: () {
-                  Navigator.pop(context);
+                  final cubit = context.read<CheckoutCubit>();
+                  if (cubit.currentStep > 0) {
+                    cubit.goToPreviousStep();
+                  } else {
+                    Navigator.pop(context);
+                  }
                 }),
                 verticalSpace(5.h),
                 //const HeadOfVendorInFullCart(),

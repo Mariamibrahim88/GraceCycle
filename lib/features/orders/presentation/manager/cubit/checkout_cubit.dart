@@ -29,6 +29,20 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     }
   }
 
+  void goToPreviousStep() {
+    if (currentStep > 0) {
+      currentStep--;
+      emit(CheckoutStepChanged(currentStep: currentStep));
+    }
+  }
+
+  void goToStep(int step) {
+    if (step >= 0 && step <= 3) {
+      currentStep = step;
+      emit(CheckoutStepChanged(currentStep: currentStep));
+    }
+  }
+
   Future<void> convertCartToOrder(String vendorId) async {
     emit(ConvertCartToOrderLoading());
     final result = await sl<OrderRepo>().converCartToOrder(vendorId);
@@ -51,19 +65,16 @@ class CheckoutCubit extends Cubit<CheckoutState> {
 
   Future<void> getOrderDetails({required int orderId}) async {
     emit(GetOrderDetailsLoading());
-    print('loading.........');
+
 
     final result = await sl<OrderRepo>().getOrderDetails(orderId: orderId);
 
     result.fold((l) {
       emit(GetOrderDetailsError(error: l));
-      print('error.........');
     }, (r) {
       emit(GetOrderDetailsSuccess(orderDetails: r));
       totalPrice = r.total;
       totalNumberOfitems = r.totalItems;
-
-      print('succ.........');
     });
   }
 
