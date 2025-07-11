@@ -17,13 +17,6 @@ class HeadOfCategory extends StatelessWidget {
         children: [
           Row(
             children: [
-              if (title == 'Recommended for You')
-                Icon(
-                  Icons.recommend,
-                  color: AppColors.greenButt,
-                  size: 20.sp,
-                ),
-              if (title == 'Recommended for You') SizedBox(width: 8.w),
               Text(
                 title,
                 style: GoogleFonts.nunito(

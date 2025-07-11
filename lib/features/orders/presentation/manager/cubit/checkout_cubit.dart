@@ -17,7 +17,6 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   int selectedIndex = 0;
   int currentStep = 0;
 
- 
   void isOrderPlaced(int index) {
     selectedIndex = index;
     emit(IsOrderPlaced(index));
@@ -26,6 +25,20 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   void goToNextStep() {
     if (currentStep < 4) {
       currentStep++;
+      emit(CheckoutStepChanged(currentStep: currentStep));
+    }
+  }
+
+  void goToPreviousStep() {
+    if (currentStep > 0) {
+      currentStep--;
+      emit(CheckoutStepChanged(currentStep: currentStep));
+    }
+  }
+
+  void goToStep(int step) {
+    if (step >= 0 && step <= 3) {
+      currentStep = step;
       emit(CheckoutStepChanged(currentStep: currentStep));
     }
   }
@@ -52,19 +65,15 @@ class CheckoutCubit extends Cubit<CheckoutState> {
 
   Future<void> getOrderDetails({required int orderId}) async {
     emit(GetOrderDetailsLoading());
-    print('loading.........');
-    
+
     final result = await sl<OrderRepo>().getOrderDetails(orderId: orderId);
 
     result.fold((l) {
       emit(GetOrderDetailsError(error: l));
-      print('error.........');
     }, (r) {
       emit(GetOrderDetailsSuccess(orderDetails: r));
       totalPrice = r.total;
       totalNumberOfitems = r.totalItems;
-
-      print('succ.........');
     });
   }
 }

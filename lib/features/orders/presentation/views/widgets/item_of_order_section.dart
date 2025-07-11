@@ -55,10 +55,10 @@ class ItemOfOrderSection extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  LeftPiecesContainer(
-                    color: AppColors.sortColor,
-                    leftPieces: orderItem.stockLeft,
-                  ),
+                  // LeftPiecesContainer(
+                  //   color: AppColors.sortColor,
+                  //   leftPieces: orderItem.stockLeft,
+                  // ),
                   horizontalSpace(35.w),
                   Container(
                     padding:
