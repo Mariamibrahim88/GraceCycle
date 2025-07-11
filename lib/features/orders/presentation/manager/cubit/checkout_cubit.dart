@@ -17,7 +17,6 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   int selectedIndex = 0;
   int currentStep = 0;
 
- 
   void isOrderPlaced(int index) {
     selectedIndex = index;
     emit(IsOrderPlaced(index));
@@ -53,7 +52,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   Future<void> getOrderDetails({required int orderId}) async {
     emit(GetOrderDetailsLoading());
     print('loading.........');
-    
+
     final result = await sl<OrderRepo>().getOrderDetails(orderId: orderId);
 
     result.fold((l) {
@@ -67,4 +66,17 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       print('succ.........');
     });
   }
+
+  // Future<void> makePayment(int amount,String clientSecret) async {
+  //   emit(PaymentLoading());
+  //   try {
+  //     final response = await sl<OrderRepo>().createPaymentIntent(amount);
+
+  //     await sl<OrderRepo>().confirmStripePayment(clientSecret);
+
+  //     emit(PaymentSuccess());
+  //   } catch (e) {
+  //     emit(PaymentFailure(e.toString()));
+  //   }
+  // }
 }

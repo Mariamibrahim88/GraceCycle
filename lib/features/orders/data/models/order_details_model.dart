@@ -50,7 +50,7 @@ class OrderItem {
   final double price;
   final double originalPrice;
   final int quantity;
-  final int stockLeft;
+ // final int stockLeft;
   final double total;
 
   OrderItem({
@@ -60,7 +60,7 @@ class OrderItem {
     required this.price,
     required this.originalPrice,
     required this.quantity,
-    required this.stockLeft,
+    //required this.stockLeft,
     required this.total,
   });
 
@@ -72,7 +72,7 @@ class OrderItem {
       price: (json['price'] as num).toDouble(),
       originalPrice: (json['originalPrice'] as num).toDouble(),
       quantity: json['quantity'],
-      stockLeft: json['stockLeft'],
+      //stockLeft: json['stockLeft'],
       total: (json['total'] as num).toDouble(),
     );
   }
@@ -85,7 +85,7 @@ class OrderItem {
       'price': price,
       'originalPrice': originalPrice,
       'quantity': quantity,
-      'stockLeft': stockLeft,
+     // 'stockLeft': stockLeft,
       'total': total,
     };
   }
