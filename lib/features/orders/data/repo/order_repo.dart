@@ -3,6 +3,7 @@ import 'package:grace_cycle/core/database/remote/api_consumer.dart';
 import 'package:grace_cycle/core/database/remote/end_points.dart';
 import 'package:grace_cycle/core/errors/exceptions.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
+import 'package:grace_cycle/features/orders/data/models/order_delivery_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_details_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_summary_model.dart';
@@ -39,6 +40,17 @@ class OrderRepo {
     } on ServerException catch (e) {
       return Left(e.errorModel.errorMessage);
     }
+  }
+
+   Future<Either<String, OrderDeliveryModel>> getOrderDelivery({required int orderId})async{
+     try {
+      final response = await sl<ApiConsumer>().get(EndPoint.orderDelivery(orderId));
+      final orderDelivery = OrderDeliveryModel.fromJson(response);
+      return Right(orderDelivery);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.errorMessage);
+    }
+
   }
 
   //1
