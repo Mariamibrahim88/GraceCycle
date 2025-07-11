@@ -57,3 +57,11 @@ class GetOrderDetailsError extends CheckoutState {
   final String error;
   GetOrderDetailsError({required this.error});
 }
+
+class PaymentLoading extends CheckoutState {}
+
+class PaymentSuccess extends CheckoutState {}
+class PaymentFailure extends CheckoutState {
+  final String error;
+  PaymentFailure(this.error);
+}

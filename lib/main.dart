@@ -15,5 +15,8 @@ void main() async {
   );
   await sl<CacheHelper>().init();
   //await sl<CacheHelper>().clearData();
+  // Stripe.publishableKey =
+  //     'pk_live_51QExfyLLV2zZUYwqQbeEde0aK6YGKTx1o9TcQMHTe2HdIQwfo2C0C4TzgpsgTaafXtt3FaXH8onFs8EHkYcugCBH00v04buUJT'; // You’ll give them this from Stripe dashboard
+  // await Stripe.instance.applySettings();
   runApp(const MyApp());
 }

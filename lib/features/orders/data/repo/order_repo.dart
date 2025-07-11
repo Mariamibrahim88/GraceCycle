@@ -40,4 +40,37 @@ class OrderRepo {
       return Left(e.errorModel.errorMessage);
     }
   }
+
+  //1
+//   Future<Either<String, String>> createPaymentIntent(int amount) async {
+//     try {
+      
+//       final response = await sl<ApiConsumer>().post(
+//         EndPoint.createPaymentIntent,
+//         // body: {'amount': amount.toString()},
+//       );
+//       final clientSecret = response['clientSecret'];
+//       return Right(clientSecret);
+//     } on ServerException catch (e) {
+//       return Left(e.errorModel.errorMessage);
+//     }
+//   }
+
+
+// Future<bool> confirmStripePayment(String clientSecret) async {
+//   //2
+//   await Stripe.instance.initPaymentSheet(
+//     paymentSheetParameters: SetupPaymentSheetParameters(
+//       paymentIntentClientSecret: clientSecret,
+//       merchantDisplayName: 'Your App Name',
+//     ),
+//   );
+//   try {
+//     //3
+//     await Stripe.instance.presentPaymentSheet();
+//     return true;
+//   } catch (e) {
+//     rethrow;
+//   }
+// }
 }

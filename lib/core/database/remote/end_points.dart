@@ -8,7 +8,6 @@ class EndPoint {
   static const String cart = 'Cart';
   static const String updateItemInCart = 'Cart/update-item';
   static const String orderSummary = 'Orders/summary';
-
   static String foodById(id) {
     return 'Foods/$id';
   }
@@ -30,6 +29,7 @@ class EndPoint {
   }
 
   static String addItemToCart = 'Cart/add-item';
+  static String createPaymentIntent = '';
 }
 
 class ApiKeys {

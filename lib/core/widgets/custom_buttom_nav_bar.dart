@@ -34,40 +34,43 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _widgetOptions[_selectedIndex],
-      extendBody: true,
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
-        decoration: BoxDecoration(
-          color: AppColors.vendorCard,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.r),
-            topRight: Radius.circular(20.r),
-          ),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black54,
-              blurRadius: 10,
-              spreadRadius: 2,
-              offset: Offset(0, 5),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        body: _widgetOptions[_selectedIndex],
+        extendBody: true,
+        bottomNavigationBar: Container(
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          decoration: BoxDecoration(
+            color: AppColors.vendorCard,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.r),
+              topRight: Radius.circular(20.r),
             ),
-          ],
-        ),
-        child: BottomNavigationBar(
-          backgroundColor: AppColors.vendorCard,
-          elevation: 0,
-          type: BottomNavigationBarType.fixed,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: [
-            _buildNavBarItem(Icons.home_outlined, 'Home', 0),
-            _buildNavBarItem(Icons.search, 'Discover', 1),
-            _buildNavBarItem(Icons.favorite_border_outlined, 'Favorites', 2),
-            _buildNavBarItem(Icons.shopping_bag_outlined, 'Orders', 3),
-          ],
-          currentIndex: _selectedIndex,
-          onTap: _onItemTap,
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black54,
+                blurRadius: 10,
+                spreadRadius: 2,
+                offset: Offset(0, 5),
+              ),
+            ],
+          ),
+          child: BottomNavigationBar(
+            backgroundColor: AppColors.vendorCard,
+            elevation: 0,
+            type: BottomNavigationBarType.fixed,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: [
+              _buildNavBarItem(Icons.home_outlined, 'Home', 0),
+              _buildNavBarItem(Icons.search, 'Discover', 1),
+              _buildNavBarItem(Icons.favorite_border_outlined, 'Favorites', 2),
+              _buildNavBarItem(Icons.shopping_bag_outlined, 'Orders', 3),
+            ],
+            currentIndex: _selectedIndex,
+            onTap: _onItemTap,
+          ),
         ),
       ),
     );

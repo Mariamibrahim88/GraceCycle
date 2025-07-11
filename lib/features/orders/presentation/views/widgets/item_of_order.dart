@@ -100,7 +100,7 @@ class ItemOfOrder extends StatelessWidget {
                         style: AppTextStyles.nunito500Size11BasicGreen,
                       ),
                       Text(
-                        '${orderSummary.total}',
+                        (orderSummary.total).toStringAsFixed(2),
                         style: AppTextStyles.nunito500Size17GreenButt,
                       ),
                     ],

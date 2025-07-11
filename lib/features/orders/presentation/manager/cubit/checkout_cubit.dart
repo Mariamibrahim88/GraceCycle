@@ -66,6 +66,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   Future<void> getOrderDetails({required int orderId}) async {
     emit(GetOrderDetailsLoading());
 
+
     final result = await sl<OrderRepo>().getOrderDetails(orderId: orderId);
 
     result.fold((l) {
@@ -76,4 +77,17 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       totalNumberOfitems = r.totalItems;
     });
   }
+
+  // Future<void> makePayment(int amount,String clientSecret) async {
+  //   emit(PaymentLoading());
+  //   try {
+  //     final response = await sl<OrderRepo>().createPaymentIntent(amount);
+
+  //     await sl<OrderRepo>().confirmStripePayment(clientSecret);
+
+  //     emit(PaymentSuccess());
+  //   } catch (e) {
+  //     emit(PaymentFailure(e.toString()));
+  //   }
+  // }
 }
