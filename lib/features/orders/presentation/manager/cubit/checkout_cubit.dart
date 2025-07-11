@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grace_cycle/core/service/service_locator.dart';
+import 'package:grace_cycle/features/orders/data/models/order_delivery_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_details_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_summary_model.dart';
@@ -16,6 +17,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
 
   int selectedIndex = 0;
   int currentStep = 0;
+  bool isNeedAddress = false;
 
   void isOrderPlaced(int index) {
     selectedIndex = index;
@@ -66,7 +68,6 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   Future<void> getOrderDetails({required int orderId}) async {
     emit(GetOrderDetailsLoading());
 
-
     final result = await sl<OrderRepo>().getOrderDetails(orderId: orderId);
 
     result.fold((l) {
@@ -75,6 +76,18 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       emit(GetOrderDetailsSuccess(orderDetails: r));
       totalPrice = r.total;
       totalNumberOfitems = r.totalItems;
+    });
+  }
+
+  Future<void> getOrderDelivery({required int orderId}) async {
+    emit(GetOrderDeliveryLoading());
+
+    final result = await sl<OrderRepo>().getOrderDelivery(orderId: orderId);
+
+    result.fold((l) {
+      emit(GetOrderDeliveryError(error: l));
+    }, (r) {
+      emit(GetOrderDeliverySuccess(orderDelivery: r));
     });
   }
 

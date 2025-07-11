@@ -28,6 +28,10 @@ class EndPoint {
     return 'Orders/$orderId/details';
   }
 
+  static String orderDelivery(int orderId) {
+    return 'Orders/$orderId/delivery';
+  }
+
   static String addItemToCart = 'Cart/add-item';
   static String createPaymentIntent = '';
 }
