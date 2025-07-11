@@ -15,13 +15,24 @@ class HeadOfCategory extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            title,
-            style: GoogleFonts.nunito(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.w700,
-              color: AppColors.greenButt,
-            ),
+          Row(
+            children: [
+              if (title == 'Recommended for You')
+                Icon(
+                  Icons.recommend,
+                  color: AppColors.greenButt,
+                  size: 20.sp,
+                ),
+              if (title == 'Recommended for You') SizedBox(width: 8.w),
+              Text(
+                title,
+                style: GoogleFonts.nunito(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.greenButt,
+                ),
+              ),
+            ],
           ),
         ],
       ),

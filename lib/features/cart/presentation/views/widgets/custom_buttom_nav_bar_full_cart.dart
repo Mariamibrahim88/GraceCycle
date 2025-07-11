@@ -89,7 +89,7 @@ class CustomButtomNavBarFullCart extends StatelessWidget {
                     onTap: () {
                       BlocProvider.of<CheckoutCubit>(context)
                           .convertCartToOrder(vendorId);
-                      navigate(context: context, route: Routes.ordersView);
+                      // navigate(context: context, route: Routes.ordersView);
                     },
                     child: Container(
                         height: 36.h,
