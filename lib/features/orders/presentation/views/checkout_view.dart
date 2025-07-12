@@ -17,11 +17,13 @@ class CheckoutView extends StatelessWidget {
           bottomNavigationBar: BlocBuilder<CheckoutCubit, CheckoutState>(
             builder: (context, state) {
               final cubit = context.read<CheckoutCubit>();
-              // إذا كنا في الخطوة الأخيرة (3) لا نظهر أي زر
+
+              // If we're in the last step (3), don't show any button
               if (cubit.currentStep == 3) {
                 return const SizedBox();
               }
-              // إذا كنا في خطوة التأكيد (2)
+
+              // If we're in the confirmation step (2)
               if (cubit.currentStep == 2) {
                 return CustomOrderNavBarContainer(
                   text: 'Confirm the Order',
@@ -30,7 +32,33 @@ class CheckoutView extends StatelessWidget {
                   },
                 );
               }
-              // باقي الخطوات
+
+              // If we're in the receiving address step (1), update delivery first
+              if (cubit.currentStep == 1) {
+                return CustomOrderNavBarContainer(
+                  text: 'Continue',
+                  onTap: () async {
+                    // Validate delivery method and address first
+                    if (!cubit.isDeliveryValid()) {
+                      // Show error message
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(cubit.getValidationError() ??
+                              'Please check your delivery information'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                      return;
+                    }
+
+                    // The delivery method and address are already saved when user changes them
+                    // Just proceed to next step
+                    cubit.goToNextStep();
+                  },
+                );
+              }
+
+              // Other steps
               return CustomOrderNavBarContainer(
                 text: 'Continue',
                 onTap: () {

@@ -7,6 +7,7 @@ import 'package:grace_cycle/features/orders/data/models/order_delivery_model.dar
 import 'package:grace_cycle/features/orders/data/models/order_details_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_summary_model.dart';
+import 'package:grace_cycle/features/orders/data/models/update_order_delivery_model.dart';
 
 class OrderRepo {
   Future<Either<String, OrderModel>> converCartToOrder(String vendorId) async {
@@ -32,9 +33,11 @@ class OrderRepo {
     }
   }
 
-  Future<Either<String, OrderDetailsModel>> getOrderDetails({required int orderId}) async {
+  Future<Either<String, OrderDetailsModel>> getOrderDetails(
+      {required int orderId}) async {
     try {
-      final response = await sl<ApiConsumer>().get(EndPoint.orderDetails(orderId));
+      final response =
+          await sl<ApiConsumer>().get(EndPoint.orderDetails(orderId));
       final orderDetails = OrderDetailsModel.fromJson(response);
       return Right(orderDetails);
     } on ServerException catch (e) {
@@ -42,21 +45,47 @@ class OrderRepo {
     }
   }
 
-   Future<Either<String, OrderDeliveryModel>> getOrderDelivery({required int orderId})async{
-     try {
-      final response = await sl<ApiConsumer>().get(EndPoint.orderDelivery(orderId));
+  Future<Either<String, OrderDeliveryModel>> getOrderDelivery(
+      {required int orderId, int? deliveryMethodId, String? address}) async {
+    try {
+      final Map<String, dynamic> queryParams = {};
+      if (deliveryMethodId != null) {
+        queryParams['deliveryMethodId'] = deliveryMethodId;
+      }
+      if (address != null && address.isNotEmpty) {
+        queryParams['address'] = address;
+      }
+
+      final response = await sl<ApiConsumer>()
+          .get(EndPoint.orderDelivery(orderId), queryParameters: queryParams);
       final orderDelivery = OrderDeliveryModel.fromJson(response);
       return Right(orderDelivery);
     } on ServerException catch (e) {
       return Left(e.errorModel.errorMessage);
     }
-
   }
 
-  //1
+  Future<Either<String, UpdateOrderDeliveryModel>> updateOrderDelivery(
+      {required int orderId,
+      required int deliveryMethodId,
+      required String address}) async {
+    try {
+      final response = await sl<ApiConsumer>()
+          .patch(EndPoint.updateOrderDelivery(orderId), data: {
+        'deliveryMethodId': deliveryMethodId,
+        'address': address.isEmpty ? null : address,
+      });
+      final updateOrderDelivery = UpdateOrderDeliveryModel.fromJson(response);
+      return Right(updateOrderDelivery);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.errorMessage);
+    }
+  }
+
+//1
 //   Future<Either<String, String>> createPaymentIntent(int amount) async {
 //     try {
-      
+
 //       final response = await sl<ApiConsumer>().post(
 //         EndPoint.createPaymentIntent,
 //         // body: {'amount': amount.toString()},
@@ -67,7 +96,6 @@ class OrderRepo {
 //       return Left(e.errorModel.errorMessage);
 //     }
 //   }
-
 
 // Future<bool> confirmStripePayment(String clientSecret) async {
 //   //2

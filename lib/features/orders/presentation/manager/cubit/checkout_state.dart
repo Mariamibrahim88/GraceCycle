@@ -53,12 +53,10 @@ class GetOrderDetailsSuccess extends CheckoutState {
   GetOrderDetailsSuccess({required this.orderDetails});
 }
 
-
 class GetOrderDetailsError extends CheckoutState {
   final String error;
   GetOrderDetailsError({required this.error});
 }
-
 
 class GetOrderDeliveryLoading extends CheckoutState {}
 
@@ -68,18 +66,29 @@ class GetOrderDeliverySuccess extends CheckoutState {
   GetOrderDeliverySuccess({required this.orderDelivery});
 }
 
-
 class GetOrderDeliveryError extends CheckoutState {
   final String error;
   GetOrderDeliveryError({required this.error});
 }
 
-
-
 class PaymentLoading extends CheckoutState {}
 
 class PaymentSuccess extends CheckoutState {}
+
 class PaymentFailure extends CheckoutState {
   final String error;
   PaymentFailure(this.error);
+}
+
+class UpdateOrderDeliveryLoading extends CheckoutState {}
+
+class UpdateOrderDeliverySuccess extends CheckoutState {
+  final UpdateOrderDeliveryModel updateOrderDelivery;
+
+  UpdateOrderDeliverySuccess({required this.updateOrderDelivery});
+}
+
+class UpdateOrderDeliveryError extends CheckoutState {
+  final String error;
+  UpdateOrderDeliveryError({required this.error});
 }
