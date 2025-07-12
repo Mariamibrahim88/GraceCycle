@@ -4,6 +4,7 @@ import 'package:grace_cycle/features/orders/data/models/order_delivery_model.dar
 import 'package:grace_cycle/features/orders/data/models/order_details_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_summary_model.dart';
+import 'package:grace_cycle/features/orders/data/models/payment_intent_model.dart';
 import 'package:grace_cycle/features/orders/data/models/update_order_delivery_model.dart';
 import 'package:grace_cycle/features/orders/data/repo/order_repo.dart';
 import 'package:meta/meta.dart';
@@ -221,23 +222,31 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     });
   }
 
+  Future<void> paymentIntent({required int orderId}) async {
+    emit(PaymentIntentLoading());
+    final result = await sl<OrderRepo>().payemtIntent(orderId);
+    result.fold((l) {
+      emit(PaymentIntentFailure(l));
+    }, (r) {
+      emit(PaymentIntentSuccess(paymentIntent: r));
+    });
+  }
+
+  Future<void> makePayment(int amount, String clientSecret) async {
+    emit(PaymentLoading());
+    try {
+      await sl<OrderRepo>().confirmStripePayment(clientSecret);
+
+      emit(PaymentSuccess());
+    } catch (e) {
+      emit(PaymentFailure(e.toString()));
+    }
+  }
+
   // Cleanup method to dispose of timer
   @override
   Future<void> close() {
     _deliveryUpdateTimer?.cancel();
     return super.close();
   }
-
-  // Future<void> makePayment(int amount,String clientSecret) async {
-  //   emit(PaymentLoading());
-  //   try {
-  //     final response = await sl<OrderRepo>().createPaymentIntent(amount);
-
-  //     await sl<OrderRepo>().confirmStripePayment(clientSecret);
-
-  //     emit(PaymentSuccess());
-  //   } catch (e) {
-  //     emit(PaymentFailure(e.toString()));
-  //   }
-  // }
 }

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:grace_cycle/core/database/remote/api_consumer.dart';
 import 'package:grace_cycle/core/database/remote/end_points.dart';
 import 'package:grace_cycle/core/errors/exceptions.dart';
@@ -7,6 +8,7 @@ import 'package:grace_cycle/features/orders/data/models/order_delivery_model.dar
 import 'package:grace_cycle/features/orders/data/models/order_details_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_model.dart';
 import 'package:grace_cycle/features/orders/data/models/order_summary_model.dart';
+import 'package:grace_cycle/features/orders/data/models/payment_intent_model.dart';
 import 'package:grace_cycle/features/orders/data/models/update_order_delivery_model.dart';
 
 class OrderRepo {
@@ -82,35 +84,45 @@ class OrderRepo {
     }
   }
 
-//1
-//   Future<Either<String, String>> createPaymentIntent(int amount) async {
-//     try {
+  Future<Either<String, PaymentIntentModel>> payemtIntent(int orderId) async {
+    try {
+      final response =
+          await sl<ApiConsumer>().post(EndPoint.paymentIntent(orderId));
+      final paymentIntentModel = PaymentIntentModel.fromJson(response);
+      return Right(paymentIntentModel);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.errorMessage);
+    }
+  }
 
-//       final response = await sl<ApiConsumer>().post(
-//         EndPoint.createPaymentIntent,
-//         // body: {'amount': amount.toString()},
-//       );
-//       final clientSecret = response['clientSecret'];
-//       return Right(clientSecret);
-//     } on ServerException catch (e) {
-//       return Left(e.errorModel.errorMessage);
-//     }
-//   }
+  // //1
+  // Future<Either<String, String>> createPaymentIntent(int amount) async {
+  //   try {
+  //     final response = await sl<ApiConsumer>().post(
+  //       EndPoint.createPaymentIntent,
+  //       // body: {'amount': amount.toString()},
+  //     );
+  //     final clientSecret = response['clientSecret'];
+  //     return Right(clientSecret);
+  //   } on ServerException catch (e) {
+  //     return Left(e.errorModel.errorMessage);
+  //   }
+  // }
 
-// Future<bool> confirmStripePayment(String clientSecret) async {
-//   //2
-//   await Stripe.instance.initPaymentSheet(
-//     paymentSheetParameters: SetupPaymentSheetParameters(
-//       paymentIntentClientSecret: clientSecret,
-//       merchantDisplayName: 'Your App Name',
-//     ),
-//   );
-//   try {
-//     //3
-//     await Stripe.instance.presentPaymentSheet();
-//     return true;
-//   } catch (e) {
-//     rethrow;
-//   }
-// }
+  Future<bool> confirmStripePayment(String clientSecret) async {
+    //2
+    await Stripe.instance.initPaymentSheet(
+      paymentSheetParameters: SetupPaymentSheetParameters(
+        paymentIntentClientSecret: clientSecret,
+        merchantDisplayName: 'Grace Cycle',
+      ),
+    );
+    try {
+      //3
+      await Stripe.instance.presentPaymentSheet();
+      return true;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

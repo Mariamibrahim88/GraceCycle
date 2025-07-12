@@ -19,12 +19,12 @@ class CheckoutView extends StatelessWidget {
               final cubit = context.read<CheckoutCubit>();
 
               // If we're in the last step (3), don't show any button
-              if (cubit.currentStep == 3) {
+              if (cubit.currentStep == 4) {
                 return const SizedBox();
               }
 
               // If we're in the confirmation step (2)
-              if (cubit.currentStep == 2) {
+              if (cubit.currentStep == 3) {
                 return CustomOrderNavBarContainer(
                   text: 'Confirm the Order',
                   onTap: () {
@@ -34,7 +34,7 @@ class CheckoutView extends StatelessWidget {
               }
 
               // If we're in the receiving address step (1), update delivery first
-              if (cubit.currentStep == 1) {
+              if (cubit.currentStep == 2) {
                 return CustomOrderNavBarContainer(
                   text: 'Continue',
                   onTap: () async {
@@ -54,6 +54,15 @@ class CheckoutView extends StatelessWidget {
                     // The delivery method and address are already saved when user changes them
                     // Just proceed to next step
                     cubit.goToNextStep();
+                  },
+                );
+              }
+              if (cubit.currentStep == 1) {
+                return CustomOrderNavBarContainer(
+                  text: 'Continue',
+                  onTap: () async {
+                    cubit.goToNextStep();
+                    cubit.paymentIntent(orderId: cubit.orderId!);
                   },
                 );
               }

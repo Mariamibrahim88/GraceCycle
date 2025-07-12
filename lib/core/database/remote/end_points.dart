@@ -35,6 +35,9 @@ class EndPoint {
   static String updateOrderDelivery(int orderId) {
     return 'Orders/$orderId';
   }
+  static String paymentIntent(int orderId) {
+    return 'payments/$orderId';
+  }
 
   static String addItemToCart = 'Cart/add-item';
   static String createPaymentIntent = '';

@@ -92,3 +92,16 @@ class UpdateOrderDeliveryError extends CheckoutState {
   final String error;
   UpdateOrderDeliveryError({required this.error});
 }
+
+class PaymentIntentLoading extends CheckoutState {}
+
+class PaymentIntentSuccess extends CheckoutState {
+  final PaymentIntentModel paymentIntent;
+
+  PaymentIntentSuccess({required this.paymentIntent});
+}
+
+class PaymentIntentFailure extends CheckoutState {
+  final String error;
+  PaymentIntentFailure(this.error);
+}
