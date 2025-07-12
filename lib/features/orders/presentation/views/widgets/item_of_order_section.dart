@@ -3,10 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grace_cycle/core/utils/app_colors.dart';
 import 'package:grace_cycle/core/utils/app_spacing.dart';
 import 'package:grace_cycle/core/utils/app_text_styles.dart';
-import 'package:grace_cycle/features/cart/data/models/update_item_model.dart';
-import 'package:grace_cycle/features/cart/presentation/views/widgets/remove_and_add_cart_item.dart';
 import 'package:grace_cycle/features/favorites/presentation/views/widgets/asset_fav_card.dart';
-import 'package:grace_cycle/features/home/presentation/views/widgets/left_pieces_container.dart';
 import 'package:grace_cycle/features/home/presentation/views/widgets/price_for_food.dart';
 import 'package:grace_cycle/features/orders/data/models/order_details_model.dart';
 

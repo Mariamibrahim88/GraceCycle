@@ -28,8 +28,13 @@ class CustomReceivingAddressContainer extends StatelessWidget {
           height: 46.h,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: AppColors.cardofCart,
+            color: isSelected
+                ? AppColors.greenButt.withOpacity(0.1)
+                : AppColors.cardofCart,
             borderRadius: BorderRadius.circular(16.r),
+            border: isSelected
+                ? Border.all(color: AppColors.greenButt, width: 2)
+                : null,
           ),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),
@@ -45,7 +50,12 @@ class CustomReceivingAddressContainer extends StatelessWidget {
                 horizontalSpace(5),
                 Text(
                   text,
-                  style: AppTextStyles.nunito400Size16GrayForOrders,
+                  style: isSelected
+                      ? AppTextStyles.nunito400Size16GrayForOrders.copyWith(
+                          color: AppColors.greenButt,
+                          fontWeight: FontWeight.w600,
+                        )
+                      : AppTextStyles.nunito400Size16GrayForOrders,
                 ),
                 const Spacer(),
                 GestureDetector(
